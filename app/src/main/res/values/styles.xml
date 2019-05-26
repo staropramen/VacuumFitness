@@ -8,4 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="start_buttons_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/start_text_size</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/colorPrimaryExtraDark</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
 </resources>

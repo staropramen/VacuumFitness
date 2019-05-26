@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="app_bar_elevation">8dp</dimen>
+
+    <!-- Margins -->
+    <dimen name="xxl_margin">32dp</dimen>
+    <dimen name="xl_margin">24dp</dimen>
+
+    <dimen name="app_bar_height">140dp</dimen>
+
+    <dimen name="start_image_height">200dp</dimen>
+    <dimen name="start_text_size">40sp</dimen>
 </resources>

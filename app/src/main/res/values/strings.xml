@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Vacuum Fitness</string>
+
+    <!-- Start Fragment -->
+    <string name="start_training">Start \n Training</string>
+    <string name="customize_training">Customize \n Training</string>
+    <string name="customize_music">Customize \n Music</string>
+    <string name="how_to">How To</string>
+
 </resources>
