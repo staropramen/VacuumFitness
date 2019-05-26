@@ -7,4 +7,7 @@
     <string name="customize_music">Customize \n Music</string>
     <string name="how_to">How To</string>
 
+    <!-- Exercise Names -->
+    <string name="silent_tree">Silent Tree</string>
+
 </resources>
