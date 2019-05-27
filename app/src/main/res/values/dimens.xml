@@ -5,9 +5,31 @@
     <!-- Margins -->
     <dimen name="xxl_margin">32dp</dimen>
     <dimen name="xl_margin">24dp</dimen>
+    <dimen name="margin">16dp</dimen>
+    <dimen name="s_margin">8dp</dimen>
+
+    <!-- Text -->
+    <dimen name="small_text">16sp</dimen>
+    <dimen name="regular_text">20sp</dimen>
+    <dimen name="big_text">25sp</dimen>
+    <dimen name="xl_text">30sp</dimen>
+    <dimen name="xxl_text">40sp</dimen>
 
     <dimen name="app_bar_height">140dp</dimen>
 
+    <!-- Main Activity -->
     <dimen name="start_image_height">200dp</dimen>
     <dimen name="start_text_size">40sp</dimen>
+
+    <!-- Training Activity -->
+    <dimen name="title_margin_left">60dp</dimen>
+    <dimen name="back_button_size">50dp</dimen>
+    <dimen name="spinner_width">300dp</dimen>
+    <dimen name="small_spinner_width">200dp</dimen>
+    <dimen name="spinner_top_margin">60dp</dimen>
+    <dimen name="spinner_corners">15dp</dimen>
+    <dimen name="spinner_padding">10dp</dimen>
+    <dimen name="spinner_text_size">20sp</dimen>
+    <dimen name="increase_button_size">35dp</dimen>
+    <dimen name="count_view_width">45dp</dimen>
 </resources>

@@ -17,4 +17,25 @@
         <item name="android:textAlignment">center</item>
     </style>
 
+    <style name="descriptions">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/small_text</item>
+        <item name="android:textColor">@color/grey</item>
+    </style>
+
+    <style name="big_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/xxl_text</item>
+        <item name="android:textColor">@color/grey</item>
+    </style>
+
+    <style name="prepare_fragment_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/big_text</item>
+        <item name="android:textColor">@color/colorPrimaryExtraDark</item>
+    </style>
+
 </resources>

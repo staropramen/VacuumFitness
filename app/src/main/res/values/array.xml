@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- TODO Delete after solved programmatically-->
+    <string-array name="spinnerItems">
+        <item>Random Training</item>
+        <item>Custom Training 1</item>
+        <item>Custom Training 2</item>
+    </string-array>
+
+    <string-array name="levelSpinnerItems">
+        <item>@string/beginner</item>
+        <item>@string/intermediate</item>
+        <item>@string/advanced</item>
+    </string-array>
+
+    <string-array name="musicSpinnerItems">
+        <item>Music</item>
+        <item>Music 2</item>
+    </string-array>
+</resources>
