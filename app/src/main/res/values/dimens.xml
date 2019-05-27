@@ -32,4 +32,7 @@
     <dimen name="spinner_text_size">20sp</dimen>
     <dimen name="increase_button_size">35dp</dimen>
     <dimen name="count_view_width">45dp</dimen>
+
+    <dimen name="small_icon_size">60dp</dimen>
+    <dimen name="big_icon_size">80dp</dimen>
 </resources>
