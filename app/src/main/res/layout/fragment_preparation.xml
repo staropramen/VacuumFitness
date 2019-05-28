@@ -129,7 +129,6 @@
     <TextView
         android:id="@+id/tv_time_count"
         style="@style/big_text"
-        android:text="20"
         app:layout_constraintBottom_toBottomOf="@+id/tv_exercise_count"
         app:layout_constraintEnd_toStartOf="@+id/tv_min_text" />
 
@@ -162,7 +161,7 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/bt_start_training"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/xxl_margin"
