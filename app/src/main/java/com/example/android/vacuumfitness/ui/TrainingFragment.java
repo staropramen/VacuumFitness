@@ -1,7 +1,9 @@
 package com.example.android.vacuumfitness.ui;
 
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
@@ -12,6 +14,8 @@ import android.widget.TextView;
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.utils.TrainingTimerUtils;
+
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,6 +29,8 @@ public class TrainingFragment extends Fragment {
 
     private int exerciseCount;
     private int level;
+
+    MediaPlayer mCommandMediaPlayer;
 
     public TrainingFragment() {
         // Required empty public constructor
@@ -46,11 +52,65 @@ public class TrainingFragment extends Fragment {
             level = data.getInt(KeyUtils.LEVEL_KEY);
         }
 
-        TrainingTimerUtils.launchTimer(countdown, TrainingTimerUtils.getTrainingTimeMilliseconds(level, exerciseCount), level, getActivity());
+        TrainingTimerUtils.launchTimer(countdown, TrainingTimerUtils.getTrainingTimeMilliseconds(level, exerciseCount),
+                level, getActivity(), mCommandMediaPlayer);
 
         return rootView;
     }
 
+    private void getCountdown(long time){
+        new CountDownTimer(time, 1000) {
+
+            int counter = 0;
+
+            public void onTick(long millisUntilFinished) {
+                countdown.setText(""+String.format("%02d:%02d",
+                        TimeUnit.MILLISECONDS.toMinutes( millisUntilFinished),
+                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
+                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+
+                int voiceCommand = TrainingTimerUtils.getVoiceCommandInt(TrainingTimerUtils.getCommandCorners(level), counter, getActivity());
+                playVoiceCommand(voiceCommand);
+
+                if(counter < TrainingTimerUtils.exerciseTime(level)){
+                    counter++;
+                }else {
+                    counter = 0;
+                }
+            }
+
+            public void onFinish() {
+                countdown.setText("done!");
+            }
+        }.start();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        releaseMediaPlayer();
+    }
+
+    private void playVoiceCommand(int audioId){
+        releaseMediaPlayer();
+        mCommandMediaPlayer = MediaPlayer.create(getActivity(), audioId);
+        mCommandMediaPlayer.start();
+    }
+
+
+    private void releaseMediaPlayer() {
+        // If the media player is not null, then it may be currently playing a sound.
+        if (mCommandMediaPlayer != null) {
+            // Regardless of the current state of the media player, release its resources
+            // because we no longer need it.
+            mCommandMediaPlayer.release();
+
+            // Set the media player back to null. For our code, we've decided that
+            // setting the media player to null is an easy way to tell that the media player
+            // is not configured to play an audio file at the moment.
+            mCommandMediaPlayer = null;
+        }
+    }
 }
 
 
