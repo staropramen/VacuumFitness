@@ -36,9 +36,6 @@ public class MainActivity extends AppCompatActivity {
         startTraining.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Animation animFadein = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_in);
-
-                startTraining.startAnimation(animFadein);
                 Intent intent = new Intent(MainActivity.this, TrainingActivity.class);
                 startActivity(intent);
             }

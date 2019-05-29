@@ -52,8 +52,8 @@ public class TrainingFragment extends Fragment {
             level = data.getInt(KeyUtils.LEVEL_KEY);
         }
 
-        TrainingTimerUtils.launchTimer(countdown, TrainingTimerUtils.getTrainingTimeMilliseconds(level, exerciseCount),
-                level, getActivity(), mCommandMediaPlayer);
+        //Launch Countdown
+        getCountdown(TrainingTimerUtils.getTrainingTimeMilliseconds(level, exerciseCount));
 
         return rootView;
     }
@@ -92,9 +92,12 @@ public class TrainingFragment extends Fragment {
     }
 
     private void playVoiceCommand(int audioId){
-        releaseMediaPlayer();
-        mCommandMediaPlayer = MediaPlayer.create(getActivity(), audioId);
-        mCommandMediaPlayer.start();
+        //If there is no commant audioId is 0, so dont launch Mediaplayer then
+        if(audioId != 0){
+            releaseMediaPlayer();
+            mCommandMediaPlayer = MediaPlayer.create(getActivity(), audioId);
+            mCommandMediaPlayer.start();
+        }
     }
 
 

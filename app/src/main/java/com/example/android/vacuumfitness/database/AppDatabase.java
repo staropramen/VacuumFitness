@@ -49,9 +49,21 @@ public abstract class AppDatabase extends RoomDatabase {
 
     private static Exercise[] populateExercises(){
         return new Exercise[] {
-                new Exercise("Silent Tree", 1, "dummy-picture", "xMQwBMhaqFA"),
-                new Exercise("Holly Wood", 1, "dummy-picture", "xMQwBMhaqFA"),
-                new Exercise("Rainy Day", 1, "dummy-picture", "xMQwBMhaqFA")
+                new Exercise("Silent Tree", 1, "dummy1", "xMQwBMhaqFA"),
+                new Exercise("Holly Wood", 1, "dummy2", "xMQwBMhaqFA"),
+                new Exercise("Rainy Day", 1, "dummy3", "xMQwBMhaqFA"),
+                new Exercise("Athena", 1, "dummy1", "xMQwBMhaqFA"),
+                new Exercise("Venus", 1, "dummy2", "xMQwBMhaqFA"),
+                new Exercise("Mars", 1, "dummy3", "xMQwBMhaqFA"),
+                new Exercise("Free World", 1, "dummy1", "xMQwBMhaqFA"),
+                new Exercise("Hercules", 1, "dummy2", "xMQwBMhaqFA"),
+                new Exercise("Sun King", 1, "dummy3", "xMQwBMhaqFA"),
+                new Exercise("Wild Horse", 1, "dummy1", "xMQwBMhaqFA"),
+                new Exercise("Last Unicorn", 1, "dummy2", "xMQwBMhaqFA"),
+                new Exercise("Mayflower", 1, "dummy3", "xMQwBMhaqFA"),
+                new Exercise("Apple", 1, "dummy1", "xMQwBMhaqFA"),
+                new Exercise("Twister", 1, "dummy2", "xMQwBMhaqFA"),
+                new Exercise("Crumble", 1, "dummy3", "xMQwBMhaqFA"),
         };
     }
 }
