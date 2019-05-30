@@ -31,4 +31,7 @@ public interface ExerciseDao {
 
     @Query("SELECT * FROM exercises WHERE primaryKey = :id")
     LiveData<Exercise> loadExerciseById(int id);
+
+    @Query("SELECT COUNT(exercise_name) FROM exercises")
+    int getExerciseRowCount();
 }

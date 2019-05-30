@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.example.android.vacuumfitness.model.Exercise;
+import com.example.android.vacuumfitness.utils.AppExecutors;
 
 import java.util.concurrent.Executors;
 
@@ -30,7 +31,7 @@ public abstract class AppDatabase extends RoomDatabase {
                             @Override
                             public void onCreate(@NonNull SupportSQLiteDatabase db) {
                                 super.onCreate(db);
-                                Executors.newSingleThreadScheduledExecutor().execute(new Runnable() {
+                                AppExecutors.getInstance().diskIO().execute(new Runnable() {
                                     @Override
                                     public void run() {
                                         getInstance(context).exerciseDao().insertAll(populateExercises());

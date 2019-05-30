@@ -6,12 +6,15 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.android.vacuumfitness.R;
+import com.example.android.vacuumfitness.database.AppDatabase;
+import com.example.android.vacuumfitness.utils.AppExecutors;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.utils.TrainingTimerUtils;
 
@@ -32,6 +35,8 @@ public class TrainingFragment extends Fragment {
 
     MediaPlayer mCommandMediaPlayer;
 
+    private AppDatabase mDb;
+
     public TrainingFragment() {
         // Required empty public constructor
     }
@@ -45,6 +50,9 @@ public class TrainingFragment extends Fragment {
         //Setup Butteknife
         ButterKnife.bind(this, rootView);
 
+        //Get Database instance
+        mDb = AppDatabase.getInstance(getActivity().getApplicationContext());
+
         //Get Data from Bundle
         Bundle data = getArguments();
         if(data != null && data.containsKey(KeyUtils.EXERCISE_COUNT_KEY) && data.containsKey(KeyUtils.LEVEL_KEY)){
@@ -54,6 +62,9 @@ public class TrainingFragment extends Fragment {
 
         //Launch Countdown
         getCountdown(TrainingTimerUtils.getTrainingTimeMilliseconds(level, exerciseCount));
+
+        //TODO TEST
+        getRandomExercisesArray();
 
         return rootView;
     }
@@ -113,6 +124,16 @@ public class TrainingFragment extends Fragment {
             // is not configured to play an audio file at the moment.
             mCommandMediaPlayer = null;
         }
+    }
+
+    private void getRandomExercisesArray(){
+        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                int exerciseTableRows = mDb.exerciseDao().getExerciseRowCount();
+                Log.d("!!!!!!!!!!!!!!!", String.valueOf(exerciseTableRows));
+            }
+        });
     }
 }
 

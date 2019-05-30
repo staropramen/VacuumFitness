@@ -84,7 +84,7 @@
         android:layout_marginTop="@dimen/xxl_margin"
         android:layout_marginBottom="@dimen/xxl_margin"
         android:layout_marginEnd="@dimen/margin"
-        android:src="@drawable/dummy_picture"
+        android:src="@drawable/dummy1"
         app:layout_constraintBottom_toTopOf="@+id/tv_exercise_count_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
