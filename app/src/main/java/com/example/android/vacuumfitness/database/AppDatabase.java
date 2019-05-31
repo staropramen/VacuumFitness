@@ -10,7 +10,9 @@ import android.util.Log;
 
 import com.example.android.vacuumfitness.model.Exercise;
 import com.example.android.vacuumfitness.utils.AppExecutors;
+import com.example.android.vacuumfitness.utils.SharedPrefsUtils;
 
+import java.util.List;
 import java.util.concurrent.Executors;
 
 @Database(entities = {Exercise.class}, version = 1, exportSchema = false)
@@ -35,6 +37,9 @@ public abstract class AppDatabase extends RoomDatabase {
                                     @Override
                                     public void run() {
                                         getInstance(context).exerciseDao().insertAll(populateExercises());
+                                        List<Integer> exerciseIds = getInstance(context).exerciseDao().loadExerciseIdArray();
+                                        SharedPrefsUtils.saveExerciseIdsToSharedPrefs(exerciseIds);
+                                        Log.d(LOG_TAG, "OnCreate DB called");
                                     }
                                 });
                             }

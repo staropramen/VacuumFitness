@@ -38,14 +38,12 @@
         style="@style/descriptions"
         android:layout_marginStart="@dimen/margin"
         android:layout_marginBottom="@dimen/xxl_margin"
-        android:text="Silent Tree"
         app:layout_constraintBottom_toTopOf="@+id/iv_start_pause"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tv_exercise_count_of"
         style="@style/medium_text"
-        android:text="1/5"
         android:layout_marginBottom="@dimen/s_margin"
         app:layout_constraintBottom_toTopOf="@+id/tv_exercise_name"
         app:layout_constraintEnd_toEndOf="@+id/tv_exercise_name"
@@ -64,7 +62,6 @@
         style="@style/big_text"
         android:layout_marginEnd="@dimen/margin"
         android:layout_marginBottom="@dimen/xxl_margin"
-        android:text="22:30"
         app:layout_constraintBottom_toTopOf="@+id/iv_start_pause"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -84,7 +81,6 @@
         android:layout_marginTop="@dimen/xxl_margin"
         android:layout_marginBottom="@dimen/xxl_margin"
         android:layout_marginEnd="@dimen/margin"
-        android:src="@drawable/dummy1"
         app:layout_constraintBottom_toTopOf="@+id/tv_exercise_count_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -9,35 +9,11 @@ import android.widget.Toast;
 
 import com.example.android.vacuumfitness.R;
 
+import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 public class TrainingTimerUtils {
-
-    public static void launchTimer(final TextView timerText, long time, final int level, final Context context, final MediaPlayer mMediaPlayer){
-        new CountDownTimer(time, 1000) {
-
-            int counter = 0;
-
-            public void onTick(long millisUntilFinished) {
-                timerText.setText(""+String.format("%02d:%02d",
-                        TimeUnit.MILLISECONDS.toMinutes( millisUntilFinished),
-                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
-                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
-
-                getVoiceCommands(getCommandCorners(level), counter, context, mMediaPlayer);
-                if(counter < 85){
-                    counter++;
-                }else {
-                    counter = 0;
-                }
-            }
-
-            public void onFinish() {
-                timerText.setText("done!");
-            }
-        }.start();
-    }
 
     //Return time per exercise based on level
     public static int exerciseTime(int level){
@@ -132,110 +108,69 @@ public class TrainingTimerUtils {
         return cornerStones;
     }
 
-    private static void getVoiceCommands(int[] cornerStones, int counter, Context context, MediaPlayer mMediaPlayer){
-
-        if(counter == cornerStones[0]){
-            Toast.makeText(context, "Prepare", Toast.LENGTH_SHORT).show();
-            mMediaPlayer = MediaPlayer.create(context, R.raw.take_position);
-            mMediaPlayer.start();
-        } else if(counter == cornerStones[1]){
-            Toast.makeText(context, "Inhale", Toast.LENGTH_SHORT).show();
-            MediaPlayer command = MediaPlayer.create(context, R.raw.inhale);
-            command.start();
-        } else if(counter == cornerStones[2]){
-            Toast.makeText(context, "Exhale", Toast.LENGTH_SHORT).show();
-            MediaPlayer command = MediaPlayer.create(context, R.raw.exhale);
-            command.start();
-        } else if(counter == cornerStones[3]){
-            Toast.makeText(context, "Inhale", Toast.LENGTH_SHORT).show();
-            MediaPlayer command = MediaPlayer.create(context, R.raw.inhale);
-            command.start();
-        } else if(counter == cornerStones[4]){
-            Toast.makeText(context, "Exhale", Toast.LENGTH_SHORT).show();
-            MediaPlayer command = MediaPlayer.create(context, R.raw.exhale);
-            command.start();
-        } else if(counter == cornerStones[5]){
-            Toast.makeText(context, "Vacuum", Toast.LENGTH_SHORT).show();
-            MediaPlayer command = MediaPlayer.create(context, R.raw.vacuum);
-            command.start();
-        } else if(counter == cornerStones[6]){
-            Toast.makeText(context, "Rest", Toast.LENGTH_SHORT).show();
-            MediaPlayer command = MediaPlayer.create(context, R.raw.relax);
-            command.start();
-        } else if(counter == cornerStones[7]){
-            Toast.makeText(context, "Inhale", Toast.LENGTH_SHORT).show();
-            MediaPlayer command = MediaPlayer.create(context, R.raw.inhale);
-            command.start();
-        } else if(counter == cornerStones[8]){
-            Toast.makeText(context, "Exhale", Toast.LENGTH_SHORT).show();
-            MediaPlayer command = MediaPlayer.create(context, R.raw.exhale);
-            command.start();
-        } else if(counter == cornerStones[9]){
-            Toast.makeText(context, "Inhale", Toast.LENGTH_SHORT).show();
-            MediaPlayer command = MediaPlayer.create(context, R.raw.inhale);
-            command.start();
-        } else if(counter == cornerStones[10]){
-            Toast.makeText(context, "Exhale", Toast.LENGTH_SHORT).show();
-            MediaPlayer command = MediaPlayer.create(context, R.raw.exhale);
-            command.start();
-        } else if(counter == cornerStones[11]){
-            Toast.makeText(context, "Vacuum", Toast.LENGTH_SHORT).show();
-            MediaPlayer command = MediaPlayer.create(context, R.raw.vacuum);
-            command.start();
-        } else if(counter == cornerStones[12]){
-            Toast.makeText(context, "Relax", Toast.LENGTH_SHORT).show();
-            MediaPlayer command = MediaPlayer.create(context, R.raw.change);
-            command.start();
-        }
-
-    }
 
     public static int getVoiceCommandInt(int[] cornerStones, int counter, Context context){
 
         if(counter == cornerStones[0]){
-            Toast.makeText(context, "Prepare", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Prepare", Toast.LENGTH_SHORT).show();
             return R.raw.take_position;
         } else if(counter == cornerStones[1]){
-            Toast.makeText(context, "Inhale", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Inhale", Toast.LENGTH_SHORT).show();
             return R.raw.inhale;
         } else if(counter == cornerStones[2]){
-            Toast.makeText(context, "Exhale", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Exhale", Toast.LENGTH_SHORT).show();
             return R.raw.exhale;
         } else if(counter == cornerStones[3]){
-            Toast.makeText(context, "Inhale", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Inhale", Toast.LENGTH_SHORT).show();
             return R.raw.inhale;
         } else if(counter == cornerStones[4]){
-            Toast.makeText(context, "Exhale", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Exhale", Toast.LENGTH_SHORT).show();
             return R.raw.exhale;
         } else if(counter == cornerStones[5]){
-            Toast.makeText(context, "Vacuum", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Vacuum", Toast.LENGTH_SHORT).show();
             return R.raw.vacuum;
         } else if(counter == cornerStones[6]){
-            Toast.makeText(context, "Rest", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Rest", Toast.LENGTH_SHORT).show();
             return R.raw.relax;
         } else if(counter == cornerStones[7]){
-            Toast.makeText(context, "Inhale", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Inhale", Toast.LENGTH_SHORT).show();
             return R.raw.inhale;
         } else if(counter == cornerStones[8]){
-            Toast.makeText(context, "Exhale", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Exhale", Toast.LENGTH_SHORT).show();
             return R.raw.exhale;
         } else if(counter == cornerStones[9]){
-            Toast.makeText(context, "Inhale", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Inhale", Toast.LENGTH_SHORT).show();
             return R.raw.inhale;
         } else if(counter == cornerStones[10]){
-            Toast.makeText(context, "Exhale", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Exhale", Toast.LENGTH_SHORT).show();
             return R.raw.exhale;
         } else if(counter == cornerStones[11]){
-            Toast.makeText(context, "Vacuum", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Vacuum", Toast.LENGTH_SHORT).show();
             return R.raw.vacuum;
         } else if(counter == cornerStones[12]){
-            Toast.makeText(context, "Relax", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Relax", Toast.LENGTH_SHORT).show();
             return R.raw.change;
         } else {
             //If counter is not at cornerstone position return 0
             return 0;
         }
 
+    }
+
+    public static String makeExerciseCountString(int current, int total){
+        String exerciseCountString = String.valueOf(current) + "/" + String.valueOf(total);
+        return exerciseCountString;
+    }
+
+    //Get ResId from String
+    public static int getResId(String resName, Class<?> c) {
+        try {
+            Field idField = c.getDeclaredField(resName);
+            return idField.getInt(idField);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
 
 }

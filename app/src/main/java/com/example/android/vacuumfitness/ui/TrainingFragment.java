@@ -1,23 +1,32 @@
 package com.example.android.vacuumfitness.ui;
 
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.database.AppDatabase;
+import com.example.android.vacuumfitness.model.Exercise;
 import com.example.android.vacuumfitness.utils.AppExecutors;
 import com.example.android.vacuumfitness.utils.KeyUtils;
+import com.example.android.vacuumfitness.utils.ListConverter;
 import com.example.android.vacuumfitness.utils.TrainingTimerUtils;
+import com.example.android.vacuumfitness.viewmodel.TrainingViewModel;
+import com.squareup.picasso.Picasso;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
@@ -28,12 +37,23 @@ import butterknife.ButterKnife;
  */
 public class TrainingFragment extends Fragment {
 
-    @BindView(R.id.tv_timer) TextView countdown;
+    private static String LOG_TAG = TrainingFragment.class.getSimpleName();
+
+    @BindView(R.id.tv_timer) TextView mCountdown;
+    @BindView(R.id.tv_exercise_count_of) TextView mExerciseCount;
+    @BindView(R.id.tv_exercise_name) TextView mExerciseName;
+    @BindView(R.id.iv_exercise_image) ImageView mExerciseImage;
 
     private int exerciseCount;
     private int level;
 
-    MediaPlayer mCommandMediaPlayer;
+    private int mTimeCounter = 0;
+    private int mExercisePosition = 1;
+    private List<Exercise> mExerciseList;
+    private long mTrainingTime;
+    private CountDownTimer mCountDownTimer;
+
+    private MediaPlayer mCommandMediaPlayer;
 
     private AppDatabase mDb;
 
@@ -60,46 +80,109 @@ public class TrainingFragment extends Fragment {
             level = data.getInt(KeyUtils.LEVEL_KEY);
         }
 
-        //Launch Countdown
-        getCountdown(TrainingTimerUtils.getTrainingTimeMilliseconds(level, exerciseCount));
+        //Make the Training time
+        mTrainingTime = TrainingTimerUtils.getTrainingTimeMilliseconds(level, exerciseCount);
+        Log.d(LOG_TAG, String.valueOf(mTrainingTime));
 
-        //TODO TEST
-        getRandomExercisesArray();
-
+        //Launch ViewModel if savedInstanceState is null
+        if(savedInstanceState == null){
+            setupRandomTrainingViewModel();
+        } else {
+            //Set back state before saving
+            mTrainingTime = savedInstanceState.getLong(KeyUtils.TRAINING_TIME);
+            mTimeCounter = savedInstanceState.getInt(KeyUtils.EXERCISE_TIME);
+            mExerciseList = ListConverter.stringToExerciseList(savedInstanceState.getString(KeyUtils.EXERCISES_ARRAY));
+            mExercisePosition = savedInstanceState.getInt(KeyUtils.EXERCISE_POSITION);
+            setupRandomTrainingViewModel();
+        }
         return rootView;
     }
 
-    private void getCountdown(long time){
-        new CountDownTimer(time, 1000) {
+    private void getCountdown(long time, final List<Exercise> exerciseList){
 
-            int counter = 0;
+        mCountDownTimer = new CountDownTimer(time, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                countdown.setText(""+String.format("%02d:%02d",
+                //Keep Training Time Up to Date
+                mTrainingTime = millisUntilFinished;
+
+                mCountdown.setText(""+String.format("%02d:%02d",
                         TimeUnit.MILLISECONDS.toMinutes( millisUntilFinished),
                         TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
                                 TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
 
-                int voiceCommand = TrainingTimerUtils.getVoiceCommandInt(TrainingTimerUtils.getCommandCorners(level), counter, getActivity());
+                int voiceCommand = TrainingTimerUtils.getVoiceCommandInt(TrainingTimerUtils.getCommandCorners(level), mTimeCounter, getActivity());
                 playVoiceCommand(voiceCommand);
 
-                if(counter < TrainingTimerUtils.exerciseTime(level)){
-                    counter++;
-                }else {
-                    counter = 0;
+
+                if (mTimeCounter < TrainingTimerUtils.exerciseTime(level)){
+                    mTimeCounter++;
+                } else {
+                    mTimeCounter = 0;
+                    mExercisePosition++;
+                    populateUi(mExercisePosition, exerciseList);
                 }
             }
 
             public void onFinish() {
-                countdown.setText("done!");
+                mCountdown.setText("done!");
             }
         }.start();
+    }
+
+    private void stopCountdown(){
+        mCountDownTimer.cancel();
+    }
+
+    //Setup ViewModel
+    private void setupRandomTrainingViewModel(){
+        TrainingViewModel trainingViewModel = ViewModelProviders.of(this).get(TrainingViewModel.class);
+        trainingViewModel.getExercises(getActivity(), exerciseCount).observe(this, new Observer<List<Exercise>>() {
+            @Override
+            public void onChanged(@Nullable List<Exercise> exercises) {
+                //Initially populate ui
+                populateUi(1, exercises);
+                //Launch Countdown
+                mExerciseList = exercises;
+                getCountdown(mTrainingTime, mExerciseList);
+            }
+        });
+    }
+
+    private void populateUi(int counter, List<Exercise> exerciseList){
+        //Get current exercise
+        Exercise currentExercise = exerciseList.get(counter - 1);
+        //Set Exercise count
+        mExerciseCount.setText(TrainingTimerUtils.makeExerciseCountString(counter, exerciseCount));
+        //Set exercise name
+        mExerciseName.setText(currentExercise.getExerciseName());
+        //Set exercise image
+        String imagePath = currentExercise.getImage();
+        int resId = TrainingTimerUtils.getResId(imagePath, R.drawable.class);
+        if (resId != -1) {
+            Picasso.get().load(resId).into(mExerciseImage);
+        } else {
+            //If path not found load a dummy picture
+            Picasso.get().load(R.drawable.dummy1).into(mExerciseImage);
+        }
+
     }
 
     @Override
     public void onPause() {
         super.onPause();
         releaseMediaPlayer();
+        stopCountdown();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putInt(KeyUtils.EXERCISE_POSITION, mExercisePosition);
+        outState.putInt(KeyUtils.EXERCISE_TIME, mTimeCounter);
+        outState.putString(KeyUtils.EXERCISES_ARRAY, ListConverter.exerciseListToString(mExerciseList));
+        outState.putLong(KeyUtils.TRAINING_TIME, mTrainingTime);
+        super.onSaveInstanceState(outState);
+
     }
 
     private void playVoiceCommand(int audioId){
@@ -131,7 +214,6 @@ public class TrainingFragment extends Fragment {
             @Override
             public void run() {
                 int exerciseTableRows = mDb.exerciseDao().getExerciseRowCount();
-                Log.d("!!!!!!!!!!!!!!!", String.valueOf(exerciseTableRows));
             }
         });
     }

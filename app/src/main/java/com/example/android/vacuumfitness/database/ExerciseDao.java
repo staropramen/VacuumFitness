@@ -10,6 +10,7 @@ import android.arch.persistence.room.Update;
 
 import com.example.android.vacuumfitness.model.Exercise;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Dao
@@ -34,4 +35,10 @@ public interface ExerciseDao {
 
     @Query("SELECT COUNT(exercise_name) FROM exercises")
     int getExerciseRowCount();
+
+    @Query("SELECT primaryKey FROM exercises ORDER BY primaryKey")
+    List<Integer> loadExerciseIdArray();
+
+    @Query("SELECT * FROM exercises WHERE primaryKey IN (:ids)")
+    LiveData<List<Exercise>> getTrainingExercises(List<Integer> ids);
 }
