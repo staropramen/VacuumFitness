@@ -43,6 +43,7 @@ public class TrainingFragment extends Fragment {
     @BindView(R.id.tv_exercise_count_of) TextView mExerciseCount;
     @BindView(R.id.tv_exercise_name) TextView mExerciseName;
     @BindView(R.id.iv_exercise_image) ImageView mExerciseImage;
+    @BindView(R.id.iv_start_pause) ImageView mStartPauseIV;
 
     private int exerciseCount;
     private int level;
@@ -52,6 +53,7 @@ public class TrainingFragment extends Fragment {
     private List<Exercise> mExerciseList;
     private long mTrainingTime;
     private CountDownTimer mCountDownTimer;
+    private boolean mTrainingIsPaused;
 
     private MediaPlayer mCommandMediaPlayer;
 
@@ -82,7 +84,6 @@ public class TrainingFragment extends Fragment {
 
         //Make the Training time
         mTrainingTime = TrainingTimerUtils.getTrainingTimeMilliseconds(level, exerciseCount);
-        Log.d(LOG_TAG, String.valueOf(mTrainingTime));
 
         //Launch ViewModel if savedInstanceState is null
         if(savedInstanceState == null){
@@ -93,14 +94,15 @@ public class TrainingFragment extends Fragment {
             mTimeCounter = savedInstanceState.getInt(KeyUtils.EXERCISE_TIME);
             mExerciseList = ListConverter.stringToExerciseList(savedInstanceState.getString(KeyUtils.EXERCISES_ARRAY));
             mExercisePosition = savedInstanceState.getInt(KeyUtils.EXERCISE_POSITION);
+            mTrainingIsPaused = savedInstanceState.getBoolean(KeyUtils.TRAINING_IS_PAUSED);
             setupRandomTrainingViewModel();
         }
         return rootView;
     }
 
-    private void getCountdown(long time, final List<Exercise> exerciseList){
+    private void getCountdown(final List<Exercise> exerciseList){
 
-        mCountDownTimer = new CountDownTimer(time, 1000) {
+        mCountDownTimer = new CountDownTimer(mTrainingTime, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 //Keep Training Time Up to Date
@@ -144,7 +146,10 @@ public class TrainingFragment extends Fragment {
                 populateUi(mExercisePosition, exercises);
                 //Launch Countdown
                 mExerciseList = exercises;
-                getCountdown(mTrainingTime, mExerciseList);
+                //If training is not paused, launch the countdown
+                if(!mTrainingIsPaused){
+                    getCountdown(mExerciseList);
+                }
             }
         });
     }
@@ -165,6 +170,18 @@ public class TrainingFragment extends Fragment {
             //If path not found load a dummy picture
             Picasso.get().load(R.drawable.dummy1).into(mExerciseImage);
         }
+        //If Training is Paused set the Start/Pause Button to start
+        if(mTrainingIsPaused){
+            mStartPauseIV.setImageResource(R.drawable.start);
+            //Set total time
+            mCountdown.setText(""+String.format("%02d:%02d",
+                    TimeUnit.MILLISECONDS.toMinutes( mTrainingTime),
+                    TimeUnit.MILLISECONDS.toSeconds(mTrainingTime) -
+                            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(mTrainingTime))));
+        }
+
+        //Set Button Actions
+        setupPauseButton();
 
     }
 
@@ -172,7 +189,11 @@ public class TrainingFragment extends Fragment {
     public void onPause() {
         super.onPause();
         releaseMediaPlayer();
-        stopCountdown();
+        if(!mTrainingIsPaused){
+            stopCountdown();
+        }
+        //In Case of orientation Change while timer is running set boolean mTraining is Paused back to false
+
     }
 
     @Override
@@ -181,19 +202,19 @@ public class TrainingFragment extends Fragment {
         outState.putInt(KeyUtils.EXERCISE_TIME, mTimeCounter);
         outState.putString(KeyUtils.EXERCISES_ARRAY, ListConverter.exerciseListToString(mExerciseList));
         outState.putLong(KeyUtils.TRAINING_TIME, mTrainingTime);
+        outState.putBoolean(KeyUtils.TRAINING_IS_PAUSED, mTrainingIsPaused);
         super.onSaveInstanceState(outState);
 
     }
 
     private void playVoiceCommand(int audioId){
-        //If there is no commant audioId is 0, so dont launch Mediaplayer then
+        //If there is no command audioId is 0, so don't launch MediaPlayer then
         if(audioId != 0){
             releaseMediaPlayer();
             mCommandMediaPlayer = MediaPlayer.create(getActivity(), audioId);
             mCommandMediaPlayer.start();
         }
     }
-
 
     private void releaseMediaPlayer() {
         // If the media player is not null, then it may be currently playing a sound.
@@ -209,11 +230,19 @@ public class TrainingFragment extends Fragment {
         }
     }
 
-    private void getRandomExercisesArray(){
-        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+    private void setupPauseButton(){
+        mStartPauseIV.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
-                int exerciseTableRows = mDb.exerciseDao().getExerciseRowCount();
+            public void onClick(View v) {
+                if(mTrainingIsPaused){
+                    mStartPauseIV.setImageResource(R.drawable.pause);
+                    mTrainingIsPaused = false;
+                    getCountdown(mExerciseList);
+                } else {
+                    mStartPauseIV.setImageResource(R.drawable.start);
+                    mTrainingIsPaused = true;
+                    stopCountdown();
+                }
             }
         });
     }

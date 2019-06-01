@@ -28,7 +28,7 @@
         android:id="@+id/iv_start_pause"
         android:layout_width="@dimen/big_icon_size"
         android:layout_height="@dimen/big_icon_size"
-        android:src="@drawable/start"
+        android:src="@drawable/pause"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/iv_music_button"
         app:layout_constraintStart_toEndOf="@+id/iv_video_button" />
