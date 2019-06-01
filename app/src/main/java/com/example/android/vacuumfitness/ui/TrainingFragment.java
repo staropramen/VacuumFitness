@@ -141,7 +141,7 @@ public class TrainingFragment extends Fragment {
             @Override
             public void onChanged(@Nullable List<Exercise> exercises) {
                 //Initially populate ui
-                populateUi(1, exercises);
+                populateUi(mExercisePosition, exercises);
                 //Launch Countdown
                 mExerciseList = exercises;
                 getCountdown(mTrainingTime, mExerciseList);
