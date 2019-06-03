@@ -192,8 +192,6 @@ public class TrainingFragment extends Fragment {
         if(!mTrainingIsPaused){
             stopCountdown();
         }
-        //In Case of orientation Change while timer is running set boolean mTraining is Paused back to false
-
     }
 
     @Override
