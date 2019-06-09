@@ -1,9 +1,13 @@
 package com.example.android.vacuumfitness.ui;
 
 
+import android.app.Activity;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
@@ -19,7 +23,6 @@ import android.widget.TextView;
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.database.AppDatabase;
 import com.example.android.vacuumfitness.model.Exercise;
-import com.example.android.vacuumfitness.utils.AppExecutors;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.utils.ListConverter;
 import com.example.android.vacuumfitness.utils.TrainingTimerUtils;
@@ -44,6 +47,7 @@ public class TrainingFragment extends Fragment {
     @BindView(R.id.tv_exercise_name) TextView mExerciseName;
     @BindView(R.id.iv_exercise_image) ImageView mExerciseImage;
     @BindView(R.id.iv_start_pause) ImageView mStartPauseIV;
+    @BindView(R.id.iv_video_button) ImageView mVideoButton;
 
     private int exerciseCount;
     private int level;
@@ -182,6 +186,7 @@ public class TrainingFragment extends Fragment {
 
         //Set Button Actions
         setupPauseButton();
+        setupVideoButton(currentExercise);
 
     }
 
@@ -240,6 +245,24 @@ public class TrainingFragment extends Fragment {
                     mStartPauseIV.setImageResource(R.drawable.start);
                     mTrainingIsPaused = true;
                     stopCountdown();
+                }
+            }
+        });
+    }
+
+    private void setupVideoButton(final Exercise exercise){
+        mVideoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String webUrl = getString(R.string.youtube_web_url )+ exercise.getVideoUrl();
+                String appUrl = getString(R.string.youtube_app_url )+ exercise.getVideoUrl();
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(appUrl));
+                Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(webUrl));
+                try {
+                    startActivity(intent);
+                } catch (ActivityNotFoundException ex) {
+                    startActivity(webIntent);
                 }
             }
         });

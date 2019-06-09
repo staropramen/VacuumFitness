@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Vacuum Fitness</string>
 
+    <string name="youtube_web_url" translatable="false">https://www.youtube.com/watch?v=</string>
+    <string name="youtube_app_url" translatable="false">vnd.youtube:</string>
+
     <!-- Start Fragment -->
     <string name="start_training">Start \n Training</string>
     <string name="customize_training">Customize \n Training</string>
