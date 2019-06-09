@@ -19,12 +19,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.database.AppDatabase;
 import com.example.android.vacuumfitness.model.Exercise;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.utils.ListConverter;
+import com.example.android.vacuumfitness.utils.NetworkUtils;
 import com.example.android.vacuumfitness.utils.TrainingTimerUtils;
 import com.example.android.vacuumfitness.viewmodel.TrainingViewModel;
 import com.squareup.picasso.Picasso;
@@ -254,15 +256,19 @@ public class TrainingFragment extends Fragment {
         mVideoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String webUrl = getString(R.string.youtube_web_url )+ exercise.getVideoUrl();
-                String appUrl = getString(R.string.youtube_app_url )+ exercise.getVideoUrl();
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(appUrl));
-                Intent webIntent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse(webUrl));
-                try {
-                    startActivity(intent);
-                } catch (ActivityNotFoundException ex) {
-                    startActivity(webIntent);
+                if(NetworkUtils.isConnectedToInternet()){
+                    String webUrl = getString(R.string.youtube_web_url )+ exercise.getVideoUrl();
+                    String appUrl = getString(R.string.youtube_app_url )+ exercise.getVideoUrl();
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(appUrl));
+                    Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                            Uri.parse(webUrl));
+                    try {
+                        startActivity(intent);
+                    } catch (ActivityNotFoundException ex) {
+                        startActivity(webIntent);
+                    }
+                }else {
+                    Toast.makeText(getActivity(), getString(R.string.internet_connection), Toast.LENGTH_LONG).show();
                 }
             }
         });

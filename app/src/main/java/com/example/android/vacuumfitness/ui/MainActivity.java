@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.start_training_button) ImageView startTraining;
 
     public static SharedPreferences sharedPreferences;
+    public static Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Get shared preferences to use in non-activity class
         sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        //Get ApplicationContext to use in non-activity class
+        mContext = getApplicationContext();
 
         //Do things on First Run
         doOnFirstRun();
