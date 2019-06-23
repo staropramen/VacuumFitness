@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_label"
+        style="@style/customize_label"
+        android:layout_margin="@dimen/margin"
+        android:text="Mon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_custom_training_name"
+        style="@style/customize_name"
+        android:layout_marginTop="@dimen/margin"
+        android:textSize="@dimen/regular_text"
+        android:layout_marginStart="@dimen/margin"
+        android:text="Monday abs Training"
+        app:layout_constraintStart_toEndOf="@+id/tv_label"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <View
+        android:id="@+id/separator"
+        android:background="@color/grey"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/separator_height"
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginEnd="@dimen/margin"
+        android:layout_marginTop="@dimen/margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_label" />
 
 </android.support.constraint.ConstraintLayout>

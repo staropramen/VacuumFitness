@@ -45,4 +45,21 @@
         <item name="android:textColor">@color/colorPrimaryExtraDark</item>
     </style>
 
+    <style name="customize_label">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/regular_text</item>
+        <item name="android:textColor">@color/colorPrimaryExtraDark</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/rounded_textview</item>
+    </style>
+
+    <style name="customize_name">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/label_size</item>
+        <item name="android:textSize">@dimen/regular_text</item>
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:gravity">center</item>
+    </style>
+
 </resources>
