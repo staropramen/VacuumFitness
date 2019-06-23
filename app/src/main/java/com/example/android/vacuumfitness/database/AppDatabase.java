@@ -4,18 +4,22 @@ import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
+import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.example.android.vacuumfitness.model.Exercise;
+import com.example.android.vacuumfitness.model.Training;
 import com.example.android.vacuumfitness.utils.AppExecutors;
+import com.example.android.vacuumfitness.utils.ListConverter;
 import com.example.android.vacuumfitness.utils.SharedPrefsUtils;
 
 import java.util.List;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Exercise.class}, version = 1, exportSchema = false)
+@Database(entities = {Exercise.class, Training.class}, version = 1, exportSchema = false)
+@TypeConverters({ListConverter.class})
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String LOG_TAG = AppDatabase.class.getSimpleName();
@@ -52,6 +56,8 @@ public abstract class AppDatabase extends RoomDatabase {
     }
 
     public abstract ExerciseDao exerciseDao();
+
+    public abstract TrainingDao trainingDao();
 
     private static Exercise[] populateExercises(){
         return new Exercise[] {
