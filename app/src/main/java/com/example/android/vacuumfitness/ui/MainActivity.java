@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     private static String LOG_TAG = MainActivity.class.getSimpleName();
 
     @BindView(R.id.toolbar) Toolbar toolbar;
-    @BindView(R.id.start_training_button) ImageView startTraining;
 
     public static SharedPreferences sharedPreferences;
     public static Context mContext;
@@ -51,14 +50,6 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setTitle(R.string.app_name);
         setSupportActionBar(toolbar);
 
-        //Set onClick for StartTraining
-        startTraining.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, TrainingActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     //A Function to do things only at first run of the App
