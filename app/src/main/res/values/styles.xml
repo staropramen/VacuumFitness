@@ -51,7 +51,16 @@
         <item name="android:textSize">@dimen/regular_text</item>
         <item name="android:textColor">@color/colorPrimaryExtraDark</item>
         <item name="android:gravity">center</item>
-        <item name="android:background">@drawable/rounded_textview</item>
+        <item name="android:background">@drawable/circle</item>
+    </style>
+
+    <style name="cust_label_shortcuts">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:textSize">@dimen/small_text</item>
+        <item name="android:textColor">@color/colorPrimaryExtraDark</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/circle</item>
     </style>
 
     <style name="customize_name">
@@ -60,6 +69,13 @@
         <item name="android:textSize">@dimen/regular_text</item>
         <item name="android:textColor">@color/grey</item>
         <item name="android:gravity">center</item>
+    </style>
+
+    <style name="dialog_titles">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/regular_text</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
 </resources>

@@ -39,4 +39,5 @@
     <!-- Custom Training Activity -->
     <dimen name="label_size">60dp</dimen>
     <dimen name="separator_height">1dp</dimen>
+    <dimen name="dialog_with">250dp</dimen>
 </resources>

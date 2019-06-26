@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/cust_menu_hint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_label_title"
+        style="@style/dialog_titles"
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginTop="@dimen/margin"
+        android:text="@string/cust_label_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+    <TextView
+        android:id="@+id/tv_label_mon"
+        style="@style/cust_label_shortcuts"
+        android:layout_margin="@dimen/margin"
+        android:text="@string/mon_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_label_title" />
+
+    <TextView
+        android:id="@+id/tv_label_tud"
+        style="@style/cust_label_shortcuts"
+        android:layout_margin="@dimen/margin"
+        android:text="@string/tue_label"
+        app:layout_constraintStart_toEndOf="@+id/tv_label_mon"
+        app:layout_constraintTop_toBottomOf="@+id/tv_label_title" />
+
+    <TextView
+        android:id="@+id/tv_label_wen"
+        style="@style/cust_label_shortcuts"
+        android:layout_margin="@dimen/margin"
+        android:text="@string/wed_label"
+        app:layout_constraintStart_toEndOf="@+id/tv_label_tud"
+        app:layout_constraintTop_toBottomOf="@+id/tv_label_title" />
+
+    <TextView
+        android:id="@+id/tv_label_thu"
+        style="@style/cust_label_shortcuts"
+        android:layout_margin="@dimen/margin"
+        android:text="@string/thu_label"
+        app:layout_constraintStart_toEndOf="@+id/tv_label_wen"
+        app:layout_constraintTop_toBottomOf="@+id/tv_label_title" />
+
+    <TextView
+        android:id="@+id/tv_label_fri"
+        style="@style/cust_label_shortcuts"
+        android:layout_margin="@dimen/margin"
+        android:text="@string/fri_label"
+        app:layout_constraintStart_toEndOf="@+id/tv_label_thu"
+        app:layout_constraintTop_toBottomOf="@+id/tv_label_title" />
+
+    <TextView
+        android:id="@+id/tv_label_sat"
+        style="@style/cust_label_shortcuts"
+        android:layout_margin="@dimen/margin"
+        android:text="@string/sat_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_label_mon" />
+
+    <TextView
+        android:id="@+id/tv_label_sun"
+        style="@style/cust_label_shortcuts"
+        android:layout_margin="@dimen/margin"
+        android:text="@string/sun_label"
+        app:layout_constraintStart_toEndOf="@id/tv_label_sat"
+        app:layout_constraintTop_toBottomOf="@+id/tv_label_mon" />
+
+    <TextView
+        android:id="@+id/tv_customize_label_title"
+        style="@style/dialog_titles"
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginTop="@dimen/margin"
+        android:text="@string/customize_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_label_sat" />
+
+    <EditText
+        android:id="@+id/et_custom_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginTop="@dimen/s_margin"
+        android:ems="3"
+        android:inputType="textPersonName"
+        android:hint="@string/customize_label_hint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_customize_label_title" />
+
+
+</android.support.constraint.ConstraintLayout>

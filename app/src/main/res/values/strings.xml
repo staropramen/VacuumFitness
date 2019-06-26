@@ -34,6 +34,24 @@
 
     <!-- Customize Training Activity -->
     <string name="customize_training_title">Customize Training</string>
+    <string name="empty_customize_trainings">You still don\'t have customized trainings. Start by adding a training.</string>
+
+    <!-- Dialogs -->
+    <string name="positive_answer">Ok</string>
+    <string name="negative_answer">Cancel</string>
+    <string name="cust_menu_title">Create Training</string>
+    <string name="cust_menu_hint">Training Name</string>
+    <string name="cust_label_title">Label</string>
+    <string name="customize_label">Custom Label (max. 3 letters)</string>
+    <string name="customize_label_hint">Label...</string>
+
+    <string name="mon_label">Mon</string>
+    <string name="tue_label">Tue</string>
+    <string name="wed_label">Wed</string>
+    <string name="thu_label">Thu</string>
+    <string name="fri_label">Fri</string>
+    <string name="sat_label">Sat</string>
+    <string name="sun_label">Sun</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
