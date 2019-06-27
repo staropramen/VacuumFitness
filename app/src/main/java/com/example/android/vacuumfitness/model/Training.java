@@ -42,6 +42,11 @@ public class Training implements Parcelable {
         this.label = label;
     }
 
+    //Empty Training for Error Catch
+    @Ignore
+    public Training() {
+    }
+
     //Constructor for Parcel
     @Ignore
     public Training(Parcel in) {

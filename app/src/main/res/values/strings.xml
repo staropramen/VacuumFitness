@@ -46,6 +46,7 @@
     <string name="cust_label_title">Label</string>
     <string name="customize_label">Custom Label (max. 3 letters)</string>
     <string name="customize_label_hint">Label...</string>
+    <string name="no_name">Training must have a name.</string>
 
     <string name="mon_label">Mon</string>
     <string name="tue_label">Tue</string>

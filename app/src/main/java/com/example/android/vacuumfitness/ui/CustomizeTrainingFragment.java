@@ -19,10 +19,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.adapter.CustomTrainingAdapter;
+import com.example.android.vacuumfitness.database.AppDatabase;
 import com.example.android.vacuumfitness.model.Training;
+import com.example.android.vacuumfitness.utils.AppExecutors;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.viewmodel.CustomTrainingViewModel;
 
@@ -109,9 +112,9 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
         });
     }
 
-    private void trainingDetailFragmentTransaction(Training training) {
+    private void trainingDetailFragmentTransaction(long id) {
         Bundle data = new Bundle();
-        data.putParcelable(KeyUtils.TRAINING_KEY, training);
+        data.putLong(KeyUtils.TRAINING_KEY, id);
         TrainingDetailFragment fragment = new TrainingDetailFragment();
         fragment.setArguments(data);
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -123,6 +126,17 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
     private Training makeNewTraining(String name, String label){
         Training training = new Training(name,label);
         return training;
+    }
+
+    private void saveNewTrainingInDb(final Training training) {
+        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                Long id = AppDatabase.getInstance(getActivity()).trainingDao().insertTraining(training);
+
+                trainingDetailFragmentTransaction(id);
+            }
+        });
     }
 
     public void showAlertDialogButtonClicked() {
@@ -166,13 +180,19 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
         builder.setPositiveButton(getString(R.string.positive_answer), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                EditText name = customLayout.findViewById(R.id.et_custom_name);
-                EditText label = customLayout.findViewById(R.id.et_custom_label);
-                Training training = makeNewTraining(name.getText().toString(), label.getText().toString());
-                trainingDetailFragmentTransaction(training);
-                // send data from the AlertDialog to the Activity
-                //EditText editText = customLayout.findViewById(R.id.editText);
-                //sendDialogDataToActivity(editText.getText().toString());
+                EditText nameET = customLayout.findViewById(R.id.et_custom_name);
+                EditText labelET = customLayout.findViewById(R.id.et_custom_label);
+
+                String name = nameET.getText().toString();
+                String label = labelET.getText().toString();
+
+                //Cancel if User dont entern a Training Name
+                if(name.matches("")){
+                    Toast.makeText(getActivity(), getString(R.string.no_name), Toast.LENGTH_LONG).show();
+                }else {
+                    Training training = makeNewTraining(name, label);
+                    saveNewTrainingInDb(training);
+                }
             }
         });
 
