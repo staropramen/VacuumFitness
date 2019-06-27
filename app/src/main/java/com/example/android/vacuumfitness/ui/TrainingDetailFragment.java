@@ -29,4 +29,8 @@ public class TrainingDetailFragment extends Fragment {
         return rootView;
     }
 
+    private void setupViewModel() {
+        
+    }
+
 }
