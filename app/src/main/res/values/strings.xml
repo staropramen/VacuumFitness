@@ -36,6 +36,7 @@
     <string name="customize_training_title">Customize Training</string>
     <string name="empty_customize_trainings">You still don\'t have customized trainings. Start by adding a training.</string>
     <string name="exercises">Exercises:</string>
+    <string name="empty_training_detail">This training still don\'t have exercises. Start by adding a exercise.</string>
 
     <!-- Dialogs -->
     <string name="positive_answer">Ok</string>
@@ -54,7 +55,5 @@
     <string name="sat_label">Sat</string>
     <string name="sun_label">Sun</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

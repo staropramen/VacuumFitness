@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.adapter.CustomTrainingAdapter;
 import com.example.android.vacuumfitness.model.Training;
+import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.viewmodel.CustomTrainingViewModel;
 
 import java.util.List;
@@ -107,6 +109,22 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
         });
     }
 
+    private void trainingDetailFragmentTransaction(Training training) {
+        Bundle data = new Bundle();
+        data.putParcelable(KeyUtils.TRAINING_KEY, training);
+        TrainingDetailFragment fragment = new TrainingDetailFragment();
+        fragment.setArguments(data);
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.customize_training_content, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    private Training makeNewTraining(String name, String label){
+        Training training = new Training(name,label);
+        return training;
+    }
+
     public void showAlertDialogButtonClicked() {
 
         // create an alert builder
@@ -148,6 +166,10 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
         builder.setPositiveButton(getString(R.string.positive_answer), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                EditText name = customLayout.findViewById(R.id.et_custom_name);
+                EditText label = customLayout.findViewById(R.id.et_custom_label);
+                Training training = makeNewTraining(name.getText().toString(), label.getText().toString());
+                trainingDetailFragmentTransaction(training);
                 // send data from the AlertDialog to the Activity
                 //EditText editText = customLayout.findViewById(R.id.editText);
                 //sendDialogDataToActivity(editText.getText().toString());

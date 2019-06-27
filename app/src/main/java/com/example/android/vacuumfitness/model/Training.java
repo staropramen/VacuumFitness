@@ -4,11 +4,14 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+import android.os.Parcel;
+import android.os.Parcelable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(tableName = "trainings")
-public class Training {
+public class Training implements Parcelable {
 
     @PrimaryKey(autoGenerate = true)
     private int primaryKey;
@@ -31,6 +34,22 @@ public class Training {
         this.trainingName = trainingName;
         this.label = label;
         this.exerciseList = exerciseList;
+    }
+
+    @Ignore
+    public Training(String trainingName, String label) {
+        this.trainingName = trainingName;
+        this.label = label;
+    }
+
+    //Constructor for Parcel
+    @Ignore
+    public Training(Parcel in) {
+        primaryKey = in.readInt();
+        trainingName = in.readString();
+        label = in.readString();
+        exerciseList = new ArrayList<>();
+        in.readList(exerciseList, Exercise.class.getClassLoader());
     }
 
     public int getPrimaryKey() {
@@ -64,4 +83,30 @@ public class Training {
     public void setExerciseList(List<Exercise> exerciseList) {
         this.exerciseList = exerciseList;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(primaryKey);
+        dest.writeString(trainingName);
+        dest.writeString(label);
+        dest.writeList(exerciseList);
+    }
+
+    @Ignore
+    public static final Parcelable.Creator<Training> CREATOR = new Parcelable.Creator<Training>() {
+        @Override
+        public Training createFromParcel(Parcel source) {
+            return new Training(source);
+        }
+
+        @Override
+        public Training[] newArray(int size) {
+            return new Training[size];
+        }
+    };
 }
