@@ -34,7 +34,7 @@
         app:layout_constraintStart_toEndOf="@+id/iv_video_button" />
 
     <TextView
-        android:id="@+id/tv_exercise_name"
+        android:id="@+id/tv_exercise_list_name"
         style="@style/descriptions"
         android:layout_marginStart="@dimen/margin"
         android:layout_marginBottom="@dimen/xxl_margin"
@@ -45,9 +45,9 @@
         android:id="@+id/tv_exercise_count_of"
         style="@style/medium_text"
         android:layout_marginBottom="@dimen/s_margin"
-        app:layout_constraintBottom_toTopOf="@+id/tv_exercise_name"
-        app:layout_constraintEnd_toEndOf="@+id/tv_exercise_name"
-        app:layout_constraintStart_toStartOf="@+id/tv_exercise_name" />
+        app:layout_constraintBottom_toTopOf="@+id/tv_exercise_list_name"
+        app:layout_constraintEnd_toEndOf="@+id/tv_exercise_list_name"
+        app:layout_constraintStart_toStartOf="@+id/tv_exercise_list_name" />
 
     <TextView
         android:id="@+id/tv_exercise_count_title"

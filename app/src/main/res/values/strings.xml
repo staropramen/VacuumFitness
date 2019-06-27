@@ -35,6 +35,7 @@
     <!-- Customize Training Activity -->
     <string name="customize_training_title">Customize Training</string>
     <string name="empty_customize_trainings">You still don\'t have customized trainings. Start by adding a training.</string>
+    <string name="exercises">Exercises:</string>
 
     <!-- Dialogs -->
     <string name="positive_answer">Ok</string>

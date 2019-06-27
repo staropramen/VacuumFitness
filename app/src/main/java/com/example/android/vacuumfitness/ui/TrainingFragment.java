@@ -1,7 +1,6 @@
 package com.example.android.vacuumfitness.ui;
 
 
-import android.app.Activity;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.ActivityNotFoundException;
@@ -13,7 +12,6 @@ import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +44,7 @@ public class TrainingFragment extends Fragment {
 
     @BindView(R.id.tv_timer) TextView mCountdown;
     @BindView(R.id.tv_exercise_count_of) TextView mExerciseCount;
-    @BindView(R.id.tv_exercise_name) TextView mExerciseName;
+    @BindView(R.id.tv_exercise_list_name) TextView mExerciseName;
     @BindView(R.id.iv_exercise_image) ImageView mExerciseImage;
     @BindView(R.id.iv_start_pause) ImageView mStartPauseIV;
     @BindView(R.id.iv_video_button) ImageView mVideoButton;
