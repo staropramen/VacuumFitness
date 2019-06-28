@@ -13,16 +13,15 @@ public class CustomTrainingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_training);
 
-        customTrainingFragmentTransaction();
-    }
+        //Handle when activity is recreated like on orientation Change
+        if(savedInstanceState == null){
+            CustomizeTrainingFragment fragment = new CustomizeTrainingFragment();
 
-    private void customTrainingFragmentTransaction(){
-        CustomizeTrainingFragment fragment = new CustomizeTrainingFragment();
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.customize_training_content, fragment)
-                .commit();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.customize_training_content, fragment)
+                    .commit();
+        }
     }
 }
 

@@ -34,12 +34,11 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_training_title">
 
         <Spinner
-            android:id="@+id/sp_music_selection"
+            android:id="@+id/sp_training_selection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/spinnerItems"
             android:foregroundTint="@color/grey"
-            android:padding="@dimen/spinner_padding"></Spinner>
+            android:padding="@dimen/spinner_padding"/>
 
     </RelativeLayout>
 
@@ -151,7 +150,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <Spinner
-            android:id="@+id/sp_training_selection"
+            android:id="@+id/sp_music_selection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:entries="@array/musicSpinnerItems"

@@ -17,6 +17,7 @@
     <string name="beginner">Beginner</string>
     <string name="intermediate">Intermediate</string>
     <string name="advanced">Advanced</string>
+    <string name="random_training">Random Training</string>
 
     <!-- Training Activity-->
     <string name="prepare_title">Prepare your Training</string>
