@@ -37,6 +37,7 @@
     <string name="empty_customize_trainings">You still don\'t have customized trainings. Start by adding a training.</string>
     <string name="exercises">Exercises:</string>
     <string name="empty_training_detail">This training still don\'t have exercises. Start by adding a exercise.</string>
+    <string name="all_exercises">All Exercises</string>
 
     <!-- Dialogs -->
     <string name="positive_answer">Ok</string>
@@ -47,6 +48,9 @@
     <string name="customize_label">Custom Label (max. 3 letters)</string>
     <string name="customize_label_hint">Label...</string>
     <string name="no_name">Training must have a name.</string>
+    <string name="delete_answer">Delete</string>
+    <string name="delete_training_title">Delete Training</string>
+    <string name="delete_training_question">Are you sure you want to delete?</string>
 
     <string name="mon_label">Mon</string>
     <string name="tue_label">Tue</string>
@@ -55,6 +59,9 @@
     <string name="fri_label">Fri</string>
     <string name="sat_label">Sat</string>
     <string name="sun_label">Sun</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

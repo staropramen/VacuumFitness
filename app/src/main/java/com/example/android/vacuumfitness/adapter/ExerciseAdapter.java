@@ -26,15 +26,24 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
 
     private final ExerciseAdapterClickHandler exerciseOnClickHandler;
 
+    private final ExerciseAdapterLongClickHandler exerciseAdapterLongClickHandler;
+
     public interface ExerciseAdapterClickHandler {
         void onClick(Exercise exercise);
     }
 
-    //Constructor
-    public ExerciseAdapter(ExerciseAdapterClickHandler clickHandler){exerciseOnClickHandler = clickHandler;}
+    public interface ExerciseAdapterLongClickHandler {
+        void onLongClick(Exercise exercise);
+    }
+
+    //Constructor for both clickHandler
+    public ExerciseAdapter(ExerciseAdapterClickHandler clickHandler, ExerciseAdapterLongClickHandler longClickHandler){
+        exerciseOnClickHandler = clickHandler;
+        exerciseAdapterLongClickHandler = longClickHandler;
+    }
 
     //ViewHolder
-    public class ExerciseAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ExerciseAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
 
         @BindView(R.id.iv_exercise_thumbnail) ImageView exerciseThumbnail;
         @BindView(R.id.tv_exercise_list_name) TextView nameTextView;
@@ -43,6 +52,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
             super(view);
             ButterKnife.bind(this, view);
             view.setOnClickListener(this);
+            view.setOnLongClickListener(this);
         }
 
         @Override
@@ -50,6 +60,14 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
             int adapterPosition = getAdapterPosition();
             Exercise exercise = exercises.get(adapterPosition);
             exerciseOnClickHandler.onClick(exercise);
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            int adapterPosition = getAdapterPosition();
+            Exercise exercise = exercises.get(adapterPosition);
+            exerciseAdapterLongClickHandler.onLongClick(exercise);
+            return true;
         }
     }
 

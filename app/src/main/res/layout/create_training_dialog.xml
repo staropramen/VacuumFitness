@@ -13,7 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textCapWords"
+        android:maxLength="30"
         android:hint="@string/cust_menu_hint"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -99,7 +100,8 @@
         android:layout_marginStart="@dimen/margin"
         android:layout_marginTop="@dimen/s_margin"
         android:ems="3"
-        android:inputType="textPersonName"
+        android:inputType="textCapWords"
+        android:maxLength="3"
         android:hint="@string/customize_label_hint"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_customize_label_title" />

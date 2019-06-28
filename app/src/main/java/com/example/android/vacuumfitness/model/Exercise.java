@@ -4,9 +4,11 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 @Entity(tableName = "exercises")
-public class Exercise {
+public class Exercise implements Parcelable {
 
     @PrimaryKey(autoGenerate = true)
     private int primaryKey;
@@ -33,6 +35,16 @@ public class Exercise {
         this.level = level;
         this.image = image;
         this.videoUrl = videoUrl;
+    }
+
+    //Constructor for Parcel
+    @Ignore
+    public Exercise(Parcel in) {
+        primaryKey = in.readInt();
+        exerciseName = in.readString();
+        level = in.readInt();
+        image = in.readString();
+        videoUrl = in.readString();
     }
 
     public int getPrimaryKey() {
@@ -74,4 +86,48 @@ public class Exercise {
     public void setVideoUrl(String videoUrl) {
         this.videoUrl = videoUrl;
     }
+
+    @Override
+    public boolean equals(Object object) {
+        boolean isEqual= false;
+
+        if (object != null && object instanceof Exercise)
+        {
+            isEqual = (this.primaryKey == ((Exercise) object).primaryKey);
+        }
+
+        return isEqual;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.primaryKey;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(primaryKey);
+        dest.writeString(exerciseName);
+        dest.writeInt(level);
+        dest.writeString(image);
+        dest.writeString(videoUrl);
+    }
+
+    @Ignore
+    public static final Parcelable.Creator<Exercise> CREATOR = new Parcelable.Creator<Exercise>() {
+        @Override
+        public Exercise createFromParcel(Parcel source) {
+            return new Exercise(source);
+        }
+
+        @Override
+        public Exercise[] newArray(int size) {
+            return new Exercise[size];
+        }
+    };
 }

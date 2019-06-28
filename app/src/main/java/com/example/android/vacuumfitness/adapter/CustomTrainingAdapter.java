@@ -22,15 +22,24 @@ public class CustomTrainingAdapter extends RecyclerView.Adapter<CustomTrainingAd
 
     private final CustomTrainingOnClickHandler customTrainingOnClickHandler;
 
+    private final CustomTrainingOnLongClickHandler customTrainingOnLongClickHandler;
+
     public interface CustomTrainingOnClickHandler {
         void onClick(Training training);
     }
 
+    public interface CustomTrainingOnLongClickHandler {
+        void onLongClick(Training training);
+    }
+
     //Constructor
-    public CustomTrainingAdapter(CustomTrainingOnClickHandler clickHandler){customTrainingOnClickHandler = clickHandler;}
+    public CustomTrainingAdapter(CustomTrainingOnClickHandler clickHandler, CustomTrainingOnLongClickHandler longClickHandler){
+        customTrainingOnClickHandler = clickHandler;
+        customTrainingOnLongClickHandler = longClickHandler;
+    }
 
     //ViewHolder
-    public class CustomTrainingAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class CustomTrainingAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
 
         @BindView(R.id.tv_label) TextView labelTextView;
         @BindView(R.id.tv_custom_training_name) TextView nameTextView;
@@ -39,6 +48,7 @@ public class CustomTrainingAdapter extends RecyclerView.Adapter<CustomTrainingAd
             super(view);
             ButterKnife.bind(this, view);
             view.setOnClickListener(this);
+            view.setOnLongClickListener(this);
         }
 
         @Override
@@ -46,6 +56,14 @@ public class CustomTrainingAdapter extends RecyclerView.Adapter<CustomTrainingAd
             int adapterPosition = getAdapterPosition();
             Training training = trainings.get(adapterPosition);
             customTrainingOnClickHandler.onClick(training);
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            int adapterPosition = getAdapterPosition();
+            Training training = trainings.get(adapterPosition);
+            customTrainingOnLongClickHandler.onLongClick(training);
+            return true;
         }
     }
 

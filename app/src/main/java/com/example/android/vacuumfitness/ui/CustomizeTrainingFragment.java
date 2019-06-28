@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,11 +25,13 @@ import android.widget.Toast;
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.adapter.CustomTrainingAdapter;
 import com.example.android.vacuumfitness.database.AppDatabase;
+import com.example.android.vacuumfitness.model.Exercise;
 import com.example.android.vacuumfitness.model.Training;
 import com.example.android.vacuumfitness.utils.AppExecutors;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.viewmodel.CustomTrainingViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -37,7 +40,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CustomizeTrainingFragment extends Fragment implements CustomTrainingAdapter.CustomTrainingOnClickHandler {
+public class CustomizeTrainingFragment extends Fragment implements CustomTrainingAdapter.CustomTrainingOnClickHandler, CustomTrainingAdapter.CustomTrainingOnLongClickHandler {
 
     private LinearLayoutManager layoutManager;
     private CustomTrainingAdapter trainingAdapter;
@@ -67,7 +70,7 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
         //Prepare RecyclerView
         layoutManager = new LinearLayoutManager(getContext());
         trainingsRecyclerView.setLayoutManager(layoutManager);
-        trainingAdapter = new CustomTrainingAdapter(this);
+        trainingAdapter = new CustomTrainingAdapter(this, this);
         trainingsRecyclerView.setAdapter(trainingAdapter);
 
         setupCustomTrainingViewModel();
@@ -79,7 +82,13 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
 
     @Override
     public void onClick(Training training) {
+        long id = training.getPrimaryKey();
+        trainingDetailFragmentTransaction(id);
+    }
 
+    @Override
+    public void onLongClick(Training training) {
+        showDeleteDialog(training);
     }
 
     //Setup CustomTrainingViewModel
@@ -114,7 +123,7 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
 
     private void trainingDetailFragmentTransaction(long id) {
         Bundle data = new Bundle();
-        data.putLong(KeyUtils.TRAINING_KEY, id);
+        data.putLong(KeyUtils.TRAINING_ID_KEY, id);
         TrainingDetailFragment fragment = new TrainingDetailFragment();
         fragment.setArguments(data);
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -124,7 +133,8 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
     }
 
     private Training makeNewTraining(String name, String label){
-        Training training = new Training(name,label);
+        List<Exercise> list = new ArrayList<>();
+        Training training = new Training(name, label, list);
         return training;
     }
 
@@ -201,6 +211,27 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
         dialog.show();
     }
 
-
+    private void showDeleteDialog(final Training training){
+        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+        alert.setTitle(getString(R.string.delete_training_title));
+        alert.setMessage(getString(R.string.delete_training_question));
+        alert.setPositiveButton(getString(R.string.delete_answer), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                AppExecutors.getInstance().diskIO().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        AppDatabase.getInstance(getActivity()).trainingDao().deleteTraining(training);
+                    }
+                });
+            }
+        });
+        alert.setNegativeButton(getString(R.string.negative_answer), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // close dialog
+                dialog.cancel();
+            }
+        });
+        alert.show();
+    }
 
 }

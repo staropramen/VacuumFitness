@@ -1,8 +1,9 @@
 package com.example.android.vacuumfitness.viewmodel;
 
+import android.app.Application;
+import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.ViewModel;
-import android.content.Context;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.example.android.vacuumfitness.database.AppDatabase;
@@ -11,21 +12,18 @@ import com.example.android.vacuumfitness.model.Exercise;
 import java.util.List;
 
 
-public class ExerciseListViewModel extends ViewModel {
+public class ExerciseListViewModel extends AndroidViewModel {
 
-    private LiveData<List<Exercise>> exercises;
     private static String LOG_TAG = ExerciseListViewModel.class.getSimpleName();
 
-    public LiveData<List<Exercise>> getExercises(Context context, List<Integer> ids){
-        if(exercises == null){
-            loadAllMovies(context, ids);
-        }
-        return exercises;
+    private LiveData<List<Exercise>> exercises;
+
+    public ExerciseListViewModel(@NonNull Application application) {
+        super(application);
+        AppDatabase db = AppDatabase.getInstance(this.getApplication());
+        Log.d(LOG_TAG, "Load trainings from DB");
+        exercises = db.exerciseDao().loadAllExercises();
     }
 
-    private void loadAllMovies(Context context, List<Integer> ids){
-        AppDatabase db = AppDatabase.getInstance(context);
-        Log.d(LOG_TAG, "Load exercises by ids from DB");
-        exercises = db.exerciseDao().getTrainingExercises(ids);
-    }
+    public LiveData<List<Exercise>> getExercises(){return exercises;}
 }
