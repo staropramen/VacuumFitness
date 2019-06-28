@@ -50,7 +50,8 @@
     <string name="no_name">Training must have a name.</string>
     <string name="delete_answer">Delete</string>
     <string name="delete_training_title">Delete Training</string>
-    <string name="delete_training_question">Are you sure you want to delete?</string>
+    <string name="delete_question">Are you sure you want to delete %1$s?</string>
+    <string name="delete_exercise_title">Delete Exercise</string>
 
     <string name="mon_label">Mon</string>
     <string name="tue_label">Tue</string>

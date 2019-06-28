@@ -214,7 +214,7 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
     private void showDeleteDialog(final Training training){
         AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
         alert.setTitle(getString(R.string.delete_training_title));
-        alert.setMessage(getString(R.string.delete_training_question));
+        alert.setMessage(getString(R.string.delete_question, training.getTrainingName()));
         alert.setPositiveButton(getString(R.string.delete_answer), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 AppExecutors.getInstance().diskIO().execute(new Runnable() {

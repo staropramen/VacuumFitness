@@ -121,6 +121,5 @@ public class AllExercisesFragment extends Fragment implements ChooseExerciseAdap
     public void onPause() {
         super.onPause();
         updateTraining();
-        Log.d("ON PAUSE", "Called");
     }
 }

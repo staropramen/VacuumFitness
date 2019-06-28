@@ -128,7 +128,7 @@ public class TrainingDetailFragment extends Fragment implements ExerciseAdapter.
 
     @Override
     public void onLongClick(Exercise exercise) {
-
+        showDeleteDialog(mTraining, exercise);
     }
 
     private void setupFabButton(){
@@ -151,16 +151,20 @@ public class TrainingDetailFragment extends Fragment implements ExerciseAdapter.
         transaction.commit();
     }
 
-    private void showDeleteDialog(final Training training){
+    private void showDeleteDialog(final Training training, final Exercise exercise){
         AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-        alert.setTitle(getString(R.string.delete_training_title));
-        alert.setMessage(getString(R.string.delete_training_question));
+        alert.setTitle(getString(R.string.delete_exercise_title));
+        alert.setMessage(getString(R.string.delete_question, exercise.getExerciseName()));
         alert.setPositiveButton(getString(R.string.delete_answer), new DialogInterface.OnClickListener() {
+
             public void onClick(DialogInterface dialog, int which) {
                 AppExecutors.getInstance().diskIO().execute(new Runnable() {
                     @Override
                     public void run() {
-                        AppDatabase.getInstance(getActivity()).trainingDao().deleteTraining(training);
+                        List<Exercise> exerciseList = training.getExerciseList();
+                        exerciseList.remove(exercise);
+                        training.setExerciseList(exerciseList);
+                        AppDatabase.getInstance(getActivity()).trainingDao().updateTraining(training);
                     }
                 });
             }
