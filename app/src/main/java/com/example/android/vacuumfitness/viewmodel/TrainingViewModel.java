@@ -21,15 +21,14 @@ public class TrainingViewModel extends ViewModel {
 
     private LiveData<List<Exercise>> exercises;
 
-    public LiveData<List<Exercise>> getExercises(Context context, int exerciseCount){
+    public LiveData<List<Exercise>> getExercises(Context context, List<Integer> idList){
         if(exercises == null){
-            loadData(context, exerciseCount);
+            loadData(context, idList);
         }
         return exercises;
     }
 
-    private void loadData(Context context, int exerciseCount){
-        List<Integer> idList = RandomTrainingUtils.getRandomExerciseIds(exerciseCount);
+    private void loadData(Context context, List<Integer> idList){
         AppDatabase db = AppDatabase.getInstance(context);
         Log.d(LOG_TAG, "Load data from database");
         exercises = db.exerciseDao().getTrainingExercises(idList);

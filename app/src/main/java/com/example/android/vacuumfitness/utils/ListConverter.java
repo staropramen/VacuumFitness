@@ -4,6 +4,7 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.TypeConverter;
 
 import com.example.android.vacuumfitness.model.Exercise;
+import com.example.android.vacuumfitness.model.Training;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -35,6 +36,12 @@ public class ListConverter {
     public static List<Exercise> stringToExerciseList(String string){
         Type listType = new TypeToken<List<Exercise>>() {}.getType();
         return new Gson().fromJson(string, listType);
+    }
+
+    public static String stringFromTrainingList(List<Training> trainings){
+        Gson gson = new Gson();
+        String json = gson.toJson(trainings);
+        return json;
     }
 
 }

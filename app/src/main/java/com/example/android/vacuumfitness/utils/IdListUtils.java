@@ -1,5 +1,7 @@
 package com.example.android.vacuumfitness.utils;
 
+import android.util.Log;
+
 import com.example.android.vacuumfitness.model.Exercise;
 import com.example.android.vacuumfitness.model.Training;
 
@@ -13,7 +15,7 @@ public class IdListUtils {
         List<Integer> idList;
 
         //Case we need a Random Training, primary key will be -1 else we make a list with the given Training
-        if(training.getPrimaryKey() < 0){
+        if(training == null || training.getPrimaryKey() < 0){
             idList = getRandomExerciseIds(exerciseCount);
         } else {
             idList = makeIdListFromTraining(training, exerciseCount);
@@ -47,16 +49,11 @@ public class IdListUtils {
         List<Exercise> exerciseList = training.getExerciseList();
 
         //Add primary keys to idList
-        for(int i = 0; i < exerciseList.size(); i++){
+        for(int i = 0; i < exerciseCount; i++){
             Exercise current = exerciseList.get(i);
+            Log.d("INDEX ADD", String.valueOf(i));
             int id = current.getPrimaryKey();
             idList.add(id);
-        }
-
-        //Cut id List to the right size
-        int itemsToRemove = exerciseCount - exerciseList.size();
-        for (int j = 0; j < itemsToRemove; j++){
-            idList.remove(idList.size() - 1);
         }
 
         return idList;

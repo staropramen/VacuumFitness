@@ -12,6 +12,7 @@ import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,6 +86,8 @@ public class TrainingFragment extends Fragment {
         if(data != null && data.containsKey(KeyUtils.EXERCISE_COUNT_KEY) && data.containsKey(KeyUtils.LEVEL_KEY)){
             exerciseCount = data.getInt(KeyUtils.EXERCISE_COUNT_KEY);
             level = data.getInt(KeyUtils.LEVEL_KEY);
+            mIdList = ListConverter.fromString(data.getString(KeyUtils.ID_LIST_KEY));
+            Log.d(LOG_TAG, ListConverter.fromList(mIdList));
         }
 
         //Make the Training time
@@ -92,7 +95,7 @@ public class TrainingFragment extends Fragment {
 
         //Launch ViewModel if savedInstanceState is null
         if(savedInstanceState == null){
-            setupRandomTrainingViewModel();
+            setupTrainingViewModel();
         } else {
             //Set back state before saving
             mTrainingTime = savedInstanceState.getLong(KeyUtils.TRAINING_TIME);
@@ -100,7 +103,7 @@ public class TrainingFragment extends Fragment {
             mExerciseList = ListConverter.stringToExerciseList(savedInstanceState.getString(KeyUtils.EXERCISES_ARRAY));
             mExercisePosition = savedInstanceState.getInt(KeyUtils.EXERCISE_POSITION);
             mTrainingIsPaused = savedInstanceState.getBoolean(KeyUtils.TRAINING_IS_PAUSED);
-            setupRandomTrainingViewModel();
+            setupTrainingViewModel();
         }
         return rootView;
     }
@@ -142,9 +145,9 @@ public class TrainingFragment extends Fragment {
     }
 
     //Setup ViewModel
-    private void setupRandomTrainingViewModel(){
+    private void setupTrainingViewModel(){
         TrainingViewModel trainingViewModel = ViewModelProviders.of(this).get(TrainingViewModel.class);
-        trainingViewModel.getExercises(getActivity(), exerciseCount).observe(this, new Observer<List<Exercise>>() {
+        trainingViewModel.getExercises(getActivity(), mIdList).observe(this, new Observer<List<Exercise>>() {
             @Override
             public void onChanged(@Nullable List<Exercise> exercises) {
                 //Initially populate ui

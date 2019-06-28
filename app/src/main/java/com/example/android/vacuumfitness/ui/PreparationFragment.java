@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.model.Training;
+import com.example.android.vacuumfitness.utils.IdListUtils;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.utils.ListConverter;
 import com.example.android.vacuumfitness.utils.PreparationUtils;
@@ -36,8 +37,10 @@ import butterknife.ButterKnife;
  */
 public class PreparationFragment extends Fragment {
 
-    List<Integer> primaryKeyList;
-    int mTrainingPrimaryKey = -1;
+    private List<Training> mTrainingList;
+    private int mRandomTrainingPrimaryKey = -1;
+    private List<Integer> mPrimaryKeyList;
+    private Training mTraining;
 
     @BindView(R.id.iv_increase_button) ImageView increaseButton;
     @BindView(R.id.iv_decreasebutton) ImageView decreaseButton;
@@ -60,27 +63,15 @@ public class PreparationFragment extends Fragment {
         //Setup Butterknife
         ButterKnife.bind(this, rootView);
 
+        //By default mTraining is a RandomTraining with primaryKey -1
+        mTraining = new Training();
+        mTraining.setPrimaryKey(mRandomTrainingPrimaryKey);
+        //Initialize primaryKeyList ans set -1 for Random Training
+        mTrainingList = new ArrayList<>();
+        mTrainingList.add(mTraining);
+
         //Setup Time
         PreparationUtils.calculateTime(exerciseCount, timeTextView, levelSpinner);
-
-        //Setup Exercise count
-        PreparationUtils.setExerciseCount(exerciseCount, increaseButton, decreaseButton, timeTextView, levelSpinner);
-
-        //Listen to changes in levelSpinner and update time
-        levelSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                //Set current PrimaryKey
-                mTrainingPrimaryKey = primaryKeyList.get(i);
-
-                PreparationUtils.calculateTime(exerciseCount, timeTextView, levelSpinner);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
 
         //Setup Start Button
         startButton.setOnClickListener(new View.OnClickListener() {
@@ -92,6 +83,8 @@ public class PreparationFragment extends Fragment {
 
         setupViewModel();
 
+        setupSpinnerOnSelectListener();
+
         return rootView;
     }
 
@@ -100,7 +93,9 @@ public class PreparationFragment extends Fragment {
         Bundle data = new Bundle();
         data.putInt(KeyUtils.LEVEL_KEY, levelSpinner.getSelectedItemPosition());
         data.putInt(KeyUtils.EXERCISE_COUNT_KEY, Integer.parseInt(exerciseCount.getText().toString()));
-        data.putString(KeyUtils.ID_LIST_KEY, ListConverter.fromList(primaryKeyList));
+        Log.d("!!!!!!!ID", String.valueOf(mTraining.getPrimaryKey()));
+        mPrimaryKeyList = IdListUtils.getTrainingIdList(mTraining, Integer.parseInt(exerciseCount.getText().toString()));
+        data.putString(KeyUtils.ID_LIST_KEY, ListConverter.fromList(mPrimaryKeyList));
 
         TrainingFragment fragment = new TrainingFragment();
         fragment.setArguments(data);
@@ -127,16 +122,12 @@ public class PreparationFragment extends Fragment {
         List<String> itemList = new ArrayList<>();
         itemList.add(getString(R.string.random_training));
 
-        //Initialize primaryKeyList ans set -1 for Random Training
-        primaryKeyList = new ArrayList<>();
-        primaryKeyList.add(-1);
-
         // Add trainings to list
         for (int i = 0; i < trainings.size(); i++){
             Training currentTraining = trainings.get(i);
             String trainingName = currentTraining.getTrainingName();
             itemList.add(trainingName);
-            primaryKeyList.add(currentTraining.getPrimaryKey());
+            mTrainingList.add(currentTraining);
         }
 
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -147,6 +138,42 @@ public class PreparationFragment extends Fragment {
         // Apply the adapter to the spinner
         trainingSpinner.setAdapter(adapter);
 
+    }
+
+    private void setupSpinnerOnSelectListener(){
+        //Listen to changes in levelSpinner and update time
+        levelSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                PreparationUtils.calculateTime(exerciseCount, timeTextView, levelSpinner);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        trainingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //Set current Training
+                mTraining = mTrainingList.get(position);
+
+                //Set exerciseCount Based on training
+                exerciseCount.setText(String.valueOf(
+                        PreparationUtils.getExerciseCount(mTraining)
+                ));
+
+                //Setup Exercise count
+                PreparationUtils.setExerciseCount(exerciseCount, increaseButton, decreaseButton, timeTextView, levelSpinner, mTraining);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
 }
