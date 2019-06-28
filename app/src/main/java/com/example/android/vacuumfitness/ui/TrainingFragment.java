@@ -58,6 +58,7 @@ public class TrainingFragment extends Fragment {
     private long mTrainingTime;
     private CountDownTimer mCountDownTimer;
     private boolean mTrainingIsPaused;
+    private List<Integer> mIdList;
 
     private MediaPlayer mCommandMediaPlayer;
 

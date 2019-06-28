@@ -7,6 +7,7 @@ public class KeyUtils {
     public static String EXERCISE_COUNT_KEY = "exercise-count-key";
     public static String TRAINING_KEY = "training-key";
     public static String TRAINING_ID_KEY = "training-id-key";
+    public static String ID_LIST_KEY = "id-list-key";
 
     //Save Instance State Keys
     public static String EXERCISE_POSITION = "exercise-position";

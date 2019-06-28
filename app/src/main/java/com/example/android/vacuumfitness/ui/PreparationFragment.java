@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.model.Training;
 import com.example.android.vacuumfitness.utils.KeyUtils;
+import com.example.android.vacuumfitness.utils.ListConverter;
 import com.example.android.vacuumfitness.utils.PreparationUtils;
 import com.example.android.vacuumfitness.viewmodel.CustomTrainingViewModel;
 
@@ -34,6 +35,9 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class PreparationFragment extends Fragment {
+
+    List<Integer> primaryKeyList;
+    int mTrainingPrimaryKey = -1;
 
     @BindView(R.id.iv_increase_button) ImageView increaseButton;
     @BindView(R.id.iv_decreasebutton) ImageView decreaseButton;
@@ -66,6 +70,9 @@ public class PreparationFragment extends Fragment {
         levelSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                //Set current PrimaryKey
+                mTrainingPrimaryKey = primaryKeyList.get(i);
+
                 PreparationUtils.calculateTime(exerciseCount, timeTextView, levelSpinner);
             }
 
@@ -93,6 +100,7 @@ public class PreparationFragment extends Fragment {
         Bundle data = new Bundle();
         data.putInt(KeyUtils.LEVEL_KEY, levelSpinner.getSelectedItemPosition());
         data.putInt(KeyUtils.EXERCISE_COUNT_KEY, Integer.parseInt(exerciseCount.getText().toString()));
+        data.putString(KeyUtils.ID_LIST_KEY, ListConverter.fromList(primaryKeyList));
 
         TrainingFragment fragment = new TrainingFragment();
         fragment.setArguments(data);
@@ -119,11 +127,16 @@ public class PreparationFragment extends Fragment {
         List<String> itemList = new ArrayList<>();
         itemList.add(getString(R.string.random_training));
 
+        //Initialize primaryKeyList ans set -1 for Random Training
+        primaryKeyList = new ArrayList<>();
+        primaryKeyList.add(-1);
+
         // Add trainings to list
         for (int i = 0; i < trainings.size(); i++){
             Training currentTraining = trainings.get(i);
             String trainingName = currentTraining.getTrainingName();
             itemList.add(trainingName);
+            primaryKeyList.add(currentTraining.getPrimaryKey());
         }
 
         // Create an ArrayAdapter using the string array and a default spinner layout

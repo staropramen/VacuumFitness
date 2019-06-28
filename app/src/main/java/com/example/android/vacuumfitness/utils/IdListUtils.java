@@ -1,11 +1,5 @@
 package com.example.android.vacuumfitness.utils;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.util.Log;
-
-import com.example.android.vacuumfitness.database.AppDatabase;
 import com.example.android.vacuumfitness.model.Exercise;
 import com.example.android.vacuumfitness.model.Training;
 
@@ -13,9 +7,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RandomTrainingUtils {
+public class IdListUtils {
 
-    public static List<Integer> getRandomExerciseIds(int exerciseCount) {
+    public static List<Integer> getTrainingIdList(Training training, int exerciseCount){
+        List<Integer> idList;
+
+        //Case we need a Random Training, primary key will be -1 else we make a list with the given Training
+        if(training.getPrimaryKey() < 0){
+            idList = getRandomExerciseIds(exerciseCount);
+        } else {
+            idList = makeIdListFromTraining(training, exerciseCount);
+        }
+
+        return idList;
+    }
+
+    private static List<Integer> getRandomExerciseIds(int exerciseCount) {
         List<Integer> randomList = new ArrayList<>();
         List<Integer> allExerciseList = SharedPrefsUtils.getExerciseIdsFromSharedPrefs();
 
@@ -34,7 +41,7 @@ public class RandomTrainingUtils {
         return randomList;
     }
 
-    public static List<Integer> makeIdListFromTraining(Training training, int exerciseCount){
+    private static List<Integer> makeIdListFromTraining(Training training, int exerciseCount){
         List<Integer> idList = new ArrayList<>();
 
         List<Exercise> exerciseList = training.getExerciseList();
@@ -54,5 +61,4 @@ public class RandomTrainingUtils {
 
         return idList;
     }
-
 }
