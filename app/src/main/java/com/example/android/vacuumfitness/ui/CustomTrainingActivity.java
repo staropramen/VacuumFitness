@@ -4,18 +4,16 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.android.vacuumfitness.R;
-import com.example.android.vacuumfitness.model.Training;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class CustomTrainingActivity extends AppCompatActivity implements FragmentManager.OnBackStackChangedListener {
 
-    private Toolbar mToolbar;
+    @BindView(R.id.toolbar) Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +24,6 @@ public class CustomTrainingActivity extends AppCompatActivity implements Fragmen
         ButterKnife.bind(this);
 
         //Setup Toolbar for BackButton
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
         //Listen for changes in the back stack

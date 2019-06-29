@@ -2,7 +2,6 @@ package com.example.android.vacuumfitness.ui;
 
 
 import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,14 +9,12 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.adapter.ChooseExerciseAdapter;
-import com.example.android.vacuumfitness.adapter.ExerciseAdapter;
 import com.example.android.vacuumfitness.database.AppDatabase;
 import com.example.android.vacuumfitness.model.Exercise;
 import com.example.android.vacuumfitness.model.Training;

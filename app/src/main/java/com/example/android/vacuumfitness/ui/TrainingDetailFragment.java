@@ -13,7 +13,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,11 +25,8 @@ import com.example.android.vacuumfitness.model.Exercise;
 import com.example.android.vacuumfitness.model.Training;
 import com.example.android.vacuumfitness.utils.AppExecutors;
 import com.example.android.vacuumfitness.utils.KeyUtils;
-import com.example.android.vacuumfitness.utils.ListConverter;
-import com.example.android.vacuumfitness.viewmodel.ExerciseListViewModel;
 import com.example.android.vacuumfitness.viewmodel.SingleTrainingViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;

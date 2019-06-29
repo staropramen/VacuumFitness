@@ -22,6 +22,7 @@ public class StartFragment extends Fragment {
 
     @BindView(R.id.start_training_button) ImageView startTraining;
     @BindView(R.id.customize_training_button) ImageView customizeTraining;
+    @BindView(R.id.customize_music_button) ImageView customizeMusic;
 
 
     public StartFragment() {
@@ -52,6 +53,15 @@ public class StartFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), CustomTrainingActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //Setup onClick for CustomizeMusic
+        customizeMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CustomizeMusicActivity.class);
                 startActivity(intent);
             }
         });

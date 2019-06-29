@@ -1,17 +1,11 @@
 package com.example.android.vacuumfitness.ui;
 
-import android.app.ActivityOptions;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
 
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.database.AppDatabase;
