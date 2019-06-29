@@ -22,22 +22,10 @@ import com.example.android.vacuumfitness.model.Song;
 import com.example.android.vacuumfitness.utils.AppExecutors;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.utils.MusicUtils;
-import com.google.android.exoplayer2.DefaultLoadControl;
-import com.google.android.exoplayer2.ExoPlaybackException;
-import com.google.android.exoplayer2.ExoPlayerFactory;
-import com.google.android.exoplayer2.LoadControl;
-import com.google.android.exoplayer2.PlaybackParameters;
-import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
 import com.google.android.exoplayer2.source.ConcatenatingMediaSource;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.source.TrackGroupArray;
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
-import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
-import com.google.android.exoplayer2.trackselection.TrackSelector;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 
@@ -52,12 +40,13 @@ import butterknife.ButterKnife;
 public class AllMusicFragment extends Fragment implements SongAdapter.SongClickHandler {
 
     private List<Song> songs;
-
     private LinearLayoutManager layoutManager;
     private SongAdapter songAdapter;
     @BindView(R.id.rv_songs_view) RecyclerView songsRecyclerView;
     //@BindView(R.id.tv_empty_trainings_list) TextView emptyListTextView;
     //@BindView(R.id.fab_add_training) FloatingActionButton fabAddTraining;
+
+    private final static int PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
 
     public AllMusicFragment() {
         // Required empty public constructor
@@ -83,17 +72,19 @@ public class AllMusicFragment extends Fragment implements SongAdapter.SongClickH
         songAdapter = new SongAdapter(this);
         songsRecyclerView.setAdapter(songAdapter);
 
-        //Check Permisson and Requast if its necessary
+        //TODO MOVE THIS TO FIRST FRAGMENT Check permission and request if its necessary
         if (ContextCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
 
             ActivityCompat.requestPermissions(getActivity(),
-                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
 
+        } else {
+            setupSongAdapter();
         }
 
-        setupSongAdapter();
+
 
         return rootView;
     }
@@ -108,6 +99,7 @@ public class AllMusicFragment extends Fragment implements SongAdapter.SongClickH
             }
         });
     }
+
 
 
     ConcatenatingMediaSource playlist = new ConcatenatingMediaSource();

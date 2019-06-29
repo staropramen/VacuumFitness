@@ -2,9 +2,11 @@ package com.example.android.vacuumfitness.utils;
 
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.TypeConverter;
+import android.arch.persistence.room.TypeConverters;
 
 import com.example.android.vacuumfitness.model.Exercise;
 import com.example.android.vacuumfitness.model.Training;
+import com.google.android.exoplayer2.source.ConcatenatingMediaSource;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -38,10 +40,17 @@ public class ListConverter {
         return new Gson().fromJson(string, listType);
     }
 
-    public static String stringFromTrainingList(List<Training> trainings){
+    @TypeConverter
+    public static String mediaSourceToString(ConcatenatingMediaSource mediaSource){
         Gson gson = new Gson();
-        String json = gson.toJson(trainings);
+        String json = gson.toJson(mediaSource);
         return json;
+    }
+
+    @TypeConverter
+    public static ConcatenatingMediaSource stringToMediaSource(String string){
+        Type type = new TypeToken<ConcatenatingMediaSource>() {}.getType();
+        return new Gson().fromJson(string, type);
     }
 
 }

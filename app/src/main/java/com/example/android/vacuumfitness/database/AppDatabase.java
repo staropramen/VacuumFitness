@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.example.android.vacuumfitness.model.Exercise;
+import com.example.android.vacuumfitness.model.Playlist;
 import com.example.android.vacuumfitness.model.Training;
 import com.example.android.vacuumfitness.utils.AppExecutors;
 import com.example.android.vacuumfitness.utils.ListConverter;
@@ -18,7 +19,7 @@ import com.example.android.vacuumfitness.utils.SharedPrefsUtils;
 import java.util.List;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Exercise.class, Training.class}, version = 1, exportSchema = false)
+@Database(entities = {Exercise.class, Training.class, Playlist.class}, version = 1, exportSchema = false)
 @TypeConverters({ListConverter.class})
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -58,6 +59,8 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract ExerciseDao exerciseDao();
 
     public abstract TrainingDao trainingDao();
+
+    public abstract PlaylistDao playlistDao();
 
     private static Exercise[] populateExercises(){
         return new Exercise[] {
