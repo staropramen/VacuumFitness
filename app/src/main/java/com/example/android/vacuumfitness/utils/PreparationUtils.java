@@ -77,7 +77,7 @@ public class PreparationUtils {
         timeCount.setText(timeString);
     }
 
-    private static String secondsToTimeString(int seconds){
+    public static String secondsToTimeString(int seconds){
         return String.format("%02d:%02d", seconds / 60, seconds % 60);
     }
 

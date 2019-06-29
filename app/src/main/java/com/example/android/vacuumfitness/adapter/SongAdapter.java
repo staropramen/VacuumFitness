@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.model.Song;
+import com.example.android.vacuumfitness.utils.MusicUtils;
+import com.example.android.vacuumfitness.utils.PreparationUtils;
 
 import java.util.List;
 
@@ -66,8 +68,10 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongAdapterVie
         Song song = songs.get(position);
 
         viewHolder.songTitle.setText(song.getSongName());
-        viewHolder.artistName.setText(song.getSongArtist());
-        viewHolder.songDuration.setText(song.getSongLength());
+        String artist = MusicUtils.getProperArtist(song.getSongArtist());
+        viewHolder.artistName.setText(artist);
+        int timeInSeconds = Integer.parseInt(song.getSongLength()) / 1000;
+        viewHolder.songDuration.setText(PreparationUtils.secondsToTimeString(timeInSeconds));
     }
 
     @Override

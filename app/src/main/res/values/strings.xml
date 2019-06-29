@@ -64,6 +64,7 @@
 
     <!-- Customize Music Activity -->
     <string name="all_music">All my Music</string>
+    <string name="various_artists">Various Artists</string>
 
 
 </resources>

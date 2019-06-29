@@ -16,4 +16,7 @@ public class KeyUtils {
     public static String TRAINING_TIME = "training-time";
     public static String TRAINING_IS_PAUSED = "training-is-paused";
 
+    //EXO Player Key
+    public static String EXO_VIDEO_PLAYER = "exoVideoPlayer";
+
 }

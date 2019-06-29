@@ -5,7 +5,9 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
 
+import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.model.Song;
+import com.example.android.vacuumfitness.ui.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,5 +50,13 @@ public class MusicUtils {
         }
 
         return songList;
+    }
+
+    public static String getProperArtist(String artist){
+        if(artist.equals("<unknown>")){
+            return MainActivity.mContext.getResources().getString(R.string.various_artists);
+        } else {
+            return artist;
+        }
     }
 }
