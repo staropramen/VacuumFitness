@@ -62,8 +62,8 @@
     <string name="sat_label">Sat</string>
     <string name="sun_label">Sun</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Customize Music Activity -->
+    <string name="all_music">All my Music</string>
 
 
 </resources>

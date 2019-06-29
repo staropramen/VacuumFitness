@@ -78,4 +78,18 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="song_header">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/regular_text</item>
+        <item name="android:textColor">@color/grey</item>
+    </style>
+
+    <style name="song_info">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/small_text</item>
+        <item name="android:textColor">@color/grey</item>
+    </style>
+
 </resources>

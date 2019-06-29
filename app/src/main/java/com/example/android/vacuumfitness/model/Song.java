@@ -2,6 +2,9 @@ package com.example.android.vacuumfitness.model;
 
 public class Song {
 
+    //Path of the Song
+    private String path;
+
     // Artist of the Song
     private String songArtist;
 
@@ -11,14 +14,20 @@ public class Song {
     // Length of the song
     private String songLength;
 
-    //Data of the Song
-    private long data;
-
-    public Song(String songArtist, String songName, String songLength, long data) {
+    public Song(String path, String songArtist, String songName, String songLength) {
+        this.path = path;
         this.songArtist = songArtist;
         this.songName = songName;
         this.songLength = songLength;
-        this.data = data;
+    }
+
+    //Empty Constructor
+    public Song(){
+
+    }
+
+    public String getPath() {
+        return path;
     }
 
     public String getSongArtist() {
@@ -33,8 +42,8 @@ public class Song {
         return songLength;
     }
 
-    public long getData() {
-        return data;
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public void setSongArtist(String songArtist) {
@@ -47,9 +56,5 @@ public class Song {
 
     public void setSongLength(String songLength) {
         this.songLength = songLength;
-    }
-
-    public void setData(long data) {
-        this.data = data;
     }
 }
