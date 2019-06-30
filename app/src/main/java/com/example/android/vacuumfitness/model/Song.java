@@ -95,18 +95,26 @@ public class Song implements Parcelable {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        int hash = 3;
+        hash = 53 * hash + (this.songName != null ? this.songName.hashCode() : 0);
+        return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        boolean isEqual= false;
-
-        if (object != null && object instanceof Song)
-        {
-            isEqual = (this.songName == ((Song) object).songName);
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
         }
 
-        return isEqual;
+        if (!Song.class.isAssignableFrom(obj.getClass())) {
+            return false;
+        }
+
+        final Song other = (Song) obj;
+        if ((this.songName == null) ? (other.songName != null) : !this.songName.equals(other.songName)) {
+            return false;
+        }
+
+        return true;
     }
 }

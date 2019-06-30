@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.adapter.ChooseSongAdapter;
 import com.example.android.vacuumfitness.adapter.SongAdapter;
+import com.example.android.vacuumfitness.database.AppDatabase;
 import com.example.android.vacuumfitness.model.Playlist;
 import com.example.android.vacuumfitness.model.Song;
 import com.example.android.vacuumfitness.utils.AppExecutors;
@@ -111,6 +112,27 @@ public class AllMusicFragment extends Fragment implements ChooseSongAdapter.Choo
 
     @Override
     public void onClick(Song song) {
+        if(mChosenSongs.contains(song)){
+            mChosenSongs.remove(song);
+        }else {
+            mChosenSongs.add(song);
+        }
+    }
 
+    private void updatePlaylist(){
+        mPlaylist.setMediaSource(mChosenSongs);
+
+        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase.getInstance(getActivity()).playlistDao().updatePlaylist(mPlaylist);
+            }
+        });
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        updatePlaylist();
     }
 }
