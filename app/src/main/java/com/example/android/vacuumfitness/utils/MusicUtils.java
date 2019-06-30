@@ -8,6 +8,12 @@ import android.provider.MediaStore;
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.model.Song;
 import com.example.android.vacuumfitness.ui.MainActivity;
+import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
+import com.google.android.exoplayer2.source.ConcatenatingMediaSource;
+import com.google.android.exoplayer2.source.ExtractorMediaSource;
+import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
+import com.google.android.exoplayer2.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +56,22 @@ public class MusicUtils {
         }
 
         return songList;
+    }
+
+    //Returns a mediaSourcePlaylist to play in exoplayer
+    public static ConcatenatingMediaSource getMediaSourcePlaylist(Context context, List<Song> songs){
+        ConcatenatingMediaSource playlist = new ConcatenatingMediaSource();
+
+        for (int i = 0; i < songs.size(); i++){
+            Song currentSong = songs.get(i);
+            Uri uri = Uri.parse(currentSong.getPath());
+            String userAgent = Util.getUserAgent(context, KeyUtils.EXO_VIDEO_PLAYER);
+            MediaSource mediaSource = new ExtractorMediaSource(uri, new DefaultDataSourceFactory(
+                    context, userAgent), new DefaultExtractorsFactory(), null, null);
+            playlist.addMediaSource(mediaSource);
+        }
+
+        return playlist;
     }
 
     public static String getProperArtist(String artist){

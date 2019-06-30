@@ -67,6 +67,9 @@
     <string name="various_artists">Various Artists</string>
     <string name="empty_customize_playlist">You still don\'t have customized music. Start by adding a playlist.</string>
     <string name="customize_music_title">Customize Music</string>
+    <string name="songs_count">Songs:</string>
+    <string name="empty_playlist_detail">This playlist still don\'t have songs. Start by adding a song.</string>
+    <string name="playlist_duration">Playlist Duration:</string>
 
 
 </resources>

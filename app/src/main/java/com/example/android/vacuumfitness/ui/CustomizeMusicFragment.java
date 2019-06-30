@@ -1,7 +1,11 @@
 package com.example.android.vacuumfitness.ui;
 
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +21,9 @@ import com.example.android.vacuumfitness.adapter.CustomTrainingAdapter;
 import com.example.android.vacuumfitness.adapter.PlaylistAdapter;
 import com.example.android.vacuumfitness.model.Playlist;
 import com.example.android.vacuumfitness.model.Training;
+import com.example.android.vacuumfitness.viewmodel.PlaylistViewModel;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -56,6 +63,8 @@ public class CustomizeMusicFragment extends Fragment implements PlaylistAdapter.
         playlistAdapter = new PlaylistAdapter(this, this);
         playlistRecyclerView.setAdapter(playlistAdapter);
 
+        setupViewModel();
+
         return rootView;
     }
 
@@ -67,5 +76,23 @@ public class CustomizeMusicFragment extends Fragment implements PlaylistAdapter.
     @Override
     public void onLongClick(Playlist playlist) {
 
+    }
+
+    public void setupViewModel(){
+        PlaylistViewModel viewModel = ViewModelProviders.of(this).get(PlaylistViewModel.class);
+        viewModel.getPlaylists().observe(this, new Observer<List<Playlist>>() {
+            @Override
+            public void onChanged(@Nullable List<Playlist> playlists) {
+                if(playlists.isEmpty()){
+                    //Show empty view
+                    emptyListTextView.setVisibility(View.VISIBLE);
+                    playlistRecyclerView.setVisibility(View.GONE);
+                } else {
+                    emptyListTextView.setVisibility(View.GONE);
+                    playlistRecyclerView.setVisibility(View.VISIBLE);
+                    playlistAdapter.setPlaylists(playlists);
+                }
+            }
+        });
     }
 }

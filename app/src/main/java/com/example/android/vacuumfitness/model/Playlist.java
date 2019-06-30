@@ -7,6 +7,8 @@ import android.arch.persistence.room.PrimaryKey;
 
 import com.google.android.exoplayer2.source.ConcatenatingMediaSource;
 
+import java.util.List;
+
 @Entity(tableName = "playlist")
 public class Playlist {
 
@@ -14,13 +16,13 @@ public class Playlist {
     private int primaryKey;
     @ColumnInfo(name = "playlist-name")
     private String playlistName;
-    @ColumnInfo(name = "media-source")
-    private ConcatenatingMediaSource mediaSource;
+    @ColumnInfo(name = "song-list")
+    private List<Song> songList;
 
-    public Playlist(int primaryKey, String playlistName, ConcatenatingMediaSource mediaSource) {
+    public Playlist(int primaryKey, String playlistName, List<Song> songList) {
         this.primaryKey = primaryKey;
         this.playlistName = playlistName;
-        this.mediaSource = mediaSource;
+        this.songList = songList;
     }
 
     //Empty Constructor
@@ -35,8 +37,8 @@ public class Playlist {
         return playlistName;
     }
 
-    public ConcatenatingMediaSource getMediaSource() {
-        return mediaSource;
+    public List<Song> getSongList() {
+        return songList;
     }
 
     public void setPrimaryKey(int primaryKey) {
@@ -47,7 +49,7 @@ public class Playlist {
         this.playlistName = playlistName;
     }
 
-    public void setMediaSource(ConcatenatingMediaSource mediaSource) {
-        this.mediaSource = mediaSource;
+    public void setMediaSource(List<Song> songList) {
+        this.songList = songList;
     }
 }

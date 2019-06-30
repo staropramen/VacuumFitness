@@ -1,9 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.PlaylistDetailFragment">
 
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/tv_song_count_title"
+        style="@style/descriptions"
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginTop="@dimen/margin"
+        android:text="@string/songs_count"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_playlist_count"
+        style="@style/big_text"
+        android:text="4"
+        app:layout_constraintEnd_toEndOf="@+id/tv_song_count_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_song_count_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_song_count_title" />
+
+    <TextView
+        android:id="@+id/tv_duration_title"
+        style="@style/descriptions"
+        android:layout_marginEnd="@dimen/margin"
+        android:layout_marginTop="@dimen/margin"
+        android:text="@string/playlist_duration"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_duration_count"
+        style="@style/big_text"
+        android:text="22:59"
+        app:layout_constraintEnd_toEndOf="@+id/tv_duration_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_duration_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_duration_title" />
+
+    <View
+        android:id="@+id/v_separator"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/info_separator_height"
+        android:background="@color/light_grey"
+        android:layout_marginTop="@dimen/margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_playlist_count" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_playlist_items"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/v_separator" />
+
+    <TextView
+        android:id="@+id/tv_empty_playlist"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        style="@style/medium_text"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="@string/empty_playlist_detail"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/v_separator"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_add_song"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_add"
+        android:tint="@color/white"
+        android:layout_margin="@dimen/xxl_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>

@@ -32,7 +32,7 @@ public class CustomizeMusicActivity extends AppCompatActivity implements Fragmen
 
         //Handle when activity is recreated like on orientation Change
         if(savedInstanceState == null){
-            AllMusicFragment fragment = new AllMusicFragment();
+            CustomizeMusicFragment fragment = new CustomizeMusicFragment();
 
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()

@@ -105,7 +105,6 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
                     trainingsRecyclerView.setVisibility(View.VISIBLE);
                     trainingAdapter.setTrainings(trainings);
                 }
-
             }
         });
     }
