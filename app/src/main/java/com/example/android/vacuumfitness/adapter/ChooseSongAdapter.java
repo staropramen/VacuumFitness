@@ -1,7 +1,9 @@
 package com.example.android.vacuumfitness.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,25 +20,32 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongAdapterViewHolder> {
+public class ChooseSongAdapter extends RecyclerView.Adapter<ChooseSongAdapter.ChooseSongAdapterViewHolder> {
 
     private List<Song> songs;
+    private List<Song> chosenSongs;
+    private Context mContext;
 
-    private final SongClickHandler songClickHandler;
+    private final ChooseSongClickHandler chooseSongClickHandler;
 
-    public interface SongClickHandler {
+    public interface ChooseSongClickHandler {
         void onClick(Song song);
     }
 
-    public SongAdapter(SongClickHandler clickHandler){songClickHandler = clickHandler;}
+    public ChooseSongAdapter(ChooseSongClickHandler clickHandler, List<Song> list, Context context){
+        chooseSongClickHandler = clickHandler;
+        chosenSongs = list;
+        mContext = context;
+    }
 
-    public class SongAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ChooseSongAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         @BindView(R.id.tv_artist) TextView artistName;
         @BindView(R.id.tv_song_title) TextView songTitle;
         @BindView(R.id.tv_duration) TextView songDuration;
+        @BindView(R.id.song_item) ConstraintLayout songItem;
 
-        private SongAdapterViewHolder(@NonNull View view) {
+        private ChooseSongAdapterViewHolder(@NonNull View view) {
             super(view);
             ButterKnife.bind(this, view);
             view.setOnClickListener(this);
@@ -46,13 +55,21 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongAdapterVie
         public void onClick(View v) {
             int adapterPosition = getAdapterPosition();
             Song song = songs.get(adapterPosition);
-            songClickHandler.onClick(song);
+
+            //Set Backgroundcolor of item depending on if its in list or not
+            if(chosenSongs != null && chosenSongs.contains(song)){
+                songItem.setBackgroundColor(Color.TRANSPARENT);
+            } else {
+                songItem.setBackgroundColor(mContext.getResources().getColor(R.color.colorPrimaryLight));
+            }
+
+            chooseSongClickHandler.onClick(song);
         }
     }
 
     @NonNull
     @Override
-    public SongAdapter.SongAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public ChooseSongAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         Context context = viewGroup.getContext();
         int listItem = R.layout.song_list_item;
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -60,12 +77,19 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongAdapterVie
 
         View view = inflater.inflate(listItem, viewGroup,shouldAttachToParentImmediately);
 
-        return new SongAdapterViewHolder(view);
+        return new ChooseSongAdapterViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SongAdapter.SongAdapterViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull ChooseSongAdapterViewHolder viewHolder, int position) {
         Song song = songs.get(position);
+
+        //Check if this item is already chosen
+        if(chosenSongs != null && chosenSongs.contains(song)){
+            viewHolder.songItem.setBackgroundColor(mContext.getResources().getColor(R.color.colorPrimaryLight));
+        } else {
+            viewHolder.songItem.setBackgroundColor(Color.TRANSPARENT);
+        }
 
         viewHolder.songTitle.setText(song.getSongName());
         String artist = MusicUtils.getProperArtist(song.getSongArtist());
@@ -80,7 +104,6 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongAdapterVie
         return songs.size();
     }
 
-    //Function to set moviesArray
     public void setSongs(List<Song> songList){
         songs = songList;
         notifyDataSetChanged();

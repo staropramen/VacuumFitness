@@ -17,7 +17,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.vacuumfitness.R;
+import com.example.android.vacuumfitness.adapter.ChooseSongAdapter;
 import com.example.android.vacuumfitness.adapter.SongAdapter;
+import com.example.android.vacuumfitness.model.Playlist;
 import com.example.android.vacuumfitness.model.Song;
 import com.example.android.vacuumfitness.utils.AppExecutors;
 import com.example.android.vacuumfitness.utils.KeyUtils;
@@ -29,6 +31,7 @@ import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -37,11 +40,13 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AllMusicFragment extends Fragment implements SongAdapter.SongClickHandler {
+public class AllMusicFragment extends Fragment implements ChooseSongAdapter.ChooseSongClickHandler {
 
     private List<Song> songs;
+    private List<Song> mChosenSongs;
+    private Playlist mPlaylist;
     private LinearLayoutManager layoutManager;
-    private SongAdapter songAdapter;
+    private ChooseSongAdapter songAdapter;
     @BindView(R.id.rv_songs_view) RecyclerView songsRecyclerView;
 
     public AllMusicFragment() {
@@ -62,10 +67,25 @@ public class AllMusicFragment extends Fragment implements SongAdapter.SongClickH
         Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.all_music);
 
+        //Get Data from Bundle
+        Bundle data = getArguments();
+        if(data != null && data.containsKey(KeyUtils.PLAYLIST_KEY)){
+            mPlaylist = data.getParcelable(KeyUtils.PLAYLIST_KEY);
+        } else {
+            mPlaylist = null;
+        }
+
+        //Get the list of existing songs
+        if(mPlaylist.getSongList() == null){
+            mChosenSongs = new ArrayList<>();
+        }else {
+            mChosenSongs = mPlaylist.getSongList();
+        }
+
         //Prepare RecyclerView
         layoutManager = new LinearLayoutManager(getContext());
         songsRecyclerView.setLayoutManager(layoutManager);
-        songAdapter = new SongAdapter(this);
+        songAdapter = new ChooseSongAdapter(this, mChosenSongs, getActivity());
         songsRecyclerView.setAdapter(songAdapter);
 
         setupSongAdapter();

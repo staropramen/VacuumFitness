@@ -107,6 +107,8 @@ public class PlaylistDetailFragment extends Fragment implements SongAdapter.Song
             @Override
             public void onChanged(@Nullable Playlist playlist) {
 
+                mPlaylist = playlist;
+
                 //Set Title
                 mToolbar.setTitle(playlist.getPlaylistName());
 
@@ -137,7 +139,7 @@ public class PlaylistDetailFragment extends Fragment implements SongAdapter.Song
 
     private void allSongsFragmentTransaction(){
         Bundle data = new Bundle();
-        //data.putParcelable(KeyUtils.TRAINING_KEY, mTraining);
+        data.putParcelable(KeyUtils.PLAYLIST_KEY, mPlaylist);
         AllMusicFragment fragment = new AllMusicFragment();
         fragment.setArguments(data);
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();

@@ -35,7 +35,7 @@ public class ChooseExerciseAdapter extends RecyclerView.Adapter<ChooseExerciseAd
     }
 
     //Constructor
-    public ChooseExerciseAdapter(ChooseExerciseAdapter.ChooseExerciseClickHandler clickHandler, List<Exercise> list, Context context){
+    public ChooseExerciseAdapter(ChooseExerciseClickHandler clickHandler, List<Exercise> list, Context context){
         exerciseOnClickHandler = clickHandler;
         chosenExercises = list;
         mContext = context;
@@ -115,7 +115,6 @@ public class ChooseExerciseAdapter extends RecyclerView.Adapter<ChooseExerciseAd
             return exercises.size();
         }
 
-        //Function to set moviesArray
         public void setExercises(List<Exercise> exerciseList){
             exercises = exerciseList;
             notifyDataSetChanged();

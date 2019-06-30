@@ -1,6 +1,9 @@
 package com.example.android.vacuumfitness.model;
 
-public class Song {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Song implements Parcelable {
 
     //Path of the Song
     private String path;
@@ -23,7 +26,14 @@ public class Song {
 
     //Empty Constructor
     public Song(){
+    }
 
+    //Constructor for Parcelable
+    public Song(Parcel in){
+        path = in.readString();
+        songArtist = in.readString();
+        songName = in.readString();
+        songLength = in.readString();
     }
 
     public String getPath() {
@@ -56,5 +66,47 @@ public class Song {
 
     public void setSongLength(String songLength) {
         this.songLength = songLength;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(path);
+        dest.writeString(songArtist);
+        dest.writeString(songName);
+        dest.writeString(songLength);
+    }
+
+    public static final Parcelable.Creator<Song> CREATOR = new Parcelable.Creator<Song>() {
+        @Override
+        public Song createFromParcel(Parcel source) {
+            return new Song(source);
+        }
+
+        @Override
+        public Song[] newArray(int size) {
+            return new Song[size];
+        }
+    };
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        boolean isEqual= false;
+
+        if (object != null && object instanceof Song)
+        {
+            isEqual = (this.songName == ((Song) object).songName);
+        }
+
+        return isEqual;
     }
 }
