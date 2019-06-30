@@ -74,5 +74,6 @@
     <string name="empty_playlist_detail">This playlist still don\'t have songs. Start by adding a song.</string>
     <string name="playlist_duration">Playlist Duration:</string>
     <string name="zero_time">00:00</string>
+    <string name="permission_denied">You must give the permission to customize music.</string>
 
 </resources>

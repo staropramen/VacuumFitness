@@ -43,10 +43,6 @@ public class AllMusicFragment extends Fragment implements SongAdapter.SongClickH
     private LinearLayoutManager layoutManager;
     private SongAdapter songAdapter;
     @BindView(R.id.rv_songs_view) RecyclerView songsRecyclerView;
-    //@BindView(R.id.tv_empty_trainings_list) TextView emptyListTextView;
-    //@BindView(R.id.fab_add_training) FloatingActionButton fabAddTraining;
-
-    private final static int PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
 
     public AllMusicFragment() {
         // Required empty public constructor
@@ -72,19 +68,7 @@ public class AllMusicFragment extends Fragment implements SongAdapter.SongClickH
         songAdapter = new SongAdapter(this);
         songsRecyclerView.setAdapter(songAdapter);
 
-        //TODO MOVE THIS TO FIRST FRAGMENT Check permission and request if its necessary
-        if (ContextCompat.checkSelfPermission(getActivity(),
-                Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            ActivityCompat.requestPermissions(getActivity(),
-                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-
-        } else {
-            setupSongAdapter();
-        }
-
-
+        setupSongAdapter();
 
         return rootView;
     }
@@ -95,21 +79,18 @@ public class AllMusicFragment extends Fragment implements SongAdapter.SongClickH
             public void run() {
                 songs = MusicUtils.getSongList(getActivity());
 
-                songAdapter.setSongs(songs);
+                AppExecutors.getInstance().mainThread().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        songAdapter.setSongs(songs);
+                    }
+                });
             }
         });
     }
 
-
-
-    ConcatenatingMediaSource playlist = new ConcatenatingMediaSource();
-
     @Override
     public void onClick(Song song) {
-        Uri uri = Uri.parse(song.getPath());
-        String userAgent = Util.getUserAgent(getActivity(), KeyUtils.EXO_VIDEO_PLAYER);
-        MediaSource mediaSource = new ExtractorMediaSource(uri, new DefaultDataSourceFactory(
-                getActivity(), userAgent), new DefaultExtractorsFactory(), null, null);
-        playlist.addMediaSource(mediaSource);
+
     }
 }

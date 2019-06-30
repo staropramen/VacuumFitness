@@ -1,10 +1,16 @@
 package com.example.android.vacuumfitness.ui;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.android.vacuumfitness.R;
 
@@ -14,6 +20,7 @@ import butterknife.ButterKnife;
 public class CustomizeMusicActivity extends AppCompatActivity implements FragmentManager.OnBackStackChangedListener {
 
     @BindView(R.id.toolbar) Toolbar mToolbar;
+    private final static int PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +46,16 @@ public class CustomizeMusicActivity extends AppCompatActivity implements Fragmen
                     .replace(R.id.customize_music_content, fragment)
                     .addToBackStack(null)
                     .commit();
+        }
+
+        //TODO MOVE THIS TO FIRST FRAGMENT Check permission and request if its necessary
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+
         }
     }
 
@@ -82,5 +99,25 @@ public class CustomizeMusicActivity extends AppCompatActivity implements Fragmen
         else {
             getSupportFragmentManager().popBackStack();
         }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission was granted, nothing to do
+                } else {
+                    // permission denied, finish activity
+                    finish();
+                    Toast.makeText(this, getString(R.string.permission_denied), Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+        }
+
     }
 }
