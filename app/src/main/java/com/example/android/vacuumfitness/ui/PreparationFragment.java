@@ -2,6 +2,7 @@ package com.example.android.vacuumfitness.ui;
 
 
 import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,12 +20,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.android.vacuumfitness.R;
+import com.example.android.vacuumfitness.model.Playlist;
 import com.example.android.vacuumfitness.model.Training;
 import com.example.android.vacuumfitness.utils.IdListUtils;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.utils.ListConverter;
 import com.example.android.vacuumfitness.utils.PreparationUtils;
 import com.example.android.vacuumfitness.viewmodel.CustomTrainingViewModel;
+import com.example.android.vacuumfitness.viewmodel.PlaylistViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,9 +41,11 @@ import butterknife.ButterKnife;
 public class PreparationFragment extends Fragment {
 
     private List<Training> mTrainingList;
+    private List<Playlist> mPlaylistList;
     private int mRandomTrainingPrimaryKey = -1;
     private List<Integer> mPrimaryKeyList;
     private Training mTraining;
+    private Playlist mPlaylist;
 
     @BindView(R.id.iv_increase_button) ImageView increaseButton;
     @BindView(R.id.iv_decreasebutton) ImageView decreaseButton;
@@ -49,6 +54,7 @@ public class PreparationFragment extends Fragment {
     @BindView(R.id.tv_time_count) TextView timeTextView;
     @BindView(R.id.sp_level_selection) Spinner levelSpinner;
     @BindView(R.id.sp_training_selection) Spinner trainingSpinner;
+    @BindView(R.id.sp_music_selection) Spinner musicSpinner;
 
     public PreparationFragment() {
         // Required empty public constructor
@@ -81,7 +87,8 @@ public class PreparationFragment extends Fragment {
             }
         });
 
-        setupViewModel();
+        setupTrainingViewModel();
+        setupPlaylistViewModel();
 
         setupSpinnerOnSelectListener();
 
@@ -93,7 +100,6 @@ public class PreparationFragment extends Fragment {
         Bundle data = new Bundle();
         data.putInt(KeyUtils.LEVEL_KEY, levelSpinner.getSelectedItemPosition());
         data.putInt(KeyUtils.EXERCISE_COUNT_KEY, Integer.parseInt(exerciseCount.getText().toString()));
-        Log.d("!!!!!!!ID", String.valueOf(mTraining.getPrimaryKey()));
         mPrimaryKeyList = IdListUtils.getTrainingIdList(mTraining, Integer.parseInt(exerciseCount.getText().toString()));
         data.putString(KeyUtils.ID_LIST_KEY, ListConverter.fromList(mPrimaryKeyList));
 
@@ -107,17 +113,27 @@ public class PreparationFragment extends Fragment {
     }
 
     //Setup CustomTrainingViewModel
-    private void setupViewModel(){
+    private void setupTrainingViewModel(){
         CustomTrainingViewModel viewModel = ViewModelProviders.of(this).get(CustomTrainingViewModel.class);
         viewModel.getTrainings().observe(this, new Observer<List<Training>>() {
             @Override
             public void onChanged(@Nullable List<Training> trainings) {
-                addSpinnerItems(trainings);
+                addTrainingSpinnerItems(trainings);
             }
         });
     }
 
-    private void addSpinnerItems(List<Training> trainings){
+    private void setupPlaylistViewModel(){
+        PlaylistViewModel viewModel = ViewModelProviders.of(this).get(PlaylistViewModel.class);
+        viewModel.getPlaylists().observe(this, new Observer<List<Playlist>>() {
+            @Override
+            public void onChanged(@Nullable List<Playlist> playlists) {
+                addMusicSpinnerItems(playlists);
+            }
+        });
+    }
+
+    private void addTrainingSpinnerItems(List<Training> trainings){
 
         List<String> itemList = new ArrayList<>();
         itemList.add(getString(R.string.random_training));
@@ -137,6 +153,28 @@ public class PreparationFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         trainingSpinner.setAdapter(adapter);
+
+    }
+
+    private void addMusicSpinnerItems(List<Playlist> playlists){
+        List<String> itemList = new ArrayList<>();
+        itemList.add("Rainforest Sounds");
+
+        //Add Playlists to itemList
+        for (int i = 0; i < playlists.size(); i++){
+            Playlist currentPlaylist = playlists.get(i);
+            String playlistName = currentPlaylist.getPlaylistName();
+            itemList.add(playlistName);
+            //mPlaylistList.add(currentPlaylist);
+        }
+
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_spinner_item, itemList);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        musicSpinner.setAdapter(adapter);
 
     }
 
@@ -164,9 +202,20 @@ public class PreparationFragment extends Fragment {
                 exerciseCount.setText(String.valueOf(
                         PreparationUtils.getExerciseCount(mTraining)
                 ));
-
                 //Setup Exercise count
                 PreparationUtils.setExerciseCount(exerciseCount, increaseButton, decreaseButton, timeTextView, levelSpinner, mTraining);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        musicSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //mPlaylist = mPlaylistList.get(position);
             }
 
             @Override
