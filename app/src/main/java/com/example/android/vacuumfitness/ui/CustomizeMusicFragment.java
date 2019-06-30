@@ -89,7 +89,7 @@ public class CustomizeMusicFragment extends Fragment implements PlaylistAdapter.
 
     @Override
     public void onLongClick(Playlist playlist) {
-
+        showDeleteDialog(playlist);
     }
 
     private void setupViewModel(){
@@ -178,5 +178,28 @@ public class CustomizeMusicFragment extends Fragment implements PlaylistAdapter.
         // create and show the alert dialog
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    private void showDeleteDialog(final Playlist playlist){
+        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+        alert.setTitle(getString(R.string.delete_playlist_title));
+        alert.setMessage(getString(R.string.delete_question, playlist.getPlaylistName()));
+        alert.setPositiveButton(getString(R.string.delete_answer), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                AppExecutors.getInstance().diskIO().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        AppDatabase.getInstance(getActivity()).playlistDao().deletePlaylist(playlist);
+                    }
+                });
+            }
+        });
+        alert.setNegativeButton(getString(R.string.negative_answer), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // close dialog
+                dialog.cancel();
+            }
+        });
+        alert.show();
     }
 }

@@ -1,9 +1,11 @@
 package com.example.android.vacuumfitness.ui;
 
 
+import android.app.AlertDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -20,8 +22,10 @@ import android.widget.TextView;
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.adapter.ExerciseAdapter;
 import com.example.android.vacuumfitness.adapter.SongAdapter;
+import com.example.android.vacuumfitness.database.AppDatabase;
 import com.example.android.vacuumfitness.model.Playlist;
 import com.example.android.vacuumfitness.model.Song;
+import com.example.android.vacuumfitness.utils.AppExecutors;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.utils.MusicUtils;
 import com.example.android.vacuumfitness.viewmodel.SinglePlaylistViewModel;
@@ -34,7 +38,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PlaylistDetailFragment extends Fragment implements SongAdapter.SongClickHandler {
+public class PlaylistDetailFragment extends Fragment implements SongAdapter.SongClickHandler, SongAdapter.SongLongClickHandler {
 
     private Toolbar mToolbar;
     private long id;
@@ -66,7 +70,7 @@ public class PlaylistDetailFragment extends Fragment implements SongAdapter.Song
         //Prepare RecyclerView
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mSongAdapter = new SongAdapter(this);
+        mSongAdapter = new SongAdapter(this, this);
         mRecyclerView.setAdapter(mSongAdapter);
 
         //Get Data from Bundle
@@ -89,7 +93,12 @@ public class PlaylistDetailFragment extends Fragment implements SongAdapter.Song
 
     @Override
     public void onClick(Song song) {
+        //In this case we do nothing
+    }
 
+    @Override
+    public void onLongClick(Song song) {
+        showDeleteDialog(mPlaylist, song);
     }
 
     private void setupFabButton(){
@@ -147,4 +156,32 @@ public class PlaylistDetailFragment extends Fragment implements SongAdapter.Song
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
+    private void showDeleteDialog(final Playlist playlist, final Song song){
+        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+        alert.setTitle(getString(R.string.delete_song_title));
+        alert.setMessage(getString(R.string.delete_question, song.getSongName()));
+        alert.setPositiveButton(getString(R.string.delete_answer), new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+                AppExecutors.getInstance().diskIO().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        List<Song> songList = playlist.getSongList();
+                        songList.remove(song);
+                        playlist.setMediaSource(songList);
+                        AppDatabase.getInstance(getActivity()).playlistDao().updatePlaylist(playlist);
+                    }
+                });
+            }
+        });
+        alert.setNegativeButton(getString(R.string.negative_answer), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // close dialog
+                dialog.cancel();
+            }
+        });
+        alert.show();
+    }
+
 }

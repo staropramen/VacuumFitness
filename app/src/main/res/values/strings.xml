@@ -56,6 +56,8 @@
     <string name="custom_playlist_hint">Playlist Name...</string>
     <string name="custom_playlist_dialog_title">Create Playlist</string>
     <string name="no_playlist_name">Playlist must have a name.</string>
+    <string name="delete_song_title">Delete Song from Playlist</string>
+    <string name="delete_playlist_title">Delete Playlist</string>
 
     <string name="mon_label">Mon</string>
     <string name="tue_label">Tue</string>

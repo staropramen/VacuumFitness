@@ -24,13 +24,22 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongAdapterVie
 
     private final SongClickHandler songClickHandler;
 
+    private final SongLongClickHandler songLongClickHandler;
+
     public interface SongClickHandler {
         void onClick(Song song);
     }
 
-    public SongAdapter(SongClickHandler clickHandler){songClickHandler = clickHandler;}
+    public interface SongLongClickHandler {
+        void onLongClick(Song song);
+    }
 
-    public class SongAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public SongAdapter(SongClickHandler clickHandler, SongLongClickHandler longClickHandler){
+        songClickHandler = clickHandler;
+        songLongClickHandler = longClickHandler;
+    }
+
+    public class SongAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
 
         @BindView(R.id.tv_artist) TextView artistName;
         @BindView(R.id.tv_song_title) TextView songTitle;
@@ -40,6 +49,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongAdapterVie
             super(view);
             ButterKnife.bind(this, view);
             view.setOnClickListener(this);
+            view.setOnLongClickListener(this);
         }
 
         @Override
@@ -47,6 +57,14 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongAdapterVie
             int adapterPosition = getAdapterPosition();
             Song song = songs.get(adapterPosition);
             songClickHandler.onClick(song);
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            int adapterPosition = getAdapterPosition();
+            Song song = songs.get(adapterPosition);
+            songLongClickHandler.onLongClick(song);
+            return true;
         }
     }
 
