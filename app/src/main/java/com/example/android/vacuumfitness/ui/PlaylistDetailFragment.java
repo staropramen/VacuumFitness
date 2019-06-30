@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -81,12 +82,23 @@ public class PlaylistDetailFragment extends Fragment implements SongAdapter.Song
 
         setupExistingPlaylist();
 
+        setupFabButton();
+
         return rootView;
     }
 
     @Override
     public void onClick(Song song) {
 
+    }
+
+    private void setupFabButton(){
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                allSongsFragmentTransaction();
+            }
+        });
     }
 
     private void setupExistingPlaylist(){
@@ -121,5 +133,16 @@ public class PlaylistDetailFragment extends Fragment implements SongAdapter.Song
 
             }
         });
+    }
+
+    private void allSongsFragmentTransaction(){
+        Bundle data = new Bundle();
+        //data.putParcelable(KeyUtils.TRAINING_KEY, mTraining);
+        AllMusicFragment fragment = new AllMusicFragment();
+        fragment.setArguments(data);
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.customize_music_content, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

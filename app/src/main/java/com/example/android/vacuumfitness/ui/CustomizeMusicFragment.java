@@ -83,7 +83,8 @@ public class CustomizeMusicFragment extends Fragment implements PlaylistAdapter.
 
     @Override
     public void onClick(Playlist playlist) {
-
+        long id = playlist.getPrimaryKey();
+        playlistDetailFragmentTransaction(id);
     }
 
     @Override
@@ -91,7 +92,7 @@ public class CustomizeMusicFragment extends Fragment implements PlaylistAdapter.
 
     }
 
-    public void setupViewModel(){
+    private void setupViewModel(){
         PlaylistViewModel viewModel = ViewModelProviders.of(this).get(PlaylistViewModel.class);
         viewModel.getPlaylists().observe(this, new Observer<List<Playlist>>() {
             @Override
