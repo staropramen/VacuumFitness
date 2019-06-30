@@ -5,6 +5,7 @@ import android.arch.persistence.room.TypeConverter;
 import android.arch.persistence.room.TypeConverters;
 
 import com.example.android.vacuumfitness.model.Exercise;
+import com.example.android.vacuumfitness.model.Song;
 import com.example.android.vacuumfitness.model.Training;
 import com.google.android.exoplayer2.source.ConcatenatingMediaSource;
 import com.google.gson.Gson;
@@ -41,15 +42,15 @@ public class ListConverter {
     }
 
     @TypeConverter
-    public static String mediaSourceToString(ConcatenatingMediaSource mediaSource){
+    public static String songListToString(List<Song> songList){
         Gson gson = new Gson();
-        String json = gson.toJson(mediaSource);
+        String json = gson.toJson(songList);
         return json;
     }
 
     @TypeConverter
-    public static ConcatenatingMediaSource stringToMediaSource(String string){
-        Type type = new TypeToken<ConcatenatingMediaSource>() {}.getType();
+    public static List<Song> stringToSongList(String string){
+        Type type = new TypeToken<List<Song>>() {}.getType();
         return new Gson().fromJson(string, type);
     }
 

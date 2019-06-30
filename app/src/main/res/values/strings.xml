@@ -53,6 +53,9 @@
     <string name="delete_training_title">Delete Training</string>
     <string name="delete_question">Are you sure you want to delete %1$s?</string>
     <string name="delete_exercise_title">Delete Exercise</string>
+    <string name="custom_playlist_hint">Playlist Name...</string>
+    <string name="custom_playlist_dialog_title">Create Playlist</string>
+    <string name="no_playlist_name">Playlist must have a name.</string>
 
     <string name="mon_label">Mon</string>
     <string name="tue_label">Tue</string>
@@ -70,6 +73,6 @@
     <string name="songs_count">Songs:</string>
     <string name="empty_playlist_detail">This playlist still don\'t have songs. Start by adding a song.</string>
     <string name="playlist_duration">Playlist Duration:</string>
-
+    <string name="zero_time">00:00</string>
 
 </resources>

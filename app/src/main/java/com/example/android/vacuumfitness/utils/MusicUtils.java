@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 
 import com.example.android.vacuumfitness.R;
+import com.example.android.vacuumfitness.model.Playlist;
 import com.example.android.vacuumfitness.model.Song;
 import com.example.android.vacuumfitness.ui.MainActivity;
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
@@ -80,5 +81,20 @@ public class MusicUtils {
         } else {
             return artist;
         }
+    }
+
+    public static String getPlaylistDuration(List<Song> songs){
+        int durationInMillis = 0;
+
+        for (int i = 0; i < songs.size(); i++){
+            Song currentSong = songs.get(i);
+
+            int songDuration = Integer.parseInt(currentSong.getSongLength());
+            durationInMillis = durationInMillis + songDuration;
+        }
+
+        int durationInSeconds = durationInMillis / 1000;
+
+        return PreparationUtils.secondsToTimeString(durationInSeconds);
     }
 }

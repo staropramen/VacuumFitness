@@ -29,6 +29,12 @@ public class Playlist {
     @Ignore
     public Playlist() {}
 
+    @Ignore
+    public Playlist(String playlistName, List<Song> songList) {
+        this.playlistName = playlistName;
+        this.songList = songList;
+    }
+
     public int getPrimaryKey() {
         return primaryKey;
     }

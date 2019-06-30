@@ -12,7 +12,7 @@ import java.util.List;
 
 public class SingleTrainingViewModel extends ViewModel {
 
-    private static String LOG_TAG = TrainingViewModel.class.getSimpleName();
+    private static String LOG_TAG = SingleTrainingViewModel.class.getSimpleName();
 
     private LiveData<Training> training;
 
