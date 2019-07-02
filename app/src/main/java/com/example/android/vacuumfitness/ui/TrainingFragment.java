@@ -235,12 +235,14 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
         if(mHasMusic){
             initializePlayer(mMediaSource);
 
-            long exoPlayerPosition = SharedPrefsUtils.getExoPlayerPosition();
-            if(exoPlayerPosition != 0 && exoPlayerPosition != 0){
-                exoPlayer.seekTo(exoPlayerPosition);
+            //Set player position if same playlist as last time
+            if(mPlaylist.getPrimaryKey() == SharedPrefsUtils.getPlaylistId()){
+                long exoPlayerPosition = SharedPrefsUtils.getExoPlayerPosition();
+                if(exoPlayerPosition != 0 && exoPlayerPosition != 0){
+                    exoPlayer.seekTo(exoPlayerPosition);
+                }
             }
         }
-
     }
 
     @Override
@@ -251,8 +253,9 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
             stopCountdown();
         }
 
-        //Save Exoplayer position to shared prefs
+        //Save Exoplayer position and Playlist Id to shared prefs
         SharedPrefsUtils.saveExoPlayerPosition(exoPlayer.getCurrentPosition());
+        SharedPrefsUtils.savePlaylistId(mPlaylist.getPrimaryKey());
     }
 
     @Override

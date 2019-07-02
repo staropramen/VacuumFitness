@@ -11,6 +11,7 @@ public class SharedPrefsUtils {
     private static String EXERCISE_IDS = "exercise-ids";
     private static String IS_FIRST_RUN = "is-first-run";
     private static String EXO_PLAYER_POSITION = "exo-player-position";
+    private static String PLAYLIST_ID = "playlist-id";
 
     private static SharedPreferences sharedPreferences = MainActivity.sharedPreferences;
 
@@ -48,4 +49,14 @@ public class SharedPrefsUtils {
         return position;
     }
 
+    public static void savePlaylistId(int id){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(PLAYLIST_ID, id);
+        editor.apply();
+    }
+
+    public static int getPlaylistId(){
+        int id = sharedPreferences.getInt(PLAYLIST_ID, -1);
+        return id;
+    }
 }
