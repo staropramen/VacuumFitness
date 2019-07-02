@@ -10,6 +10,7 @@ public class SharedPrefsUtils {
 
     private static String EXERCISE_IDS = "exercise-ids";
     private static String IS_FIRST_RUN = "is-first-run";
+    private static String EXO_PLAYER_POSITION = "exo-player-position";
 
     private static SharedPreferences sharedPreferences = MainActivity.sharedPreferences;
 
@@ -34,6 +35,17 @@ public class SharedPrefsUtils {
     public static boolean getIsFirstRun(){
         Boolean isFirstRun = sharedPreferences.getBoolean(IS_FIRST_RUN, true);
         return isFirstRun;
+    }
+
+    public static void saveExoPlayerPosition(long position){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putLong(EXO_PLAYER_POSITION, position);
+        editor.apply();
+    }
+
+    public static long getExoPlayerPosition(){
+        long position = sharedPreferences.getLong(EXO_PLAYER_POSITION, 0);
+        return position;
     }
 
 }

@@ -43,6 +43,7 @@ public class PreparationFragment extends Fragment {
     private List<Training> mTrainingList;
     private List<Playlist> mPlaylistList;
     private int mRandomTrainingPrimaryKey = -1;
+    private int mEmptyPlaylistPrimaryKey = -1;
     private List<Integer> mPrimaryKeyList;
     private Training mTraining;
     private Playlist mPlaylist;
@@ -76,6 +77,12 @@ public class PreparationFragment extends Fragment {
         mTrainingList = new ArrayList<>();
         mTrainingList.add(mTraining);
 
+        //By default mPlaylist is a emty plylist with primary key -1
+        mPlaylist = new Playlist();
+        mPlaylist.setPrimaryKey(mEmptyPlaylistPrimaryKey);
+        //Initialize mPlaylistList
+        mPlaylistList = new ArrayList<>();
+
         //Setup Time
         PreparationUtils.calculateTime(exerciseCount, timeTextView, levelSpinner);
 
@@ -102,6 +109,7 @@ public class PreparationFragment extends Fragment {
         data.putInt(KeyUtils.EXERCISE_COUNT_KEY, Integer.parseInt(exerciseCount.getText().toString()));
         mPrimaryKeyList = IdListUtils.getTrainingIdList(mTraining, Integer.parseInt(exerciseCount.getText().toString()));
         data.putString(KeyUtils.ID_LIST_KEY, ListConverter.fromList(mPrimaryKeyList));
+        data.putParcelable(KeyUtils.PLAYLIST_KEY, mPlaylist);
 
         TrainingFragment fragment = new TrainingFragment();
         fragment.setArguments(data);
@@ -158,14 +166,13 @@ public class PreparationFragment extends Fragment {
 
     private void addMusicSpinnerItems(List<Playlist> playlists){
         List<String> itemList = new ArrayList<>();
-        itemList.add("Rainforest Sounds");
 
         //Add Playlists to itemList
         for (int i = 0; i < playlists.size(); i++){
             Playlist currentPlaylist = playlists.get(i);
             String playlistName = currentPlaylist.getPlaylistName();
             itemList.add(playlistName);
-            //mPlaylistList.add(currentPlaylist);
+            mPlaylistList.add(currentPlaylist);
         }
 
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -215,7 +222,7 @@ public class PreparationFragment extends Fragment {
         musicSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //mPlaylist = mPlaylistList.get(position);
+                mPlaylist = mPlaylistList.get(position);
             }
 
             @Override

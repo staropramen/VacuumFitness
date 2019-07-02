@@ -23,10 +23,13 @@ import android.widget.Toast;
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.database.AppDatabase;
 import com.example.android.vacuumfitness.model.Exercise;
+import com.example.android.vacuumfitness.model.Playlist;
 import com.example.android.vacuumfitness.model.Song;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.utils.ListConverter;
+import com.example.android.vacuumfitness.utils.MusicUtils;
 import com.example.android.vacuumfitness.utils.NetworkUtils;
+import com.example.android.vacuumfitness.utils.SharedPrefsUtils;
 import com.example.android.vacuumfitness.utils.TrainingTimerUtils;
 import com.example.android.vacuumfitness.viewmodel.TrainingViewModel;
 import com.google.android.exoplayer2.DefaultLoadControl;
@@ -68,6 +71,7 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
     @BindView(R.id.iv_exercise_image) ImageView mExerciseImage;
     @BindView(R.id.iv_start_pause) ImageView mStartPauseIV;
     @BindView(R.id.iv_video_button) ImageView mVideoButton;
+    @BindView(R.id.iv_music_button) ImageView mMusicButton;
 
     private int exerciseCount;
     private int level;
@@ -81,6 +85,12 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
     private List<Integer> mIdList;
 
     private MediaPlayer mCommandMediaPlayer;
+
+    private String EXO_VIDEO_PLAYER = "exoVideoPlayer";
+    private ConcatenatingMediaSource mMediaSource;
+    private Playlist mPlaylist;
+    private SimpleExoPlayer exoPlayer;
+    private boolean mHasMusic = false;
 
     private AppDatabase mDb;
 
@@ -106,11 +116,20 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
             exerciseCount = data.getInt(KeyUtils.EXERCISE_COUNT_KEY);
             level = data.getInt(KeyUtils.LEVEL_KEY);
             mIdList = ListConverter.fromString(data.getString(KeyUtils.ID_LIST_KEY));
-            Log.d(LOG_TAG, ListConverter.fromList(mIdList));
+            mPlaylist = data.getParcelable(KeyUtils.PLAYLIST_KEY);
         }
 
         //Make the Training time
         mTrainingTime = TrainingTimerUtils.getTrainingTimeMilliseconds(level, exerciseCount);
+
+        //Prepare the Media Source for Exoplayer
+        if(mPlaylist != null){
+            //Playlist is no null, now we check if these is a Songlist with songs inside
+            if(mPlaylist.getSongList() != null && !mPlaylist.getSongList().isEmpty()){
+                mMediaSource = MusicUtils.getMediaSourcePlaylist(getActivity(), mPlaylist.getSongList());
+                mHasMusic = true;
+            }
+        }
 
         //Launch ViewModel if savedInstanceState is null
         if(savedInstanceState == null){
@@ -210,6 +229,17 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
         //Set Button Actions
         setupPauseButton();
         setupVideoButton(currentExercise);
+        setupMusicButton();
+
+        //Start Music
+        if(mHasMusic){
+            initializePlayer(mMediaSource);
+
+            long exoPlayerPosition = SharedPrefsUtils.getExoPlayerPosition();
+            if(exoPlayerPosition != 0 && exoPlayerPosition != 0){
+                exoPlayer.seekTo(exoPlayerPosition);
+            }
+        }
 
     }
 
@@ -220,6 +250,9 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
         if(!mTrainingIsPaused){
             stopCountdown();
         }
+
+        //Save Exoplayer position to shared prefs
+        SharedPrefsUtils.saveExoPlayerPosition(exoPlayer.getCurrentPosition());
     }
 
     @Override
@@ -301,16 +334,14 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
         });
     }
 
-    //TODO Organize this
-
-    private String EXO_VIDEO_PLAYER = "exoVideoPlayer";
-
-    ConcatenatingMediaSource playlist = new ConcatenatingMediaSource();
-
-
-
-
-    private SimpleExoPlayer exoPlayer;
+    private void setupMusicButton(){
+        mMusicButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pauseStartPlayer();
+            }
+        });
+    }
 
     //Initialize Exo Player Method
     private void initializePlayer(ConcatenatingMediaSource playlist){
@@ -321,6 +352,16 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
             exoPlayer.addListener(this);
             exoPlayer.prepare(playlist);
             exoPlayer.setPlayWhenReady(true);
+        }
+    }
+
+    private void pauseStartPlayer(){
+        if(exoPlayer != null){
+            if(exoPlayer.getPlayWhenReady()){
+                exoPlayer.setPlayWhenReady(false);
+            } else {
+                exoPlayer.setPlayWhenReady(true);
+            }
         }
     }
 

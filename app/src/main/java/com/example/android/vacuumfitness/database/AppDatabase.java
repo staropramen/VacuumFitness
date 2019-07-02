@@ -11,11 +11,13 @@ import android.util.Log;
 
 import com.example.android.vacuumfitness.model.Exercise;
 import com.example.android.vacuumfitness.model.Playlist;
+import com.example.android.vacuumfitness.model.Song;
 import com.example.android.vacuumfitness.model.Training;
 import com.example.android.vacuumfitness.utils.AppExecutors;
 import com.example.android.vacuumfitness.utils.ListConverter;
 import com.example.android.vacuumfitness.utils.SharedPrefsUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 
@@ -41,10 +43,14 @@ public abstract class AppDatabase extends RoomDatabase {
                                 AppExecutors.getInstance().diskIO().execute(new Runnable() {
                                     @Override
                                     public void run() {
+                                        //Insert the Exercises
                                         getInstance(context).exerciseDao().insertAll(populateExercises());
                                         List<Integer> exerciseIds = getInstance(context).exerciseDao().loadExerciseIdArray();
                                         SharedPrefsUtils.saveExerciseIdsToSharedPrefs(exerciseIds);
                                         Log.d(LOG_TAG, "OnCreate DB called");
+
+                                        //Insert the Playlists
+                                        getInstance(context).playlistDao().insertAll(populatePlaylists());
                                     }
                                 });
                             }
@@ -79,6 +85,15 @@ public abstract class AppDatabase extends RoomDatabase {
                 new Exercise("Apple", 1, "dummy1", "xMQwBMhaqFA"),
                 new Exercise("Twister", 1, "dummy2", "xMQwBMhaqFA"),
                 new Exercise("Crumble", 1, "dummy3", "xMQwBMhaqFA"),
+        };
+    }
+
+    private static Playlist[] populatePlaylists(){
+        List<Song> songs = new ArrayList<>();
+        Song relaxSong = new Song("R.raw.dummymusic", "Various Artists", "Relax", "2983000");
+        songs.add(relaxSong);
+        return new Playlist[]{
+                new Playlist("Relaxing Music", songs)
         };
     }
 }

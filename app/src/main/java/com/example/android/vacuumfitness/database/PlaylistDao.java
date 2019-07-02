@@ -24,6 +24,9 @@ public interface PlaylistDao {
     @Insert
     long insertPlaylist(Playlist playlist);
 
+    @Insert
+    void insertAll(Playlist... playlists);
+
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updatePlaylist(Playlist playlist);
 
