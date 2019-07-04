@@ -25,6 +25,7 @@ import com.example.android.vacuumfitness.database.AppDatabase;
 import com.example.android.vacuumfitness.model.Exercise;
 import com.example.android.vacuumfitness.model.Playlist;
 import com.example.android.vacuumfitness.model.Song;
+import com.example.android.vacuumfitness.utils.ExoPlayerUtils;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.utils.ListConverter;
 import com.example.android.vacuumfitness.utils.MusicUtils;
@@ -48,7 +49,10 @@ import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.trackselection.TrackSelector;
+import com.google.android.exoplayer2.upstream.DataSource;
+import com.google.android.exoplayer2.upstream.DataSpec;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
+import com.google.android.exoplayer2.upstream.RawResourceDataSource;
 import com.google.android.exoplayer2.util.Util;
 import com.squareup.picasso.Picasso;
 
@@ -90,6 +94,7 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
     private ConcatenatingMediaSource mMediaSource;
     private Playlist mPlaylist;
     private SimpleExoPlayer exoPlayer;
+    private SimpleExoPlayer mExoPlayer;
     private boolean mHasMusic = false;
 
     private AppDatabase mDb;
@@ -231,9 +236,11 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
         setupVideoButton(currentExercise);
         setupMusicButton();
 
+        ExoPlayerUtils.prepareExoPlayerFromRawResourceUri(getActivity(), mExoPlayer, "dummymusic");
+
         //Start Music
         if(mHasMusic){
-            initializePlayer(mMediaSource);
+            //initializePlayer(mMediaSource);
 
             //Set player position if same playlist as last time
             if(mPlaylist.getPrimaryKey() == SharedPrefsUtils.getPlaylistId()){

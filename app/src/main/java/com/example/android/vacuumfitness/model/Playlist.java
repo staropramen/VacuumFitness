@@ -21,6 +21,9 @@ public class Playlist implements Parcelable {
     private String playlistName;
     @ColumnInfo(name = "song-list")
     private List<Song> songList;
+    //Specifies if playlist is from user or from app
+    //@ColumnInfo(name = "is-default")
+    //private boolean isCustom;
 
     public Playlist(int primaryKey, String playlistName, List<Song> songList) {
         this.primaryKey = primaryKey;

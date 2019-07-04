@@ -90,7 +90,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
     private static Playlist[] populatePlaylists(){
         List<Song> songs = new ArrayList<>();
-        Song relaxSong = new Song("R.raw.dummymusic", "Various Artists", "Relax", "2983000");
+        Song relaxSong = new Song("dummymusic", "Various Artists", "Relax", "2983000");
         songs.add(relaxSong);
         return new Playlist[]{
                 new Playlist("Relaxing Music", songs)
