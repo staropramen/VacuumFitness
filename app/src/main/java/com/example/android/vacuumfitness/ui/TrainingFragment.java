@@ -236,7 +236,8 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
         setupVideoButton(currentExercise);
         setupMusicButton();
 
-        ExoPlayerUtils.prepareExoPlayerFromRawResourceUri(getActivity(), mExoPlayer, "dummymusic");
+        //Initialize ExoPlayer
+        mExoPlayer = ExoPlayerUtils.initializeExoPlayer(getActivity(), mExoPlayer, mPlaylist, this);
 
         //Start Music
         if(mHasMusic){
@@ -246,7 +247,7 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
             if(mPlaylist.getPrimaryKey() == SharedPrefsUtils.getPlaylistId()){
                 long exoPlayerPosition = SharedPrefsUtils.getExoPlayerPosition();
                 if(exoPlayerPosition != 0 && exoPlayerPosition != 0){
-                    exoPlayer.seekTo(exoPlayerPosition);
+                    mExoPlayer.seekTo(exoPlayerPosition);
                 }
             }
         }
@@ -261,7 +262,7 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
         }
 
         //Save Exoplayer position and Playlist Id to shared prefs
-        SharedPrefsUtils.saveExoPlayerPosition(exoPlayer.getCurrentPosition());
+        SharedPrefsUtils.saveExoPlayerPosition(mExoPlayer.getCurrentPosition());
         SharedPrefsUtils.savePlaylistId(mPlaylist.getPrimaryKey());
     }
 

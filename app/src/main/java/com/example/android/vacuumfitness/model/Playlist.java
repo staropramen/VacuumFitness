@@ -21,19 +21,27 @@ public class Playlist implements Parcelable {
     private String playlistName;
     @ColumnInfo(name = "song-list")
     private List<Song> songList;
-    //Specifies if playlist is from user or from app
-    //@ColumnInfo(name = "is-default")
-    //private boolean isCustom;
+    //Specifies if playlist is from user or from app by default true
+    @ColumnInfo(name = "is-custom")
+    private boolean isCustom = true;
 
-    public Playlist(int primaryKey, String playlistName, List<Song> songList) {
+    public Playlist(int primaryKey, String playlistName, List<Song> songList, boolean isCustom) {
         this.primaryKey = primaryKey;
         this.playlistName = playlistName;
         this.songList = songList;
+        this.isCustom = isCustom;
     }
 
     //Empty Constructor
     @Ignore
     public Playlist() {}
+
+    @Ignore
+    public Playlist(String playlistName, List<Song> songList, boolean isCustom) {
+        this.playlistName = playlistName;
+        this.songList = songList;
+        this.isCustom = isCustom;
+    }
 
     @Ignore
     public Playlist(String playlistName, List<Song> songList) {
@@ -48,6 +56,7 @@ public class Playlist implements Parcelable {
         playlistName = in.readString();
         songList = new ArrayList<>();
         in.readList(songList, Song.class.getClassLoader());
+        isCustom = in.readByte() != 0;
     }
 
     public int getPrimaryKey() {
@@ -62,6 +71,10 @@ public class Playlist implements Parcelable {
         return songList;
     }
 
+    public boolean isCustom() {
+        return isCustom;
+    }
+
     public void setPrimaryKey(int primaryKey) {
         this.primaryKey = primaryKey;
     }
@@ -74,6 +87,10 @@ public class Playlist implements Parcelable {
         this.songList = songList;
     }
 
+    public void setCustom(boolean custom) {
+        isCustom = custom;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -84,6 +101,7 @@ public class Playlist implements Parcelable {
         dest.writeInt(primaryKey);
         dest.writeString(playlistName);
         dest.writeList(songList);
+        dest.writeByte((byte) (isCustom ? 1 : 0));
     }
 
     @Ignore
