@@ -24,8 +24,6 @@ import java.util.List;
 
 public class MusicUtils {
 
-    private static String RAW_SOURCE = "R.raw.";
-
     public static List<Song> getSongList(Context context){
         List<Song> songList = new ArrayList<>();
 
@@ -62,53 +60,6 @@ public class MusicUtils {
         }
 
         return songList;
-    }
-
-    //Returns a mediaSourcePlaylist to play in exoplayer
-    public static ConcatenatingMediaSource getMediaSourcePlaylist(Context context, List<Song> songs){
-        ConcatenatingMediaSource playlist = new ConcatenatingMediaSource();
-
-        for (int i = 0; i < songs.size(); i++){
-            Song currentSong = songs.get(i);
-            MediaSource mediaSource = makeMediaSource(context, currentSong.getPath());
-            playlist.addMediaSource(mediaSource);
-        }
-
-        return playlist;
-    }
-
-    private static MediaSource makeMediaSource(Context context, String path){
-
-        MediaSource mediaSource = new ConcatenatingMediaSource();
-
-        //Get first 6 Characters of media path to check if it is a raw file
-        String subString = path.substring(0, 6);
-
-        if(subString != RAW_SOURCE){
-            Uri uri = Uri.parse(path);
-            String userAgent = Util.getUserAgent(context, KeyUtils.EXO_VIDEO_PLAYER);
-            mediaSource = new ExtractorMediaSource(uri, new DefaultDataSourceFactory(
-                    context, userAgent), new DefaultExtractorsFactory(), null, null);
-        }else {
-            final RawResourceDataSource rawResourceDataSource = new RawResourceDataSource(context);
-            DataSpec dataSpec = new DataSpec(RawResourceDataSource.buildRawResourceUri(R.raw.dummymusic));
-            try {
-                rawResourceDataSource.open(dataSpec);
-
-                DataSource.Factory factory = new DataSource.Factory() {
-                    @Override
-                    public DataSource createDataSource() {
-                        return rawResourceDataSource;
-                    }
-                };
-                mediaSource = new ExtractorMediaSource.Factory(factory).createMediaSource(rawResourceDataSource.getUri());
-
-            } catch (RawResourceDataSource.RawResourceDataSourceException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return mediaSource;
     }
 
     public static String getProperArtist(String artist){

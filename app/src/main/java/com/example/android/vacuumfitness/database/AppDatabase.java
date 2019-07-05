@@ -48,9 +48,6 @@ public abstract class AppDatabase extends RoomDatabase {
                                         List<Integer> exerciseIds = getInstance(context).exerciseDao().loadExerciseIdArray();
                                         SharedPrefsUtils.saveExerciseIdsToSharedPrefs(exerciseIds);
                                         Log.d(LOG_TAG, "OnCreate DB called");
-
-                                        //Insert the Playlists
-                                        getInstance(context).playlistDao().insertAll(populatePlaylists());
                                     }
                                 });
                             }
@@ -85,15 +82,6 @@ public abstract class AppDatabase extends RoomDatabase {
                 new Exercise("Apple", 1, "dummy1", "xMQwBMhaqFA"),
                 new Exercise("Twister", 1, "dummy2", "xMQwBMhaqFA"),
                 new Exercise("Crumble", 1, "dummy3", "xMQwBMhaqFA"),
-        };
-    }
-
-    private static Playlist[] populatePlaylists(){
-        List<Song> songs = new ArrayList<>();
-        Song relaxSong = new Song("dummymusic", "Various Artists", "Relax", "2983000");
-        songs.add(relaxSong);
-        return new Playlist[]{
-                new Playlist("Relaxing Music", songs, false)
         };
     }
 }

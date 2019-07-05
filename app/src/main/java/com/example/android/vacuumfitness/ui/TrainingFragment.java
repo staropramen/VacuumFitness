@@ -131,7 +131,6 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
         if(mPlaylist != null){
             //Playlist is no null, now we check if these is a Songlist with songs inside
             if(mPlaylist.getSongList() != null && !mPlaylist.getSongList().isEmpty()){
-                mMediaSource = MusicUtils.getMediaSourcePlaylist(getActivity(), mPlaylist.getSongList());
                 mHasMusic = true;
             }
         }
@@ -236,12 +235,11 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
         setupVideoButton(currentExercise);
         setupMusicButton();
 
-        //Initialize ExoPlayer
-        mExoPlayer = ExoPlayerUtils.initializeExoPlayer(getActivity(), mExoPlayer, mPlaylist, this);
-
         //Start Music
         if(mHasMusic){
-            //initializePlayer(mMediaSource);
+            Log.d("!!!!!!!", "Playlist initalzesd");
+            //Initialize ExoPlayer
+            mExoPlayer = ExoPlayerUtils.initializeExoPlayer(getActivity(), mExoPlayer, mPlaylist, this);
 
             //Set player position if same playlist as last time
             if(mPlaylist.getPrimaryKey() == SharedPrefsUtils.getPlaylistId()){
@@ -261,19 +259,24 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
             stopCountdown();
         }
 
-        //Save Exoplayer position and Playlist Id to shared prefs
-        SharedPrefsUtils.saveExoPlayerPosition(mExoPlayer.getCurrentPosition());
-        SharedPrefsUtils.savePlaylistId(mPlaylist.getPrimaryKey());
+        if(mHasMusic){
+            //Save Exoplayer position and Playlist Id to shared prefs
+            SharedPrefsUtils.saveExoPlayerPosition(mExoPlayer.getCurrentPosition());
+            SharedPrefsUtils.savePlaylistId(mPlaylist.getPrimaryKey());
 
-        //Pause ExoPlayer
-        mExoPlayer.setPlayWhenReady(false);
+            //Pause ExoPlayer
+            mExoPlayer.setPlayWhenReady(false);
+        }
+
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        //Release ExoPlayer
-        mExoPlayer.release();
+        if(mHasMusic){
+            //Release ExoPlayer
+            mExoPlayer.release();
+        }
     }
 
     @Override
