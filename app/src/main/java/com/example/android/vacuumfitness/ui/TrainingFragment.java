@@ -264,6 +264,16 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
         //Save Exoplayer position and Playlist Id to shared prefs
         SharedPrefsUtils.saveExoPlayerPosition(mExoPlayer.getCurrentPosition());
         SharedPrefsUtils.savePlaylistId(mPlaylist.getPrimaryKey());
+
+        //Pause ExoPlayer
+        mExoPlayer.setPlayWhenReady(false);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        //Release ExoPlayer
+        mExoPlayer.release();
     }
 
     @Override

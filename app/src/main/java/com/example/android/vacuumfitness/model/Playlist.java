@@ -49,6 +49,13 @@ public class Playlist implements Parcelable {
         this.songList = songList;
     }
 
+    //Constructor for Playlist without Music
+    @Ignore
+    public Playlist(int primaryKey, String playlistName) {
+        this.playlistName = playlistName;
+        this.primaryKey = primaryKey;
+    }
+
     //Parcelable Constructor
     @Ignore
     public Playlist(Parcel in){

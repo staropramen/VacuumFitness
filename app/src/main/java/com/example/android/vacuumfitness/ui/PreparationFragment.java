@@ -26,6 +26,7 @@ import com.example.android.vacuumfitness.utils.IdListUtils;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.utils.ListConverter;
 import com.example.android.vacuumfitness.utils.PreparationUtils;
+import com.example.android.vacuumfitness.utils.SpinnerUtils;
 import com.example.android.vacuumfitness.viewmodel.CustomTrainingViewModel;
 import com.example.android.vacuumfitness.viewmodel.PlaylistViewModel;
 
@@ -136,7 +137,7 @@ public class PreparationFragment extends Fragment {
         viewModel.getPlaylists().observe(this, new Observer<List<Playlist>>() {
             @Override
             public void onChanged(@Nullable List<Playlist> playlists) {
-                addMusicSpinnerItems(playlists);
+                SpinnerUtils.populateMusicSpinnerItems(getActivity(), musicSpinner, mPlaylistList, playlists);
             }
         });
     }
