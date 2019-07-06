@@ -10,6 +10,9 @@
     <string name="customize_music">Customize \n Music</string>
     <string name="how_to">How To</string>
 
+    <!-- Settings -->
+    <string name="settings">Settings</string>
+
     <!-- Exercise Names -->
     <string name="silent_tree">Silent Tree</string>
 
@@ -77,5 +80,8 @@
     <string name="playlist_duration">Playlist Duration:</string>
     <string name="zero_time">00:00</string>
     <string name="permission_denied">You must give the permission to customize music.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -48,7 +48,7 @@ public class CustomizeMusicActivity extends AppCompatActivity implements Fragmen
                     .commit();
         }
 
-        //TODO MOVE THIS TO FIRST FRAGMENT Check permission and request if its necessary
+        //Check permission and request if its necessary
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
