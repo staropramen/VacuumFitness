@@ -24,6 +24,7 @@ public class CustomTrainingActivity extends AppCompatActivity implements Fragmen
         ButterKnife.bind(this);
 
         //Setup Toolbar for BackButton
+        mToolbar.setTitle(getString(R.string.customize_training_title));
         setSupportActionBar(mToolbar);
 
         //Listen for changes in the back stack

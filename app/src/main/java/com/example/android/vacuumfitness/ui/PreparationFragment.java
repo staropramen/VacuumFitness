@@ -26,6 +26,7 @@ import com.example.android.vacuumfitness.utils.IdListUtils;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.utils.ListConverter;
 import com.example.android.vacuumfitness.utils.PreparationUtils;
+import com.example.android.vacuumfitness.utils.SharedPrefsUtils;
 import com.example.android.vacuumfitness.utils.SpinnerUtils;
 import com.example.android.vacuumfitness.viewmodel.CustomTrainingViewModel;
 import com.example.android.vacuumfitness.viewmodel.PlaylistViewModel;
@@ -138,6 +139,8 @@ public class PreparationFragment extends Fragment {
             @Override
             public void onChanged(@Nullable List<Playlist> playlists) {
                 SpinnerUtils.populateMusicSpinnerItems(getActivity(), musicSpinner, mPlaylistList, playlists);
+                //Set Spinner on preferred Position
+                musicSpinner.setSelection(SharedPrefsUtils.getMusicSpinnerPosition());
             }
         });
     }
@@ -162,27 +165,6 @@ public class PreparationFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         trainingSpinner.setAdapter(adapter);
-
-    }
-
-    private void addMusicSpinnerItems(List<Playlist> playlists){
-        List<String> itemList = new ArrayList<>();
-
-        //Add Playlists to itemList
-        for (int i = 0; i < playlists.size(); i++){
-            Playlist currentPlaylist = playlists.get(i);
-            String playlistName = currentPlaylist.getPlaylistName();
-            itemList.add(playlistName);
-            mPlaylistList.add(currentPlaylist);
-        }
-
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_spinner_item, itemList);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        musicSpinner.setAdapter(adapter);
 
     }
 

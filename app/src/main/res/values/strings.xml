@@ -12,6 +12,12 @@
 
     <!-- Settings -->
     <string name="settings">Settings</string>
+    <string name="choose_pref_playlist">Choose your preferred Playlist</string>
+    <string name="pref_playlist">Preferred Playlist</string>
+
+    <!-- Keys -->
+    <string name="key_playlist_name">playlist-name</string>
+    <string name="key_playlist_category">playlist-category</string>
 
     <!-- Exercise Names -->
     <string name="silent_tree">Silent Tree</string>

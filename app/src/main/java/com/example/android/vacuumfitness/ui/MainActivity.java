@@ -4,7 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceFragment;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.preference.PreferenceFragmentCompat;
@@ -16,16 +19,18 @@ import android.view.MenuItem;
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.database.AppDatabase;
 import com.example.android.vacuumfitness.utils.AppExecutors;
+import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.utils.SharedPrefsUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements FragmentManager.OnBackStackChangedListener{
 
     private static String LOG_TAG = MainActivity.class.getSimpleName();
 
     @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.collapsing_toolbar) CollapsingToolbarLayout collapsingToolbar;
 
     public static SharedPreferences sharedPreferences;
     public static Context mContext;
@@ -47,8 +52,22 @@ public class MainActivity extends AppCompatActivity {
         doOnFirstRun();
 
         //Setup Toolbar
-        toolbar.setTitle(R.string.app_name);
         setSupportActionBar(toolbar);
+
+
+        //Listen for changes in the back stack
+        getSupportFragmentManager().addOnBackStackChangedListener(this);
+        shouldDisplayHomeUp();
+
+        //Handle when activity is recreated like on orientation Change
+        if(savedInstanceState == null){
+            StartFragment fragment = new StartFragment();
+
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.start_content, fragment)
+                    .commit();
+        }
 
     }
 
@@ -78,13 +97,55 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.settings) {
-            Intent settingsIntent = new Intent(this, SettingsActivity.class);
-            startActivity(settingsIntent);
-            return true;
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            case R.id.settings:
+                settingsFragmentTransaction();
+                return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void settingsFragmentTransaction() {
+        SettingsFragment fragment = new SettingsFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.start_content, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    @Override
+    public void onBackStackChanged() {
+        shouldDisplayHomeUp();
+    }
+
+    public void shouldDisplayHomeUp(){
+        //Enable Up button only  if there are entries in the back stack
+        boolean canGoBack = getSupportFragmentManager().getBackStackEntryCount()>0;
+        getSupportActionBar().setDisplayHomeAsUpEnabled(canGoBack);
+    }
+
+    @Override
+    public boolean onNavigateUp() {
+        if (getSupportFragmentManager().getBackStackEntryCount() == 0){
+            finish();
+        }
+        else {
+            getSupportFragmentManager().popBackStack();
+        }
+        return true;
+    }
+
+    @Override
+    public void onBackPressed(){
+        if (getSupportFragmentManager().getBackStackEntryCount() == 0){
+            finish();
+        }
+        else {
+            getSupportFragmentManager().popBackStack();
+        }
     }
 }
 
