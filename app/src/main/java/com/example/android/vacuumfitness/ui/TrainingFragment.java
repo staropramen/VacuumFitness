@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -114,6 +115,9 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
 
         //Get Database instance
         mDb = AppDatabase.getInstance(getActivity().getApplicationContext());
+
+        //Let activity not sleep if this fragment is alive
+        getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         //Get Data from Bundle
         Bundle data = getArguments();

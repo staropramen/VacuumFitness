@@ -82,8 +82,6 @@ public class PreparationFragment extends Fragment {
         //By default mPlaylist is a emty plylist with primary key -1
         mPlaylist = new Playlist();
         mPlaylist.setPrimaryKey(mEmptyPlaylistPrimaryKey);
-        //Initialize mPlaylistList
-        mPlaylistList = new ArrayList<>();
 
         //Setup Time
         PreparationUtils.calculateTime(exerciseCount, timeTextView, levelSpinner);
@@ -98,6 +96,9 @@ public class PreparationFragment extends Fragment {
 
         setupTrainingViewModel();
         setupPlaylistViewModel();
+
+        //Set Level Spinner Position
+        levelSpinner.setSelection(SharedPrefsUtils.getLevelSpinnerPosition());
 
         setupSpinnerOnSelectListener();
 
@@ -128,7 +129,14 @@ public class PreparationFragment extends Fragment {
         viewModel.getTrainings().observe(this, new Observer<List<Training>>() {
             @Override
             public void onChanged(@Nullable List<Training> trainings) {
-                addTrainingSpinnerItems(trainings);
+                mTrainingList = SpinnerUtils.populateTrainingSpinnerItems(getActivity(), trainingSpinner, trainings);
+
+                //Set Spinner on preferred Position after check if is still existing
+                int trainingSelection = SharedPrefsUtils.getTrainingSpinnerPosition();
+
+                if(trainings.size() > trainingSelection){
+                    trainingSpinner.setSelection(trainingSelection);
+                }
             }
         });
     }
@@ -138,34 +146,15 @@ public class PreparationFragment extends Fragment {
         viewModel.getPlaylists().observe(this, new Observer<List<Playlist>>() {
             @Override
             public void onChanged(@Nullable List<Playlist> playlists) {
-                SpinnerUtils.populateMusicSpinnerItems(getActivity(), musicSpinner, mPlaylistList, playlists);
-                //Set Spinner on preferred Position
-                musicSpinner.setSelection(SharedPrefsUtils.getMusicSpinnerPosition());
+                mPlaylistList = SpinnerUtils.populateMusicSpinnerItems(getActivity(), musicSpinner, playlists);
+                //Set Spinner on preferred Position after check if is still existing
+                int playlistSelection = SharedPrefsUtils.getMusicSpinnerPosition();
+
+                if(playlists.size() > playlistSelection){
+                    musicSpinner.setSelection(playlistSelection);
+                }
             }
         });
-    }
-
-    private void addTrainingSpinnerItems(List<Training> trainings){
-
-        List<String> itemList = new ArrayList<>();
-        itemList.add(getString(R.string.random_training));
-
-        // Add trainings to list
-        for (int i = 0; i < trainings.size(); i++){
-            Training currentTraining = trainings.get(i);
-            String trainingName = currentTraining.getTrainingName();
-            itemList.add(trainingName);
-            mTrainingList.add(currentTraining);
-        }
-
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_spinner_item, itemList);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        trainingSpinner.setAdapter(adapter);
-
     }
 
     private void setupSpinnerOnSelectListener(){

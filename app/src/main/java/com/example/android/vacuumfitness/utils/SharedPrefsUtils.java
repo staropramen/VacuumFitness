@@ -12,7 +12,9 @@ public class SharedPrefsUtils {
     private static String IS_FIRST_RUN = "is-first-run";
     private static String EXO_PLAYER_POSITION = "exo-player-position";
     private static String PLAYLIST_ID = "playlist-id";
-    public static String MUSIC_SPINNER_POSITION = "music-spinner-position";
+    private static String MUSIC_SPINNER_POSITION = "music-spinner-position";
+    private static String TRAINING_SPINNER_POSITION = "training-spinner-position";
+    private static String LEVEL_SPINNER_POSITION = "level-spinner-position";
 
     private static SharedPreferences sharedPreferences = MainActivity.sharedPreferences;
 
@@ -69,6 +71,28 @@ public class SharedPrefsUtils {
 
     public static int getMusicSpinnerPosition(){
         int pos = sharedPreferences.getInt(MUSIC_SPINNER_POSITION, 1);
+        return pos;
+    }
+
+    public static void saveTrainingSpinnerPosition(int pos){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(TRAINING_SPINNER_POSITION, pos);
+        editor.apply();
+    }
+
+    public static int getTrainingSpinnerPosition(){
+        int pos = sharedPreferences.getInt(TRAINING_SPINNER_POSITION, 0);
+        return pos;
+    }
+
+    public static void saveLevelSpinnerPosition(int pos){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(LEVEL_SPINNER_POSITION, pos);
+        editor.apply();
+    }
+
+    public static int getLevelSpinnerPosition(){
+        int pos = sharedPreferences.getInt(LEVEL_SPINNER_POSITION, 0);
         return pos;
     }
 }

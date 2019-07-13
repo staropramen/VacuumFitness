@@ -18,9 +18,12 @@ import android.widget.Spinner;
 
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.model.Playlist;
+import com.example.android.vacuumfitness.model.Training;
 import com.example.android.vacuumfitness.utils.SharedPrefsUtils;
 import com.example.android.vacuumfitness.utils.SpinnerUtils;
+import com.example.android.vacuumfitness.viewmodel.CustomTrainingViewModel;
 import com.example.android.vacuumfitness.viewmodel.PlaylistViewModel;
+import com.example.android.vacuumfitness.viewmodel.TrainingViewModel;
 
 import java.util.List;
 
@@ -34,8 +37,8 @@ import butterknife.ButterKnife;
 public class SettingsFragment extends Fragment {
 
     @BindView(R.id.sp_music_prefs) Spinner mMusicSpinner;
-
-    private int mMusicSpinnerPosition;
+    @BindView(R.id.sp_training_prefs) Spinner mTrainingSpinner;
+    @BindView(R.id.sp_level_prefs) Spinner mLevelSpinner;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -56,6 +59,10 @@ public class SettingsFragment extends Fragment {
         toolbar.setTitle(getString(R.string.settings));
 
         setupPlaylistViewModel();
+        setupTrainingViewModel();
+
+        //Set Level Spinner Position
+        mLevelSpinner.setSelection(SharedPrefsUtils.getLevelSpinnerPosition());
 
         return rootView;
     }
@@ -66,6 +73,12 @@ public class SettingsFragment extends Fragment {
 
         //Save Music Spinner Position
         SharedPrefsUtils.saveMusicSpinnerPosition(mMusicSpinner.getSelectedItemPosition());
+
+        //Save Training Spinner Position
+        SharedPrefsUtils.saveTrainingSpinnerPosition(mTrainingSpinner.getSelectedItemPosition());
+
+        //Save Level Spinner Position
+        SharedPrefsUtils.saveLevelSpinnerPosition(mLevelSpinner.getSelectedItemPosition());
     }
 
     private void setupPlaylistViewModel(){
@@ -76,6 +89,18 @@ public class SettingsFragment extends Fragment {
                 SpinnerUtils.populateMusicSpinnerItems(getActivity(), mMusicSpinner, playlists);
                 //Set Spinner on preferred Position
                 mMusicSpinner.setSelection(SharedPrefsUtils.getMusicSpinnerPosition());
+            }
+        });
+    }
+
+    private void setupTrainingViewModel() {
+        CustomTrainingViewModel viewModel = ViewModelProviders.of(this).get(CustomTrainingViewModel.class);
+        viewModel.getTrainings().observe(this, new Observer<List<Training>>() {
+            @Override
+            public void onChanged(@Nullable List<Training> trainings) {
+                SpinnerUtils.populateTrainingSpinnerItems(getActivity(), mTrainingSpinner, trainings);
+                //Set Spinner on preferred Position
+                mTrainingSpinner.setSelection(SharedPrefsUtils.getTrainingSpinnerPosition());
             }
         });
     }
