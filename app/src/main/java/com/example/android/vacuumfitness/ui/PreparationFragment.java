@@ -134,7 +134,8 @@ public class PreparationFragment extends Fragment {
                 //Set Spinner on preferred Position after check if is still existing
                 int trainingSelection = SharedPrefsUtils.getTrainingSpinnerPosition();
 
-                if(trainings.size() > trainingSelection){
+                if(mTrainingList.size() > trainingSelection){
+                    Log.d("!!!!!", "IF Training");
                     trainingSpinner.setSelection(trainingSelection);
                 }
             }
@@ -150,7 +151,11 @@ public class PreparationFragment extends Fragment {
                 //Set Spinner on preferred Position after check if is still existing
                 int playlistSelection = SharedPrefsUtils.getMusicSpinnerPosition();
 
-                if(playlists.size() > playlistSelection){
+                Log.d("!!!!!", String.valueOf(playlistSelection));
+                Log.d("!!!!!", String.valueOf(playlists.size()));
+
+                if(mPlaylistList.size() > playlistSelection){
+                    Log.d("!!!!!", "IF Playlist");
                     musicSpinner.setSelection(playlistSelection);
                 }
             }

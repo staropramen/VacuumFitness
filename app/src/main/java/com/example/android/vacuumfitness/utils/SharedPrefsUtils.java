@@ -15,6 +15,7 @@ public class SharedPrefsUtils {
     private static String MUSIC_SPINNER_POSITION = "music-spinner-position";
     private static String TRAINING_SPINNER_POSITION = "training-spinner-position";
     private static String LEVEL_SPINNER_POSITION = "level-spinner-position";
+    private static String DUCK_MUSIC_BOOLEAN = "duck-music-boolean";
 
     private static SharedPreferences sharedPreferences = MainActivity.sharedPreferences;
 
@@ -94,5 +95,16 @@ public class SharedPrefsUtils {
     public static int getLevelSpinnerPosition(){
         int pos = sharedPreferences.getInt(LEVEL_SPINNER_POSITION, 0);
         return pos;
+    }
+
+    public static void saveDuckMusicBoolean(boolean isChecked){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(DUCK_MUSIC_BOOLEAN, isChecked);
+        editor.apply();
+    }
+
+    public static boolean getDuckMusicBoolean(){
+        boolean isChecked = sharedPreferences.getBoolean(DUCK_MUSIC_BOOLEAN, true);
+        return isChecked;
     }
 }

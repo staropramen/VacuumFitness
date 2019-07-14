@@ -1,10 +1,15 @@
 package com.example.android.vacuumfitness.ui;
 
 
+import android.app.AlertDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.GradientDrawable;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -241,9 +246,10 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
 
         //Start Music
         if(mHasMusic){
-            Log.d("!!!!!!!", "Playlist initalzesd");
             //Initialize ExoPlayer
             mExoPlayer = ExoPlayerUtils.initializeExoPlayer(getActivity(), mExoPlayer, mPlaylist, this);
+            //initializePlayer(ExoPlayerUtils.getMediaSourcePlaylist(getActivity(), mPlaylist.getSongList()));
+
 
             //Set player position if same playlist as last time
             if(mPlaylist.getPrimaryKey() == SharedPrefsUtils.getPlaylistId()){
@@ -300,6 +306,10 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
             releaseMediaPlayer();
             mCommandMediaPlayer = MediaPlayer.create(getActivity(), audioId);
             mCommandMediaPlayer.start();
+            //Duck ExoPlayer if User set in Settings
+            if(SharedPrefsUtils.getDuckMusicBoolean()){
+                ExoPlayerUtils.handleExoPlayerVolumeOnVoiceCommand(mExoPlayer, mCommandMediaPlayer);
+            }
         }
     }
 
@@ -369,26 +379,40 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
                 pauseStartPlayer();
             }
         });
-    }
 
-    //Initialize Exo Player Method
-    private void initializePlayer(ConcatenatingMediaSource playlist){
-        if(exoPlayer == null){
-            TrackSelector trackSelector = new DefaultTrackSelector();
-            LoadControl loadControl = new DefaultLoadControl();
-            exoPlayer = ExoPlayerFactory.newSimpleInstance(getActivity(), trackSelector, loadControl);
-            exoPlayer.addListener(this);
-            exoPlayer.prepare(playlist);
-            exoPlayer.setPlayWhenReady(true);
-        }
+        mMusicButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                // create an alert builder
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle(getString(R.string.cust_menu_title));
+
+                // set the custom layout
+                final View customLayout = getLayoutInflater().inflate(R.layout.exoplayer_control_dialog, null);
+                builder.setView(customLayout);
+
+                // add a button
+                builder.setPositiveButton(getString(R.string.positive_answer), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                // create and show the alert dialog
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                return true;
+            }
+        });
     }
 
     private void pauseStartPlayer(){
-        if(exoPlayer != null){
-            if(exoPlayer.getPlayWhenReady()){
-                exoPlayer.setPlayWhenReady(false);
+        if(mExoPlayer != null){
+            if(mExoPlayer.getPlayWhenReady()){
+                mExoPlayer.setPlayWhenReady(false);
             } else {
-                exoPlayer.setPlayWhenReady(true);
+                mExoPlayer.setPlayWhenReady(true);
             }
         }
     }

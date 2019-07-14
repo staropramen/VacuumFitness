@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.Spinner;
 
 import com.example.android.vacuumfitness.R;
@@ -39,6 +40,7 @@ public class SettingsFragment extends Fragment {
     @BindView(R.id.sp_music_prefs) Spinner mMusicSpinner;
     @BindView(R.id.sp_training_prefs) Spinner mTrainingSpinner;
     @BindView(R.id.sp_level_prefs) Spinner mLevelSpinner;
+    @BindView(R.id.cb_duck_music) CheckBox mDuckMusicCheckBox;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -64,6 +66,9 @@ public class SettingsFragment extends Fragment {
         //Set Level Spinner Position
         mLevelSpinner.setSelection(SharedPrefsUtils.getLevelSpinnerPosition());
 
+        //Set Duck Music CheckBox
+        mDuckMusicCheckBox.setChecked(SharedPrefsUtils.getDuckMusicBoolean());
+
         return rootView;
     }
 
@@ -79,6 +84,11 @@ public class SettingsFragment extends Fragment {
 
         //Save Level Spinner Position
         SharedPrefsUtils.saveLevelSpinnerPosition(mLevelSpinner.getSelectedItemPosition());
+
+        //Save Duck Music Boolean
+        boolean isChecked = mDuckMusicCheckBox.isChecked();
+        SharedPrefsUtils.saveDuckMusicBoolean(isChecked);
+
     }
 
     private void setupPlaylistViewModel(){

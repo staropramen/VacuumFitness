@@ -1,12 +1,14 @@
 package com.example.android.vacuumfitness.utils;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.util.Log;
 
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.model.Playlist;
 import com.example.android.vacuumfitness.model.Song;
+import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.LoadControl;
@@ -23,6 +25,7 @@ import com.google.android.exoplayer2.upstream.DataSpec;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.RawResourceDataSource;
 import com.google.android.exoplayer2.util.Util;
+import com.google.android.exoplayer2.audio.AudioAttributes;
 
 import java.util.EventListener;
 import java.util.List;
@@ -37,7 +40,6 @@ public class ExoPlayerUtils {
         } else {
             List<Song> songs = playlist.getSongList();
             Song song = songs.get(0);
-            Log.d("!!!!!!", song.getPath());
             exoPlayer = prepareExoPlayerFromRawResourceUri(context, exoPlayer, song.getPath());
         }
 
@@ -140,5 +142,21 @@ public class ExoPlayerUtils {
         }
 
         return playlist;
+    }
+
+    public static void handleExoPlayerVolumeOnVoiceCommand(final SimpleExoPlayer exoPlayer, MediaPlayer mediaPlayer){
+        //Check if ExoPlayer is null
+        if(exoPlayer != null){
+            //Set down Volume
+            exoPlayer.setVolume(0.1f);
+
+            //Set back volume after media player completion
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    exoPlayer.setVolume(1.0f);
+                }
+            });
+        }
     }
 }
