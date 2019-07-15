@@ -10,6 +10,7 @@ public class KeyUtils {
     public static String ID_LIST_KEY = "id-list-key";
     public static String PLAYLIST_ID_KEY = "playlist-id-key";
     public static String PLAYLIST_KEY = "playlist-key";
+    public static String EXOPLAYER_IS_PAUSED = "exoplayer-is-paused";
 
     //Save Instance State Keys
     public static String EXERCISE_POSITION = "exercise-position";

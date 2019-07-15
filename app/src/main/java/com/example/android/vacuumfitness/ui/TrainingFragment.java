@@ -100,14 +100,12 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
 
     private MediaPlayer mCommandMediaPlayer;
 
-    private String EXO_VIDEO_PLAYER = "exoVideoPlayer";
-    private ConcatenatingMediaSource mMediaSource;
     private Playlist mPlaylist;
-    private SimpleExoPlayer exoPlayer;
     private SimpleExoPlayer mExoPlayer;
     private boolean mHasMusic = false;
     private boolean mHasVoiceCommands;
     private boolean mHasVisualCommands;
+    private boolean mExoPlayerIsPaused = false;
 
     private AppDatabase mDb;
 
@@ -170,6 +168,7 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
             mExerciseList = ListConverter.stringToExerciseList(savedInstanceState.getString(KeyUtils.EXERCISES_ARRAY));
             mExercisePosition = savedInstanceState.getInt(KeyUtils.EXERCISE_POSITION);
             mTrainingIsPaused = savedInstanceState.getBoolean(KeyUtils.TRAINING_IS_PAUSED);
+            mExoPlayerIsPaused = savedInstanceState.getBoolean(KeyUtils.EXOPLAYER_IS_PAUSED);
             setupTrainingViewModel();
         }
         return rootView;
@@ -289,9 +288,10 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
     @Override
     public void onPause() {
         super.onPause();
-        releaseMediaPlayer();
+
+        //Pause the Training
         if(!mTrainingIsPaused){
-            stopCountdown();
+            pauseStartTraining();
         }
 
         if(mHasMusic){
@@ -308,6 +308,7 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        releaseMediaPlayer();
         if(mHasMusic){
             //Release ExoPlayer
             mExoPlayer.release();
@@ -321,6 +322,7 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
         outState.putString(KeyUtils.EXERCISES_ARRAY, ListConverter.exerciseListToString(mExerciseList));
         outState.putLong(KeyUtils.TRAINING_TIME, mTrainingTime);
         outState.putBoolean(KeyUtils.TRAINING_IS_PAUSED, mTrainingIsPaused);
+        outState.putBoolean(KeyUtils.EXOPLAYER_IS_PAUSED, mExoPlayerIsPaused);
         super.onSaveInstanceState(outState);
 
     }
@@ -356,17 +358,37 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
         mStartPauseIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mTrainingIsPaused){
-                    mStartPauseIV.setImageResource(R.drawable.pause);
-                    mTrainingIsPaused = false;
-                    getCountdown(mExerciseList);
-                } else {
-                    mStartPauseIV.setImageResource(R.drawable.start);
-                    mTrainingIsPaused = true;
-                    stopCountdown();
-                }
+                pauseStartTraining();
             }
         });
+    }
+
+    private void pauseStartTraining(){
+
+        if(mTrainingIsPaused){
+            mStartPauseIV.setImageResource(R.drawable.pause);
+            mTrainingIsPaused = false;
+            getCountdown(mExerciseList);
+
+            //If ExoPlayer is not null and was not paused before pause training, start the music also
+            if(mExoPlayer !=null && !mExoPlayerIsPaused){
+                pauseStartPlayer();
+            }
+
+        } else {
+            mStartPauseIV.setImageResource(R.drawable.start);
+            mTrainingIsPaused = true;
+            stopCountdown();
+
+            //If ExoPlayer is not null ans playing also pause him
+            if(mExoPlayer != null && mExoPlayer.getPlayWhenReady()){
+                pauseStartPlayer();
+                mExoPlayerIsPaused = false;
+            } else {
+                mExoPlayerIsPaused = true;
+            }
+        }
+
     }
 
     private void setupVideoButton(final Exercise exercise){
