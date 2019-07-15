@@ -16,6 +16,16 @@
     <string name="choose_pref_training">Choose your preferred Training</string>
     <string name="choose_pref_level">Choose your preferred Level</string>
     <string name="reduce_music_for_voice">Duck music volume for voice command</string>
+    <string name="voice_command_toggle">Voice commands</string>
+    <string name="visual_command_toggle">Visual commands</string>
+
+    <!-- Visual Commands -->
+    <string name="prepare">Take position</string>
+    <string name="inhale">Inhale</string>
+    <string name="exhale">Exhale</string>
+    <string name="vacuum">Make the vacuum</string>
+    <string name="relax">Relax</string>
+    <string name="change">Relax and get ready to change position</string>
 
     <!-- Keys -->
     <string name="key_playlist_name">playlist-name</string>

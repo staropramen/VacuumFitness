@@ -10,12 +10,15 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.Spinner;
+import android.widget.Switch;
 
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.model.Playlist;
@@ -41,6 +44,8 @@ public class SettingsFragment extends Fragment {
     @BindView(R.id.sp_training_prefs) Spinner mTrainingSpinner;
     @BindView(R.id.sp_level_prefs) Spinner mLevelSpinner;
     @BindView(R.id.cb_duck_music) CheckBox mDuckMusicCheckBox;
+    @BindView(R.id.toggle_voice) Switch mVoiceToggle;
+    @BindView(R.id.toggle_visual) Switch mVisualToggle;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -69,6 +74,11 @@ public class SettingsFragment extends Fragment {
         //Set Duck Music CheckBox
         mDuckMusicCheckBox.setChecked(SharedPrefsUtils.getDuckMusicBoolean());
 
+        //Set voice and visual toggle
+        mVoiceToggle.setChecked(SharedPrefsUtils.getVoiceToggleBoolean());
+        mVisualToggle.setChecked(SharedPrefsUtils.getVisualToggleBoolean());
+        controlSwitchBehaviour(mVoiceToggle, mVisualToggle);
+
         return rootView;
     }
 
@@ -88,6 +98,10 @@ public class SettingsFragment extends Fragment {
         //Save Duck Music Boolean
         boolean isChecked = mDuckMusicCheckBox.isChecked();
         SharedPrefsUtils.saveDuckMusicBoolean(isChecked);
+
+        //Save voice and visual toggle booleans
+        SharedPrefsUtils.saveVoiceToggleBoolean(mVoiceToggle.isChecked());
+        SharedPrefsUtils.saveVisualToggleBoolean(mVisualToggle.isChecked());
 
     }
 
@@ -111,6 +125,27 @@ public class SettingsFragment extends Fragment {
                 SpinnerUtils.populateTrainingSpinnerItems(getActivity(), mTrainingSpinner, trainings);
                 //Set Spinner on preferred Position
                 mTrainingSpinner.setSelection(SharedPrefsUtils.getTrainingSpinnerPosition());
+            }
+        });
+    }
+
+    //Control switch behaviour that its not possible to have both switches off
+    private void controlSwitchBehaviour(final Switch voiceSwitch, final Switch visualSwitch){
+        voiceSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(!isChecked && !visualSwitch.isChecked()){
+                    visualSwitch.setChecked(true);
+                }
+            }
+        });
+
+        visualSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(!isChecked && !voiceSwitch.isChecked()){
+                    voiceSwitch.setChecked(true);
+                }
             }
         });
     }

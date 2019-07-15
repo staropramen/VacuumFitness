@@ -16,6 +16,8 @@ public class SharedPrefsUtils {
     private static String TRAINING_SPINNER_POSITION = "training-spinner-position";
     private static String LEVEL_SPINNER_POSITION = "level-spinner-position";
     private static String DUCK_MUSIC_BOOLEAN = "duck-music-boolean";
+    private static String VOICE_TOGGLE_BOOLEAN = "voice-toggle-boolean";
+    private static String VISUAL_TOGGLE_BOOLEAN = "visual-toggle-boolean";
 
     private static SharedPreferences sharedPreferences = MainActivity.sharedPreferences;
 
@@ -106,5 +108,27 @@ public class SharedPrefsUtils {
     public static boolean getDuckMusicBoolean(){
         boolean isChecked = sharedPreferences.getBoolean(DUCK_MUSIC_BOOLEAN, true);
         return isChecked;
+    }
+
+    public static void saveVoiceToggleBoolean(boolean isOn){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(VOICE_TOGGLE_BOOLEAN, isOn);
+        editor.apply();
+    }
+
+    public static boolean getVoiceToggleBoolean(){
+        boolean isOn = sharedPreferences.getBoolean(VOICE_TOGGLE_BOOLEAN, true);
+        return isOn;
+    }
+
+    public static void saveVisualToggleBoolean(boolean isOn){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(VISUAL_TOGGLE_BOOLEAN, isOn);
+        editor.apply();
+    }
+
+    public static boolean getVisualToggleBoolean(){
+        boolean isOn = sharedPreferences.getBoolean(VISUAL_TOGGLE_BOOLEAN, true);
+        return isOn;
     }
 }

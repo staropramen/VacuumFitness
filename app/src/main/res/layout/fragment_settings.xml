@@ -123,6 +123,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/level_spinner" />
 
+    <Switch
+        android:id="@+id/toggle_voice"
+        style="@style/descriptions"
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginTop="@dimen/margin"
+        android:switchPadding="@dimen/margin"
+        android:text="@string/voice_command_toggle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view3"/>
+
+    <Switch
+        android:id="@+id/toggle_visual"
+        style="@style/descriptions"
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginTop="@dimen/margin"
+        android:switchPadding="@dimen/margin"
+        android:text="@string/visual_command_toggle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toggle_voice"/>
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/separator_height"
+        android:layout_marginTop="@dimen/margin"
+        android:background="@color/light_grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toggle_visual" />
+
     <CheckBox
         android:id="@+id/cb_duck_music"
         android:layout_width="wrap_content"
@@ -130,7 +160,7 @@
         android:text="@string/reduce_music_for_voice"
         android:layout_marginTop="@dimen/margin"
         android:layout_marginStart="@dimen/margin"
-        app:layout_constraintTop_toBottomOf="@id/view3"
+        app:layout_constraintTop_toBottomOf="@id/view4"
         app:layout_constraintStart_toStartOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

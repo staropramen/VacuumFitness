@@ -16,8 +16,11 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +58,7 @@ import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.trackselection.TrackSelector;
+import com.google.android.exoplayer2.ui.PlayerControlView;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DataSpec;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
@@ -102,8 +106,12 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
     private SimpleExoPlayer exoPlayer;
     private SimpleExoPlayer mExoPlayer;
     private boolean mHasMusic = false;
+    private boolean mHasVoiceCommands;
+    private boolean mHasVisualCommands;
 
     private AppDatabase mDb;
+
+    private View mToastLayout;
 
     public TrainingFragment() {
         // Required empty public constructor
@@ -123,6 +131,14 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
 
         //Let activity not sleep if this fragment is alive
         getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        //Get booleans for voice and visual commands from settings
+        mHasVoiceCommands = SharedPrefsUtils.getVoiceToggleBoolean();
+        mHasVisualCommands = SharedPrefsUtils.getVisualToggleBoolean();
+
+        //Prepare toast layout
+        LayoutInflater toastInflater = getLayoutInflater();
+        mToastLayout = inflater.inflate(R.layout.command_toast, (ViewGroup)rootView.findViewById(R.id.layout_command_toast));
 
         //Get Data from Bundle
         Bundle data = getArguments();
@@ -172,8 +188,17 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
                         TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
                                 TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
 
-                int voiceCommand = TrainingTimerUtils.getVoiceCommandInt(TrainingTimerUtils.getCommandCorners(level), mTimeCounter, getActivity());
-                playVoiceCommand(voiceCommand);
+                //Give Voice Commands if user wants
+                if(mHasVoiceCommands){
+                    int voiceCommand = TrainingTimerUtils.getVoiceCommandInt(TrainingTimerUtils.getCommandCorners(level), mTimeCounter, getActivity());
+                    playVoiceCommand(voiceCommand);
+                }
+
+                //Give visual commands if user wants
+                if(mHasVisualCommands){
+                    String visualCommand = TrainingTimerUtils.getVisualCommandString(TrainingTimerUtils.getCommandCorners(level), mTimeCounter, getActivity());
+                    makeCommandToast(visualCommand);
+                }
 
 
                 if (mTimeCounter < TrainingTimerUtils.exerciseTime(level)){
@@ -379,41 +404,29 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
                 pauseStartPlayer();
             }
         });
-
-        mMusicButton.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                // create an alert builder
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle(getString(R.string.cust_menu_title));
-
-                // set the custom layout
-                final View customLayout = getLayoutInflater().inflate(R.layout.exoplayer_control_dialog, null);
-                builder.setView(customLayout);
-
-                // add a button
-                builder.setPositiveButton(getString(R.string.positive_answer), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-
-                // create and show the alert dialog
-                AlertDialog dialog = builder.create();
-                dialog.show();
-                return true;
-            }
-        });
     }
 
     private void pauseStartPlayer(){
+        makeCommandToast("PAUSE");
         if(mExoPlayer != null){
             if(mExoPlayer.getPlayWhenReady()){
                 mExoPlayer.setPlayWhenReady(false);
             } else {
                 mExoPlayer.setPlayWhenReady(true);
             }
+        }
+    }
+
+    private void makeCommandToast(String toastText){
+        if (!TextUtils.isEmpty(toastText)){
+            TextView text = (TextView) mToastLayout.findViewById(R.id.tv_toast_text);
+            text.setText(toastText);
+
+            Toast toast = new Toast(getActivity().getApplicationContext());
+            toast.setGravity(Gravity.TOP, 0, 0);
+            toast.setDuration(Toast.LENGTH_SHORT);
+            toast.setView(mToastLayout);
+            toast.show();
         }
     }
 

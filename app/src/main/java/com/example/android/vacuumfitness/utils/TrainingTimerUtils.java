@@ -1,6 +1,7 @@
 package com.example.android.vacuumfitness.utils;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -154,6 +155,44 @@ public class TrainingTimerUtils {
             //If counter is not at cornerstone position return 0
             return 0;
         }
+
+    }
+
+    public static String getVisualCommandString(int[] cornerStones, int counter, Context context){
+        String visualCommand = "";
+        Resources res = context.getResources();
+
+        if(counter == cornerStones[0]){
+            return res.getString(R.string.prepare);
+        } else if(counter == cornerStones[1]){
+            return res.getString(R.string.inhale);
+        } else if(counter == cornerStones[2]){
+            return res.getString(R.string.exhale);
+        } else if(counter == cornerStones[3]){
+            return res.getString(R.string.inhale);
+        } else if(counter == cornerStones[4]){
+            return res.getString(R.string.exhale);
+        } else if(counter == cornerStones[5]){
+            return res.getString(R.string.vacuum);
+        } else if(counter == cornerStones[6]){
+            return res.getString(R.string.relax);
+        } else if(counter == cornerStones[7]){
+            return res.getString(R.string.inhale);
+        } else if(counter == cornerStones[8]){
+            return res.getString(R.string.exhale);
+        } else if(counter == cornerStones[9]){
+            return res.getString(R.string.inhale);
+        } else if(counter == cornerStones[10]){
+            return res.getString(R.string.exhale);
+        } else if(counter == cornerStones[11]){
+            return res.getString(R.string.vacuum);
+        } else if(counter == cornerStones[12]){
+            return res.getString(R.string.change);
+        } else {
+            //If counter is not at cornerstone position return empty string
+            return visualCommand;
+        }
+
 
     }
 
