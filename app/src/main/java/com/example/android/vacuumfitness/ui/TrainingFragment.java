@@ -8,6 +8,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.GradientDrawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -155,7 +156,13 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
             //Playlist is no null, now we check if these is a Songlist with songs inside
             if(mPlaylist.getSongList() != null && !mPlaylist.getSongList().isEmpty()){
                 mHasMusic = true;
+            } else {
+                //Set nomusic picture if there is no music
+                mMusicButton.setImageResource(R.drawable.nomusic);
             }
+        } else {
+            //Set nomusic picture if there is no music
+            mMusicButton.setImageResource(R.drawable.nomusic);
         }
 
         //Launch ViewModel if savedInstanceState is null
@@ -324,7 +331,6 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
         outState.putBoolean(KeyUtils.TRAINING_IS_PAUSED, mTrainingIsPaused);
         outState.putBoolean(KeyUtils.EXOPLAYER_IS_PAUSED, mExoPlayerIsPaused);
         super.onSaveInstanceState(outState);
-
     }
 
     private void playVoiceCommand(int audioId){
@@ -429,12 +435,15 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
     }
 
     private void pauseStartPlayer(){
-        makeCommandToast("PAUSE");
         if(mExoPlayer != null){
             if(mExoPlayer.getPlayWhenReady()){
                 mExoPlayer.setPlayWhenReady(false);
+                //Set music picture
+                mMusicButton.setImageResource(R.drawable.nomusic);
             } else {
                 mExoPlayer.setPlayWhenReady(true);
+                //Set music picture
+                mMusicButton.setImageResource(R.drawable.music);
             }
         }
     }
