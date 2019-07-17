@@ -42,7 +42,6 @@ public class TrainingActivity extends AppCompatActivity {
             }
         });
 
-
         //Handle when activity is recreated like on orientation Change
         if(savedInstanceState == null){
             PreparationFragment fragment = new PreparationFragment();

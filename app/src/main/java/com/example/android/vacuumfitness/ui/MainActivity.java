@@ -69,6 +69,9 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
                     .commit();
         }
 
+        //Activity is ready now we check for Widget Intent
+        checkForWidgetIntent();
+
     }
 
     //A Function to do things only at first run of the App
@@ -114,6 +117,16 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
         transaction.replace(R.id.start_content, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    private void checkForWidgetIntent() {
+        Intent intent = getIntent();
+
+        if(intent != null && intent.hasExtra(KeyUtils.WIDGET_INTENT)) {
+            //Open Training Activity
+            Intent i = new Intent(this, TrainingActivity.class);
+            startActivity(i);
+        }
     }
 
     @Override

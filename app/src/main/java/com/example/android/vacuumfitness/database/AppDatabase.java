@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.example.android.vacuumfitness.model.Exercise;
+import com.example.android.vacuumfitness.model.Motivator;
 import com.example.android.vacuumfitness.model.Playlist;
 import com.example.android.vacuumfitness.model.Song;
 import com.example.android.vacuumfitness.model.Training;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Exercise.class, Training.class, Playlist.class}, version = 1, exportSchema = false)
+@Database(entities = {Exercise.class, Training.class, Playlist.class, Motivator.class}, version = 1, exportSchema = false)
 @TypeConverters({ListConverter.class})
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -47,6 +48,10 @@ public abstract class AppDatabase extends RoomDatabase {
                                         getInstance(context).exerciseDao().insertAll(populateExercises());
                                         List<Integer> exerciseIds = getInstance(context).exerciseDao().loadExerciseIdArray();
                                         SharedPrefsUtils.saveExerciseIdsToSharedPrefs(exerciseIds);
+
+                                        //Insert Motivators
+                                        getInstance(context).motivatorDao().insertAll(populateMotivators());
+
                                         Log.d(LOG_TAG, "OnCreate DB called");
                                     }
                                 });
@@ -65,6 +70,8 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract PlaylistDao playlistDao();
 
+    public abstract MotivatorDao motivatorDao();
+
     private static Exercise[] populateExercises(){
         return new Exercise[] {
                 new Exercise("Silent Tree", 1, "dummy1", "xMQwBMhaqFA"),
@@ -82,6 +89,16 @@ public abstract class AppDatabase extends RoomDatabase {
                 new Exercise("Apple", 1, "dummy1", "xMQwBMhaqFA"),
                 new Exercise("Twister", 1, "dummy2", "xMQwBMhaqFA"),
                 new Exercise("Crumble", 1, "dummy3", "xMQwBMhaqFA"),
+        };
+    }
+
+    private static Motivator[] populateMotivators() {
+        return new Motivator[] {
+                new Motivator(1, "Always keep on track!"),
+                new Motivator(2, "Never give up!"),
+                new Motivator(3, "You are one of the best!"),
+                new Motivator(4, "Vacuum Fitness believes in you"),
+                new Motivator(5, "You are sexy as you are!"),
         };
     }
 }

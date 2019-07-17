@@ -22,4 +22,7 @@ public class KeyUtils {
     //EXO Player Key
     public static String EXO_VIDEO_PLAYER = "exoVideoPlayer";
 
+    //Widget Keys
+    public static String WIDGET_INTENT = "widget-intent";
+
 }
