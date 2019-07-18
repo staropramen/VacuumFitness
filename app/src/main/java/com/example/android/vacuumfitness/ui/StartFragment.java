@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.android.vacuumfitness.R;
+import com.example.android.vacuumfitness.service.UpdateMotivatorsService;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,6 +26,7 @@ public class StartFragment extends Fragment {
     @BindView(R.id.start_training_button) ImageView startTraining;
     @BindView(R.id.customize_training_button) ImageView customizeTraining;
     @BindView(R.id.customize_music_button) ImageView customizeMusic;
+    @BindView(R.id.how_to_button) ImageView howToButton;
 
 
     public StartFragment() {
@@ -70,6 +72,14 @@ public class StartFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), CustomizeMusicActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        //Setup Hot To Button
+        howToButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().startService(new Intent(getActivity(), UpdateMotivatorsService.class));
             }
         });
 
