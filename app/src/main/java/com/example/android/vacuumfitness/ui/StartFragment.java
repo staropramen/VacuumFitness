@@ -11,7 +11,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.android.vacuumfitness.R;
+import com.example.android.vacuumfitness.service.UpdateMotivatorsService;
 import com.example.android.vacuumfitness.service.UpdateMotivatorsServiceOld;
+import com.example.android.vacuumfitness.service.UpdateMotivatorsTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -78,7 +80,9 @@ public class StartFragment extends Fragment {
         howToButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().startService(new Intent(getActivity(), UpdateMotivatorsServiceOld.class));
+                Intent updateMotivatorsIntent = new Intent(getActivity(), UpdateMotivatorsService.class);
+                updateMotivatorsIntent.setAction(UpdateMotivatorsTask.ACTION_UPDATE_MOTIVATORS);
+                getActivity().startService(updateMotivatorsIntent);
             }
         });
 
