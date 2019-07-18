@@ -9,7 +9,7 @@ public class Motivator {
 
     @PrimaryKey(autoGenerate = false)
     private int primaryKey;
-    @ColumnInfo(name = "motivation-text")
+    @ColumnInfo(name = "motivation_text")
     private String motivationText;
 
     public Motivator(int primaryKey, String motivationText) {

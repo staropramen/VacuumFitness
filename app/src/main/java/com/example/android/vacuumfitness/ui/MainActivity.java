@@ -1,8 +1,11 @@
 package com.example.android.vacuumfitness.ui;
 
+import android.app.PendingIntent;
+import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.preference.PreferenceFragment;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.FragmentManager;
@@ -16,6 +19,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.android.vacuumfitness.MotivationAppWidget;
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.database.AppDatabase;
 import com.example.android.vacuumfitness.utils.AppExecutors;
@@ -34,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
 
     public static SharedPreferences sharedPreferences;
     public static Context mContext;
+    public static String mDefaultMotivationText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
         sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         //Get ApplicationContext to use in non-activity class
         mContext = getApplicationContext();
+        mDefaultMotivationText = getString(R.string.default_motivator_string);
 
         //Do things on First Run
         doOnFirstRun();
@@ -76,19 +82,20 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
 
     //A Function to do things only at first run of the App
     private void doOnFirstRun(){
-        if(SharedPrefsUtils.getIsFirstRun()){
+        if(SharedPrefsUtils.getIsFirstRun(this)){
             Log.d(LOG_TAG, "Fist Run Function Executed");
             //If i populate Database in onCreateDatabase Appi is crashing because Data on first Run are not available
-            //Im calling here a Function to count the rows, only that onCreateDb gets triggered
+            //Im calling here a Function to count the rows, that onCreateDb gets triggered and rows for Service will be saved in shared prefs
             AppExecutors.getInstance().diskIO().execute(new Runnable() {
                 @Override
                 public void run() {
-                    AppDatabase.getInstance(getApplicationContext()).exerciseDao().getExerciseRowCount();
+                    AppDatabase.getInstance(getApplicationContext()).motivatorDao().getMotivatorsRowCount();
                 }
             });
 
             //In the end i save a boolean to SharedPrefs that App knows that is not the first Run anymore
-            SharedPrefsUtils.saveIsFirstRunToPrefs();
+            SharedPrefsUtils.saveIsFirstRunToPrefs(this);
+            Log.d("!!!!", "First Run");
         }
     }
 

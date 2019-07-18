@@ -1,9 +1,17 @@
 package com.example.android.vacuumfitness.utils;
 
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.preference.PreferenceManager;
 
+import com.example.android.vacuumfitness.R;
+import com.example.android.vacuumfitness.model.Motivator;
 import com.example.android.vacuumfitness.ui.MainActivity;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 public class SharedPrefsUtils {
@@ -18,6 +26,9 @@ public class SharedPrefsUtils {
     private static String DUCK_MUSIC_BOOLEAN = "duck-music-boolean";
     private static String VOICE_TOGGLE_BOOLEAN = "voice-toggle-boolean";
     private static String VISUAL_TOGGLE_BOOLEAN = "visual-toggle-boolean";
+    private static String MOTIVATORS_ROW_COUNT = "motivators-row-count";
+    private static String LAST_MOTIVATOR_ID = "last-motivator_id";
+    private static String CURRENT_MOTIVATOR = "current-motivator";
 
     private static SharedPreferences sharedPreferences = MainActivity.sharedPreferences;
 
@@ -33,14 +44,14 @@ public class SharedPrefsUtils {
         return ListConverter.fromString(exerciseIdsString);
     }
 
-    public static void saveIsFirstRunToPrefs(){
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+    public static void saveIsFirstRunToPrefs(Context context){
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
         editor.putBoolean(IS_FIRST_RUN, false);
         editor.apply();
     }
 
-    public static boolean getIsFirstRun(){
-        Boolean isFirstRun = sharedPreferences.getBoolean(IS_FIRST_RUN, true);
+    public static boolean getIsFirstRun(Context context){
+        Boolean isFirstRun = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(IS_FIRST_RUN, true);
         return isFirstRun;
     }
 
@@ -130,5 +141,53 @@ public class SharedPrefsUtils {
     public static boolean getVisualToggleBoolean(){
         boolean isOn = sharedPreferences.getBoolean(VISUAL_TOGGLE_BOOLEAN, true);
         return isOn;
+    }
+
+    public static void saveMotivatorsRowCount(int rowCount){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(MOTIVATORS_ROW_COUNT, rowCount);
+        editor.apply();
+    }
+
+    public static int getMotivatorsRowCount(){
+        int rowCount;
+        try {
+            rowCount = sharedPreferences.getInt(MOTIVATORS_ROW_COUNT, 1);
+        } catch (NullPointerException e){
+            rowCount = 1;
+        }
+        return rowCount;
+    }
+
+    public static void saveLastMotivatorId(Context context, int id){
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        editor.putInt(LAST_MOTIVATOR_ID, id);
+        editor.apply();
+    }
+
+    public static int getLastMotivatorId(Context context){
+        int id = PreferenceManager.getDefaultSharedPreferences(context).getInt(LAST_MOTIVATOR_ID, 0);
+        return id;
+    }
+
+    public static void saveCurrentMotivator(Context context, Motivator motivator){
+        Gson gson = new Gson();
+        String json = gson.toJson(motivator);
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        editor.putString(CURRENT_MOTIVATOR, json);
+        editor.apply();
+    }
+
+    public static Motivator getCurrentMotivator(Context context){
+        String json = PreferenceManager.getDefaultSharedPreferences(context).getString(CURRENT_MOTIVATOR, getDefaultMotivatorString());
+        Type type = new TypeToken<Motivator>() {}.getType();
+        return new Gson().fromJson(json, type);
+    }
+
+    private static String getDefaultMotivatorString(){
+        Motivator motivator = new Motivator(0, MainActivity.mDefaultMotivationText);
+        Gson gson = new Gson();
+        String json = gson.toJson(motivator);
+        return json;
     }
 }

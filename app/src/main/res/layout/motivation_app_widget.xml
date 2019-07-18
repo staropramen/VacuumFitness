@@ -1,7 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@drawable/round_corners_background"
+    android:backgroundTint="@color/colorPrimaryDark"
     android:padding="@dimen/widget_margin">
 
     <TextView
@@ -9,12 +10,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_margin="8dp"
-        android:contentDescription="@string/appwidget_text"
-        android:text="@string/appwidget_text"
-        android:textColor="#ffffff"
-        android:textSize="24sp"
-        android:textStyle="bold|italic" />
+        android:layout_margin="@dimen/margin"
+        android:text="@string/default_motivator_string"
+        android:textColor="@color/white"
+        android:textSize="@dimen/small_text" />
+
+    <TextView
+        android:id="@+id/appwidget_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/round_corners_background"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="@string/start_button"
+        android:textSize="@dimen/regular_text"
+        android:textColor="@color/white"
+        android:padding="@dimen/s_margin"
+        android:layout_margin="@dimen/margin"
+        android:layout_below="@id/appwidget_text"/>
 
 </RelativeLayout>

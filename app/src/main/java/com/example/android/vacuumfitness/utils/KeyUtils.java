@@ -24,5 +24,6 @@ public class KeyUtils {
 
     //Widget Keys
     public static String WIDGET_INTENT = "widget-intent";
+    public static String UPDATE_WIDGET = "update-widget";
 
 }

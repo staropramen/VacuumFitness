@@ -27,4 +27,7 @@ public interface MotivatorDao {
 
     @Query("SELECT * FROM motivators WHERE primaryKey = :id")
     Motivator loadMotivatorById(int id);
+
+    @Query("SELECT COUNT(motivation_text) FROM motivators")
+    int getMotivatorsRowCount();
 }
