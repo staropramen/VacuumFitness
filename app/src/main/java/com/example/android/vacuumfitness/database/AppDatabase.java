@@ -47,7 +47,7 @@ public abstract class AppDatabase extends RoomDatabase {
                                         //Insert the Exercises
                                         getInstance(context).exerciseDao().insertAll(populateExercises());
                                         List<Integer> exerciseIds = getInstance(context).exerciseDao().loadExerciseIdArray();
-                                        SharedPrefsUtils.saveExerciseIdsToSharedPrefs(exerciseIds);
+                                        SharedPrefsUtils.saveExerciseIdsToSharedPrefs(context, exerciseIds);
 
                                         //Insert Motivators
                                         getInstance(context).motivatorDao().insertAll(populateMotivators());

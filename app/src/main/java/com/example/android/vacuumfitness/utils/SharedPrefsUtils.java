@@ -30,17 +30,15 @@ public class SharedPrefsUtils {
     private static String LAST_MOTIVATOR_ID = "last-motivator_id";
     private static String CURRENT_MOTIVATOR = "current-motivator";
 
-    private static SharedPreferences sharedPreferences = MainActivity.sharedPreferences;
-
-    public static void saveExerciseIdsToSharedPrefs(List<Integer> exerciseIds){
+    public static void saveExerciseIdsToSharedPrefs(Context context, List<Integer> exerciseIds){
         String exerciseIdsString = ListConverter.fromList(exerciseIds);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
         editor.putString(EXERCISE_IDS, exerciseIdsString);
         editor.apply();
     }
 
-    public static List<Integer> getExerciseIdsFromSharedPrefs(){
-        String exerciseIdsString = sharedPreferences.getString(EXERCISE_IDS, "[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]");
+    public static List<Integer> getExerciseIdsFromSharedPrefs(Context context){
+        String exerciseIdsString = PreferenceManager.getDefaultSharedPreferences(context).getString(EXERCISE_IDS, "[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]");
         return ListConverter.fromString(exerciseIdsString);
     }
 
@@ -55,107 +53,102 @@ public class SharedPrefsUtils {
         return isFirstRun;
     }
 
-    public static void saveExoPlayerPosition(long position){
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+    public static void saveExoPlayerPosition(Context context, long position){
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
         editor.putLong(EXO_PLAYER_POSITION, position);
         editor.apply();
     }
 
-    public static long getExoPlayerPosition(){
-        long position = sharedPreferences.getLong(EXO_PLAYER_POSITION, 0);
+    public static long getExoPlayerPosition(Context context){
+        long position = PreferenceManager.getDefaultSharedPreferences(context).getLong(EXO_PLAYER_POSITION, 0);
         return position;
     }
 
-    public static void savePlaylistId(int id){
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+    public static void savePlaylistId(Context context, int id){
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
         editor.putInt(PLAYLIST_ID, id);
         editor.apply();
     }
 
-    public static int getPlaylistId(){
-        int id = sharedPreferences.getInt(PLAYLIST_ID, -1);
+    public static int getPlaylistId(Context context){
+        int id = PreferenceManager.getDefaultSharedPreferences(context).getInt(PLAYLIST_ID, -1);
         return id;
     }
 
-    public static void saveMusicSpinnerPosition(int pos){
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+    public static void saveMusicSpinnerPosition(Context context, int pos){
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
         editor.putInt(MUSIC_SPINNER_POSITION, pos);
         editor.apply();
     }
 
-    public static int getMusicSpinnerPosition(){
-        int pos = sharedPreferences.getInt(MUSIC_SPINNER_POSITION, 1);
+    public static int getMusicSpinnerPosition(Context context){
+        int pos = PreferenceManager.getDefaultSharedPreferences(context).getInt(MUSIC_SPINNER_POSITION, 1);
         return pos;
     }
 
-    public static void saveTrainingSpinnerPosition(int pos){
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+    public static void saveTrainingSpinnerPosition(Context context, int pos){
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
         editor.putInt(TRAINING_SPINNER_POSITION, pos);
         editor.apply();
     }
 
-    public static int getTrainingSpinnerPosition(){
-        int pos = sharedPreferences.getInt(TRAINING_SPINNER_POSITION, 0);
+    public static int getTrainingSpinnerPosition(Context context){
+        int pos = PreferenceManager.getDefaultSharedPreferences(context).getInt(TRAINING_SPINNER_POSITION, 0);
         return pos;
     }
 
-    public static void saveLevelSpinnerPosition(int pos){
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+    public static void saveLevelSpinnerPosition(Context context, int pos){
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
         editor.putInt(LEVEL_SPINNER_POSITION, pos);
         editor.apply();
     }
 
-    public static int getLevelSpinnerPosition(){
-        int pos = sharedPreferences.getInt(LEVEL_SPINNER_POSITION, 0);
+    public static int getLevelSpinnerPosition(Context context){
+        int pos = PreferenceManager.getDefaultSharedPreferences(context).getInt(LEVEL_SPINNER_POSITION, 0);
         return pos;
     }
 
-    public static void saveDuckMusicBoolean(boolean isChecked){
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+    public static void saveDuckMusicBoolean(Context context, boolean isChecked){
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
         editor.putBoolean(DUCK_MUSIC_BOOLEAN, isChecked);
         editor.apply();
     }
 
-    public static boolean getDuckMusicBoolean(){
-        boolean isChecked = sharedPreferences.getBoolean(DUCK_MUSIC_BOOLEAN, true);
+    public static boolean getDuckMusicBoolean(Context context){
+        boolean isChecked = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(DUCK_MUSIC_BOOLEAN, true);
         return isChecked;
     }
 
-    public static void saveVoiceToggleBoolean(boolean isOn){
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+    public static void saveVoiceToggleBoolean(Context context, boolean isOn){
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
         editor.putBoolean(VOICE_TOGGLE_BOOLEAN, isOn);
         editor.apply();
     }
 
-    public static boolean getVoiceToggleBoolean(){
-        boolean isOn = sharedPreferences.getBoolean(VOICE_TOGGLE_BOOLEAN, true);
+    public static boolean getVoiceToggleBoolean(Context context){
+        boolean isOn = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(VOICE_TOGGLE_BOOLEAN, true);
         return isOn;
     }
 
-    public static void saveVisualToggleBoolean(boolean isOn){
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+    public static void saveVisualToggleBoolean(Context context, boolean isOn){
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
         editor.putBoolean(VISUAL_TOGGLE_BOOLEAN, isOn);
         editor.apply();
     }
 
-    public static boolean getVisualToggleBoolean(){
-        boolean isOn = sharedPreferences.getBoolean(VISUAL_TOGGLE_BOOLEAN, true);
+    public static boolean getVisualToggleBoolean(Context context){
+        boolean isOn = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(VISUAL_TOGGLE_BOOLEAN, true);
         return isOn;
     }
 
-    public static void saveMotivatorsRowCount(int rowCount){
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+    public static void saveMotivatorsRowCount(Context context, int rowCount){
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
         editor.putInt(MOTIVATORS_ROW_COUNT, rowCount);
         editor.apply();
     }
 
-    public static int getMotivatorsRowCount(){
-        int rowCount;
-        try {
-            rowCount = sharedPreferences.getInt(MOTIVATORS_ROW_COUNT, 1);
-        } catch (NullPointerException e){
-            rowCount = 1;
-        }
+    public static int getMotivatorsRowCount(Context context){
+        int rowCount = PreferenceManager.getDefaultSharedPreferences(context).getInt(MOTIVATORS_ROW_COUNT, 1);
         return rowCount;
     }
 

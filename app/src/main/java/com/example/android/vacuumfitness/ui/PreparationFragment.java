@@ -98,7 +98,7 @@ public class PreparationFragment extends Fragment {
         setupPlaylistViewModel();
 
         //Set Level Spinner Position
-        levelSpinner.setSelection(SharedPrefsUtils.getLevelSpinnerPosition());
+        levelSpinner.setSelection(SharedPrefsUtils.getLevelSpinnerPosition(getActivity()));
 
         setupSpinnerOnSelectListener();
 
@@ -110,7 +110,7 @@ public class PreparationFragment extends Fragment {
         Bundle data = new Bundle();
         data.putInt(KeyUtils.LEVEL_KEY, levelSpinner.getSelectedItemPosition());
         data.putInt(KeyUtils.EXERCISE_COUNT_KEY, Integer.parseInt(exerciseCount.getText().toString()));
-        mPrimaryKeyList = IdListUtils.getTrainingIdList(mTraining, Integer.parseInt(exerciseCount.getText().toString()));
+        mPrimaryKeyList = IdListUtils.getTrainingIdList(getActivity(), mTraining, Integer.parseInt(exerciseCount.getText().toString()));
         data.putString(KeyUtils.ID_LIST_KEY, ListConverter.fromList(mPrimaryKeyList));
         data.putParcelable(KeyUtils.PLAYLIST_KEY, mPlaylist);
 
@@ -132,7 +132,7 @@ public class PreparationFragment extends Fragment {
                 mTrainingList = SpinnerUtils.populateTrainingSpinnerItems(getActivity(), trainingSpinner, trainings);
 
                 //Set Spinner on preferred Position after check if is still existing
-                int trainingSelection = SharedPrefsUtils.getTrainingSpinnerPosition();
+                int trainingSelection = SharedPrefsUtils.getTrainingSpinnerPosition(getActivity());
 
                 if(mTrainingList.size() > trainingSelection){
                     trainingSpinner.setSelection(trainingSelection);
@@ -148,7 +148,7 @@ public class PreparationFragment extends Fragment {
             public void onChanged(@Nullable List<Playlist> playlists) {
                 mPlaylistList = SpinnerUtils.populateMusicSpinnerItems(getActivity(), musicSpinner, playlists);
                 //Set Spinner on preferred Position after check if is still existing
-                int playlistSelection = SharedPrefsUtils.getMusicSpinnerPosition();
+                int playlistSelection = SharedPrefsUtils.getMusicSpinnerPosition(getActivity());
 
                 if(mPlaylistList.size() > playlistSelection){
                     musicSpinner.setSelection(playlistSelection);

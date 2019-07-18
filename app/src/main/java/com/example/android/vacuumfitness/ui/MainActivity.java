@@ -95,7 +95,6 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
 
             //In the end i save a boolean to SharedPrefs that App knows that is not the first Run anymore
             SharedPrefsUtils.saveIsFirstRunToPrefs(this);
-            Log.d("!!!!", "First Run");
         }
     }
 

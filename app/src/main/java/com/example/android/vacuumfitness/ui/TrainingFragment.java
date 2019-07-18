@@ -132,8 +132,8 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
         getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         //Get booleans for voice and visual commands from settings
-        mHasVoiceCommands = SharedPrefsUtils.getVoiceToggleBoolean();
-        mHasVisualCommands = SharedPrefsUtils.getVisualToggleBoolean();
+        mHasVoiceCommands = SharedPrefsUtils.getVoiceToggleBoolean(getActivity());
+        mHasVisualCommands = SharedPrefsUtils.getVisualToggleBoolean(getActivity());
 
         //Prepare toast layout
         LayoutInflater toastInflater = getLayoutInflater();
@@ -283,8 +283,8 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
 
 
             //Set player position if same playlist as last time
-            if(mPlaylist.getPrimaryKey() == SharedPrefsUtils.getPlaylistId()){
-                long exoPlayerPosition = SharedPrefsUtils.getExoPlayerPosition();
+            if(mPlaylist.getPrimaryKey() == SharedPrefsUtils.getPlaylistId(getActivity())){
+                long exoPlayerPosition = SharedPrefsUtils.getExoPlayerPosition(getActivity());
                 if(exoPlayerPosition != 0 && exoPlayerPosition != 0){
                     mExoPlayer.seekTo(exoPlayerPosition);
                 }
@@ -303,8 +303,8 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
 
         if(mHasMusic){
             //Save Exoplayer position and Playlist Id to shared prefs
-            SharedPrefsUtils.saveExoPlayerPosition(mExoPlayer.getCurrentPosition());
-            SharedPrefsUtils.savePlaylistId(mPlaylist.getPrimaryKey());
+            SharedPrefsUtils.saveExoPlayerPosition(getActivity(), mExoPlayer.getCurrentPosition());
+            SharedPrefsUtils.savePlaylistId(getActivity(), mPlaylist.getPrimaryKey());
 
             //Pause ExoPlayer
             mExoPlayer.setPlayWhenReady(false);
@@ -340,7 +340,7 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
             mCommandMediaPlayer = MediaPlayer.create(getActivity(), audioId);
             mCommandMediaPlayer.start();
             //Duck ExoPlayer if User set in Settings
-            if(SharedPrefsUtils.getDuckMusicBoolean()){
+            if(SharedPrefsUtils.getDuckMusicBoolean(getActivity())){
                 ExoPlayerUtils.handleExoPlayerVolumeOnVoiceCommand(mExoPlayer, mCommandMediaPlayer);
             }
         }

@@ -1,5 +1,6 @@
 package com.example.android.vacuumfitness.utils;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.example.android.vacuumfitness.model.Exercise;
@@ -11,12 +12,12 @@ import java.util.Random;
 
 public class IdListUtils {
 
-    public static List<Integer> getTrainingIdList(Training training, int exerciseCount){
+    public static List<Integer> getTrainingIdList(Context context, Training training, int exerciseCount){
         List<Integer> idList;
 
         //Case we need a Random Training, primary key will be -1 else we make a list with the given Training
         if(training == null || training.getPrimaryKey() < 0){
-            idList = getRandomExerciseIds(exerciseCount);
+            idList = getRandomExerciseIds(context, exerciseCount);
         } else {
             idList = makeIdListFromTraining(training, exerciseCount);
         }
@@ -24,9 +25,9 @@ public class IdListUtils {
         return idList;
     }
 
-    private static List<Integer> getRandomExerciseIds(int exerciseCount) {
+    private static List<Integer> getRandomExerciseIds(Context context, int exerciseCount) {
         List<Integer> randomList = new ArrayList<>();
-        List<Integer> allExerciseList = SharedPrefsUtils.getExerciseIdsFromSharedPrefs();
+        List<Integer> allExerciseList = SharedPrefsUtils.getExerciseIdsFromSharedPrefs(context);
 
         for(int i = 0; i < exerciseCount; i++){
             //Make Random number to get position

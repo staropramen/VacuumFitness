@@ -69,14 +69,14 @@ public class SettingsFragment extends Fragment {
         setupTrainingViewModel();
 
         //Set Level Spinner Position
-        mLevelSpinner.setSelection(SharedPrefsUtils.getLevelSpinnerPosition());
+        mLevelSpinner.setSelection(SharedPrefsUtils.getLevelSpinnerPosition(getActivity()));
 
         //Set Duck Music CheckBox
-        mDuckMusicCheckBox.setChecked(SharedPrefsUtils.getDuckMusicBoolean());
+        mDuckMusicCheckBox.setChecked(SharedPrefsUtils.getDuckMusicBoolean(getActivity()));
 
         //Set voice and visual toggle
-        mVoiceToggle.setChecked(SharedPrefsUtils.getVoiceToggleBoolean());
-        mVisualToggle.setChecked(SharedPrefsUtils.getVisualToggleBoolean());
+        mVoiceToggle.setChecked(SharedPrefsUtils.getVoiceToggleBoolean(getActivity()));
+        mVisualToggle.setChecked(SharedPrefsUtils.getVisualToggleBoolean(getActivity()));
         controlSwitchBehaviour(mVoiceToggle, mVisualToggle);
 
         return rootView;
@@ -87,21 +87,21 @@ public class SettingsFragment extends Fragment {
         super.onPause();
 
         //Save Music Spinner Position
-        SharedPrefsUtils.saveMusicSpinnerPosition(mMusicSpinner.getSelectedItemPosition());
+        SharedPrefsUtils.saveMusicSpinnerPosition(getActivity(), mMusicSpinner.getSelectedItemPosition());
 
         //Save Training Spinner Position
-        SharedPrefsUtils.saveTrainingSpinnerPosition(mTrainingSpinner.getSelectedItemPosition());
+        SharedPrefsUtils.saveTrainingSpinnerPosition(getActivity(), mTrainingSpinner.getSelectedItemPosition());
 
         //Save Level Spinner Position
-        SharedPrefsUtils.saveLevelSpinnerPosition(mLevelSpinner.getSelectedItemPosition());
+        SharedPrefsUtils.saveLevelSpinnerPosition(getActivity(), mLevelSpinner.getSelectedItemPosition());
 
         //Save Duck Music Boolean
         boolean isChecked = mDuckMusicCheckBox.isChecked();
-        SharedPrefsUtils.saveDuckMusicBoolean(isChecked);
+        SharedPrefsUtils.saveDuckMusicBoolean(getActivity(), isChecked);
 
         //Save voice and visual toggle booleans
-        SharedPrefsUtils.saveVoiceToggleBoolean(mVoiceToggle.isChecked());
-        SharedPrefsUtils.saveVisualToggleBoolean(mVisualToggle.isChecked());
+        SharedPrefsUtils.saveVoiceToggleBoolean(getActivity(), mVoiceToggle.isChecked());
+        SharedPrefsUtils.saveVisualToggleBoolean(getActivity(), mVisualToggle.isChecked());
 
     }
 
@@ -112,7 +112,7 @@ public class SettingsFragment extends Fragment {
             public void onChanged(@Nullable List<Playlist> playlists) {
                 SpinnerUtils.populateMusicSpinnerItems(getActivity(), mMusicSpinner, playlists);
                 //Set Spinner on preferred Position
-                mMusicSpinner.setSelection(SharedPrefsUtils.getMusicSpinnerPosition());
+                mMusicSpinner.setSelection(SharedPrefsUtils.getMusicSpinnerPosition(getActivity()));
             }
         });
     }
@@ -124,7 +124,7 @@ public class SettingsFragment extends Fragment {
             public void onChanged(@Nullable List<Training> trainings) {
                 SpinnerUtils.populateTrainingSpinnerItems(getActivity(), mTrainingSpinner, trainings);
                 //Set Spinner on preferred Position
-                mTrainingSpinner.setSelection(SharedPrefsUtils.getTrainingSpinnerPosition());
+                mTrainingSpinner.setSelection(SharedPrefsUtils.getTrainingSpinnerPosition(getActivity()));
             }
         });
     }
