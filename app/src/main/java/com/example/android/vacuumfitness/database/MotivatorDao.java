@@ -10,6 +10,8 @@ import android.arch.persistence.room.Update;
 
 import com.example.android.vacuumfitness.model.Motivator;
 
+import java.util.List;
+
 @Dao
 public interface MotivatorDao {
 
@@ -18,6 +20,9 @@ public interface MotivatorDao {
 
     @Insert
     void insertAll(Motivator... motivators);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertOrReplaceAll(List<Motivator> motivators);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateMotivator(Motivator motivator);

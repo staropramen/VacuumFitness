@@ -5,14 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.android.vacuumfitness.R;
-import com.example.android.vacuumfitness.service.UpdateMotivatorsService;
+import com.example.android.vacuumfitness.service.UpdateMotivatorsServiceOld;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -79,7 +78,7 @@ public class StartFragment extends Fragment {
         howToButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().startService(new Intent(getActivity(), UpdateMotivatorsService.class));
+                getActivity().startService(new Intent(getActivity(), UpdateMotivatorsServiceOld.class));
             }
         });
 
