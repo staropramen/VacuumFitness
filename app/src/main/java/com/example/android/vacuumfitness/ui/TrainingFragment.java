@@ -192,7 +192,8 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
             }
 
             public void onFinish() {
-                mCountdown.setText("done!");
+                //If training is finished we can finish the training activity
+                getActivity().finish();
             }
         }.start();
     }

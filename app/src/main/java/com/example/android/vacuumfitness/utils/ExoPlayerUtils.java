@@ -43,6 +43,9 @@ public class ExoPlayerUtils {
             exoPlayer = prepareExoPlayerFromRawResourceUri(context, exoPlayer, song.getPath());
         }
 
+        //Set the player to loop mode
+        exoPlayer.setRepeatMode(Player.REPEAT_MODE_ALL);
+
         exoPlayer.setPlayWhenReady(true);
 
         return exoPlayer;
