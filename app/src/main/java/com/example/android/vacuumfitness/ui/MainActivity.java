@@ -1,30 +1,31 @@
 package com.example.android.vacuumfitness.ui;
 
-import android.app.PendingIntent;
-import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
-import android.preference.PreferenceFragment;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.android.vacuumfitness.MotivationAppWidget;
+import androidx.work.Constraints;
+import androidx.work.NetworkType;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
+
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.database.AppDatabase;
 import com.example.android.vacuumfitness.utils.AppExecutors;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.utils.SharedPrefsUtils;
+import com.example.android.vacuumfitness.worker.UpdateMotivatorWorker;
+
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -93,6 +94,9 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
                 }
             });
 
+            //Set tasks for WorkManager
+            setupWorker();
+
             //In the end i save a boolean to SharedPrefs that App knows that is not the first Run anymore
             SharedPrefsUtils.saveIsFirstRunToPrefs(this);
         }
@@ -133,6 +137,23 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
             Intent i = new Intent(this, TrainingActivity.class);
             startActivity(i);
         }
+    }
+
+    private void setupWorker() {
+        //Setup the constraints for workmanager
+        Constraints constraints = new Constraints.Builder()
+                .setRequiredNetworkType(NetworkType.CONNECTED)
+                .build();
+
+        //Setup the periodic work for 1 week
+        PeriodicWorkRequest updateMotivatorsTask =
+                new PeriodicWorkRequest.Builder(UpdateMotivatorWorker.class, 7, TimeUnit.DAYS)
+                .setConstraints(constraints)
+                .build();
+
+        //Setup Workmanager
+        WorkManager.getInstance()
+                .enqueue(updateMotivatorsTask);
     }
 
     @Override

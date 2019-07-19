@@ -5,15 +5,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.android.vacuumfitness.R;
+import com.example.android.vacuumfitness.database.AppDatabase;
+import com.example.android.vacuumfitness.model.Motivator;
 import com.example.android.vacuumfitness.service.UpdateMotivatorsService;
 import com.example.android.vacuumfitness.service.UpdateMotivatorsServiceOld;
 import com.example.android.vacuumfitness.service.UpdateMotivatorsTask;
+import com.example.android.vacuumfitness.utils.AppExecutors;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -80,9 +85,19 @@ public class StartFragment extends Fragment {
         howToButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent updateMotivatorsIntent = new Intent(getActivity(), UpdateMotivatorsService.class);
-                updateMotivatorsIntent.setAction(UpdateMotivatorsTask.ACTION_UPDATE_MOTIVATORS);
-                getActivity().startService(updateMotivatorsIntent);
+                AppExecutors.getInstance().diskIO().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        final Motivator motivator = AppDatabase.getInstance(getActivity()).motivatorDao().loadMotivatorById(1);
+                        AppExecutors.getInstance().mainThread().execute(new Runnable() {
+                            @Override
+                            public void run() {
+                                String motivatorText = motivator.getMotivationText();
+                                Toast.makeText(getActivity(), motivatorText, Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+                });
             }
         });
 

@@ -10,7 +10,8 @@
     <TextView
         android:id="@+id/tv_toast_text"
         style="@style/toast_text"
-        android:background="@drawable/round_corners_background"
+        android:background="@drawable/rounded_spinner"
+        android:backgroundTint="@color/colorPrimaryLight"
         android:padding="@dimen/margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
