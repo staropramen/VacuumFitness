@@ -28,13 +28,15 @@ public class SpinnerUtils {
         itemList.add(noMusicPlaylist.getPlaylistName());
         allPlaylists.add(noMusicPlaylist);
 
-        //App music 1
-        List<Song> songs = new ArrayList<>();
-        Song relaxSong = new Song("dummymusic", "Various Artists", "Relax", "2983000");
-        songs.add(relaxSong);
-        Playlist relaxingPlaylist = new Playlist("Relaxing Music", songs, false);
-        itemList.add(relaxingPlaylist.getPlaylistName());
-        allPlaylists.add(relaxingPlaylist);
+        //Add the defaul playlists
+        itemList.add(MusicUtils.getDeepBluePlaylist().getPlaylistName());
+        allPlaylists.add(MusicUtils.getDeepBluePlaylist());
+
+        itemList.add(MusicUtils.getRelaxingPlaylist().getPlaylistName());
+        allPlaylists.add(MusicUtils.getRelaxingPlaylist());
+
+        itemList.add(MusicUtils.getSlowMotionPlaylist().getPlaylistName());
+        allPlaylists.add(MusicUtils.getSlowMotionPlaylist());
 
         //Add Playlists to itemList
         for (int i = 0; i < dbPlaylists.size(); i++){

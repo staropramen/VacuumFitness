@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 
 import com.example.android.vacuumfitness.R;
+import com.example.android.vacuumfitness.model.Playlist;
 import com.example.android.vacuumfitness.model.Song;
 import com.example.android.vacuumfitness.ui.MainActivity;
 
@@ -73,5 +74,35 @@ public class MusicUtils {
         int durationInSeconds = durationInMillis / 1000;
 
         return PreparationUtils.secondsToTimeString(durationInSeconds);
+    }
+
+    public static Playlist getDeepBluePlaylist() {
+        //App music 1
+        List<Song> songs = new ArrayList<>();
+        Song relaxSong = new Song("bensound_deepblue", "Bensound.com", "Deep Blue", "288000");
+        songs.add(relaxSong);
+        Playlist playlist = new Playlist("Deep Blue", songs, false);
+
+        return playlist;
+    }
+
+    public static Playlist getSlowMotionPlaylist() {
+        //App music 1
+        List<Song> songs = new ArrayList<>();
+        Song relaxSong = new Song("bensound_slowmotion", "Bensound.com", "Slow Motion", "288000");
+        songs.add(relaxSong);
+        Playlist playlist = new Playlist("Slow Motion", songs, false);
+
+        return playlist;
+    }
+
+    public static Playlist getRelaxingPlaylist() {
+        //App music 1
+        List<Song> songs = new ArrayList<>();
+        Song relaxSong = new Song("bensound_relaxing", "Bensound.com", "Relaxing", "206000");
+        songs.add(relaxSong);
+        Playlist playlist = new Playlist("Relaxing", songs, false);
+
+        return playlist;
     }
 }
