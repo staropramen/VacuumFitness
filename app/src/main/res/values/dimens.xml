@@ -2,6 +2,9 @@
 <resources>
     <dimen name="app_bar_elevation">8dp</dimen>
 
+    <!-- General -->
+    <dimen name="recycler_view_width_land">400dp</dimen>
+
     <!-- Margins -->
     <dimen name="xxl_margin">32dp</dimen>
     <dimen name="xl_margin">24dp</dimen>

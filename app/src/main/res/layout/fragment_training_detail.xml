@@ -23,20 +23,6 @@
         app:layout_constraintStart_toStartOf="@+id/tv_exercises_title"
         app:layout_constraintTop_toBottomOf="@+id/tv_exercises_title" />
 
-    <Button
-        android:id="@+id/bt_start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/xxl_margin"
-        android:background="@color/colorPrimary"
-        android:padding="@dimen/spinner_padding"
-        android:text="@string/start_button"
-        android:textColor="@color/white"
-        android:textSize="@dimen/big_text"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_exercises_count"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_exercises_title" />
-
     <View
         android:id="@+id/v_separator"
         android:layout_width="0dp"
@@ -48,7 +34,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_exercises_by_ids"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
