@@ -14,14 +14,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <service
-            android:name=".service.UpdateMotivatorsService"
-            android:exported="false"></service>
-        <service
-            android:name=".service.UpdateMotivatorsServiceOld"
-            android:enabled="true"
-            android:exported="true"
-            android:stopWithTask="true" />
 
         <receiver android:name=".MotivationAppWidget">
             <intent-filter>

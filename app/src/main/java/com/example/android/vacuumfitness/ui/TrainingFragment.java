@@ -274,21 +274,38 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
         setupPauseButton();
         setupVideoButton(currentExercise);
         setupMusicButton();
+    }
 
+    //Check if hast music and start it
+    private void startMusic() {
         //Start Music
         if(mHasMusic){
             //Initialize ExoPlayer
             mExoPlayer = ExoPlayerUtils.initializeExoPlayer(getActivity(), mExoPlayer, mPlaylist, this);
             //initializePlayer(ExoPlayerUtils.getMediaSourcePlaylist(getActivity(), mPlaylist.getSongList()));
 
+            int playlistSize = mPlaylist.getSongList().size();
 
             //Set player position if same playlist as last time
             if(mPlaylist.getPrimaryKey() == SharedPrefsUtils.getPlaylistId(getActivity())){
                 long exoPlayerPosition = SharedPrefsUtils.getExoPlayerPosition(getActivity());
-                if(exoPlayerPosition != 0 && exoPlayerPosition != 0){
-                    mExoPlayer.seekTo(exoPlayerPosition);
+                int exoPlayerIndex =  SharedPrefsUtils.getExoPlayerIndex(getActivity());
+                if(exoPlayerPosition != 0 && exoPlayerIndex < playlistSize){
+                    mExoPlayer.seekTo(exoPlayerIndex, exoPlayerPosition);
                 }
             }
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //If hasMusic kick off the music
+        startMusic();
+
+        //If Training is paused pause the music
+        if(mHasMusic && mTrainingIsPaused){
+            pauseStartPlayer();
         }
     }
 
@@ -302,13 +319,18 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
         }
 
         if(mHasMusic){
-            //Save Exoplayer position and Playlist Id to shared prefs
+            //Save Exoplayer position, index and Playlist Id to shared prefs
             SharedPrefsUtils.saveExoPlayerPosition(getActivity(), mExoPlayer.getCurrentPosition());
+            SharedPrefsUtils.saveExoPlayerIndex(getActivity(), mExoPlayer.getCurrentWindowIndex());
             SharedPrefsUtils.savePlaylistId(getActivity(), mPlaylist.getPrimaryKey());
 
             //Pause ExoPlayer
             mExoPlayer.setPlayWhenReady(false);
         }
+
+        //TODO DELETE OR REORGANIZE
+        int index = mExoPlayer.getCurrentWindowIndex();
+        Log.d("INDEX", String.valueOf(index));
 
     }
 

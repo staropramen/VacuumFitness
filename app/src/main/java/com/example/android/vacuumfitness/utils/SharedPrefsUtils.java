@@ -19,6 +19,7 @@ public class SharedPrefsUtils {
     private static String EXERCISE_IDS = "exercise-ids";
     private static String IS_FIRST_RUN = "is-first-run";
     private static String EXO_PLAYER_POSITION = "exo-player-position";
+    private static String EXO_PLAYER_INDEX = "exo-player-index";
     private static String PLAYLIST_ID = "playlist-id";
     private static String MUSIC_SPINNER_POSITION = "music-spinner-position";
     private static String TRAINING_SPINNER_POSITION = "training-spinner-position";
@@ -51,6 +52,17 @@ public class SharedPrefsUtils {
     public static boolean getIsFirstRun(Context context){
         Boolean isFirstRun = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(IS_FIRST_RUN, true);
         return isFirstRun;
+    }
+
+    public static void saveExoPlayerIndex(Context context, int index){
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        editor.putInt(EXO_PLAYER_INDEX, index);
+        editor.apply();
+    }
+
+    public static int getExoPlayerIndex(Context context){
+        int index = PreferenceManager.getDefaultSharedPreferences(context).getInt(EXO_PLAYER_INDEX, 0);
+        return index;
     }
 
     public static void saveExoPlayerPosition(Context context, long position){
