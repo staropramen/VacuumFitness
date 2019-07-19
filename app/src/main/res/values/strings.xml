@@ -9,6 +9,8 @@
     <string name="customize_training">Customize \n Training</string>
     <string name="customize_music">Customize \n Music</string>
     <string name="how_to">How To</string>
+    <string name="about_us">About Us</string>
+    <string name="about">About</string>
 
     <!-- Settings -->
     <string name="settings">Settings</string>
@@ -107,5 +109,8 @@
 
     <!-- About -->
     <string name="music_credits">Music: Deep Blue, Relaxing and Slow Motion from Bensound.com</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

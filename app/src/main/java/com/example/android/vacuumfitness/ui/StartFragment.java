@@ -5,16 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.android.vacuumfitness.R;
-import com.example.android.vacuumfitness.database.AppDatabase;
-import com.example.android.vacuumfitness.model.Motivator;
-import com.example.android.vacuumfitness.utils.AppExecutors;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,7 +22,7 @@ import butterknife.ButterKnife;
  */
 public class StartFragment extends Fragment {
 
-    @BindView(R.id.start_training_button) ImageView startTraining;
+    @BindView(R.id.about_us_button) ImageView startTraining;
     @BindView(R.id.customize_training_button) ImageView customizeTraining;
     @BindView(R.id.customize_music_button) ImageView customizeMusic;
     @BindView(R.id.how_to_button) ImageView howToButton;
@@ -81,11 +78,19 @@ public class StartFragment extends Fragment {
         howToButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                aboutFragmentTransaction();
             }
         });
 
         return rootView;
+    }
+
+    private void aboutFragmentTransaction() {
+        AboutFragment fragment = new AboutFragment();
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.start_content, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
 }

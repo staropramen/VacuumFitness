@@ -9,7 +9,7 @@
     tools:context=".ui.StartFragment">
 
         <ImageView
-            android:id="@+id/start_training_button"
+            android:id="@+id/about_us_button"
             android:layout_width="match_parent"
             android:layout_height="@dimen/start_image_height"
             android:layout_marginStart="@dimen/xxl_margin"
@@ -17,7 +17,6 @@
             android:scaleType="centerCrop"
             android:src="@drawable/start_training"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,10 +24,10 @@
             android:id="@+id/start_training"
             style="@style/start_buttons_text"
             android:text="@string/start_training"
-            app:layout_constraintBottom_toBottomOf="@+id/start_training_button"
-            app:layout_constraintEnd_toEndOf="@+id/start_training_button"
-            app:layout_constraintStart_toStartOf="@+id/start_training_button"
-            app:layout_constraintTop_toTopOf="@+id/start_training_button" />
+            app:layout_constraintBottom_toBottomOf="@+id/about_us_button"
+            app:layout_constraintEnd_toEndOf="@+id/about_us_button"
+            app:layout_constraintStart_toStartOf="@+id/about_us_button"
+            app:layout_constraintTop_toTopOf="@+id/about_us_button" />
 
         <ImageView
             android:id="@+id/customize_training_button"
@@ -41,7 +40,7 @@
             android:src="@drawable/cust_training"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/start_training_button" />
+            app:layout_constraintTop_toBottomOf="@id/about_us_button" />
 
         <TextView
             android:id="@+id/customize_training"
