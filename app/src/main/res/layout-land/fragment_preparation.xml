@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.PreparationFragment">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.PreparationFragment">
+
+        <TextView
+            android:id="@+id/tv_prepare_title"
+            style="@style/prepare_fragment_title"
+            android:layout_marginStart="@dimen/title_margin_left"
+            android:layout_marginTop="@dimen/s_margin"
+            android:text="@string/prepare_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_training_title"
+            style="@style/descriptions"
+            android:text="@string/training_title"
+            android:layout_marginTop="@dimen/margin"
+            app:layout_constraintStart_toStartOf="@+id/relativeLayout"
+            app:layout_constraintTop_toBottomOf="@+id/tv_prepare_title" />
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="@dimen/spinner_width"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/s_margin"
+            android:layout_marginStart="@dimen/margin"
+            android:background="@drawable/rounded_spinner"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_training_title">
+
+            <Spinner
+                android:id="@+id/sp_training_selection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foregroundTint="@color/grey"
+                android:padding="@dimen/spinner_padding"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_level_title"
+            style="@style/descriptions"
+            android:layout_marginTop="@dimen/margin"
+            android:text="@string/level_title"
+            app:layout_constraintStart_toStartOf="@+id/level_spinner_holder"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+        <RelativeLayout
+            android:id="@+id/level_spinner_holder"
+            android:layout_width="@dimen/spinner_width"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_spinner"
+            android:layout_marginTop="@dimen/s_margin"
+            android:layout_marginStart="@dimen/margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_level_title"
+            tools:layout_editor_absoluteY="154dp">
+
+            <Spinner
+                android:id="@+id/sp_level_selection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/levelSpinnerItems"
+                android:foregroundTint="@color/grey"
+                android:padding="@dimen/spinner_padding"></Spinner>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_how_much"
+            style="@style/descriptions"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="@dimen/xxl_margin"
+            android:layout_marginEnd="8dp"
+            android:text="@string/how_much_exercises"
+            app:layout_constraintEnd_toEndOf="@+id/iv_decreasebutton"
+            app:layout_constraintStart_toStartOf="@+id/tv_exercise_count"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            style="@style/descriptions"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginBottom="8dp"
+            android:text="@string/time"
+            app:layout_constraintTop_toBottomOf="@id/tv_exercise_count"
+            app:layout_constraintEnd_toEndOf="@+id/tv_min_text"
+            app:layout_constraintStart_toStartOf="@+id/tv_time_count" />
+
+        <TextView
+            android:id="@+id/tv_exercise_count"
+            style="@style/big_text"
+            android:layout_width="@dimen/count_view_width"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginEnd="8dp"
+            android:text="@string/default_exercise_count"
+            app:layout_constraintEnd_toStartOf="@+id/iv_increase_button"
+            app:layout_constraintTop_toBottomOf="@+id/tv_how_much" />
+
+        <ImageView
+            android:id="@+id/iv_increase_button"
+            android:layout_width="@dimen/increase_button_size"
+            android:layout_height="@dimen/increase_button_size"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_plus"
+            android:tint="@color/grey"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_exercise_count"
+            app:layout_constraintEnd_toStartOf="@+id/iv_decreasebutton"
+            app:layout_constraintTop_toTopOf="@+id/tv_exercise_count" />
+
+        <ImageView
+            android:id="@+id/iv_decreasebutton"
+            android:layout_width="@dimen/increase_button_size"
+            android:layout_height="@dimen/increase_button_size"
+            android:layout_marginEnd="@dimen/margin"
+            android:src="@drawable/ic_minus"
+            android:tint="@color/grey"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_increase_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_increase_button" />
+
+        <TextView
+            android:id="@+id/tv_min_text"
+            style="@style/descriptions"
+            android:layout_marginEnd="@dimen/xxl_margin"
+            android:text="@string/minutes_short"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_time_count"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_time_count"
+            style="@style/big_text"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/s_margin"
+            app:layout_constraintEnd_toStartOf="@+id/tv_min_text"
+            app:layout_constraintTop_toBottomOf="@+id/tv_time" />
+
+        <TextView
+            android:id="@+id/tv_music_title"
+            style="@style/descriptions"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
+            android:text="@string/music_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/level_spinner_holder" />
+
+        <RelativeLayout
+            android:id="@+id/music_spinner"
+            android:layout_width="@dimen/spinner_width"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/s_margin"
+            android:layout_marginStart="@dimen/margin"
+            android:background="@drawable/rounded_spinner"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_music_title">
+
+            <Spinner
+                android:id="@+id/sp_music_selection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="0dp"
+                android:foregroundTint="@color/grey"
+                android:padding="@dimen/spinner_padding" />
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/bt_start_training"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin"
+            android:background="@color/colorPrimary"
+            android:padding="@dimen/spinner_padding"
+            android:text="@string/start_button"
+            android:textColor="@color/white"
+            android:textSize="@dimen/big_text"
+            app:layout_constraintEnd_toEndOf="@id/tv_min_text"
+            app:layout_constraintStart_toStartOf="@+id/tv_time_count"
+            app:layout_constraintTop_toBottomOf="@+id/tv_min_text" />
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>

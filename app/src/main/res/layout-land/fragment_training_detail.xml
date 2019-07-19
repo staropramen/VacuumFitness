@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.TrainingDetailFragment">
+
+
+    <TextView
+        android:id="@+id/tv_exercises_title"
+        style="@style/descriptions"
+        android:layout_marginTop="@dimen/margin"
+        android:layout_marginStart="@dimen/margin"
+        android:text="@string/exercises"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_exercises_count"
+        style="@style/big_text"
+        app:layout_constraintEnd_toEndOf="@+id/tv_exercises_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_exercises_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_exercises_title" />
+
+    <View
+        android:id="@+id/v_separator"
+        android:layout_width="@dimen/separator_height"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/margin"
+        android:background="@color/light_grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tv_exercises_title"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_exercises_by_ids"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/v_separator"
+        app:layout_constraintTop_toTopOf="parent" >
+
+    </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/tv_empty_exercises"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        style="@style/medium_text"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="@string/empty_training_detail"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/v_separator"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_add_exercise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_add"
+        android:tint="@color/white"
+        android:layout_margin="@dimen/xxl_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
