@@ -110,47 +110,40 @@ public class TrainingTimerUtils {
     }
 
 
-    public static int getVoiceCommandInt(int[] cornerStones, int counter, Context context){
+    public static int getVoiceCommandInt(int[] cornerStones, int counter, long trainingTime, Context context){
 
         if(counter == cornerStones[0]){
-            //Toast.makeText(context, "Prepare", Toast.LENGTH_SHORT).show();
             return R.raw.take_position;
         } else if(counter == cornerStones[1]){
-            //Toast.makeText(context, "Inhale", Toast.LENGTH_SHORT).show();
             return R.raw.inhale;
         } else if(counter == cornerStones[2]){
-            //Toast.makeText(context, "Exhale", Toast.LENGTH_SHORT).show();
             return R.raw.exhale;
         } else if(counter == cornerStones[3]){
-            //Toast.makeText(context, "Inhale", Toast.LENGTH_SHORT).show();
             return R.raw.inhale;
         } else if(counter == cornerStones[4]){
-            //Toast.makeText(context, "Exhale", Toast.LENGTH_SHORT).show();
             return R.raw.exhale;
         } else if(counter == cornerStones[5]){
-            //Toast.makeText(context, "Vacuum", Toast.LENGTH_SHORT).show();
             return R.raw.vacuum;
         } else if(counter == cornerStones[6]){
-            //Toast.makeText(context, "Rest", Toast.LENGTH_SHORT).show();
             return R.raw.relax;
         } else if(counter == cornerStones[7]){
-            //Toast.makeText(context, "Inhale", Toast.LENGTH_SHORT).show();
             return R.raw.inhale;
         } else if(counter == cornerStones[8]){
-            //Toast.makeText(context, "Exhale", Toast.LENGTH_SHORT).show();
             return R.raw.exhale;
         } else if(counter == cornerStones[9]){
-            //Toast.makeText(context, "Inhale", Toast.LENGTH_SHORT).show();
             return R.raw.inhale;
         } else if(counter == cornerStones[10]){
-            //Toast.makeText(context, "Exhale", Toast.LENGTH_SHORT).show();
             return R.raw.exhale;
         } else if(counter == cornerStones[11]){
-            //Toast.makeText(context, "Vacuum", Toast.LENGTH_SHORT).show();
             return R.raw.vacuum;
         } else if(counter == cornerStones[12]){
-            //Toast.makeText(context, "Relax", Toast.LENGTH_SHORT).show();
-            return R.raw.change;
+            //If training is up to finish here we return a finish raw file
+            if(trainingTime < 20000){
+                //TODO Put the right raw file
+                return R.raw.take_position;
+            } else {
+                return R.raw.change;
+            }
         } else {
             //If counter is not at cornerstone position return 0
             return 0;
@@ -158,7 +151,7 @@ public class TrainingTimerUtils {
 
     }
 
-    public static String getVisualCommandString(int[] cornerStones, int counter, Context context){
+    public static String getVisualCommandString(int[] cornerStones, int counter, long trainingTime, Context context){
         String visualCommand = "";
         Resources res = context.getResources();
 
@@ -187,7 +180,14 @@ public class TrainingTimerUtils {
         } else if(counter == cornerStones[11]){
             return res.getString(R.string.vacuum);
         } else if(counter == cornerStones[12]){
-            return res.getString(R.string.change);
+            //If training is up to finish here we return a finish raw file
+            if(trainingTime < 20000){
+                //TODO Put the right raw file
+                return res.getString(R.string.finish);
+            } else {
+                return res.getString(R.string.change);
+            }
+
         } else {
             //If counter is not at cornerstone position return empty string
             return visualCommand;

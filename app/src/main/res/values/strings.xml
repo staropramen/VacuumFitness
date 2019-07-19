@@ -26,6 +26,7 @@
     <string name="vacuum">Make the vacuum</string>
     <string name="relax">Relax</string>
     <string name="change">Relax and get ready to change position</string>
+    <string name="finish">Relax, congratulations you finished the training</string>
 
     <!-- Keys -->
     <string name="key_playlist_name">playlist-name</string>

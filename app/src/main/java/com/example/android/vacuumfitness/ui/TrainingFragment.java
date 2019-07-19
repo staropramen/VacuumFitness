@@ -1,26 +1,18 @@
 package com.example.android.vacuumfitness.ui;
 
 
-import android.app.AlertDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.ActivityNotFoundException;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.drawable.GradientDrawable;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,37 +26,20 @@ import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.database.AppDatabase;
 import com.example.android.vacuumfitness.model.Exercise;
 import com.example.android.vacuumfitness.model.Playlist;
-import com.example.android.vacuumfitness.model.Song;
 import com.example.android.vacuumfitness.utils.ExoPlayerUtils;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.utils.ListConverter;
-import com.example.android.vacuumfitness.utils.MusicUtils;
 import com.example.android.vacuumfitness.utils.NetworkUtils;
 import com.example.android.vacuumfitness.utils.SharedPrefsUtils;
 import com.example.android.vacuumfitness.utils.TrainingTimerUtils;
 import com.example.android.vacuumfitness.viewmodel.TrainingViewModel;
-import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlaybackException;
-import com.google.android.exoplayer2.ExoPlayerFactory;
-import com.google.android.exoplayer2.LoadControl;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.Timeline;
-import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
-import com.google.android.exoplayer2.source.ConcatenatingMediaSource;
-import com.google.android.exoplayer2.source.ExtractorMediaSource;
-import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.TrackGroupArray;
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
-import com.google.android.exoplayer2.trackselection.TrackSelector;
-import com.google.android.exoplayer2.ui.PlayerControlView;
-import com.google.android.exoplayer2.upstream.DataSource;
-import com.google.android.exoplayer2.upstream.DataSpec;
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
-import com.google.android.exoplayer2.upstream.RawResourceDataSource;
-import com.google.android.exoplayer2.util.Util;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -81,14 +56,14 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
     private static String LOG_TAG = TrainingFragment.class.getSimpleName();
 
     @BindView(R.id.tv_timer) TextView mCountdown;
-    @BindView(R.id.tv_exercise_count_of) TextView mExerciseCount;
+    @BindView(R.id.tv_exercise_count_of) TextView mExerciseCountTextView;
     @BindView(R.id.tv_exercise_list_name) TextView mExerciseName;
     @BindView(R.id.iv_exercise_image) ImageView mExerciseImage;
     @BindView(R.id.iv_start_pause) ImageView mStartPauseIV;
     @BindView(R.id.iv_video_button) ImageView mVideoButton;
     @BindView(R.id.iv_music_button) ImageView mMusicButton;
 
-    private int exerciseCount;
+    private int mExerciseCount;
     private int level;
 
     private int mTimeCounter = 0;
@@ -142,14 +117,14 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
         //Get Data from Bundle
         Bundle data = getArguments();
         if(data != null && data.containsKey(KeyUtils.EXERCISE_COUNT_KEY) && data.containsKey(KeyUtils.LEVEL_KEY)){
-            exerciseCount = data.getInt(KeyUtils.EXERCISE_COUNT_KEY);
+            mExerciseCount = data.getInt(KeyUtils.EXERCISE_COUNT_KEY);
             level = data.getInt(KeyUtils.LEVEL_KEY);
             mIdList = ListConverter.fromString(data.getString(KeyUtils.ID_LIST_KEY));
             mPlaylist = data.getParcelable(KeyUtils.PLAYLIST_KEY);
         }
 
         //Make the Training time
-        mTrainingTime = TrainingTimerUtils.getTrainingTimeMilliseconds(level, exerciseCount);
+        mTrainingTime = TrainingTimerUtils.getTrainingTimeMilliseconds(level, mExerciseCount);
 
         //Prepare the Media Source for Exoplayer
         if(mPlaylist != null){
@@ -196,13 +171,13 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
 
                 //Give Voice Commands if user wants
                 if(mHasVoiceCommands){
-                    int voiceCommand = TrainingTimerUtils.getVoiceCommandInt(TrainingTimerUtils.getCommandCorners(level), mTimeCounter, getActivity());
+                    int voiceCommand = TrainingTimerUtils.getVoiceCommandInt(TrainingTimerUtils.getCommandCorners(level), mTimeCounter, mTrainingTime, getActivity());
                     playVoiceCommand(voiceCommand);
                 }
 
                 //Give visual commands if user wants
                 if(mHasVisualCommands){
-                    String visualCommand = TrainingTimerUtils.getVisualCommandString(TrainingTimerUtils.getCommandCorners(level), mTimeCounter, getActivity());
+                    String visualCommand = TrainingTimerUtils.getVisualCommandString(TrainingTimerUtils.getCommandCorners(level), mTimeCounter, mTrainingTime, getActivity());
                     makeCommandToast(visualCommand);
                 }
 
@@ -248,7 +223,7 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
         //Get current exercise
         Exercise currentExercise = exerciseList.get(counter - 1);
         //Set Exercise count
-        mExerciseCount.setText(TrainingTimerUtils.makeExerciseCountString(counter, exerciseCount));
+        mExerciseCountTextView.setText(TrainingTimerUtils.makeExerciseCountString(counter, mExerciseCount));
         //Set exercise name
         mExerciseName.setText(currentExercise.getExerciseName());
         //Set exercise image
@@ -327,10 +302,6 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
             //Pause ExoPlayer
             mExoPlayer.setPlayWhenReady(false);
         }
-
-        //TODO DELETE OR REORGANIZE
-        int index = mExoPlayer.getCurrentWindowIndex();
-        Log.d("INDEX", String.valueOf(index));
 
     }
 
