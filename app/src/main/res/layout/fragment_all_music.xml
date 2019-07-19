@@ -10,4 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+    <TextView
+        android:id="@+id/tv_no_music_on_device"
+        style="@style/big_text"
+        android:visibility="invisible"
+        android:layout_gravity="center"
+        android:padding="@dimen/xxl_margin"
+        android:text="@string/no_music_on_device"/>
+
 </FrameLayout>

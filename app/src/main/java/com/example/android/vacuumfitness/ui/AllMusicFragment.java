@@ -1,36 +1,24 @@
 package com.example.android.vacuumfitness.ui;
 
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.adapter.ChooseSongAdapter;
-import com.example.android.vacuumfitness.adapter.SongAdapter;
 import com.example.android.vacuumfitness.database.AppDatabase;
 import com.example.android.vacuumfitness.model.Playlist;
 import com.example.android.vacuumfitness.model.Song;
 import com.example.android.vacuumfitness.utils.AppExecutors;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.utils.MusicUtils;
-import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
-import com.google.android.exoplayer2.source.ConcatenatingMediaSource;
-import com.google.android.exoplayer2.source.ExtractorMediaSource;
-import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
-import com.google.android.exoplayer2.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,12 +31,13 @@ import butterknife.ButterKnife;
  */
 public class AllMusicFragment extends Fragment implements ChooseSongAdapter.ChooseSongClickHandler {
 
-    private List<Song> songs;
+    private List<Song> mSongs;
     private List<Song> mChosenSongs;
     private Playlist mPlaylist;
     private LinearLayoutManager layoutManager;
     private ChooseSongAdapter songAdapter;
-    @BindView(R.id.rv_songs_view) RecyclerView songsRecyclerView;
+    @BindView(R.id.rv_songs_view) RecyclerView mSongsRecyclerView;
+    @BindView(R.id.tv_no_music_on_device) TextView mNoMusicTextView;
 
     public AllMusicFragment() {
         // Required empty public constructor
@@ -76,7 +65,7 @@ public class AllMusicFragment extends Fragment implements ChooseSongAdapter.Choo
             mPlaylist = null;
         }
 
-        //Get the list of existing songs
+        //Get the list of existing mSongs
         if(mPlaylist.getSongList() == null){
             mChosenSongs = new ArrayList<>();
         }else {
@@ -85,9 +74,9 @@ public class AllMusicFragment extends Fragment implements ChooseSongAdapter.Choo
 
         //Prepare RecyclerView
         layoutManager = new LinearLayoutManager(getContext());
-        songsRecyclerView.setLayoutManager(layoutManager);
+        mSongsRecyclerView.setLayoutManager(layoutManager);
         songAdapter = new ChooseSongAdapter(this, mChosenSongs, getActivity());
-        songsRecyclerView.setAdapter(songAdapter);
+        mSongsRecyclerView.setAdapter(songAdapter);
 
         setupSongAdapter();
 
@@ -98,12 +87,18 @@ public class AllMusicFragment extends Fragment implements ChooseSongAdapter.Choo
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
             public void run() {
-                songs = MusicUtils.getSongList(getActivity());
+                mSongs = MusicUtils.getSongList(getActivity());
 
                 AppExecutors.getInstance().mainThread().execute(new Runnable() {
                     @Override
                     public void run() {
-                        songAdapter.setSongs(songs);
+                        if(mSongs.size() > 0){
+                            songAdapter.setSongs(mSongs);
+                        } else {
+                            mSongsRecyclerView.setVisibility(View.INVISIBLE);
+                            mNoMusicTextView.setVisibility(View.VISIBLE);
+                        }
+
                     }
                 });
             }

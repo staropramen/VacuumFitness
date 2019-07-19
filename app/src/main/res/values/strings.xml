@@ -99,6 +99,7 @@
     <string name="playlist_duration">Playlist Duration:</string>
     <string name="zero_time">00:00</string>
     <string name="permission_denied">You must give the permission to customize music.</string>
+    <string name="no_music_on_device">We did not find any music on your device.</string>
 
     <!-- Widget -->
     <string name="add_widget">Add widget</string>
