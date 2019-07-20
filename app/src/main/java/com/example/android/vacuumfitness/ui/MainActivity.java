@@ -24,6 +24,7 @@ import com.example.android.vacuumfitness.utils.AppExecutors;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.utils.SharedPrefsUtils;
 import com.example.android.vacuumfitness.worker.UpdateMotivatorWorker;
+import com.google.android.gms.ads.MobileAds;
 
 import java.util.concurrent.TimeUnit;
 
@@ -78,6 +79,8 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
 
         //Activity is ready now we check for Widget Intent
         checkForWidgetIntent();
+
+
 
     }
 

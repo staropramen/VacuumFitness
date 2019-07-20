@@ -26,6 +26,7 @@ import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.database.AppDatabase;
 import com.example.android.vacuumfitness.model.Exercise;
 import com.example.android.vacuumfitness.model.Playlist;
+import com.example.android.vacuumfitness.utils.AdMobUtils;
 import com.example.android.vacuumfitness.utils.ExoPlayerUtils;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.utils.ListConverter;
@@ -40,6 +41,8 @@ import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -62,6 +65,7 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
     @BindView(R.id.iv_start_pause) ImageView mStartPauseIV;
     @BindView(R.id.iv_video_button) ImageView mVideoButton;
     @BindView(R.id.iv_music_button) ImageView mMusicButton;
+    @BindView(R.id.adView) AdView mAdView;
 
     private int mExerciseCount;
     private int level;
@@ -153,6 +157,10 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
             mExoPlayerIsPaused = savedInstanceState.getBoolean(KeyUtils.EXOPLAYER_IS_PAUSED);
             setupTrainingViewModel();
         }
+
+        //Load the Ad
+        AdMobUtils.loadAd(mAdView);
+
         return rootView;
     }
 

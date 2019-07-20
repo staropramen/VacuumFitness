@@ -52,6 +52,8 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer:2.8.1'
     //Workmanager
     implementation "android.arch.work:work-runtime:1.0.1"
+    //AdMob
+    freeImplementation 'com.google.android.gms:play-services-ads:17.2.1'
 
     annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
     testImplementation 'junit:junit:4.12'
