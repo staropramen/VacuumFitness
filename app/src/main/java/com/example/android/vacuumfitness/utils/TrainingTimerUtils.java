@@ -16,20 +16,24 @@ import java.util.concurrent.TimeUnit;
 
 public class TrainingTimerUtils {
 
+    private static int prepare = 8;
+    private static int inhale = 2;
+    private static int exhale = 4;
+    private static int rest = 6;
+    private static int relax = 8;
+    private static int vacuumBeginner = 12;
+    private static int vacuumIntermediate = 17;
+    private static int vacuumAdvanced = 22;
+
     //Return time per exercise based on level
     public static int exerciseTime(int level){
-        int prepare = 10;
-        int inhale = 2;
-        int exhale = 4;
-        int rest = 8;
-        int relax = 13;
         int vacuum;
         if(level == 0){
-            vacuum = 15;
+            vacuum = vacuumBeginner;
         }else if (level == 1){
-            vacuum = 22;
+            vacuum = vacuumIntermediate;
         }else {
-            vacuum = 30;
+            vacuum = vacuumAdvanced;
         }
 
         int time = prepare + 4 * inhale + 4 * exhale + 2 * vacuum + rest + relax;
@@ -47,18 +51,13 @@ public class TrainingTimerUtils {
 
     //Functions that returns the actual state of the exercise as Integer
     private static int exerciseState(int counter, int level, int state){
-        int prepare = 10;
-        int inhale = 2;
-        int exhale = 4;
-        int rest = 8;
-        int relax = 13;
         int vacuum;
         if(level == 1){
-            vacuum = 15;
+            vacuum = vacuumBeginner;
         }else if (level == 2){
-            vacuum = 22;
+            vacuum = vacuumIntermediate;
         }else {
-            vacuum = 30;
+            vacuum = vacuumAdvanced;
         }
 
         if(counter == 0){
@@ -78,18 +77,14 @@ public class TrainingTimerUtils {
 
     //Function returns array of integers tha are the corners for commands
     public static int[] getCommandCorners(int level){
-        int prepare = 10;
-        int inhale = 2;
-        int exhale = 4;
-        int rest = 8;
-        int relax = 13;
+
         int vacuum;
         if(level == 0){
-            vacuum = 15;
+            vacuum = vacuumBeginner;
         }else if (level == 1){
-            vacuum = 22;
+            vacuum = vacuumIntermediate;
         }else {
-            vacuum = 30;
+            vacuum = vacuumAdvanced;
         }
 
         int stoneOne = prepare + inhale;
