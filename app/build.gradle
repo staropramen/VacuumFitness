@@ -16,6 +16,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "standard"
+    productFlavors{
+        free{
+            applicationId "com.example.android.vacuumfitness.flavors.free"
+        }
+        paid{
+            applicationId "com.example.android.vacuumfitness.flavors.paid"
+        }
+    }
 }
 
 dependencies {
