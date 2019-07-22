@@ -94,8 +94,8 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
         if (resId != -1) {
             Picasso.get().load(resId).into(viewHolder.exerciseThumbnail);
         } else {
-            //If path not found load a dummy picture
-            Picasso.get().load(R.drawable.dummy1).into(viewHolder.exerciseThumbnail);
+            //If path not found load eagle as dummy picture
+            Picasso.get().load(R.drawable.eagle).into(viewHolder.exerciseThumbnail);
         }
     }
 

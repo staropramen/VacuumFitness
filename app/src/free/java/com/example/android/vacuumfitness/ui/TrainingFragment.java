@@ -41,7 +41,10 @@ import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.squareup.picasso.Picasso;
 
@@ -65,7 +68,6 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
     @BindView(R.id.iv_start_pause) ImageView mStartPauseIV;
     @BindView(R.id.iv_video_button) ImageView mVideoButton;
     @BindView(R.id.iv_music_button) ImageView mMusicButton;
-    @BindView(R.id.adView) AdView mAdView;
 
     private int mExerciseCount;
     private int level;
@@ -86,6 +88,7 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
     private boolean mHasVoiceCommands;
     private boolean mHasVisualCommands;
     private boolean mExoPlayerIsPaused = false;
+    private InterstitialAd mInterstitialAd;
 
     private AppDatabase mDb;
 
@@ -159,7 +162,7 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
         }
 
         //Load the Ad
-        AdMobUtils.loadAd(mAdView);
+        prepareInterstitialAd();
 
         return rootView;
     }
@@ -200,6 +203,11 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
             }
 
             public void onFinish() {
+                //Show Interstitial Ad
+                if(mInterstitialAd.isLoaded()){
+                    mInterstitialAd.show();
+                }
+
                 //If training is finished we can finish the training activity
                 getActivity().finish();
             }
@@ -242,7 +250,7 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
             Picasso.get().load(resId).into(mExerciseImage);
         } else {
             //If path not found load a dummy picture
-            Picasso.get().load(R.drawable.dummy1).into(mExerciseImage);
+            Picasso.get().load(R.drawable.eagle).into(mExerciseImage);
         }
         //If Training is Paused set the Start/Pause Button to start
         if(mTrainingIsPaused){
@@ -448,6 +456,18 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
                 mMusicButton.setImageResource(R.drawable.music);
             }
         }
+    }
+
+    private void prepareInterstitialAd() {
+        mInterstitialAd = new InterstitialAd(getActivity());
+        mInterstitialAd.setAdUnitId(getActivity().getString(R.string.interstitial_ad_unit_id));
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
+        //Also set the click listener
+        //As as is coming on the end of the training, we close the training activity on close add
+        mInterstitialAd.setAdListener(new AdListener() {
+
+        });
     }
 
     private void makeCommandToast(String toastText){

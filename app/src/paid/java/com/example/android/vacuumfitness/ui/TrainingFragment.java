@@ -234,7 +234,7 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
             Picasso.get().load(resId).into(mExerciseImage);
         } else {
             //If path not found load a dummy picture
-            Picasso.get().load(R.drawable.dummy1).into(mExerciseImage);
+            Picasso.get().load(R.drawable.eagle).into(mExerciseImage);
         }
         //If Training is Paused set the Start/Pause Button to start
         if(mTrainingIsPaused){
@@ -398,7 +398,7 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
                 //Ckech for Internet Connection
                 if(NetworkUtils.isConnectedToInternet()){
                     //Check for video key
-                    if(exercise.getVideoUrl() != null){
+                    if(exercise.getVideoUrl() != null && !TextUtils.isEmpty(exercise.getVideoUrl())){
                         String webUrl = getString(R.string.youtube_web_url )+ exercise.getVideoUrl();
                         String appUrl = getString(R.string.youtube_app_url )+ exercise.getVideoUrl();
                         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(appUrl));

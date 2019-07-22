@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Vacuum Fitness</string>
+    <string name="app_name" translatable="false">Vacuum Fitness</string>
 
     <string name="youtube_web_url" translatable="false">https://www.youtube.com/watch?v=</string>
     <string name="youtube_app_url" translatable="false">vnd.youtube:</string>
@@ -36,6 +36,22 @@
 
     <!-- Exercise Names -->
     <string name="silent_tree">Silent Tree</string>
+    <string name="eagle">Eagle</string>
+    <string name="mantis">Mantis</string>
+    <string name="armadillo">Armadillo</string>
+    <string name="prayer">Prayer</string>
+    <string name="tamarin">Tamarin</string>
+    <string name="orchid">Orchid</string>
+    <string name="bear">Bear</string>
+    <string name="sun_king">Sun King</string>
+    <string name="peacock">Peacock</string>
+    <string name="tiger">Tiger</string>
+    <string name="cobra">Cobra</string>
+    <string name="hedgehog">Hedgehog</string>
+    <string name="polar_fox">Polar Fox</string>
+    <string name="kangaroo">Kangaroo</string>
+    <string name="rosebush">Rosebush</string>
+    <string name="nightshade">Nightshade</string>
 
     <!-- Exercise Level -->
     <string name="beginner">Beginner</string>

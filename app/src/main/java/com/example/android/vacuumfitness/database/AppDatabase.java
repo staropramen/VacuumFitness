@@ -6,14 +6,17 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
+import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.model.Exercise;
 import com.example.android.vacuumfitness.model.Motivator;
 import com.example.android.vacuumfitness.model.Playlist;
 import com.example.android.vacuumfitness.model.Song;
 import com.example.android.vacuumfitness.model.Training;
+import com.example.android.vacuumfitness.ui.MainActivity;
 import com.example.android.vacuumfitness.utils.AppExecutors;
 import com.example.android.vacuumfitness.utils.ListConverter;
 import com.example.android.vacuumfitness.utils.SharedPrefsUtils;
@@ -30,6 +33,7 @@ public abstract class AppDatabase extends RoomDatabase {
     private static final Object LOCK = new Object();
     private static final String DATABASE_NAME = "vacuum-fitness";
     private static AppDatabase sInstance;
+    private static Context mainContext = MainActivity.mContext;
 
     public static AppDatabase getInstance(final Context context) {
         if (sInstance == null) {
@@ -74,21 +78,23 @@ public abstract class AppDatabase extends RoomDatabase {
 
     private static Exercise[] populateExercises(){
         return new Exercise[] {
-                new Exercise("Silent Tree", 1, "dummy1", "xMQwBMhaqFA"),
-                new Exercise("Holly Wood", 1, "dummy2", "xMQwBMhaqFA"),
-                new Exercise("Rainy Day", 1, "dummy3", "xMQwBMhaqFA"),
-                new Exercise("Athena", 1, "dummy1", "xMQwBMhaqFA"),
-                new Exercise("Venus", 1, "dummy2", "xMQwBMhaqFA"),
-                new Exercise("Mars", 1, "dummy3", "xMQwBMhaqFA"),
-                new Exercise("Free World", 1, "dummy1", "xMQwBMhaqFA"),
-                new Exercise("Hercules", 1, "dummy2", "xMQwBMhaqFA"),
-                new Exercise("Sun King", 1, "dummy3", "xMQwBMhaqFA"),
-                new Exercise("Wild Horse", 1, "dummy1", "xMQwBMhaqFA"),
-                new Exercise("Last Unicorn", 1, "dummy2", "xMQwBMhaqFA"),
-                new Exercise("Mayflower", 1, "dummy3", "xMQwBMhaqFA"),
-                new Exercise("Apple", 1, "dummy1", "xMQwBMhaqFA"),
-                new Exercise("Twister", 1, "dummy2", "xMQwBMhaqFA"),
-                new Exercise("Crumble", 1, "dummy3", "xMQwBMhaqFA"),
+                new Exercise(mainContext.getString(R.string.silent_tree), "silent_tree", ""),
+                new Exercise(mainContext.getString(R.string.eagle), "eagle", "xMQwBMhaqFA"),
+                new Exercise(mainContext.getString(R.string.mantis), "mantis", "xMQwBMhaqFA"),
+                new Exercise(mainContext.getString(R.string.armadillo), "armadillo", "xMQwBMhaqFA"),
+                new Exercise(mainContext.getString(R.string.prayer), "prayer", "xMQwBMhaqFA"),
+                new Exercise(mainContext.getString(R.string.tamarin), "tamarin", "xMQwBMhaqFA"),
+                new Exercise(mainContext.getString(R.string.orchid), "orchid", "xMQwBMhaqFA"),
+                new Exercise(mainContext.getString(R.string.bear), "bear", "xMQwBMhaqFA"),
+                new Exercise(mainContext.getString(R.string.sun_king), "sun_king", "xMQwBMhaqFA"),
+                new Exercise(mainContext.getString(R.string.peacock), "peacock", "xMQwBMhaqFA"),
+                new Exercise(mainContext.getString(R.string.tiger), "tiger", "xMQwBMhaqFA"),
+                new Exercise(mainContext.getString(R.string.cobra), "cobra", "xMQwBMhaqFA"),
+                new Exercise(mainContext.getString(R.string.hedgehog), "hedgehog", "xMQwBMhaqFA"),
+                new Exercise(mainContext.getString(R.string.polar_fox), "polar_fox", "xMQwBMhaqFA"),
+                new Exercise(mainContext.getString(R.string.kangaroo), "kangaroo", "xMQwBMhaqFA"),
+                new Exercise(mainContext.getString(R.string.rosebush), "rosebush", "xMQwBMhaqFA"),
+                new Exercise(mainContext.getString(R.string.nightshade), "nightshade", "xMQwBMhaqFA"),
         };
     }
 

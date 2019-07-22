@@ -10,20 +10,20 @@
     <ImageView
         android:id="@+id/iv_exercise_thumbnail"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/thumbnail_height"
+        android:layout_height="wrap_content"
+        android:maxHeight="@dimen/thumbnail_height"
+        android:maxWidth="@dimen/thumbnail_height"
         android:layout_marginStart="@dimen/xxl_margin"
         android:layout_marginTop="@dimen/margin"
         android:adjustViewBounds="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/dummy1" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_exercise_list_name"
         style="@style/medium_text"
         android:layout_marginStart="@dimen/margin"
         android:layout_marginEnd="@dimen/margin"
-        android:text="Silent Tree"
         app:layout_constraintBottom_toBottomOf="@+id/iv_exercise_thumbnail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_exercise_thumbnail"

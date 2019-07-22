@@ -14,25 +14,21 @@ public class Exercise implements Parcelable {
     private int primaryKey;
     @ColumnInfo(name = "exercise_name")
     private String exerciseName;
-    @ColumnInfo(name = "level")
-    private int level;
     @ColumnInfo(name = "image")
     private String image;
     @ColumnInfo(name = "video_url")
     private String videoUrl;
 
-    public Exercise(int primaryKey, String exerciseName, int level, String image, String videoUrl) {
+    public Exercise(int primaryKey, String exerciseName, String image, String videoUrl) {
         this.primaryKey = primaryKey;
         this.exerciseName = exerciseName;
-        this.level = level;
         this.image = image;
         this.videoUrl = videoUrl;
     }
 
     @Ignore
-    public Exercise(String exerciseName, int level, String image, String videoUrl) {
+    public Exercise(String exerciseName, String image, String videoUrl) {
         this.exerciseName = exerciseName;
-        this.level = level;
         this.image = image;
         this.videoUrl = videoUrl;
     }
@@ -42,7 +38,6 @@ public class Exercise implements Parcelable {
     public Exercise(Parcel in) {
         primaryKey = in.readInt();
         exerciseName = in.readString();
-        level = in.readInt();
         image = in.readString();
         videoUrl = in.readString();
     }
@@ -53,10 +48,6 @@ public class Exercise implements Parcelable {
 
     public String getExerciseName() {
         return exerciseName;
-    }
-
-    public int getLevel() {
-        return level;
     }
 
     public String getImage() {
@@ -73,10 +64,6 @@ public class Exercise implements Parcelable {
 
     public void setExerciseName(String exerciseName) {
         this.exerciseName = exerciseName;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
     }
 
     public void setImage(String image) {
@@ -113,7 +100,6 @@ public class Exercise implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(primaryKey);
         dest.writeString(exerciseName);
-        dest.writeInt(level);
         dest.writeString(image);
         dest.writeString(videoUrl);
     }
