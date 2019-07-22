@@ -21,9 +21,9 @@ public class TrainingTimerUtils {
     private static int exhale = 4;
     private static int rest = 6;
     private static int relax = 8;
-    private static int vacuumBeginner = 12;
-    private static int vacuumIntermediate = 17;
-    private static int vacuumAdvanced = 22;
+    private static int vacuumBeginner = 15;
+    private static int vacuumIntermediate = 20;
+    private static int vacuumAdvanced = 25;
 
     //Return time per exercise based on level
     public static int exerciseTime(int level){
