@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "965062161602",
+    "firebase_url": "https://vacuum-fitness.firebaseio.com",
+    "project_id": "vacuum-fitness",
+    "storage_bucket": "vacuum-fitness.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:965062161602:android:8d7aedf927289678",
+        "android_client_info": {
+          "package_name": "com.example.android.vacuumfitness.flavors.free"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "965062161602-rgm7cjo7potbiadm272mir23diqf2h2n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWq7jHKsTO8NvSOZWx_xT40PGJ37rf4nQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "965062161602-rgm7cjo7potbiadm272mir23diqf2h2n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

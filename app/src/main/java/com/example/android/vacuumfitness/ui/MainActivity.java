@@ -24,6 +24,7 @@ import com.example.android.vacuumfitness.utils.AppExecutors;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.utils.SharedPrefsUtils;
 import com.example.android.vacuumfitness.worker.UpdateMotivatorWorker;
+//import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.concurrent.TimeUnit;
 
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
     public static SharedPreferences sharedPreferences;
     public static Context mContext;
     public static String mDefaultMotivationText;
+    //private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,10 +78,11 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
                     .commit();
         }
 
+        //Initialize Analytics
+        //mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
         //Activity is ready now we check for Widget Intent
         checkForWidgetIntent();
-
-
 
     }
 
