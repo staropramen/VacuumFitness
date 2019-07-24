@@ -14,7 +14,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,8 +30,6 @@ import com.example.android.vacuumfitness.model.Training;
 import com.example.android.vacuumfitness.utils.AppExecutors;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.viewmodel.CustomTrainingViewModel;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +48,8 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
     @BindView(R.id.tv_empty_trainings_list) TextView emptyListTextView;
     @BindView(R.id.fab_add_training) FloatingActionButton fabAddTraining;
 
-    private TextView labelTextView;
+    private TextView mLabelTextView;
+    private Training mTrainingToEdit;
 
     public CustomizeTrainingFragment() {
         // Required empty public constructor
@@ -164,8 +162,6 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
         });
     }
 
-    private Training mTrainingToEdit;
-
     public void showAlertDialogButtonClicked(final boolean isLongClick) {
 
         // create an alert builder
@@ -203,28 +199,28 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
             //Set label color
             if(currentLabel.equals(getString(R.string.mon_label))){
                 setTextViewBackgroundColor(tvMon, true);
-                labelTextView = tvMon;
+                mLabelTextView = tvMon;
             } else if(currentLabel.equals(getString(R.string.tue_label))){
                 setTextViewBackgroundColor(tvTue, true);
-                labelTextView = tvTue;
+                mLabelTextView = tvTue;
             } else if(currentLabel.equals(getString(R.string.wed_label))){
                 setTextViewBackgroundColor(tvWen, true);
-                labelTextView = tvWen;
+                mLabelTextView = tvWen;
             } else if(currentLabel.equals(getString(R.string.thu_label))){
                 setTextViewBackgroundColor(tvThu, true);
-                labelTextView = tvThu;
+                mLabelTextView = tvThu;
             } else if(currentLabel.equals(getString(R.string.fri_label))){
                 setTextViewBackgroundColor(tvFri, true);
-                labelTextView = tvFri;
+                mLabelTextView = tvFri;
             } else if(currentLabel.equals(getString(R.string.sat_label))){
                 setTextViewBackgroundColor(tvSat, true);
-                labelTextView = tvSat;
+                mLabelTextView = tvSat;
             } else if(currentLabel.equals(getString(R.string.sun_label))){
                 setTextViewBackgroundColor(tvSun, true);
-                labelTextView = tvSun;
+                mLabelTextView = tvSun;
             }
         } else {
-            labelTextView = null;
+            mLabelTextView = null;
         }
 
         //Handle Click events for labels
@@ -232,13 +228,13 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
             @Override
             public void onClick(View v) {
                 // If there was a label choosed before, set the color back to light
-                if(labelTextView != null){
-                    setTextViewBackgroundColor(labelTextView, false);
+                if(mLabelTextView != null){
+                    setTextViewBackgroundColor(mLabelTextView, false);
                 }
-                labelTextView = (TextView)v;
+                mLabelTextView = (TextView)v;
                 //Set Color of chosen label
-                setTextViewBackgroundColor(labelTextView, true);
-                String label = labelTextView.getText().toString();
+                setTextViewBackgroundColor(mLabelTextView, true);
+                String label = mLabelTextView.getText().toString();
                 EditText editText = customLayout.findViewById(R.id.et_custom_label);
                 editText.setText(label);
             }
@@ -256,9 +252,9 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
         builder.setPositiveButton(getString(R.string.positive_answer), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //Set back labelTextView to light color
-                setTextViewBackgroundColor(labelTextView, false);
-                
+                //Set back mLabelTextView to light color
+                setTextViewBackgroundColor(mLabelTextView, false);
+
                 String name = nameET.getText().toString();
                 String label = labelET.getText().toString();
 
@@ -280,8 +276,8 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
         builder.setNegativeButton(getString(R.string.negative_answer), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //Set back labelTextView to light color
-                setTextViewBackgroundColor(labelTextView, false);
+                //Set back mLabelTextView to light color
+                setTextViewBackgroundColor(mLabelTextView, false);
                 dialog.cancel();
             }
         });
@@ -295,8 +291,8 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
             customLayout.findViewById(R.id.iv_delete_icon).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //Set back labelTextView to light color
-                    setTextViewBackgroundColor(labelTextView, false);
+                    //Set back mLabelTextView to light color
+                    setTextViewBackgroundColor(mLabelTextView, false);
 
                     showDeleteDialog(mTrainingToEdit);
                     dialog.cancel();

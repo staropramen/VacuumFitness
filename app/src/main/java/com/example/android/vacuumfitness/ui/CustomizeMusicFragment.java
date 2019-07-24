@@ -50,6 +50,8 @@ public class CustomizeMusicFragment extends Fragment implements PlaylistAdapter.
     @BindView(R.id.tv_empty_playlist_list) TextView emptyListTextView;
     @BindView(R.id.fab_add_playlist) FloatingActionButton mFab;
 
+    private Playlist mPlaylistToEdit;
+
     public CustomizeMusicFragment() {
         // Required empty public constructor
     }
@@ -89,7 +91,8 @@ public class CustomizeMusicFragment extends Fragment implements PlaylistAdapter.
 
     @Override
     public void onLongClick(Playlist playlist) {
-        showDeleteDialog(playlist);
+        mPlaylistToEdit = playlist;
+        showAlertDialogButtonClicked(true);
     }
 
     private void setupViewModel(){
@@ -114,7 +117,7 @@ public class CustomizeMusicFragment extends Fragment implements PlaylistAdapter.
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showAlertDialogButtonClicked();
+                showAlertDialogButtonClicked(false);
             }
         });
     }
@@ -136,6 +139,17 @@ public class CustomizeMusicFragment extends Fragment implements PlaylistAdapter.
         });
     }
 
+    private void updateNewPlaylistInDb(final Playlist playlist) {
+        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase.getInstance(getActivity()).playlistDao().updatePlaylist(playlist);
+
+                playlistDetailFragmentTransaction(playlist.getPrimaryKey());
+            }
+        });
+    }
+
     private void playlistDetailFragmentTransaction(long id) {
         Bundle data = new Bundle();
         data.putLong(KeyUtils.PLAYLIST_ID_KEY, id);
@@ -147,7 +161,7 @@ public class CustomizeMusicFragment extends Fragment implements PlaylistAdapter.
         transaction.commit();
     }
 
-    public void showAlertDialogButtonClicked() {
+    public void showAlertDialogButtonClicked(final boolean isLongClick) {
 
         // create an alert builder
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -157,17 +171,29 @@ public class CustomizeMusicFragment extends Fragment implements PlaylistAdapter.
         final View customLayout = getLayoutInflater().inflate(R.layout.create_playlist_dialog, null);
         builder.setView(customLayout);
 
+        final EditText nameET = customLayout.findViewById(R.id.et_custom_playlist_name);
+
+        //If edit mode do different
+        if(isLongClick){
+            //Set delete icon as visible
+            customLayout.findViewById(R.id.iv_delete_icon).setVisibility(View.VISIBLE);
+            //Set the name
+            nameET.setText(mPlaylistToEdit.getPlaylistName());
+        }
+
         // add a button
         builder.setPositiveButton(getString(R.string.positive_answer), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                EditText nameET = customLayout.findViewById(R.id.et_custom_playlist_name);
 
                 String name = nameET.getText().toString();
 
                 //Cancel if User dont entern a Training Name
                 if(name.matches("")){
                     Toast.makeText(getActivity(), getString(R.string.no_playlist_name), Toast.LENGTH_LONG).show();
+                } else if(isLongClick){
+                    mPlaylistToEdit.setPlaylistName(name);
+                    updateNewPlaylistInDb(mPlaylistToEdit);
                 }else {
                     Playlist playlist = makeNewPlaylist(name);
                     saveNewPlaylistInDb(playlist);
@@ -175,8 +201,27 @@ public class CustomizeMusicFragment extends Fragment implements PlaylistAdapter.
             }
         });
 
-        // create and show the alert dialog
-        AlertDialog dialog = builder.create();
+        //Negative button
+        builder.setNegativeButton(getString(R.string.negative_answer), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        // create the alert dialog
+        final AlertDialog dialog = builder.create();
+
+        //Set delete on click function
+        customLayout.findViewById(R.id.iv_delete_icon).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDeleteDialog(mPlaylistToEdit);
+                dialog.cancel();
+            }
+        });
+
+        //Show Dialog
         dialog.show();
     }
 
