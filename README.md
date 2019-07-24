@@ -23,7 +23,7 @@ People with a link to yoga, pilates or gym they would like to do something to de
 
 ## 2.1 MainActivity
 
-![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/main1.png =200x) ![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/main2.png =200x) ![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/settings.png =200x)
+![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/main1.png) ![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/main2.png =200x) ![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/settings.png =200x)
 
 
 *   MainActivity has a Collapsing AppBar with a icon for Settings.
