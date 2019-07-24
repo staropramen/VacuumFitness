@@ -23,7 +23,7 @@ People with a link to yoga, pilates or gym they would like to do something to de
 
 ## 2.1 MainActivity
 
-![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/main1.png =200x) ![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/main2.png =200x) ![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/settings.png =200x)
+![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/main1.png) ![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/main2.png) ![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/settings.png)
 
 
 *   MainActivity has a Collapsing AppBar with a icon for Settings.
@@ -32,7 +32,7 @@ People with a link to yoga, pilates or gym they would like to do something to de
 
 
 ## 2.2 Training Activity
-![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/prep.png =200x) ![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/training.png =200x)
+![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/prep.png) ![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/training.png)
 
 Training Activity starts with the preparation fragment where the user set up his training, after pressing start he comes to the training fragment where his training is happening.
 *   User can pause the training, on interruption the training pauses to.
@@ -41,7 +41,7 @@ Training Activity starts with the preparation fragment where the user set up his
 
 
 ## 2.3 Customize Training Activity
-![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/cust_t1.png =200x) ![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/cust_t2.png =200x) ![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/cust_t3.png =200x)
+![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/cust_t1.png) ![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/cust_t2.png) ![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/cust_t3.png)
 
 Customize Training Activity i the place where customization is happening, depending on users choice he can customize his training.
 
@@ -51,7 +51,7 @@ Customize Training Activity i the place where customization is happening, depend
 
 
 ## 2.4 Customize Music Activity
-![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/music1.png =200x) ![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/music2.png =200x) ![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/music3.png =200x)
+![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/music1.png) ![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/music2.png) ![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/music3.png)
 
 Customize Music Activity i the place where customization is happening, depending on users choice he can customize his music.
 
@@ -62,7 +62,7 @@ Customize Music Activity i the place where customization is happening, depending
 
 
 ## 2.5 About Section
-![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/about2.png =200x) ![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/abput.png =200x)
+![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/about2.png) ![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/abput.png)
 
 Actually this is happening in the Main Activity. The About section gives users more informations about the app.
 *   The “How to Exercise” button opens a Youtube video that explains how Vacuum Fitness works.
@@ -71,7 +71,7 @@ Actually this is happening in the Main Activity. The About section gives users m
 
 
 ## 2.6 App Widget
-![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/widget.png =200x)
+![](https://raw.githubusercontent.com/staropramen/VacuumFitness/master/images/widget.png)
 
 App provides a widget that motivate the user to do a quick exercise in his breaks. If user clicks “Start” he comes directly to the Prepare Training Screen.
 
