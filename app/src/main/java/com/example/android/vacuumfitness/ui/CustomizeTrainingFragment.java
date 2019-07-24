@@ -51,7 +51,7 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
     @BindView(R.id.tv_empty_trainings_list) TextView emptyListTextView;
     @BindView(R.id.fab_add_training) FloatingActionButton fabAddTraining;
 
-    private TextView labelTextView = null;
+    private TextView labelTextView;
 
     public CustomizeTrainingFragment() {
         // Required empty public constructor
@@ -190,7 +190,7 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
         TextView tvSun = customLayout.findViewById(R.id.tv_label_sun);
 
         //Set variable to edit
-        /*if(isLongClick){
+        if(isLongClick){
             //Set visibility of delete icon
             ImageView deleteButton = customLayout.findViewById(R.id.iv_delete_icon);
             deleteButton.setVisibility(View.VISIBLE);
@@ -199,33 +199,33 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
             //Get label
             String currentLabel = mTrainingToEdit.getLabel();
             //Set label
-            /*labelET.setText(currentLabel);
+            labelET.setText(currentLabel);
             //Set label color
             if(currentLabel.equals(getString(R.string.mon_label))){
-                setTextViewBackgroundColor(tvMon);
+                setTextViewBackgroundColor(tvMon, true);
                 labelTextView = tvMon;
             } else if(currentLabel.equals(getString(R.string.tue_label))){
-                setTextViewBackgroundColor(tvTue);
+                setTextViewBackgroundColor(tvTue, true);
                 labelTextView = tvTue;
             } else if(currentLabel.equals(getString(R.string.wed_label))){
-                setTextViewBackgroundColor(tvWen);
+                setTextViewBackgroundColor(tvWen, true);
                 labelTextView = tvWen;
             } else if(currentLabel.equals(getString(R.string.thu_label))){
-                setTextViewBackgroundColor(tvThu);
+                setTextViewBackgroundColor(tvThu, true);
                 labelTextView = tvThu;
             } else if(currentLabel.equals(getString(R.string.fri_label))){
-                setTextViewBackgroundColor(tvFri);
+                setTextViewBackgroundColor(tvFri, true);
                 labelTextView = tvFri;
             } else if(currentLabel.equals(getString(R.string.sat_label))){
-                setTextViewBackgroundColor(tvSat);
+                setTextViewBackgroundColor(tvSat, true);
                 labelTextView = tvSat;
             } else if(currentLabel.equals(getString(R.string.sun_label))){
-                setTextViewBackgroundColor(tvSun);
+                setTextViewBackgroundColor(tvSun, true);
                 labelTextView = tvSun;
             }
         } else {
             labelTextView = null;
-        }*/
+        }
 
         //Handle Click events for labels
         View.OnClickListener labelClickListener = new View.OnClickListener() {
@@ -233,12 +233,11 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
             public void onClick(View v) {
                 // If there was a label choosed before, set the color back to light
                 if(labelTextView != null){
-                    GradientDrawable background = (GradientDrawable) labelTextView.getBackground();
-                    background.setColor(getResources().getColor(R.color.colorPrimaryLight));
+                    setTextViewBackgroundColor(labelTextView, false);
                 }
                 labelTextView = (TextView)v;
                 //Set Color of chosen label
-                setTextViewBackgroundColor(labelTextView);
+                setTextViewBackgroundColor(labelTextView, true);
                 String label = labelTextView.getText().toString();
                 EditText editText = customLayout.findViewById(R.id.et_custom_label);
                 editText.setText(label);
@@ -257,6 +256,9 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
         builder.setPositiveButton(getString(R.string.positive_answer), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                //Set back labelTextView to light color
+                setTextViewBackgroundColor(labelTextView, false);
+                
                 String name = nameET.getText().toString();
                 String label = labelET.getText().toString();
 
@@ -278,6 +280,8 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
         builder.setNegativeButton(getString(R.string.negative_answer), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                //Set back labelTextView to light color
+                setTextViewBackgroundColor(labelTextView, false);
                 dialog.cancel();
             }
         });
@@ -286,24 +290,31 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
         final AlertDialog dialog = builder.create();
 
         //Set onclick action for delete icon
-        /*if(isLongClick){
+        if(isLongClick){
             //Setup delete Button
             customLayout.findViewById(R.id.iv_delete_icon).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    //Set back labelTextView to light color
+                    setTextViewBackgroundColor(labelTextView, false);
+
                     showDeleteDialog(mTrainingToEdit);
                     dialog.cancel();
                 }
             });
-        }*/
+        }
 
         //Show dialog
         dialog.show();
     }
 
-    private void setTextViewBackgroundColor(TextView textView){
+    private void setTextViewBackgroundColor(TextView textView, boolean isColorDark){
         GradientDrawable background = (GradientDrawable) textView.getBackground();
-        background.setColor(getResources().getColor(R.color.colorPrimaryDark));
+        if(isColorDark){
+            background.setColor(getResources().getColor(R.color.colorPrimaryDark));
+        } else {
+            background.setColor(getResources().getColor(R.color.colorPrimaryLight));
+        }
     }
 
     private void showDeleteDialog(final Training training){
