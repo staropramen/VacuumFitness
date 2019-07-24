@@ -29,7 +29,6 @@ public class TrainingActivity extends AppCompatActivity {
 
     private static String LOG_TAG = TrainingActivity.class.getSimpleName();
 
-    @BindView(R.id.back_button) ImageView backButton;
     @BindView(R.id.adView) AdView mAdView;
 
     @Override
@@ -41,12 +40,7 @@ public class TrainingActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         //Setup backButton
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
+
 
         //Load Ad banner
         AdMobUtils.loadAd(mAdView);

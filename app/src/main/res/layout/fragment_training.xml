@@ -4,14 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/margin"
     tools:context=".ui.TrainingFragment">
+
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_width="@dimen/back_button_size"
+        android:layout_height="@dimen/back_button_size"
+        android:tint="@color/colorPrimaryExtraDark"
+        android:src="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ImageView
         android:id="@+id/iv_video_button"
         android:layout_width="@dimen/small_icon_size"
         android:layout_height="@dimen/small_icon_size"
+        android:layout_marginStart="@dimen/margin"
         android:src="@drawable/video"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -20,6 +29,7 @@
         android:id="@+id/iv_music_button"
         android:layout_width="@dimen/small_icon_size"
         android:layout_height="@dimen/small_icon_size"
+        android:layout_marginEnd="@dimen/margin"
         android:src="@drawable/music"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -36,7 +46,7 @@
     <TextView
         android:id="@+id/tv_exercise_list_name"
         style="@style/descriptions"
-        android:layout_marginStart="@dimen/margin"
+        android:layout_marginStart="@dimen/xxl_margin"
         android:layout_marginBottom="@dimen/xxl_margin"
         app:layout_constraintBottom_toTopOf="@+id/iv_start_pause"
         app:layout_constraintStart_toStartOf="parent" />
@@ -60,7 +70,7 @@
     <TextView
         android:id="@+id/tv_timer"
         style="@style/big_text"
-        android:layout_marginEnd="@dimen/margin"
+        android:layout_marginEnd="@dimen/xxl_margin"
         android:layout_marginBottom="@dimen/xxl_margin"
         app:layout_constraintBottom_toTopOf="@+id/iv_start_pause"
         app:layout_constraintEnd_toEndOf="parent" />

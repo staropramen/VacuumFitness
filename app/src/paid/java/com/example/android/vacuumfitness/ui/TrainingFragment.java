@@ -62,6 +62,7 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
     @BindView(R.id.iv_start_pause) ImageView mStartPauseIV;
     @BindView(R.id.iv_video_button) ImageView mVideoButton;
     @BindView(R.id.iv_music_button) ImageView mMusicButton;
+    @BindView(R.id.back_button) ImageView mBackButton;
 
     private int mExerciseCount;
     private int level;
@@ -105,6 +106,14 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
 
         //Let activity not sleep if this fragment is alive
         getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        //Setup Back Button
+        mBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
 
         //Get booleans for voice and visual commands from settings
         mHasVoiceCommands = SharedPrefsUtils.getVoiceToggleBoolean(getActivity());

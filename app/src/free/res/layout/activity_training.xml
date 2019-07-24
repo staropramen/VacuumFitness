@@ -6,15 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.TrainingActivity">
 
-    <ImageView
-        android:id="@+id/back_button"
-        android:layout_width="@dimen/back_button_size"
-        android:layout_height="@dimen/back_button_size"
-        android:tint="@color/colorPrimaryExtraDark"
-        app:layout_constraintStart_toStartOf="@+id/content_view"
-        app:layout_constraintTop_toTopOf="@+id/content_view"
-        app:srcCompat="@drawable/ic_back" />
-
     <FrameLayout
         android:id="@+id/content_view"
         android:layout_width="match_parent"

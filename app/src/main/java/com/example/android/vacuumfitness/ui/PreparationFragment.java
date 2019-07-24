@@ -2,18 +2,15 @@ package com.example.android.vacuumfitness.ui;
 
 
 import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -58,6 +55,7 @@ public class PreparationFragment extends Fragment {
     @BindView(R.id.sp_level_selection) Spinner levelSpinner;
     @BindView(R.id.sp_training_selection) Spinner trainingSpinner;
     @BindView(R.id.sp_music_selection) Spinner musicSpinner;
+    @BindView(R.id.back_button) ImageView mBackButton;
 
     public PreparationFragment() {
         // Required empty public constructor
@@ -75,6 +73,7 @@ public class PreparationFragment extends Fragment {
         //By default mTraining is a RandomTraining with primaryKey -1
         mTraining = new Training();
         mTraining.setPrimaryKey(mRandomTrainingPrimaryKey);
+
         //Initialize primaryKeyList ans set -1 for Random Training
         mTrainingList = new ArrayList<>();
         mTrainingList.add(mTraining);
@@ -82,6 +81,14 @@ public class PreparationFragment extends Fragment {
         //By default mPlaylist is a emty plylist with primary key -1
         mPlaylist = new Playlist();
         mPlaylist.setPrimaryKey(mEmptyPlaylistPrimaryKey);
+
+        //Setup Back Button
+        mBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
 
         //Setup Time
         PreparationUtils.calculateTime(exerciseCount, timeTextView, levelSpinner);

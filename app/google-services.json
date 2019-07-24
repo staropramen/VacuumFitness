@@ -8,9 +8,38 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:965062161602:android:8d7aedf927289678",
+        "mobilesdk_app_id": "1:965062161602:android:b72f4df10a9b080d",
         "android_client_info": {
           "package_name": "com.example.android.vacuumfitness.flavors.free"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "965062161602-rgm7cjo7potbiadm272mir23diqf2h2n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWq7jHKsTO8NvSOZWx_xT40PGJ37rf4nQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "965062161602-rgm7cjo7potbiadm272mir23diqf2h2n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:965062161602:android:ba6586d2abf7de37",
+        "android_client_info": {
+          "package_name": "com.example.android.vacuumfitness.flavors.paid"
         }
       },
       "oauth_client": [

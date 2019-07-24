@@ -14,10 +14,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +31,8 @@ import com.example.android.vacuumfitness.model.Training;
 import com.example.android.vacuumfitness.utils.AppExecutors;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.viewmodel.CustomTrainingViewModel;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,7 +91,9 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
 
     @Override
     public void onLongClick(Training training) {
-        showDeleteDialog(training);
+        //showDeleteDialog(training);
+        mTrainingToEdit = training;
+        showAlertDialogButtonClicked(true);
     }
 
     //Setup CustomTrainingViewModel
@@ -114,7 +120,7 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
         fabAddTraining.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showAlertDialogButtonClicked();
+                showAlertDialogButtonClicked(false);
             }
         });
     }
@@ -147,56 +153,120 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
         });
     }
 
-    public void showAlertDialogButtonClicked() {
+    private void updateTrainingInDb(final Training training){
+        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase.getInstance(getActivity()).trainingDao().updateTraining(training);
+
+                trainingDetailFragmentTransaction(training.getPrimaryKey());
+            }
+        });
+    }
+
+    private Training mTrainingToEdit;
+
+    public void showAlertDialogButtonClicked(final boolean isLongClick) {
 
         // create an alert builder
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(getString(R.string.cust_menu_title));
 
         // set the custom layout
         final View customLayout = getLayoutInflater().inflate(R.layout.create_training_dialog, null);
         builder.setView(customLayout);
 
+        //Get te EditTextViews
+        final EditText nameET = customLayout.findViewById(R.id.et_custom_name);
+        final EditText labelET = customLayout.findViewById(R.id.et_custom_label);
+
+        //Get the label views
+        TextView tvMon = customLayout.findViewById(R.id.tv_label_mon);
+        TextView tvTue = customLayout.findViewById(R.id.tv_label_tud);
+        TextView tvWen = customLayout.findViewById(R.id.tv_label_wen);
+        TextView tvThu = customLayout.findViewById(R.id.tv_label_thu);
+        TextView tvFri = customLayout.findViewById(R.id.tv_label_fri);
+        TextView tvSat = customLayout.findViewById(R.id.tv_label_sat);
+        TextView tvSun = customLayout.findViewById(R.id.tv_label_sun);
+
+        //Set variable to edit
+        /*if(isLongClick){
+            //Set visibility of delete icon
+            ImageView deleteButton = customLayout.findViewById(R.id.iv_delete_icon);
+            deleteButton.setVisibility(View.VISIBLE);
+            //Set title
+            nameET.setText(mTrainingToEdit.getTrainingName());
+            //Get label
+            String currentLabel = mTrainingToEdit.getLabel();
+            //Set label
+            /*labelET.setText(currentLabel);
+            //Set label color
+            if(currentLabel.equals(getString(R.string.mon_label))){
+                setTextViewBackgroundColor(tvMon);
+                labelTextView = tvMon;
+            } else if(currentLabel.equals(getString(R.string.tue_label))){
+                setTextViewBackgroundColor(tvTue);
+                labelTextView = tvTue;
+            } else if(currentLabel.equals(getString(R.string.wed_label))){
+                setTextViewBackgroundColor(tvWen);
+                labelTextView = tvWen;
+            } else if(currentLabel.equals(getString(R.string.thu_label))){
+                setTextViewBackgroundColor(tvThu);
+                labelTextView = tvThu;
+            } else if(currentLabel.equals(getString(R.string.fri_label))){
+                setTextViewBackgroundColor(tvFri);
+                labelTextView = tvFri;
+            } else if(currentLabel.equals(getString(R.string.sat_label))){
+                setTextViewBackgroundColor(tvSat);
+                labelTextView = tvSat;
+            } else if(currentLabel.equals(getString(R.string.sun_label))){
+                setTextViewBackgroundColor(tvSun);
+                labelTextView = tvSun;
+            }
+        } else {
+            labelTextView = null;
+        }*/
+
         //Handle Click events for labels
         View.OnClickListener labelClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // If there was a laber choosed before, set the color back to light
+                // If there was a label choosed before, set the color back to light
                 if(labelTextView != null){
                     GradientDrawable background = (GradientDrawable) labelTextView.getBackground();
                     background.setColor(getResources().getColor(R.color.colorPrimaryLight));
                 }
                 labelTextView = (TextView)v;
                 //Set Color of chosen label
-                GradientDrawable background = (GradientDrawable) labelTextView.getBackground();
-                background.setColor(getResources().getColor(R.color.colorPrimaryDark));
+                setTextViewBackgroundColor(labelTextView);
                 String label = labelTextView.getText().toString();
                 EditText editText = customLayout.findViewById(R.id.et_custom_label);
                 editText.setText(label);
             }
         };
 
-        customLayout.findViewById(R.id.tv_label_mon).setOnClickListener(labelClickListener);
-        customLayout.findViewById(R.id.tv_label_tud).setOnClickListener(labelClickListener);
-        customLayout.findViewById(R.id.tv_label_wen).setOnClickListener(labelClickListener);
-        customLayout.findViewById(R.id.tv_label_thu).setOnClickListener(labelClickListener);
-        customLayout.findViewById(R.id.tv_label_fri).setOnClickListener(labelClickListener);
-        customLayout.findViewById(R.id.tv_label_sat).setOnClickListener(labelClickListener);
-        customLayout.findViewById(R.id.tv_label_sun).setOnClickListener(labelClickListener);
+        tvMon.setOnClickListener(labelClickListener);
+        tvTue.setOnClickListener(labelClickListener);
+        tvWen.setOnClickListener(labelClickListener);
+        tvThu.setOnClickListener(labelClickListener);
+        tvFri.setOnClickListener(labelClickListener);
+        tvSat.setOnClickListener(labelClickListener);
+        tvSun.setOnClickListener(labelClickListener);
 
         // add a button
         builder.setPositiveButton(getString(R.string.positive_answer), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                EditText nameET = customLayout.findViewById(R.id.et_custom_name);
-                EditText labelET = customLayout.findViewById(R.id.et_custom_label);
-
                 String name = nameET.getText().toString();
                 String label = labelET.getText().toString();
 
-                //Cancel if User dont entern a Training Name
+                //Cancel if User don't entered a Training Name
                 if(name.matches("")){
                     Toast.makeText(getActivity(), getString(R.string.no_name), Toast.LENGTH_LONG).show();
+                }else if(isLongClick){
+                    mTrainingToEdit.setTrainingName(name);
+                    mTrainingToEdit.setLabel(label);
+                    updateTrainingInDb(mTrainingToEdit);
                 }else {
                     Training training = makeNewTraining(name, label);
                     saveNewTrainingInDb(training);
@@ -204,9 +274,36 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
             }
         });
 
-        // create and show the alert dialog
-        AlertDialog dialog = builder.create();
+        //add negative button
+        builder.setNegativeButton(getString(R.string.negative_answer), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        // create the alert dialog
+        final AlertDialog dialog = builder.create();
+
+        //Set onclick action for delete icon
+        /*if(isLongClick){
+            //Setup delete Button
+            customLayout.findViewById(R.id.iv_delete_icon).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showDeleteDialog(mTrainingToEdit);
+                    dialog.cancel();
+                }
+            });
+        }*/
+
+        //Show dialog
         dialog.show();
+    }
+
+    private void setTextViewBackgroundColor(TextView textView){
+        GradientDrawable background = (GradientDrawable) textView.getBackground();
+        background.setColor(getResources().getColor(R.color.colorPrimaryDark));
     }
 
     private void showDeleteDialog(final Training training){

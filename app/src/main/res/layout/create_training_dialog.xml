@@ -19,6 +19,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/iv_delete_icon"
+        android:layout_width="@dimen/delete_icon_size"
+        android:layout_height="@dimen/delete_icon_size"
+        android:layout_marginStart="@dimen/s_margin"
+        android:layout_marginEnd="@dimen/s_margin"
+        android:tint="@color/colorPrimaryDark"
+        android:src="@drawable/ic_delete"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/et_custom_name"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tv_label_title"
         style="@style/dialog_titles"
