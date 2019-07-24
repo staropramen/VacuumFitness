@@ -274,7 +274,9 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //Set back mLabelTextView to light color
-                setTextViewBackgroundColor(mLabelTextView, false);
+                if(mLabelTextView != null){
+                    setTextViewBackgroundColor(mLabelTextView, false);
+                }
                 dialog.cancel();
             }
         });

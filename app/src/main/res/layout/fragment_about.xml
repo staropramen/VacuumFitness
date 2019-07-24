@@ -34,6 +34,29 @@
             app:layout_constraintTop_toTopOf="@+id/how_to_exercise" />
 
         <ImageView
+            android:id="@+id/how_to_app"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/start_image_height"
+            android:layout_marginStart="@dimen/xxl_margin"
+            android:layout_marginEnd="@dimen/xxl_margin"
+            android:layout_marginTop="@dimen/xxl_margin"
+            android:scaleType="centerCrop"
+            android:src="@drawable/how_to_app"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/how_to_exercise" />
+
+        <TextView
+            android:id="@+id/tv_how_to_app"
+            android:textColor="@color/white"
+            style="@style/start_buttons_text"
+            android:text="@string/how_to_use_app"
+            app:layout_constraintBottom_toBottomOf="@+id/how_to_app"
+            app:layout_constraintEnd_toEndOf="@+id/how_to_app"
+            app:layout_constraintStart_toStartOf="@+id/how_to_app"
+            app:layout_constraintTop_toTopOf="@+id/how_to_app" />
+
+        <ImageView
             android:id="@+id/about_us_button"
             android:layout_width="match_parent"
             android:layout_height="@dimen/start_image_height"
@@ -44,7 +67,7 @@
             android:src="@drawable/about_us"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/how_to_exercise" />
+            app:layout_constraintTop_toBottomOf="@id/how_to_app" />
 
         <TextView
             android:id="@+id/tv_about_us"
