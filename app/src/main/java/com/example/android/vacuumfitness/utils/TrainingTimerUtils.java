@@ -134,8 +134,7 @@ public class TrainingTimerUtils {
         } else if(counter == cornerStones[12]){
             //If training is up to finish here we return a finish raw file
             if(trainingTime < 20000){
-                //TODO Put the right raw file
-                return R.raw.take_position;
+                return R.raw.finish;
             } else {
                 return R.raw.change;
             }
@@ -177,7 +176,6 @@ public class TrainingTimerUtils {
         } else if(counter == cornerStones[12]){
             //If training is up to finish here we return a finish raw file
             if(trainingTime < 20000){
-                //TODO Put the right raw file
                 return res.getString(R.string.finish);
             } else {
                 return res.getString(R.string.change);
