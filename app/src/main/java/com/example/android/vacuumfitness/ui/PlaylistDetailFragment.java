@@ -3,7 +3,6 @@ package com.example.android.vacuumfitness.ui;
 
 import android.app.AlertDialog;
 import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -20,7 +19,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.android.vacuumfitness.R;
-import com.example.android.vacuumfitness.adapter.ExerciseAdapter;
 import com.example.android.vacuumfitness.adapter.SongAdapter;
 import com.example.android.vacuumfitness.database.AppDatabase;
 import com.example.android.vacuumfitness.model.Playlist;
@@ -52,11 +50,9 @@ public class PlaylistDetailFragment extends Fragment implements SongAdapter.Song
     @BindView(R.id.fab_add_song) FloatingActionButton mFab;
     @BindView(R.id.tv_duration_count) TextView mPlaylistDurationTextView;
 
-
     public PlaylistDetailFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -141,7 +137,6 @@ public class PlaylistDetailFragment extends Fragment implements SongAdapter.Song
                     mRecyclerView.setVisibility(View.VISIBLE);
                     mSongAdapter.setSongs(mSongs);
                 }
-
             }
         });
     }
@@ -183,5 +178,4 @@ public class PlaylistDetailFragment extends Fragment implements SongAdapter.Song
         });
         alert.show();
     }
-
 }

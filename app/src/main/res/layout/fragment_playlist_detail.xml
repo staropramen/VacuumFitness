@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.PlaylistDetailFragment">
 
-
     <TextView
         android:id="@+id/tv_song_count_title"
         style="@style/descriptions"
@@ -80,6 +79,5 @@
         android:layout_margin="@dimen/xxl_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
 
 </android.support.constraint.ConstraintLayout>

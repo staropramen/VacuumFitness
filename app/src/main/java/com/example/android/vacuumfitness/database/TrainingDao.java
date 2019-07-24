@@ -7,10 +7,7 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
-
-import com.example.android.vacuumfitness.model.Exercise;
 import com.example.android.vacuumfitness.model.Training;
-
 import java.util.List;
 
 @Dao

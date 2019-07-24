@@ -12,7 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.adapter.ChooseExerciseAdapter;
 import com.example.android.vacuumfitness.database.AppDatabase;
@@ -21,10 +20,8 @@ import com.example.android.vacuumfitness.model.Training;
 import com.example.android.vacuumfitness.utils.AppExecutors;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.viewmodel.ExerciseListViewModel;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -42,7 +39,6 @@ public class AllExercisesFragment extends Fragment implements ChooseExerciseAdap
     public AllExercisesFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -90,7 +86,6 @@ public class AllExercisesFragment extends Fragment implements ChooseExerciseAdap
         } else {
             chosenExercises.add(exercise);
         }
-
     }
 
     private void setupViewModel() {

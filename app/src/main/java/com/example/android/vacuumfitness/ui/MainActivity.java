@@ -12,12 +12,10 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import androidx.work.Constraints;
 import androidx.work.NetworkType;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
-
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.database.AppDatabase;
 import com.example.android.vacuumfitness.utils.AppExecutors;
@@ -25,9 +23,7 @@ import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.utils.SharedPrefsUtils;
 import com.example.android.vacuumfitness.worker.UpdateMotivatorWorker;
 import com.google.firebase.analytics.FirebaseAnalytics;
-
 import java.util.concurrent.TimeUnit;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

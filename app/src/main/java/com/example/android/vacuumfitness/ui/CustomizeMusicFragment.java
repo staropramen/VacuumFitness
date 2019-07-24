@@ -3,10 +3,8 @@ package com.example.android.vacuumfitness.ui;
 
 import android.app.AlertDialog;
 import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -21,21 +19,16 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.android.vacuumfitness.R;
-import com.example.android.vacuumfitness.adapter.CustomTrainingAdapter;
 import com.example.android.vacuumfitness.adapter.PlaylistAdapter;
 import com.example.android.vacuumfitness.database.AppDatabase;
 import com.example.android.vacuumfitness.model.Playlist;
 import com.example.android.vacuumfitness.model.Song;
-import com.example.android.vacuumfitness.model.Training;
 import com.example.android.vacuumfitness.utils.AppExecutors;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.viewmodel.PlaylistViewModel;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -55,7 +48,6 @@ public class CustomizeMusicFragment extends Fragment implements PlaylistAdapter.
     public CustomizeMusicFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -3,20 +3,16 @@ package com.example.android.vacuumfitness.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.model.Exercise;
 import com.example.android.vacuumfitness.utils.TrainingTimerUtils;
 import com.squareup.picasso.Picasso;
-
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -105,7 +101,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
         return exercises.size();
     }
 
-    //Function to set moviesArray
+    //Function to set ExerciseList
     public void setExercises(List<Exercise> exerciseList){
         exercises = exerciseList;
         notifyDataSetChanged();

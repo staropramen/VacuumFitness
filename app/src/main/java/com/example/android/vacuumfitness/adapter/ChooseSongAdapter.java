@@ -9,14 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.model.Song;
 import com.example.android.vacuumfitness.utils.MusicUtils;
 import com.example.android.vacuumfitness.utils.PreparationUtils;
-
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -56,7 +53,7 @@ public class ChooseSongAdapter extends RecyclerView.Adapter<ChooseSongAdapter.Ch
             int adapterPosition = getAdapterPosition();
             Song song = songs.get(adapterPosition);
 
-            //Set Backgroundcolor of item depending on if its in list or not
+            //Set Background Color of item depending on if its in list or not
             if(chosenSongs != null && chosenSongs.contains(song)){
                 songItem.setBackgroundColor(Color.TRANSPARENT);
             } else {

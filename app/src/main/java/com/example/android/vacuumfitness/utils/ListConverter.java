@@ -1,13 +1,9 @@
 package com.example.android.vacuumfitness.utils;
 
-import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.TypeConverter;
-import android.arch.persistence.room.TypeConverters;
 
 import com.example.android.vacuumfitness.model.Exercise;
 import com.example.android.vacuumfitness.model.Song;
-import com.example.android.vacuumfitness.model.Training;
-import com.google.android.exoplayer2.source.ConcatenatingMediaSource;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -53,7 +49,5 @@ public class ListConverter {
         Type type = new TypeToken<List<Song>>() {}.getType();
         return new Gson().fromJson(string, type);
     }
-
-
 
 }

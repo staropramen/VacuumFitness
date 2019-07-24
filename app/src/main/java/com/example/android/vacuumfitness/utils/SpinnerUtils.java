@@ -1,15 +1,11 @@
 package com.example.android.vacuumfitness.utils;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.model.Playlist;
-import com.example.android.vacuumfitness.model.Song;
 import com.example.android.vacuumfitness.model.Training;
-import com.example.android.vacuumfitness.ui.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,6 +82,5 @@ public class SpinnerUtils {
 
         return trainingList;
     }
-
 
 }

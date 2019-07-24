@@ -6,7 +6,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.model.Training;
 
 public class PreparationUtils {

@@ -82,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:entries="@array/levelSpinnerItems"
                 android:foregroundTint="@color/grey"
-                android:padding="@dimen/spinner_padding"></Spinner>
+                android:padding="@dimen/spinner_padding"/>
 
         </RelativeLayout>
 
@@ -189,7 +189,5 @@
 
 
     </android.support.constraint.ConstraintLayout>
-
-
 
 </android.support.v4.widget.NestedScrollView>

@@ -11,7 +11,6 @@ import com.example.android.vacuumfitness.model.Exercise;
 
 import java.util.List;
 
-
 public class ExerciseListViewModel extends AndroidViewModel {
 
     private static String LOG_TAG = ExerciseListViewModel.class.getSimpleName();

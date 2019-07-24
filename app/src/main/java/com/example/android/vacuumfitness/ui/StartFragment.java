@@ -27,11 +27,9 @@ public class StartFragment extends Fragment {
     @BindView(R.id.customize_music_button) ImageView customizeMusic;
     @BindView(R.id.how_to_button) ImageView howToButton;
 
-
     public StartFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

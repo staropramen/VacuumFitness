@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/song_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -14,7 +12,6 @@
         android:layout_marginStart="@dimen/margin"
         android:layout_marginTop="@dimen/margin"
         android:layout_marginEnd="@dimen/margin"
-        android:text="Mister Roch N' Roll"
         app:layout_constraintEnd_toStartOf="@+id/tv_duration"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,7 +20,6 @@
         android:id="@+id/tv_artist"
         style="@style/song_info"
         android:layout_marginStart="@dimen/margin"
-        android:text="Amy Mc Donald"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_song_title" />
 
@@ -32,7 +28,6 @@
         style="@style/song_header"
         android:layout_marginEnd="@dimen/margin"
         android:layout_marginTop="@dimen/margin"
-        android:text="4:26"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

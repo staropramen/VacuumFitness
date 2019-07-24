@@ -6,9 +6,6 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import com.google.android.exoplayer2.source.ConcatenatingMediaSource;
-
 import java.util.ArrayList;
 import java.util.List;
 

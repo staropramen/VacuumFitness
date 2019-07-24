@@ -2,10 +2,8 @@ package com.example.android.vacuumfitness.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.preference.PreferenceManager;
 
-import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.model.Motivator;
 import com.example.android.vacuumfitness.ui.MainActivity;
 import com.google.gson.Gson;

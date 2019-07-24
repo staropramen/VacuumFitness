@@ -2,17 +2,10 @@ package com.example.android.vacuumfitness.utils;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.media.MediaPlayer;
-import android.os.CountDownTimer;
-import android.util.Log;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.android.vacuumfitness.R;
 
 import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
 
 public class TrainingTimerUtils {
 
@@ -48,33 +41,6 @@ public class TrainingTimerUtils {
         return totalTime * 1000;
     }
 
-
-    //Functions that returns the actual state of the exercise as Integer
-    private static int exerciseState(int counter, int level, int state){
-        int vacuum;
-        if(level == 1){
-            vacuum = vacuumBeginner;
-        }else if (level == 2){
-            vacuum = vacuumIntermediate;
-        }else {
-            vacuum = vacuumAdvanced;
-        }
-
-        if(counter == 0){
-            return prepare;
-        } else if(counter == prepare){
-            return inhale;
-        } else if(counter == state + inhale){
-            return exhale;
-        } else if(counter == state + exhale){
-            return inhale;
-        } else if(counter == state + inhale){
-            return exhale;
-        }
-
-        return inhale;
-    }
-
     //Function returns array of integers tha are the corners for commands
     public static int[] getCommandCorners(int level){
 
@@ -103,7 +69,6 @@ public class TrainingTimerUtils {
         stoneFive, stoneSix, stoneSeven, stoneEight, stoneNine, stoneTen, stoneEleven};
         return cornerStones;
     }
-
 
     public static int getVoiceCommandInt(int[] cornerStones, int counter, long trainingTime, Context context){
 
@@ -185,7 +150,6 @@ public class TrainingTimerUtils {
             //If counter is not at cornerstone position return empty string
             return visualCommand;
         }
-
 
     }
 

@@ -13,6 +13,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +27,6 @@ import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.database.AppDatabase;
 import com.example.android.vacuumfitness.model.Exercise;
 import com.example.android.vacuumfitness.model.Playlist;
-import com.example.android.vacuumfitness.utils.AdMobUtils;
 import com.example.android.vacuumfitness.utils.ExoPlayerUtils;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.utils.ListConverter;
@@ -43,9 +43,7 @@ import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -328,7 +326,6 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
             //Pause ExoPlayer
             mExoPlayer.setPlayWhenReady(false);
         }
-
     }
 
     @Override
@@ -524,7 +521,8 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
 
     @Override
     public void onPlayerError(ExoPlaybackException error) {
-
+        Log.d(LOG_TAG, error.toString());
+        error.printStackTrace();
     }
 
     @Override

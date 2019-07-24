@@ -6,24 +6,18 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
-import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.util.Log;
-
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.model.Exercise;
 import com.example.android.vacuumfitness.model.Motivator;
 import com.example.android.vacuumfitness.model.Playlist;
-import com.example.android.vacuumfitness.model.Song;
 import com.example.android.vacuumfitness.model.Training;
 import com.example.android.vacuumfitness.ui.MainActivity;
 import com.example.android.vacuumfitness.utils.AppExecutors;
 import com.example.android.vacuumfitness.utils.ListConverter;
 import com.example.android.vacuumfitness.utils.SharedPrefsUtils;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Executors;
 
 @Database(entities = {Exercise.class, Training.class, Playlist.class, Motivator.class}, version = 1, exportSchema = false)
 @TypeConverters({ListConverter.class})

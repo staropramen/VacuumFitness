@@ -21,7 +21,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.adapter.CustomTrainingAdapter;
 import com.example.android.vacuumfitness.database.AppDatabase;
@@ -30,10 +29,8 @@ import com.example.android.vacuumfitness.model.Training;
 import com.example.android.vacuumfitness.utils.AppExecutors;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.viewmodel.CustomTrainingViewModel;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -335,5 +332,4 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
         });
         alert.show();
     }
-
 }

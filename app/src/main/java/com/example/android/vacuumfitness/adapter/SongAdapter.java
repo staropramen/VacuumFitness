@@ -7,14 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.model.Song;
 import com.example.android.vacuumfitness.utils.MusicUtils;
 import com.example.android.vacuumfitness.utils.PreparationUtils;
-
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -98,7 +95,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongAdapterVie
         return songs.size();
     }
 
-    //Function to set moviesArray
+    //Function to set SongList
     public void setSongs(List<Song> songList){
         songs = songList;
         notifyDataSetChanged();

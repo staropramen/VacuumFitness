@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            storeFile file('C:\\Users\\dspie\\Udacity\\VacuumFitness\\keystore.jks')
+            storePassword 'kh6Hu89oIL7'
+            keyAlias = 'dsconsult'
+            keyPassword 'jF86Zhg82Kl'
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.android.vacuumfitness"
@@ -14,6 +22,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
 
@@ -21,9 +30,11 @@ android {
     productFlavors{
         free{
             applicationId "com.example.android.vacuumfitness.flavors.free"
+            signingConfig signingConfigs.config
         }
         paid{
             applicationId "com.example.android.vacuumfitness.flavors.paid"
+            signingConfig signingConfigs.config
         }
     }
 }

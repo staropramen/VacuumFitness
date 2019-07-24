@@ -12,6 +12,26 @@
         android:paddingTop="@dimen/xl_margin"
         android:paddingBottom="@dimen/xl_margin">
 
+        <ImageView
+            android:id="@+id/how_to_exercise"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/start_image_height"
+            android:layout_marginStart="@dimen/xxl_margin"
+            android:layout_marginEnd="@dimen/xxl_margin"
+            android:scaleType="centerCrop"
+            android:src="@drawable/start_training"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_how_to_exercise"
+            style="@style/start_buttons_text"
+            android:text="@string/how_to_exercise"
+            app:layout_constraintBottom_toBottomOf="@+id/how_to_exercise"
+            app:layout_constraintEnd_toEndOf="@+id/how_to_exercise"
+            app:layout_constraintStart_toStartOf="@+id/how_to_exercise"
+            app:layout_constraintTop_toTopOf="@+id/how_to_exercise" />
 
         <ImageView
             android:id="@+id/about_us_button"
@@ -19,14 +39,15 @@
             android:layout_height="@dimen/start_image_height"
             android:layout_marginStart="@dimen/xxl_margin"
             android:layout_marginEnd="@dimen/xxl_margin"
+            android:layout_marginTop="@dimen/xxl_margin"
             android:scaleType="centerCrop"
             android:src="@drawable/about_us"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/how_to_exercise" />
 
         <TextView
-            android:id="@+id/start_training"
+            android:id="@+id/tv_about_us"
             style="@style/start_buttons_text"
             android:text="@string/about_us"
             app:layout_constraintBottom_toBottomOf="@+id/about_us_button"

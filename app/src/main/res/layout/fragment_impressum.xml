@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".ui.ImpressumFragment">
 
+    <TextView
+        android:id="@+id/tv_imprint"
+        style="@style/regular_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/xxl_margin"
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginEnd="@dimen/margin"
+        android:text="@string/imprint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/tv_credits"
@@ -17,6 +29,6 @@
         android:text="@string/music_credits"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/tv_imprint" />
 
 </android.support.constraint.ConstraintLayout>

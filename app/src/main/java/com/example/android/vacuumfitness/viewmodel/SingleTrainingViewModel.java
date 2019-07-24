@@ -8,8 +8,6 @@ import android.util.Log;
 import com.example.android.vacuumfitness.database.AppDatabase;
 import com.example.android.vacuumfitness.model.Training;
 
-import java.util.List;
-
 public class SingleTrainingViewModel extends ViewModel {
 
     private static String LOG_TAG = SingleTrainingViewModel.class.getSimpleName();

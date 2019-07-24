@@ -7,7 +7,6 @@ import android.util.Log;
 
 import com.example.android.vacuumfitness.database.AppDatabase;
 import com.example.android.vacuumfitness.model.Playlist;
-import com.example.android.vacuumfitness.model.Song;
 
 public class SinglePlaylistViewModel extends ViewModel {
 

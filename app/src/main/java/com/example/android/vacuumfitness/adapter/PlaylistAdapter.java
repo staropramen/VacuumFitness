@@ -7,13 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.model.Playlist;
-import com.example.android.vacuumfitness.model.Training;
-
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -92,7 +88,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
         return playlists.size();
     }
 
-    //Function to set moviesArray
+    //Function to set PlaylistList
     public void setPlaylists(List<Playlist> playlistList){
         playlists = playlistList;
         notifyDataSetChanged();

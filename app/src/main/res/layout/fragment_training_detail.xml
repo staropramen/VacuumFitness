@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.TrainingDetailFragment">
 
-
     <TextView
         android:id="@+id/tv_exercises_title"
         style="@style/descriptions"

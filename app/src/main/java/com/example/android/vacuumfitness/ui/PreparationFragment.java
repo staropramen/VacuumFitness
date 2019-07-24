@@ -210,5 +210,4 @@ public class PreparationFragment extends Fragment {
             }
         });
     }
-
 }

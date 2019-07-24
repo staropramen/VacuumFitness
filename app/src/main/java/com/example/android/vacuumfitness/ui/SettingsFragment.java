@@ -2,19 +2,14 @@ package com.example.android.vacuumfitness.ui;
 
 
 import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Spinner;
@@ -27,7 +22,6 @@ import com.example.android.vacuumfitness.utils.SharedPrefsUtils;
 import com.example.android.vacuumfitness.utils.SpinnerUtils;
 import com.example.android.vacuumfitness.viewmodel.CustomTrainingViewModel;
 import com.example.android.vacuumfitness.viewmodel.PlaylistViewModel;
-import com.example.android.vacuumfitness.viewmodel.TrainingViewModel;
 
 import java.util.List;
 
@@ -50,7 +44,6 @@ public class SettingsFragment extends Fragment {
     public SettingsFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

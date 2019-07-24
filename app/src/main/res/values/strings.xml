@@ -8,7 +8,7 @@
     <string name="start_training">Start \n Training</string>
     <string name="customize_training">Customize \n Training</string>
     <string name="customize_music">Customize \n Music</string>
-    <string name="how_to">How To</string>
+    <string name="how_to">About</string>
     <string name="about_us">About Us</string>
     <string name="about">About</string>
 
@@ -81,7 +81,7 @@
     <string name="all_exercises">All Exercises</string>
 
     <!-- Dialogs -->
-    <string name="positive_answer">Ok</string>
+    <string name="positive_answer">OK</string>
     <string name="negative_answer">Cancel</string>
     <string name="cust_menu_title">Create Training</string>
     <string name="cust_menu_hint">Training Name</string>
@@ -125,8 +125,8 @@
 
     <!-- About -->
     <string name="music_credits">Music: Deep Blue, Relaxing and Slow Motion from Bensound.com</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="imprint">Distributer: \nDS Consult - Vitória-ES, Brazil \nvacuum.fitness@ds-webdevelopment.com</string>
+    <string name="how_to_exercise">How to\nExercise</string>
+    <string name="hot_to_use_app">How to use\nthe App</string>
+    
 </resources>

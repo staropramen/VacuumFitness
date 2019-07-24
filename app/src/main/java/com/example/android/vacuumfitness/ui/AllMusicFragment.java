@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.adapter.ChooseSongAdapter;
 import com.example.android.vacuumfitness.database.AppDatabase;
@@ -19,10 +18,8 @@ import com.example.android.vacuumfitness.model.Song;
 import com.example.android.vacuumfitness.utils.AppExecutors;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.utils.MusicUtils;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -42,7 +39,6 @@ public class AllMusicFragment extends Fragment implements ChooseSongAdapter.Choo
     public AllMusicFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

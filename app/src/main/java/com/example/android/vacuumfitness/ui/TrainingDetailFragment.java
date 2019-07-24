@@ -48,11 +48,9 @@ public class TrainingDetailFragment extends Fragment implements ExerciseAdapter.
     @BindView(R.id.tv_exercises_count) TextView exercisesCountTextView;
     @BindView(R.id.fab_add_exercise) FloatingActionButton fabAddExercises;
 
-
     public TrainingDetailFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -173,5 +171,4 @@ public class TrainingDetailFragment extends Fragment implements ExerciseAdapter.
         });
         alert.show();
     }
-
 }

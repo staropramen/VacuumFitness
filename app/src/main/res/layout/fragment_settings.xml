@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.SettingsFragment">
 
-
     <TextView
         android:id="@+id/tv_playlist_pref_title"
         style="@style/descriptions"
@@ -109,7 +108,7 @@
             android:layout_height="wrap_content"
             android:entries="@array/levelSpinnerItems"
             android:foregroundTint="@color/grey"
-            android:padding="@dimen/spinner_padding"></Spinner>
+            android:padding="@dimen/spinner_padding"/>
 
     </RelativeLayout>
 
