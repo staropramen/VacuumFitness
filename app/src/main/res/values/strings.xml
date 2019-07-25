@@ -4,6 +4,10 @@
     <string name="youtube_web_url" translatable="false">https://www.youtube.com/watch?v=</string>
     <string name="youtube_app_url" translatable="false">vnd.youtube:</string>
 
+    <string name="how_to_exercise_key">6L8c4JUqSjs</string>
+    <string name="how_to_app_key">epI3rvNUn0s</string>
+    <string name="youtube_error">Something went wrong. Go to our channel.</string>
+
     <!-- Start Fragment -->
     <string name="start_training">Start \n Training</string>
     <string name="customize_training">Customize \n Training</string>

@@ -405,7 +405,7 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
         mVideoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Ckech for Internet Connection
+                //Check for Internet Connection
                 if(NetworkUtils.isConnectedToInternet()){
                     //Check for video key
                     if(exercise.getVideoUrl() != null && !TextUtils.isEmpty(exercise.getVideoUrl())){
