@@ -10,6 +10,7 @@
 
         <ImageView
             android:id="@+id/about_us_button"
+            android:contentDescription="@string/cd_start_training"
             android:layout_width="match_parent"
             android:layout_height="@dimen/start_image_height"
             android:layout_marginStart="@dimen/xxl_margin"
@@ -31,6 +32,7 @@
 
         <ImageView
             android:id="@+id/customize_training_button"
+            android:contentDescription="@string/cd_customize_training"
             android:layout_width="match_parent"
             android:layout_height="@dimen/start_image_height"
             android:scaleType="centerCrop"
@@ -53,6 +55,7 @@
 
         <ImageView
             android:id="@+id/customize_music_button"
+            android:contentDescription="@string/cd_customize_music"
             android:layout_width="match_parent"
             android:layout_height="@dimen/start_image_height"
             android:scaleType="centerCrop"
@@ -75,6 +78,7 @@
 
         <ImageView
             android:id="@+id/how_to_button"
+            android:contentDescription="@string/cd_about"
             android:layout_width="match_parent"
             android:layout_height="@dimen/start_image_height"
             android:scaleType="centerCrop"

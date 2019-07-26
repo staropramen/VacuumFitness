@@ -17,6 +17,7 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_add_training"
+        android:contentDescription="@string/cd_add_training"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_add"

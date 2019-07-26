@@ -14,6 +14,7 @@
 
         <ImageView
             android:id="@+id/how_to_exercise"
+            android:contentDescription="@string/cd_how_to_exercise"
             android:layout_width="0dp"
             android:layout_height="@dimen/start_image_height"
             android:layout_marginStart="@dimen/xxl_margin"
@@ -34,6 +35,7 @@
 
         <ImageView
             android:id="@+id/how_to_app"
+            android:contentDescription="@string/cd_how_to_app"
             android:layout_width="0dp"
             android:layout_height="@dimen/start_image_height"
             android:layout_marginStart="@dimen/xxl_margin"
@@ -56,6 +58,7 @@
 
         <ImageView
             android:id="@+id/about_us_button"
+            android:contentDescription="@string/cd_imprint"
             android:layout_width="0dp"
             android:layout_height="@dimen/start_image_height"
             android:layout_marginStart="@dimen/xxl_margin"

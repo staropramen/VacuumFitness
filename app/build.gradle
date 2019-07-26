@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         config {
-            storeFile file('C:\\Users\\dspie\\Udacity\\VacuumFitness\\keystore.jks')
+            storeFile file('/keystore.jks')
             storePassword 'kh6Hu89oIL7'
             keyAlias = 'dsconsult'
             keyPassword 'jF86Zhg82Kl'

@@ -9,6 +9,7 @@
 
     <ImageView
         android:id="@+id/back_button"
+        android:contentDescription="@string/cd_back_button"
         android:layout_width="@dimen/back_button_size"
         android:layout_height="@dimen/back_button_size"
         android:tint="@color/colorPrimaryExtraDark"
@@ -18,6 +19,7 @@
 
     <ImageView
         android:id="@+id/iv_video_button"
+        android:contentDescription="@string/cd_video_button"
         android:layout_width="@dimen/small_icon_size"
         android:layout_height="@dimen/small_icon_size"
         android:layout_marginEnd="@dimen/xxl_margin"
@@ -27,6 +29,7 @@
 
     <ImageView
         android:id="@+id/iv_music_button"
+        android:contentDescription="@string/cd_music_button"
         android:layout_width="@dimen/small_icon_size"
         android:layout_height="@dimen/small_icon_size"
         android:layout_marginStart="@dimen/xxl_margin"
@@ -36,6 +39,7 @@
 
     <ImageView
         android:id="@+id/iv_start_pause"
+        android:contentDescription="@string/cd_pause_button"
         android:layout_width="@dimen/big_icon_size"
         android:layout_height="@dimen/big_icon_size"
         android:src="@drawable/pause"
@@ -83,6 +87,7 @@
 
     <ImageView
         android:id="@+id/iv_exercise_image"
+        android:contentDescription="@string/cd_position_image"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/margin"

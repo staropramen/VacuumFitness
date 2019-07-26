@@ -8,6 +8,7 @@
 
     <ImageView
         android:id="@+id/iv_exercise_thumbnail"
+        android:contentDescription="@string/cd_position_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxHeight="@dimen/thumbnail_height"

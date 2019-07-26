@@ -8,6 +8,7 @@
 
     <ImageView
         android:id="@+id/back_button"
+        android:contentDescription="@string/cd_back_button"
         android:layout_width="@dimen/back_button_size"
         android:layout_height="@dimen/back_button_size"
         android:tint="@color/colorPrimaryExtraDark"
@@ -107,6 +108,7 @@
 
     <ImageView
         android:id="@+id/iv_increase_button"
+        android:contentDescription="@string/cd_increase"
         android:layout_width="@dimen/increase_button_size"
         android:layout_height="@dimen/increase_button_size"
         android:layout_marginStart="@dimen/s_margin"
@@ -118,6 +120,7 @@
 
     <ImageView
         android:id="@+id/iv_decreasebutton"
+        android:contentDescription="@string/cd_decrease"
         android:layout_width="@dimen/increase_button_size"
         android:layout_height="@dimen/increase_button_size"
         android:layout_marginStart="@dimen/s_margin"

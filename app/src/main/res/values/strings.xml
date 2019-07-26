@@ -8,6 +8,27 @@
     <string name="how_to_app_key">epI3rvNUn0s</string>
     <string name="youtube_error">Something went wrong. Go to our channel.</string>
 
+    <!-- Content Desciptions -->
+    <string name="cd_position_image">Image of the position</string>
+    <string name="cd_how_to_exercise">Button opens a video tat shows how to exercise</string>
+    <string name="cd_how_to_app">Button opens a video that shows how to use the app</string>
+    <string name="cd_imprint">Button opens the imprint of the app</string>
+    <string name="cd_add_playlist">Add a new playlist</string>
+    <string name="cd_add_song">Add a song to the playlist</string>
+    <string name="cd_add_training">Add a new training</string>
+    <string name="cd_add_exercise">Add a exercise to training</string>
+    <string name="cd_back_button">Go back</string>
+    <string name="cd_start_training">Start a training</string>
+    <string name="cd_customize_training">Customize your Training</string>
+    <string name="cd_customize_music">Customize your music</string>
+    <string name="cd_about">Know more about this app</string>
+    <string name="cd_pause_button">Pause and Start the training</string>
+    <string name="cd_music_button">Mute the music</string>
+    <string name="cd_video_button">See a video about the current position</string>
+    <string name="cd_delete_icon">Delete</string>
+    <string name="cd_increase">Increase exercises</string>
+    <string name="cd_decrease">Decrease exercises</string>
+
     <!-- Start Fragment -->
     <string name="start_training">Start \n Training</string>
     <string name="customize_training">Customize \n Training</string>
