@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.model.Playlist;
 import com.example.android.vacuumfitness.model.Training;
 
@@ -20,7 +21,7 @@ public class SpinnerUtils {
         //Pre populate list with default items
         List<String> itemList = new ArrayList<>();
         //No Music
-        Playlist noMusicPlaylist = new Playlist(-1, "No Music");
+        Playlist noMusicPlaylist = new Playlist(-1, context.getString(R.string.no_music));
         itemList.add(noMusicPlaylist.getPlaylistName());
         allPlaylists.add(noMusicPlaylist);
 
@@ -56,7 +57,7 @@ public class SpinnerUtils {
     public static List<Training> populateTrainingSpinnerItems(Context context, Spinner trainingSpinner, List<Training> trainings){
 
         Training training = new Training();
-        training.setTrainingName("Random Training");
+        training.setTrainingName(context.getString(R.string.random_training));
         training.setPrimaryKey(-1);
 
         List<Training> trainingList = new ArrayList<>();

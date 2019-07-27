@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Vacuum Fitness</string>
+    <string name="app_name">Vacuum Fitness</string>
 
     <string name="youtube_web_url" translatable="false">https://www.youtube.com/watch?v=</string>
     <string name="youtube_app_url" translatable="false">vnd.youtube:</string>
@@ -56,8 +56,8 @@
     <string name="finish">Relax, congratulations you finished the training</string>
 
     <!-- Keys -->
-    <string name="key_playlist_name">playlist-name</string>
-    <string name="key_playlist_category">playlist-category</string>
+    <string name="key_playlist_name" translatable="false">playlist-name</string>
+    <string name="key_playlist_category" translatable="false">playlist-category</string>
 
     <!-- Exercise Names -->
     <string name="silent_tree">Silent Tree</string>
@@ -83,12 +83,13 @@
     <string name="intermediate">Intermediate</string>
     <string name="advanced">Advanced</string>
     <string name="random_training">Random Training</string>
+    <string name="no_music">No music</string>
 
     <!-- Training Activity-->
     <string name="prepare_title">Prepare your Training</string>
     <string name="how_much_exercises">How much \n exercises?</string>
     <string name="time">Time:</string>
-    <string name="default_exercise_count">3</string>
+    <string name="default_exercise_count" translatable="false">3</string>
     <string name="training_title">Training:</string>
     <string name="level_title">Level:</string>
     <string name="minutes_short">min</string>
@@ -140,7 +141,7 @@
     <string name="songs_count">Songs:</string>
     <string name="empty_playlist_detail">This playlist still don\'t have songs. Start by adding a song.</string>
     <string name="playlist_duration">Playlist Duration:</string>
-    <string name="zero_time">00:00</string>
+    <string name="zero_time" translatable="false">00:00</string>
     <string name="permission_denied">You must give the permission to customize music.</string>
     <string name="no_music_on_device">We did not find any music on your device.</string>
 

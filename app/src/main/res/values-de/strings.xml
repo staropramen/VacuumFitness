@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Vacuum Fitness</string>
+
+    <string name="how_to_exercise_key">6L8c4JUqSjs</string>
+    <string name="how_to_app_key">epI3rvNUn0s</string>
+    <string name="youtube_error">Etwas hat nicht geklappt. Gehen sie zu unserem Youtube Kanal.</string>
+
+    <!-- Content Desciptions -->
+    <string name="cd_position_image">Bild der Position</string>
+    <string name="cd_how_to_exercise">Button öffnet ein Video das zeigt wie man trainiert</string>
+    <string name="cd_how_to_app">Button öffnet ein Video das zeigt wie man die App nutzt</string>
+    <string name="cd_imprint">Button öffnet das Impressum der App</string>
+    <string name="cd_add_playlist">Neue Playlist hinzufügen</string>
+    <string name="cd_add_song">Song zur Playlist hinzufügen</string>
+    <string name="cd_add_training">Neues Training hinzufügen</string>
+    <string name="cd_add_exercise">Übung zum Training hinzufügen</string>
+    <string name="cd_back_button">Gehe zurück</string>
+    <string name="cd_start_training">Training starten</string>
+    <string name="cd_customize_training">Personalisiere dein Training</string>
+    <string name="cd_customize_music">Personalisiere deine Musik</string>
+    <string name="cd_about">Mehr über die App erfahren</string>
+    <string name="cd_pause_button">Training pausieren und starten</string>
+    <string name="cd_music_button">Musik stumm schalten</string>
+    <string name="cd_video_button">Video über die aktuelle Position</string>
+    <string name="cd_delete_icon">Löschen</string>
+    <string name="cd_increase">Mehr Übungen</string>
+    <string name="cd_decrease">Weniger Übungen</string>
+
+    <!-- Start Fragment -->
+    <string name="start_training">Start \n Training</string>
+    <string name="customize_training">Training\n anpassen</string>
+    <string name="customize_music">Musik\n anpassen</string>
+    <string name="how_to">Über uns</string>
+
+    <!-- Settings -->
+    <string name="settings">Einstellungen</string>
+    <string name="choose_pref_playlist">Bevorzugte Playlist auswählen</string>
+    <string name="choose_pref_training">Bevorzugtes Training auswählen</string>
+    <string name="choose_pref_level">Bevorzugtes Level auswählen</string>
+    <string name="reduce_music_for_voice">Musik leiser machen für Kommandos</string>
+    <string name="voice_command_toggle">Stimmen Kommandos</string>
+    <string name="visual_command_toggle">Visuelle Kommandos</string>
+
+    <!-- Visual Commands -->
+    <string name="prepare">Position einnehmen</string>
+    <string name="inhale">Einatmen</string>
+    <string name="exhale">Ausatmen</string>
+    <string name="vacuum">Vakuum machen</string>
+    <string name="relax">Entspannen</string>
+    <string name="change">Enstpannen und bereit machen die Position zu wechseln</string>
+    <string name="finish">Entspannen. Gratulation, das Training ist zu ende.</string>
+
+    <!-- Keys -->
+
+    <!-- Exercise Names -->
+    <string name="silent_tree">Stiller Baum</string>
+    <string name="eagle">Adler</string>
+    <string name="mantis">Gottesanbeterin</string>
+    <string name="armadillo">Gürteltier</string>
+    <string name="prayer">Gebet</string>
+    <string name="tamarin">Tamarin</string>
+    <string name="orchid">Orchidee</string>
+    <string name="bear">Bär</string>
+    <string name="sun_king">Sonnenkönig</string>
+    <string name="peacock">Pfau</string>
+    <string name="tiger">Tiger</string>
+    <string name="cobra">Cobra</string>
+    <string name="hedgehog">Igel</string>
+    <string name="polar_fox">Polarfuchs</string>
+    <string name="kangaroo">Känguru</string>
+    <string name="rosebush">Rosenbusch</string>
+    <string name="nightshade">Nachtschatten</string>
+
+    <!-- Exercise Level -->
+    <string name="beginner">Anfänger</string>
+    <string name="intermediate">Mittel</string>
+    <string name="advanced">Fortgeschritten</string>
+    <string name="random_training">Zufälliges Training</string>
+    <string name="no_music">Keine Musik</string>
+
+    <!-- Training Activity-->
+    <string name="prepare_title">Training vorbereiten</string>
+    <string name="how_much_exercises">Wieviele Übungen?</string>
+    <string name="time">Zeit:</string>
+    <string name="training_title">Training:</string>
+    <string name="level_title">Level:</string>
+    <string name="minutes_short">min</string>
+    <string name="start_button">Start</string>
+    <string name="music_title">Musik:</string>
+    <string name="exercise">Übung:</string>
+    <string name="no_internet_connection">Bitte mit dem Internet verbinden und nochmals versuchen.</string>
+    <string name="no_exercise_video">Für diese Übung steht kein Video zur Verfügung.</string>
+
+    <!-- Customize Training Activity -->
+    <string name="customize_training_title">Training anpassen</string>
+    <string name="empty_customize_trainings">Du hast noch keine personalisierte Trainings, starte indem du ein Training hinzufügst.</string>
+    <string name="exercises">Übungen::</string>
+    <string name="empty_training_detail">Dieses Training hat noch keine Übungen. Starte indem du eine Übung hinzufügst.</string>
+    <string name="all_exercises">Alle Übungen</string>
+
+    <!-- Dialogs -->
+    <string name="positive_answer">OK</string>
+    <string name="negative_answer">Abbrechen</string>
+    <string name="cust_menu_title">Training erstellen</string>
+    <string name="cust_menu_hint">Trainingsname</string>
+    <string name="cust_label_title">Label</string>
+    <string name="customize_label">Benutzerdefiniertes Label (max. 3 Buchstaben)</string>
+    <string name="customize_label_hint">Label…</string>
+    <string name="no_name">Das Training muss einen Namen haben.</string>
+    <string name="delete_answer">Löschen</string>
+    <string name="delete_training_title">Training löschen</string>
+    <string name="delete_question">Bist du sicher dass du %1$s? löschen willst?</string>
+    <string name="delete_exercise_title">Übung löschen</string>
+    <string name="custom_playlist_hint">Playlistname…</string>
+    <string name="custom_playlist_dialog_title">Playlist erstellen</string>
+    <string name="delete_song_title">Song von Playlist löschen</string>
+    <string name="delete_playlist_title">Playlist löschen</string>
+
+    <string name="mon_label">Mo.</string>
+    <string name="tue_label">Di.</string>
+    <string name="wed_label">Mi.</string>
+    <string name="thu_label">Do.</string>
+    <string name="fri_label">Fr.</string>
+    <string name="sat_label">Sa.</string>
+    <string name="sun_label">So.</string>
+
+    <!-- Customize Music Activity -->
+    <string name="all_music">Alle meine Muisk</string>
+    <string name="various_artists">Diverse Künstler</string>
+    <string name="empty_customize_playlist">Du hast noch keine personalisierte Musik, starte indem du eine Playlist hinzufügst.</string>
+    <string name="customize_music_title">Musik anpassen</string>
+    <string name="songs_count">Songs:</string>
+    <string name="empty_playlist_detail">Diese Playlist hat noch keine Songs. Starte indem du einen Song hinzufügst.</string>
+    <string name="playlist_duration">Playlist Dauer:</string>
+    <string name="permission_denied">Um Musik zu personalisieren muss diese Berechtigung erteilt werden.</string>
+    <string name="no_music_on_device">Wir haben auf diesem Gerät keine Musik gefinden.</string>
+
+    <!-- Widget -->
+    <string name="add_widget">Wiget hinzufügen</string>
+    <string name="default_motivator_string">Wir denken dein Bauch verdient ein Training.</string>
+
+    <!-- About -->
+    <string name="music_credits">Musik: Deep Blue, Relaxing und Slow Motion von Bensound.com</string>
+    <string name="imprint">Vertrieb: \nDS Consult - Vitória-ES, Brazil \nvacuum.fitness@ds-webdevelopment.com</string>
+    <string name="how_to_exercise">Wie Üben</string>
+    <string name="how_to_use_app">Wie man die\nApp benutzt</string>
+    <string name="about">Über uns</string>
+    <string name="about_us">Über uns</string>
+    <string name="no_playlist_name">Die Playlist muss einen Namen haben.</string>
+
+</resources>
