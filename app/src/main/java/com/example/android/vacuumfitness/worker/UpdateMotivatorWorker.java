@@ -7,6 +7,7 @@ import android.util.Log;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
+import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.database.AppDatabase;
 import com.example.android.vacuumfitness.model.Motivator;
 import com.example.android.vacuumfitness.network.GetDataService;
@@ -35,7 +36,7 @@ public class UpdateMotivatorWorker extends Worker {
     @Override
     public Result doWork() {
         GetDataService api = RetrofitClientInstance.getApiService();
-        Call<List<Motivator>> call = api.getAllMotivators();
+        Call<List<Motivator>> call = api.getAllMotivators(mContext.getString(R.string.motivators_json));
 
         call.enqueue(new Callback<List<Motivator>>() {
             @Override

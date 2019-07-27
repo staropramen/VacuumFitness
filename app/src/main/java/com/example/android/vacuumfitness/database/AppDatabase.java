@@ -72,33 +72,33 @@ public abstract class AppDatabase extends RoomDatabase {
 
     private static Exercise[] populateExercises(){
         return new Exercise[] {
-                new Exercise(mainContext.getString(R.string.silent_tree), "silent_tree", "MvbMZr1IMNM"),
-                new Exercise(mainContext.getString(R.string.eagle), "eagle", "KwxPCGvn3AU"),
-                new Exercise(mainContext.getString(R.string.mantis), "mantis", "N7dl8P1D8kI"),
-                new Exercise(mainContext.getString(R.string.armadillo), "armadillo", "7-Q4_TrRWEU"),
-                new Exercise(mainContext.getString(R.string.prayer), "prayer", "E4DBzlNRBj8"),
-                new Exercise(mainContext.getString(R.string.tamarin), "tamarin", "HIBZUj_tsU4"),
-                new Exercise(mainContext.getString(R.string.orchid), "orchid", "8eXIB4n-XII"),
-                new Exercise(mainContext.getString(R.string.bear), "bear", "IjGnTQAVw_0"),
-                new Exercise(mainContext.getString(R.string.sun_king), "sun_king", "Eqz1em17AVg"),
-                new Exercise(mainContext.getString(R.string.peacock), "peacock", "jHLrP8AXR9M"),
-                new Exercise(mainContext.getString(R.string.tiger), "tiger", "b05V2NC3qpo"),
-                new Exercise(mainContext.getString(R.string.cobra), "cobra", "b9LbPAJrbHs"),
-                new Exercise(mainContext.getString(R.string.hedgehog), "hedgehog", "h_MRemF-HeU"),
-                new Exercise(mainContext.getString(R.string.polar_fox), "polar_fox", "M3fhEMDIr0s"),
-                new Exercise(mainContext.getString(R.string.kangaroo), "kangaroo", "W1YlnKD1Ep8"),
-                new Exercise(mainContext.getString(R.string.rosebush), "rosebush", "Gyj50Ksa7yA"),
-                new Exercise(mainContext.getString(R.string.nightshade), "nightshade", "G-jnDlJMSX8"),
+                new Exercise(mainContext.getString(R.string.silent_tree), "silent_tree", mainContext.getString(R.string.silent_tree_key)),
+                new Exercise(mainContext.getString(R.string.eagle), "eagle", mainContext.getString(R.string.eagle_key)),
+                new Exercise(mainContext.getString(R.string.mantis), "mantis", mainContext.getString(R.string.mantis_key)),
+                new Exercise(mainContext.getString(R.string.armadillo), "armadillo", mainContext.getString(R.string.armadillo_key)),
+                new Exercise(mainContext.getString(R.string.prayer), "prayer", mainContext.getString(R.string.prayer_key)),
+                new Exercise(mainContext.getString(R.string.tamarin), "tamarin", mainContext.getString(R.string.tamarin_key)),
+                new Exercise(mainContext.getString(R.string.orchid), "orchid", mainContext.getString(R.string.orchid_key)),
+                new Exercise(mainContext.getString(R.string.bear), "bear", mainContext.getString(R.string.bear_key)),
+                new Exercise(mainContext.getString(R.string.sun_king), "sun_king", mainContext.getString(R.string.sun_king_key)),
+                new Exercise(mainContext.getString(R.string.peacock), "peacock", mainContext.getString(R.string.peacock_key)),
+                new Exercise(mainContext.getString(R.string.tiger), "tiger", mainContext.getString(R.string.tiger_key)),
+                new Exercise(mainContext.getString(R.string.cobra), "cobra", mainContext.getString(R.string.cobra_key)),
+                new Exercise(mainContext.getString(R.string.hedgehog), "hedgehog", mainContext.getString(R.string.hedgehog_key)),
+                new Exercise(mainContext.getString(R.string.polar_fox), "polar_fox", mainContext.getString(R.string.polar_fox_key)),
+                new Exercise(mainContext.getString(R.string.kangaroo), "kangaroo", mainContext.getString(R.string.kangaroo_key)),
+                new Exercise(mainContext.getString(R.string.rosebush), "rosebush", mainContext.getString(R.string.rosebush_key)),
+                new Exercise(mainContext.getString(R.string.nightshade), "nightshade", mainContext.getString(R.string.nightshade_key)),
         };
     }
 
     private static Motivator[] populateMotivators() {
         return new Motivator[] {
-                new Motivator(1, "Always keep on track!"),
-                new Motivator(2, "Never give up!"),
-                new Motivator(3, "You are one of the best!"),
-                new Motivator(4, "Vacuum Fitness believes in you"),
-                new Motivator(5, "You are sexy as you are!"),
+                new Motivator(1, mainContext.getString(R.string.motivator_1)),
+                new Motivator(2, mainContext.getString(R.string.motivator_1)),
+                new Motivator(3, mainContext.getString(R.string.motivator_3)),
+                new Motivator(4, mainContext.getString(R.string.motivator_4)),
+                new Motivator(5, mainContext.getString(R.string.motivator_5)),
         };
     }
 }

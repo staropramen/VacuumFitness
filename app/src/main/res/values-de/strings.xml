@@ -6,6 +6,32 @@
     <string name="how_to_app_key">epI3rvNUn0s</string>
     <string name="youtube_error">Etwas hat nicht geklappt. Gehen sie zu unserem Youtube Kanal.</string>
 
+    <string name="eagle_key">lgTIZcvFXPw</string>
+    <string name="armadillo_key">BqGgId9XTbg</string>
+    <string name="bear_key">5WlxzWmYaa8</string>
+    <string name="cobra_key">siwLEmXDEhE</string>
+    <string name="hedgehog_key">7u6pX5fZt-U</string>
+    <string name="kangaroo_key">bHJNW8CTigo</string>
+    <string name="mantis_key">AP6IlcKZPnA</string>
+    <string name="nightshade_key">v_U99vHlvx0</string>
+    <string name="orchid_key">_j9QdNm_yRU</string>
+    <string name="peacock_key">p6JnBQDKAWI</string>
+    <string name="polar_fox_key">c2eDVChtd4c</string>
+    <string name="prayer_key">n-xcnpVjuao</string>
+    <string name="rosebush_key">TDqyaFX5XJY</string>
+    <string name="silent_tree_key">LTpX8klNyzg</string>
+    <string name="sun_king_key">GjAUKBb6NmA</string>
+    <string name="tamarin_key">MICobSyPZ9Q</string>
+    <string name="tiger_key">u-CA3bFzwfc</string>
+
+    <string name="motivator_1">Bleib immer auf Kurs.</string>
+    <string name="motivator_2">Gib niemals auf!</string>
+    <string name="motivator_3">Du bist bei den Besten dabei.</string>
+    <string name="motivator_4">Vacuum Fitness glaubt n dich.</string>
+    <string name="motivator_5">Dein Training wartet auf dich.</string>
+
+    <string name="motivators_json">motivatorsDE.json</string>
+
     <!-- Content Desciptions -->
     <string name="cd_position_image">Bild der Position</string>
     <string name="cd_how_to_exercise">Button öffnet ein Video das zeigt wie man trainiert</string>
@@ -95,7 +121,7 @@
     <!-- Customize Training Activity -->
     <string name="customize_training_title">Training anpassen</string>
     <string name="empty_customize_trainings">Du hast noch keine personalisierte Trainings, starte indem du ein Training hinzufügst.</string>
-    <string name="exercises">Übungen::</string>
+    <string name="exercises">Übungen:</string>
     <string name="empty_training_detail">Dieses Training hat noch keine Übungen. Starte indem du eine Übung hinzufügst.</string>
     <string name="all_exercises">Alle Übungen</string>
 
@@ -110,7 +136,7 @@
     <string name="no_name">Das Training muss einen Namen haben.</string>
     <string name="delete_answer">Löschen</string>
     <string name="delete_training_title">Training löschen</string>
-    <string name="delete_question">Bist du sicher dass du %1$s? löschen willst?</string>
+    <string name="delete_question">Bist du sicher dass du %1$s löschen willst?</string>
     <string name="delete_exercise_title">Übung löschen</string>
     <string name="custom_playlist_hint">Playlistname…</string>
     <string name="custom_playlist_dialog_title">Playlist erstellen</string>

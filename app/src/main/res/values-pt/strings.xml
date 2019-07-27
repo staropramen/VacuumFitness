@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Vacuum Fitness</string>
+
+    <string name="how_to_exercise_key">6L8c4JUqSjs</string>
+    <string name="how_to_app_key">epI3rvNUn0s</string>
+    <string name="youtube_error">Algo deu errado. Vai ao nosso canal no Youtube.</string>
+
+    <string name="eagle_key">KwxPCGvn3AU</string>
+    <string name="armadillo_key">7-Q4_TrRWEU</string>
+    <string name="bear_key">IjGnTQAVw_0</string>
+    <string name="cobra_key">KwxPCGvn3AU</string>
+    <string name="hedgehog_key">h_MRemF-HeU</string>
+    <string name="kangaroo_key">W1YlnKD1Ep8</string>
+    <string name="mantis_key">N7dl8P1D8kI</string>
+    <string name="nightshade_key">G-jnDlJMSX8</string>
+    <string name="orchid_key">https://youtu.be/8eXIB4n-XII</string>
+    <string name="peacock_key">jHLrP8AXR9M</string>
+    <string name="polar_fox_key">M3fhEMDIr0s</string>
+    <string name="prayer_key">E4DBzlNRBj8</string>
+    <string name="rosebush_key">Gyj50Ksa7yA</string>
+    <string name="silent_tree_key">MvbMZr1IMNM</string>
+    <string name="sun_king_key">Eqz1em17AVg</string>
+    <string name="tamarin_key">HIBZUj_tsU4</string>
+    <string name="tiger_key">b05V2NC3qpo</string>
+
+    <string name="motivator_1">Sempre fique no seu caminho!</string>
+    <string name="motivator_2">Nunca desista!</string>
+    <string name="motivator_3">Vocè é um dos melhores!</string>
+    <string name="motivator_4">Vacuum Fitness acredita em você</string>
+    <string name="motivator_5">Seu treino está te aguardando.</string>
+
+    <string name="motivators_json">motivatorsPT.json</string>
+
+    <!-- Content Desciptions -->
+    <string name="cd_position_image">Imagen da posição</string>
+    <string name="cd_how_to_exercise">Botão abre um vídeo que mostra como trainar</string>
+    <string name="cd_how_to_app">Botão abre um vídeo que mostra como usar o aplicativo</string>
+    <string name="cd_add_playlist">Adicionar nova playlist</string>
+    <string name="cd_add_song">Adicionar música à playlist</string>
+    <string name="cd_add_training">Adicionar novo traino</string>
+    <string name="cd_add_exercise">Adicionar exercicio ao traino</string>
+    <string name="cd_back_button">Volte</string>
+    <string name="cd_start_training">Começar traino</string>
+    <string name="cd_customize_training">Personalizar seu treino</string>
+    <string name="cd_customize_music">Personalizar sua música</string>
+    <string name="cd_about">Saber mais sobre o App</string>
+    <string name="cd_pause_button">Pausa e comece o treinamento</string>
+    <string name="cd_music_button">Silenciar música</string>
+    <string name="cd_video_button">Vídeo sobre a posição atual</string>
+    <string name="cd_delete_icon">Apagar</string>
+    <string name="cd_increase">Mais exercicios</string>
+    <string name="cd_decrease">Menos exercicios</string>
+
+    <!-- Start Fragment -->
+    <string name="start_training">Começar\nTreino</string>
+    <string name="customize_training">Personalizar Treino</string>
+    <string name="customize_music">Personalizar\nMúsica</string>
+    <string name="how_to">Sobre nós</string>
+
+    <!-- Settings -->
+    <string name="settings">Configurações</string>
+    <string name="choose_pref_playlist">Escolher a Playlist preferida</string>
+    <string name="choose_pref_training">Escolher o treino preferido</string>
+    <string name="choose_pref_level">Escolher o nível preferido</string>
+    <string name="reduce_music_for_voice">Baixar música para comandos.</string>
+    <string name="voice_command_toggle">Comandos de voz</string>
+    <string name="visual_command_toggle">Comandos visuais</string>
+
+    <!-- Visual Commands -->
+    <string name="prepare">Tomae posição</string>
+    <string name="inhale">Inspere</string>
+    <string name="exhale">Expire</string>
+    <string name="vacuum">Faz o vácuo</string>
+    <string name="relax">Relaxe</string>
+    <string name="change">Relaxe e prepare-se para mudar de posição</string>
+    <string name="finish">Relaxe. Parabéns, seu treino acabou.</string>
+
+    <!-- Keys -->
+
+    <!-- Exercise Names -->
+    <string name="silent_tree">Árvore silenciosa</string>
+    <string name="mantis">Mantis</string>
+    <string name="armadillo">Tatu</string>
+    <string name="prayer">Oração</string>
+    <string name="tamarin">Micoleão</string>
+    <string name="orchid">Orquídea</string>
+    <string name="bear">Urso</string>
+    <string name="sun_king">Rei do Sol</string>
+    <string name="peacock">Pavão</string>
+    <string name="tiger">Tigre</string>
+    <string name="cobra">Cobra</string>
+    <string name="hedgehog">Ouriço</string>
+    <string name="polar_fox">Raposa Polar</string>
+    <string name="kangaroo">Canguro</string>
+    <string name="rosebush">Arbusto de Rosas</string>
+    <string name="nightshade">Sombra da noite</string>
+
+    <!-- Exercise Level -->
+    <string name="beginner">Iniciante</string>
+    <string name="intermediate">Intermediário</string>
+    <string name="advanced">Avançado</string>
+    <string name="random_training">Treinamento Aleatório</string>
+    <string name="no_music">Sem música</string>
+
+    <!-- Training Activity-->
+    <string name="prepare_title">Prepare seu treino</string>
+    <string name="how_much_exercises">Quantos exercicios?</string>
+    <string name="time">Tempo:</string>
+    <string name="training_title">Treino:</string>
+    <string name="level_title">Nível:</string>
+    <string name="minutes_short">min</string>
+    <string name="start_button">Comece</string>
+    <string name="music_title">Música:</string>
+    <string name="exercise">Exercicio:</string>
+    <string name="no_internet_connection">Conectar-se com internet e tenta de novo.</string>
+    <string name="no_exercise_video">Esse exercicio não possui vídeo.</string>
+
+    <!-- Customize Training Activity -->
+    <string name="customize_training_title">Personalizar treino</string>
+    <string name="empty_customize_trainings">Você ainda não tem treinos personalizados. Comece adicionando um treino.</string>
+    <string name="exercises">Exercicios:</string>
+    <string name="empty_training_detail">Esse treino ainda não tem exercicios. Comce adicionando um exercicio.</string>
+    <string name="all_exercises">Todos Exercicios</string>
+
+    <!-- Dialogs -->
+    <string name="positive_answer">OK</string>
+    <string name="negative_answer">Cancelar</string>
+    <string name="cust_menu_title">Criar treino</string>
+    <string name="cust_menu_hint">Nome to treino</string>
+    <string name="cust_label_title">Rótulo</string>
+    <string name="customize_label_hint">Rótulo…</string>
+    <string name="no_name">O treino deve ter um nome.</string>
+    <string name="delete_answer">Apagar</string>
+    <string name="delete_training_title">Apagar treino</string>
+    <string name="delete_question">Deseja apagar %1$s?</string>
+    <string name="delete_exercise_title">Apagar exercicio</string>
+    <string name="custom_playlist_hint">Nome da Playlist</string>
+    <string name="custom_playlist_dialog_title">Criar Playlist</string>
+    <string name="delete_song_title">Apagar música da playlist</string>
+    <string name="delete_playlist_title">Apagar playlist</string>
+
+    <string name="mon_label">Seg</string>
+    <string name="tue_label">Ter</string>
+    <string name="wed_label">Qua</string>
+    <string name="thu_label">Qui</string>
+    <string name="fri_label">Sex</string>
+    <string name="sat_label">Sab</string>
+    <string name="sun_label">Dom</string>
+
+    <!-- Customize Music Activity -->
+    <string name="all_music">Minha música toda</string>
+    <string name="various_artists">Vários artistas</string>
+    <string name="empty_customize_playlist">Você aina não tem música personalizada. Comece adicionando uma playlist.</string>
+    <string name="customize_music_title">Personalizar música</string>
+    <string name="songs_count">Músicas:</string>
+    <string name="empty_playlist_detail">Essa playlist aina não tem músicas. Comece adicionando uma música.</string>
+    <string name="playlist_duration">Playlist duração:</string>
+    <string name="permission_denied">Você deve dar permissão para personalizar a música.</string>
+    <string name="no_music_on_device">Não encontramos música no seu dispositivo.</string>
+
+    <!-- Widget -->
+    <string name="add_widget">Adicionar Widget</string>
+    <string name="default_motivator_string">Achamos que a sua barriga merece um treino.</string>
+
+    <!-- About -->
+    <string name="music_credits">Música: Deep Blue, Relaxing e Slow Motion de Bensound.com</string>
+    <string name="imprint">Distribução: \nDS Consult - Vitória-ES, Brasil \nvacuum.fitness@ds-webdevelopment.com</string>
+    <string name="how_to_exercise">Como Trainar</string>
+    <string name="how_to_use_app">Como usar\no aplicativo</string>
+    <string name="about">Sobre nós</string>
+    <string name="about_us">Sobre nós</string>
+    <string name="no_playlist_name">A playlist deve ter um nome.</string>
+    <string name="cd_imprint">Botão abre o cunho do aplicativo</string>
+    <string name="customize_label">Rótulo personalizado (máx. 3 letras)</string>
+    <string name="eagle">Águia</string>
+
+</resources>
