@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import androidx.work.Constraints;
 import androidx.work.NetworkType;
+import androidx.work.OneTimeWorkRequest;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 import com.example.android.vacuumfitness.R;
@@ -21,6 +22,8 @@ import com.example.android.vacuumfitness.database.AppDatabase;
 import com.example.android.vacuumfitness.utils.AppExecutors;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.utils.SharedPrefsUtils;
+import com.example.android.vacuumfitness.worker.ScheduleSingleNotificationWorker;
+import com.example.android.vacuumfitness.worker.SendNotificationWorker;
 import com.example.android.vacuumfitness.worker.UpdateMotivatorWorker;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import java.util.concurrent.TimeUnit;
@@ -30,6 +33,7 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity implements FragmentManager.OnBackStackChangedListener{
 
     private static String LOG_TAG = MainActivity.class.getSimpleName();
+    private static String NOTIFICATION_WORK_TAG = "notification-work-tag";
 
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.collapsing_toolbar) CollapsingToolbarLayout collapsingToolbar;
@@ -72,6 +76,9 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
             fragmentManager.beginTransaction()
                     .replace(R.id.start_content, fragment)
                     .commit();
+
+            //Setup Notifications
+            setupNotificationsWork();
         }
 
         //Initialize Analytics
@@ -155,6 +162,18 @@ public class MainActivity extends AppCompatActivity implements FragmentManager.O
         //Setup Workmanager
         WorkManager.getInstance()
                 .enqueue(updateMotivatorsTask);
+    }
+
+    private void setupNotificationsWork() {
+        //If app is launched we cancel the old work
+        WorkManager.getInstance().cancelAllWorkByTag(NOTIFICATION_WORK_TAG);
+
+        PeriodicWorkRequest sendNotifications =
+                new PeriodicWorkRequest.Builder(ScheduleSingleNotificationWorker.class, 48, TimeUnit.HOURS)
+                        .addTag(NOTIFICATION_WORK_TAG)
+                .build();
+
+        WorkManager.getInstance().enqueue(sendNotifications);
     }
 
     @Override

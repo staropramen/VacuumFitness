@@ -82,7 +82,7 @@ public class MotivationAppWidget extends AppWidgetProvider {
         // Enter relevant functionality for when the last widget is disabled
     }
 
-    private static void getNewMotivator(final Context context){
+    public static void getNewMotivator(final Context context){
         //Get which Motivator was uses last time
         int lastMotivatorId = SharedPrefsUtils.getLastMotivatorId(context);
         //Chang motivator id

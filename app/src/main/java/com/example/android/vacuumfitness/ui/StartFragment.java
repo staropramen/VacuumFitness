@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.android.vacuumfitness.R;
+import com.example.android.vacuumfitness.utils.NotificationUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -76,7 +77,9 @@ public class StartFragment extends Fragment {
         howToButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                aboutFragmentTransaction();
+                //aboutFragmentTransaction();
+                //TODO remove test
+                NotificationUtils.motivateUserForTraining(getActivity());
             }
         });
 
