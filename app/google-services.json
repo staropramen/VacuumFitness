@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:965062161602:android:b72f4df10a9b080d",
         "android_client_info": {
-          "package_name": "com.example.android.vacuumfitness.flavors.free"
+          "package_name": "com.dsconsult.android.vacuumfitness.flavors.free"
         }
       },
       "oauth_client": [
@@ -39,7 +39,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:965062161602:android:ba6586d2abf7de37",
         "android_client_info": {
-          "package_name": "com.example.android.vacuumfitness.flavors.paid"
+          "package_name": "com.dsconsult.android.vacuumfitness.flavors.paid"
         }
       },
       "oauth_client": [

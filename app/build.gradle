@@ -11,7 +11,7 @@ android {
     }
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.android.vacuumfitness"
+        applicationId "com.dsconsult.android.vacuumfitness"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
@@ -29,11 +29,11 @@ android {
     flavorDimensions "standard"
     productFlavors{
         free{
-            applicationId "com.example.android.vacuumfitness.flavors.free"
+            applicationId "com.dsconsult.android.vacuumfitness.flavors.free"
             signingConfig signingConfigs.config
         }
         paid{
-            applicationId "com.example.android.vacuumfitness.flavors.paid"
+            applicationId "com.dsconsult.android.vacuumfitness.flavors.paid"
             signingConfig signingConfigs.config
         }
     }

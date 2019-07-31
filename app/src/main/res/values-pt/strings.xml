@@ -2,8 +2,8 @@
 <resources>
     <string name="app_name">Vacuum Fitness</string>
 
-    <string name="how_to_exercise_key">6L8c4JUqSjs</string>
-    <string name="how_to_app_key">epI3rvNUn0s</string>
+    <string name="how_to_exercise_key">GcDZ6B5kNOQ</string>
+    <string name="how_to_app_key">HVJEGjNfWTE</string>
     <string name="youtube_error">Algo deu errado. Vai ao nosso canal no Youtube.</string>
 
     <string name="eagle_key">nh6BHaeHmoE</string>
@@ -68,8 +68,8 @@
     <string name="visual_command_toggle">Comandos visuais</string>
 
     <!-- Visual Commands -->
-    <string name="prepare">Tomae posição</string>
-    <string name="inhale">Inspere</string>
+    <string name="prepare">Tome posição</string>
+    <string name="inhale">Inspire</string>
     <string name="exhale">Expire</string>
     <string name="vacuum">Faz o vácuo</string>
     <string name="relax">Relaxe</string>
@@ -151,10 +151,10 @@
     <!-- Customize Music Activity -->
     <string name="all_music">Minha música toda</string>
     <string name="various_artists">Vários artistas</string>
-    <string name="empty_customize_playlist">Você aina não tem música personalizada. Comece adicionando uma playlist.</string>
+    <string name="empty_customize_playlist">Você ainda não tem música personalizada. Comece adicionando uma playlist.</string>
     <string name="customize_music_title">Personalizar música</string>
     <string name="songs_count">Músicas:</string>
-    <string name="empty_playlist_detail">Essa playlist aina não tem músicas. Comece adicionando uma música.</string>
+    <string name="empty_playlist_detail">Essa playlist ainda não tem músicas. Comece adicionando uma música.</string>
     <string name="playlist_duration">Playlist duração:</string>
     <string name="permission_denied">Você deve dar permissão para personalizar a música.</string>
     <string name="no_music_on_device">Não encontramos música no seu dispositivo.</string>

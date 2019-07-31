@@ -15,8 +15,6 @@ public class TrainingActivity extends AppCompatActivity {
 
     private static String LOG_TAG = TrainingActivity.class.getSimpleName();
 
-    @BindView(R.id.back_button) ImageView backButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,14 +22,6 @@ public class TrainingActivity extends AppCompatActivity {
 
         //Setup Butterknife
         ButterKnife.bind(this);
-
-        //Setup backButton
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
 
         //Handle when activity is recreated like on orientation Change
         if(savedInstanceState == null){

@@ -77,9 +77,7 @@ public class StartFragment extends Fragment {
         howToButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //aboutFragmentTransaction();
-                //TODO remove test
-                NotificationUtils.motivateUserForTraining(getActivity());
+                aboutFragmentTransaction();
             }
         });
 
