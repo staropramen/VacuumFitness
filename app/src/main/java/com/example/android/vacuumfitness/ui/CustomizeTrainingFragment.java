@@ -304,11 +304,15 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
     }
 
     private void setTextViewBackgroundColor(TextView textView, boolean isColorDark){
-        GradientDrawable background = (GradientDrawable) textView.getBackground();
-        if(isColorDark){
-            background.setColor(getResources().getColor(R.color.colorPrimaryDark));
-        } else {
-            background.setColor(getResources().getColor(R.color.colorPrimaryLight));
+        try {
+            GradientDrawable background = (GradientDrawable) textView.getBackground();
+            if(isColorDark){
+                background.setColor(getResources().getColor(R.color.colorPrimaryDark));
+            } else {
+                background.setColor(getResources().getColor(R.color.colorPrimaryLight));
+            }
+        } catch (NullPointerException e){
+            e.printStackTrace();
         }
     }
 
