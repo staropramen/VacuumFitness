@@ -4,13 +4,16 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -25,9 +28,10 @@ import butterknife.ButterKnife;
  */
 public class AboutFragment extends Fragment {
 
-    @BindView(R.id.about_us_button) ImageView mAboutUsButton;
-    @BindView(R.id.how_to_exercise) ImageView mHowToExerciseButton;
-    @BindView(R.id.how_to_app) ImageView mHowToAppButton;
+    @BindView(R.id.about_us_button) Button mAboutUsButton;
+    @BindView(R.id.how_to_exercise) Button mHowToExerciseButton;
+    @BindView(R.id.how_to_app) Button mHowToAppButton;
+    @BindView(R.id.how_to_exercise_video) Button mHowToExerciseVideoButton;
 
     public AboutFragment() {
         // Required empty public constructor
@@ -43,8 +47,7 @@ public class AboutFragment extends Fragment {
         ButterKnife.bind(this, rootView);
 
         //Set the title
-        CollapsingToolbarLayout toolbar = (CollapsingToolbarLayout) getActivity().findViewById(R.id.collapsing_toolbar);
-        toolbar.setTitle(getString(R.string.about));
+        ((Toolbar) getActivity().findViewById(R.id.toolbar)).setTitle(getString(R.string.about));
 
         mAboutUsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,8 +58,15 @@ public class AboutFragment extends Fragment {
 
         mHowToExerciseButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                openYoutube(getString(R.string.how_to_exercise_key));
+            public void onClick(View view) {
+                AboutFragment.this.tutorialFragmentTransaction();
+            }
+        });
+
+        mHowToExerciseVideoButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                AboutFragment aboutFragment = AboutFragment.this;
+                aboutFragment.openYoutube(aboutFragment.getString(R.string.how_to_exercise_key));
             }
         });
 
@@ -76,6 +86,14 @@ public class AboutFragment extends Fragment {
         transaction.replace(R.id.start_content, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    private void tutorialFragmentTransaction() {
+        TutorialFragment tutorialFragment = new TutorialFragment();
+        FragmentTransaction beginTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        beginTransaction.replace(R.id.start_content, tutorialFragment);
+        beginTransaction.addToBackStack(null);
+        beginTransaction.commit();
     }
 
     private void openYoutube(String youtubeKey) {

@@ -1,7 +1,6 @@
-package com.dsconsult.android.vacuumfitness.ui;
+package com.example.android.vacuumfitness.ui;
 
 import android.os.Bundle;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,7 @@ import android.view.ViewGroup;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
-import com.dsconsult.android.vacuumfitness.R;
+import com.example.android.vacuumfitness.R;
 
 public class TutorialFragment extends Fragment {
     @Override // android.support.v4.app.Fragment

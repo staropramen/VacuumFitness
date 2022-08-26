@@ -1,12 +1,13 @@
 package com.example.android.vacuumfitness.ui;
 
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.app.Fragment;
+import androidx.annotation.Nullable;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,8 +56,7 @@ public class SettingsFragment extends Fragment {
         ButterKnife.bind(this, rootView);
 
         //Set the title
-        CollapsingToolbarLayout toolbar = (CollapsingToolbarLayout) getActivity().findViewById(R.id.collapsing_toolbar);
-        toolbar.setTitle(getString(R.string.settings));
+        ((Toolbar) getActivity().findViewById(R.id.toolbar)).setTitle(getString(R.string.settings));
 
         setupPlaylistViewModel();
         setupTrainingViewModel();
@@ -99,8 +99,8 @@ public class SettingsFragment extends Fragment {
     }
 
     private void setupPlaylistViewModel(){
-        PlaylistViewModel viewModel = ViewModelProviders.of(this).get(PlaylistViewModel.class);
-        viewModel.getPlaylists().observe(this, new Observer<List<Playlist>>() {
+        PlaylistViewModel viewModel = new ViewModelProvider(this).get(PlaylistViewModel.class);
+        viewModel.getPlaylists().observe(getViewLifecycleOwner(), new Observer<List<Playlist>>() {
             @Override
             public void onChanged(@Nullable List<Playlist> playlists) {
                 SpinnerUtils.populateMusicSpinnerItems(getActivity(), mMusicSpinner, playlists);
@@ -111,8 +111,8 @@ public class SettingsFragment extends Fragment {
     }
 
     private void setupTrainingViewModel() {
-        CustomTrainingViewModel viewModel = ViewModelProviders.of(this).get(CustomTrainingViewModel.class);
-        viewModel.getTrainings().observe(this, new Observer<List<Training>>() {
+        CustomTrainingViewModel viewModel = new ViewModelProvider(this).get(CustomTrainingViewModel.class);
+        viewModel.getTrainings().observe(getViewLifecycleOwner(), new Observer<List<Training>>() {
             @Override
             public void onChanged(@Nullable List<Training> trainings) {
                 SpinnerUtils.populateTrainingSpinnerItems(getActivity(), mTrainingSpinner, trainings);

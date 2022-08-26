@@ -1,16 +1,16 @@
 package com.example.android.vacuumfitness.ui;
 
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
@@ -214,8 +214,8 @@ public class TrainingFragment extends Fragment implements Player.EventListener {
 
     //Setup ViewModel
     private void setupTrainingViewModel(){
-        TrainingViewModel trainingViewModel = ViewModelProviders.of(this).get(TrainingViewModel.class);
-        trainingViewModel.getExercises(getActivity(), mIdList).observe(this, new Observer<List<Exercise>>() {
+        TrainingViewModel trainingViewModel = new ViewModelProvider(this).get(TrainingViewModel.class);
+        trainingViewModel.getExercises(getActivity(), mIdList).observe(getViewLifecycleOwner(), new Observer<List<Exercise>>() {
             @Override
             public void onChanged(@Nullable List<Exercise> exercises) {
                 //Initially populate ui

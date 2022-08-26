@@ -52,12 +52,30 @@
     <string name="cd_delete_icon">Löschen</string>
     <string name="cd_increase">Mehr Übungen</string>
     <string name="cd_decrease">Weniger Übungen</string>
+    <string name="cd_belly_image">Bild von einem trainierten Bauch</string>
+    <string name="cd_drag">Drag und Drop</string>
+    <string name="cd_more_options">Mehr Optionen</string>
+
 
     <!-- Start Fragment -->
     <string name="start_training">Start \n Training</string>
     <string name="customize_training">Training\n anpassen</string>
     <string name="customize_music">Musik\n anpassen</string>
     <string name="how_to">Über uns</string>
+
+    <!-- TODO Tutorial -->
+    <string name="tut_title">Vacuum Fitness - Shape your belly</string>
+    <string name="tut_intro">Vacuum Fitness has an isometric contraction of the abdominal muscles to its goal. This means that the abdominal muscles are tense without moving them. This gives you more control over your abdominal muscles. The abdomen gets defined, the back is spared at the same time and a healthy posture is promoted. In addition, Vacuum Fitness improves your breathing.</string>
+    <string name="tut_prequereties">The Vacuum Fitness app shows them different positions, but breathing is always the same. Always do the exercises as described below.</string>
+    <string name="tut_step_1">1. At the beginning you take the position indicated by the Vacuum Fitness app. Breathe normally until the app gives you the command to inhale.</string>
+    <string name="tut_step_2">2. On the command Inhale, take a deep breath and open your chest.</string>
+    <string name="tut_step_3">3. Exhale on the exhale command, leaving your chest open.</string>
+    <string name="tut_step_4">4. Again comes the command inhale, breathe deeply again and try to open the chest even further.</string>
+    <string name="tut_step_5">5. At the next command exhale, try to exhale all air. Keep your chest open as far as possible.</string>
+    <string name="tut_step_6">6. Now the app gives them the command vacuum, press out all the air that could still be in the stomach, imagine the navel must touch the spine, and hold the position. For beginners this is 15 seconds, for medium 20 seconds and for advanced 25 seconds.</string>
+    <string name="tut_step_7">7. Wait until the app gives you the command Rest. Then you can breathe again, but hold the position, there is a second set. After the vacuum in the second set, the app gives the command Rest and prepare to change position, meaning that you can slowly leave the position and relax your muscles.</string>
+    <string name="tut_conclusion">Try to train like this in any position. In some positions this becomes more difficult than in others, but you will soon make progress. \10 \10 Try to exercise at least 3 times a week. Optimal are 4-5 times with 3-5 exercises per workout. It is best not to exercise on a full stomach, for example before breakfast or before dinner. \10 \10 That\'s it, enjoy the training.</string>
+
 
     <!-- Settings -->
     <string name="settings">Einstellungen</string>
@@ -161,6 +179,7 @@
     <string name="playlist_duration">Playlist Dauer:</string>
     <string name="permission_denied">Um Musik zu personalisieren muss diese Berechtigung erteilt werden.</string>
     <string name="no_music_on_device">Wir haben auf diesem Gerät keine Musik gefinden.</string>
+    <string name="add_playlist">Neue Playlist</string>
 
     <!-- Widget -->
     <string name="add_widget">Wiget hinzufügen</string>
@@ -174,5 +193,6 @@
     <string name="about">Über uns</string>
     <string name="about_us">Über uns</string>
     <string name="no_playlist_name">Die Playlist muss einen Namen haben.</string>
+    <string name="video_tutorial">Video Tutorial</string>
 
 </resources>

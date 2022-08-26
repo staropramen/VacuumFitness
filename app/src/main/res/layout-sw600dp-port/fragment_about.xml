@@ -1,86 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.AboutFragment">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="@dimen/xl_margin"
-        android:paddingBottom="@dimen/xl_margin">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/cd_belly_image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/how_to_picture"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/how_to_exercise"
-            android:contentDescription="@string/cd_how_to_exercise"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/start_image_height"
-            android:layout_marginStart="@dimen/xxl_margin"
-            android:layout_marginEnd="@dimen/xxl_margin"
-            android:scaleType="centerCrop"
-            android:src="@drawable/start_training"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/how_to_exercise"
+        style="@style/start_buttons_text"
+        android:layout_width="@dimen/max_button_with"
+        android:layout_height="@dimen/start_image_height"
+        android:layout_marginStart="@dimen/xxl_margin"
+        android:layout_marginTop="@dimen/xl_margin"
+        android:layout_marginEnd="@dimen/xxl_margin"
+        android:background="@drawable/rounded_button"
+        android:contentDescription="@string/cd_how_to_exercise"
+        android:elevation="@dimen/button_elevation"
+        android:text="@string/how_to_exercise"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_how_to_exercise"
-            style="@style/start_buttons_text"
-            android:text="@string/how_to_exercise"
-            app:layout_constraintBottom_toBottomOf="@+id/how_to_exercise"
-            app:layout_constraintEnd_toEndOf="@+id/how_to_exercise"
-            app:layout_constraintStart_toStartOf="@+id/how_to_exercise"
-            app:layout_constraintTop_toTopOf="@+id/how_to_exercise" />
+    <Button
+        android:id="@+id/how_to_exercise_video"
+        style="@style/start_buttons_text"
+        android:layout_width="@dimen/max_button_with"
+        android:layout_height="@dimen/start_image_height"
+        android:layout_marginStart="@dimen/xxl_margin"
+        android:layout_marginTop="@dimen/xxl_margin"
+        android:layout_marginEnd="@dimen/xxl_margin"
+        android:background="@drawable/rounded_button"
+        android:contentDescription="@string/cd_how_to_exercise"
+        android:elevation="@dimen/button_elevation"
+        android:text="@string/video_tutorial"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/how_to_exercise" />
 
-        <ImageView
-            android:id="@+id/how_to_app"
-            android:contentDescription="@string/cd_how_to_app"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/start_image_height"
-            android:layout_marginStart="@dimen/xxl_margin"
-            android:layout_marginEnd="@dimen/xxl_margin"
-            android:layout_marginTop="@dimen/xxl_margin"
-            android:scaleType="centerCrop"
-            android:src="@drawable/how_to_app"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/how_to_exercise" />
+    <Button
+        android:id="@+id/how_to_app"
+        style="@style/start_buttons_text"
+        android:layout_width="@dimen/max_button_with"
+        android:layout_height="@dimen/start_image_height"
+        android:layout_marginStart="@dimen/xxl_margin"
+        android:layout_marginTop="@dimen/xxl_margin"
+        android:layout_marginEnd="@dimen/xxl_margin"
+        android:background="@drawable/rounded_button"
+        android:contentDescription="@string/cd_how_to_app"
+        android:elevation="@dimen/button_elevation"
+        android:text="@string/how_to_use_app"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/how_to_exercise_video" />
 
-        <TextView
-            android:id="@+id/tv_how_to_app"
-            android:textColor="@color/white"
-            style="@style/start_buttons_text"
-            android:text="@string/how_to_use_app"
-            app:layout_constraintBottom_toBottomOf="@+id/how_to_app"
-            app:layout_constraintEnd_toEndOf="@+id/how_to_app"
-            app:layout_constraintStart_toStartOf="@+id/how_to_app"
-            app:layout_constraintTop_toTopOf="@+id/how_to_app" />
+    <Button
+        android:id="@+id/about_us_button"
+        style="@style/start_buttons_text"
+        android:layout_width="@dimen/max_button_with"
+        android:layout_height="@dimen/start_image_height"
+        android:layout_marginStart="@dimen/xxl_margin"
+        android:layout_marginTop="@dimen/xxl_margin"
+        android:layout_marginEnd="@dimen/xxl_margin"
+        android:background="@drawable/rounded_button"
+        android:contentDescription="@string/cd_imprint"
+        android:elevation="@dimen/button_elevation"
+        android:text="@string/about_us"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/how_to_app" />
 
-        <ImageView
-            android:id="@+id/about_us_button"
-            android:contentDescription="@string/cd_imprint"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/start_image_height"
-            android:layout_marginStart="@dimen/xxl_margin"
-            android:layout_marginEnd="@dimen/xxl_margin"
-            android:layout_marginTop="@dimen/xxl_margin"
-            android:scaleType="centerCrop"
-            android:src="@drawable/about_us"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/how_to_app" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/tv_about_us"
-            style="@style/start_buttons_text"
-            android:text="@string/about_us"
-            app:layout_constraintBottom_toBottomOf="@+id/about_us_button"
-            app:layout_constraintEnd_toEndOf="@+id/about_us_button"
-            app:layout_constraintStart_toStartOf="@+id/about_us_button"
-            app:layout_constraintTop_toTopOf="@+id/about_us_button" />
-
-    </android.support.constraint.ConstraintLayout>
-
-</android.support.v4.widget.NestedScrollView>

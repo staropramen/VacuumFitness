@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.CustomizeMusicFragment">
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_playlist"
         android:layout_width="@dimen/recycler_view_width_land"
         android:layout_height="match_parent"
@@ -15,16 +15,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_add_playlist"
-        android:contentDescription="@string/cd_add_playlist"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/bt_add_playlist"
+        style="@style/medium_buttons_text"
+        android:layout_width="@dimen/add_button_width"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_add"
-        android:tint="@color/white"
-        android:layout_margin="@dimen/xxl_margin"
+        android:layout_marginStart="@dimen/xl_margin"
+        android:layout_marginEnd="@dimen/xl_margin"
+        android:layout_marginBottom="@dimen/margin"
+        android:background="@drawable/rounded_button"
+        android:text="@string/add_playlist"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
         android:id="@+id/tv_empty_playlist_list"
@@ -40,4 +43,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

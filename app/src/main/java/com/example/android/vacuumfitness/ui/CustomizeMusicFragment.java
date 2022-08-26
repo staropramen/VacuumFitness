@@ -2,20 +2,21 @@ package com.example.android.vacuumfitness.ui;
 
 
 import android.app.AlertDialog;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.Nullable;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,7 +42,7 @@ public class CustomizeMusicFragment extends Fragment implements PlaylistAdapter.
     private PlaylistAdapter playlistAdapter;
     @BindView(R.id.rv_playlist) RecyclerView playlistRecyclerView;
     @BindView(R.id.tv_empty_playlist_list) TextView emptyListTextView;
-    @BindView(R.id.fab_add_playlist) FloatingActionButton mFab;
+    @BindView(R.id.bt_add_playlist) Button mAddPlaylistButton;
 
     private Playlist mPlaylistToEdit;
 
@@ -88,8 +89,8 @@ public class CustomizeMusicFragment extends Fragment implements PlaylistAdapter.
     }
 
     private void setupViewModel(){
-        PlaylistViewModel viewModel = ViewModelProviders.of(this).get(PlaylistViewModel.class);
-        viewModel.getPlaylists().observe(this, new Observer<List<Playlist>>() {
+        PlaylistViewModel viewModel = new ViewModelProvider(this).get(PlaylistViewModel.class);
+        viewModel.getPlaylists().observe(getViewLifecycleOwner(), new Observer<List<Playlist>>() {
             @Override
             public void onChanged(@Nullable List<Playlist> playlists) {
                 if(playlists.isEmpty()){
@@ -106,7 +107,7 @@ public class CustomizeMusicFragment extends Fragment implements PlaylistAdapter.
     }
 
     private void setupFabButton() {
-        mFab.setOnClickListener(new View.OnClickListener() {
+        mAddPlaylistButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showAlertDialogButtonClicked(false);

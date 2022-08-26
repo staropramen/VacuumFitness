@@ -3,16 +3,17 @@ package com.example.android.vacuumfitness.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.android.vacuumfitness.R;
-import com.example.android.vacuumfitness.utils.NotificationUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,8 +43,7 @@ public class StartFragment extends Fragment {
         ButterKnife.bind(this, rootView);
 
         //Set the title
-        CollapsingToolbarLayout toolbar = (CollapsingToolbarLayout) getActivity().findViewById(R.id.collapsing_toolbar);
-        toolbar.setTitle(getString(R.string.app_name));
+        ((Toolbar) getActivity().findViewById(R.id.toolbar)).setTitle(getString(R.string.app_name));
 
 
         //Set onClick for StartTraining

@@ -2,17 +2,17 @@ package com.example.android.vacuumfitness.ui;
 
 
 import android.app.AlertDialog;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.Nullable;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -107,8 +107,8 @@ public class PlaylistDetailFragment extends Fragment implements SongAdapter.Song
     }
 
     private void setupExistingPlaylist(){
-        SinglePlaylistViewModel viewModel = ViewModelProviders.of(this).get(SinglePlaylistViewModel.class);
-        viewModel.getPlaylist(getActivity(), id).observe(this, new Observer<Playlist>() {
+        SinglePlaylistViewModel viewModel = new ViewModelProvider(this).get(SinglePlaylistViewModel.class);
+        viewModel.getPlaylist(getActivity(), id).observe(getViewLifecycleOwner(), new Observer<Playlist>() {
             @Override
             public void onChanged(@Nullable Playlist playlist) {
 

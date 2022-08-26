@@ -37,25 +37,28 @@
     <string name="motivators_json">motivators.json</string>
 
     <!-- Content Desciptions -->
-    <string name="cd_position_image">Image of the position</string>
-    <string name="cd_how_to_exercise">Button opens a video that shows how to exercise</string>
-    <string name="cd_how_to_app">Button opens a video that shows how to use the app</string>
-    <string name="cd_imprint">Button opens the imprint of the app</string>
-    <string name="cd_add_playlist">Add a new playlist</string>
-    <string name="cd_add_song">Add a song to the playlist</string>
-    <string name="cd_add_training">Add a new training</string>
-    <string name="cd_add_exercise">Add a exercise to training</string>
-    <string name="cd_back_button">Go back</string>
-    <string name="cd_start_training">Start a training</string>
-    <string name="cd_customize_training">Customize your Training</string>
-    <string name="cd_customize_music">Customize your music</string>
     <string name="cd_about">Know more about this app</string>
-    <string name="cd_pause_button">Pause and Start the training</string>
-    <string name="cd_music_button">Mute the music</string>
-    <string name="cd_video_button">See a video about the current position</string>
-    <string name="cd_delete_icon">Delete</string>
-    <string name="cd_increase">Increase exercises</string>
+    <string name="cd_back_button">Go back</string>
+    <string name="cd_belly_image">Image of a tones belly</string>
+    <string name="cd_add_playlist">Add new playlist</string>
+    <string name="cd_add_song">Add music to playlist</string>
+    <string name="cd_add_training">Add new training</string>
+    <string name="cd_add_exercise">Add new excercise to training</string>
+    <string name="cd_customize_music">Customize your music</string>
+    <string name="cd_customize_training">Customize your Training</string>
     <string name="cd_decrease">Decrease exercises</string>
+    <string name="cd_delete_icon">Delete</string>
+    <string name="cd_drag">Drag and Drop</string>
+    <string name="cd_how_to_app">Button opens a video that shows how to use the app</string>
+    <string name="cd_how_to_exercise">Button opens a video that shows how to exercise</string>
+    <string name="cd_imprint">Button opens the imprint of the app</string>
+    <string name="cd_increase">Increase exercises</string>
+    <string name="cd_more_options">More options</string>
+    <string name="cd_music_button">Mute the music</string>
+    <string name="cd_pause_button">Pause and Start the training</string>
+    <string name="cd_position_image">Image of the position</string>
+    <string name="cd_start_training">Start a training</string>
+    <string name="cd_video_button">See a video about the current position</string>
 
     <!-- Start Fragment -->
     <string name="start_training">Start \n Training</string>
@@ -134,6 +137,20 @@
     <string name="empty_training_detail">This training still don\'t have exercises. Start by adding a exercise.</string>
     <string name="all_exercises">All Exercises</string>
 
+    <!-- Tutorial  -->
+    <string name="tut_conclusion">Try to train like this in any position. In some positions this becomes more difficult than in others, but you will soon make progress. \10 \10 Try to exercise at least 3 times a week. Optimal are 4-5 times with 3-5 exercises per workout. It is best not to exercise on a full stomach, for example before breakfast or before dinner. \10 \10 That\'s it, enjoy the training.</string>
+    <string name="tut_intro">Vacuum Fitness has an isometric contraction of the abdominal muscles to its goal. This means that the abdominal muscles are tense without moving them. This gives you more control over your abdominal muscles. The abdomen gets defined, the back is spared at the same time and a healthy posture is promoted. In addition, Vacuum Fitness improves your breathing.</string>
+    <string name="tut_prequereties">The Vacuum Fitness app shows them different positions, but breathing is always the same. Always do the exercises as described below.</string>
+    <string name="tut_step_1">1. At the beginning you take the position indicated by the Vacuum Fitness app. Breathe normally until the app gives you the command to inhale.</string>
+    <string name="tut_step_2">2. On the command Inhale, take a deep breath and open your chest.</string>
+    <string name="tut_step_3">3. Exhale on the exhale command, leaving your chest open.</string>
+    <string name="tut_step_4">4. Again comes the command inhale, breathe deeply again and try to open the chest even further.</string>
+    <string name="tut_step_5">5. At the next command exhale, try to exhale all air. Keep your chest open as far as possible.</string>
+    <string name="tut_step_6">6. Now the app gives them the command vacuum, press out all the air that could still be in the stomach, imagine the navel must touch the spine, and hold the position. For beginners this is 15 seconds, for medium 20 seconds and for advanced 25 seconds.</string>
+    <string name="tut_step_7">7. Wait until the app gives you the command Rest. Then you can breathe again, but hold the position, there is a second set. After the vacuum in the second set, the app gives the command Rest and prepare to change position, meaning that you can slowly leave the position and relax your muscles.</string>
+    <string name="tut_title">Vacuum Fitness - Shape your belly</string>
+
+
     <!-- Dialogs -->
     <string name="positive_answer">OK</string>
     <string name="negative_answer">Cancel</string>
@@ -172,6 +189,7 @@
     <string name="zero_time" translatable="false">00:00</string>
     <string name="permission_denied">You must give the permission to customize music.</string>
     <string name="no_music_on_device">We did not find any music on your device.</string>
+    <string name="add_playlist">Add Playlist</string>
 
     <!-- Widget -->
     <string name="add_widget">Add widget</string>
@@ -182,5 +200,6 @@
     <string name="imprint">Distributer: \nDS Consult - Vitória-ES, Brazil \nvacuum.fitness@ds-webdevelopment.com</string>
     <string name="how_to_exercise">How to\nExercise</string>
     <string name="how_to_use_app">How to use\nthe App</string>
+    <string name="video_tutorial">Video Tutorial</string>
     
 </resources>

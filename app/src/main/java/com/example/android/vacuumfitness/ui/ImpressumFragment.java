@@ -2,8 +2,10 @@ package com.example.android.vacuumfitness.ui;
 
 
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.app.Fragment;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,8 +28,7 @@ public class ImpressumFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_impressum, container, false);
 
         //Set the title
-        CollapsingToolbarLayout toolbar = (CollapsingToolbarLayout) getActivity().findViewById(R.id.collapsing_toolbar);
-        toolbar.setTitle(getString(R.string.about_us));
+        ((Toolbar) getActivity().findViewById(R.id.toolbar)).setTitle(getString(R.string.about_us));
 
         return rootView;
     }
