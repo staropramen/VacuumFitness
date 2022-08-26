@@ -18,6 +18,8 @@ import com.example.android.vacuumfitness.model.Song;
 import com.example.android.vacuumfitness.utils.AppExecutors;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.utils.MusicUtils;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 import java.util.List;
 import butterknife.BindView;
@@ -33,8 +35,10 @@ public class AllMusicFragment extends Fragment implements ChooseSongAdapter.Choo
     private Playlist mPlaylist;
     private LinearLayoutManager layoutManager;
     private ChooseSongAdapter songAdapter;
+    boolean mShowSaveButton;
     @BindView(R.id.rv_songs_view) RecyclerView mSongsRecyclerView;
     @BindView(R.id.tv_no_music_on_device) TextView mNoMusicTextView;
+    @BindView(R.id.fab_check) FloatingActionButton mSaveButton;
 
     public AllMusicFragment() {
         // Required empty public constructor
@@ -52,6 +56,10 @@ public class AllMusicFragment extends Fragment implements ChooseSongAdapter.Choo
         //Set the title
         Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.all_music);
+
+        //HIde Fab button
+        mSaveButton.hide();
+        mShowSaveButton = false;
 
         //Get Data from Bundle
         Bundle data = getArguments();
@@ -75,6 +83,12 @@ public class AllMusicFragment extends Fragment implements ChooseSongAdapter.Choo
         mSongsRecyclerView.setAdapter(songAdapter);
 
         setupSongAdapter();
+
+        mSaveButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                AllMusicFragment.this.getActivity().onBackPressed();
+            }
+        });
 
         return rootView;
     }
@@ -103,10 +117,14 @@ public class AllMusicFragment extends Fragment implements ChooseSongAdapter.Choo
 
     @Override
     public void onClick(Song song) {
-        if(mChosenSongs.contains(song)){
-            mChosenSongs.remove(song);
-        }else {
-            mChosenSongs.add(song);
+        if (this.mChosenSongs.contains(song)) {
+            this.mChosenSongs.remove(song);
+        } else {
+            this.mChosenSongs.add(song);
+        }
+        if (!this.mShowSaveButton) {
+            this.mSaveButton.show();
+            this.mShowSaveButton = true;
         }
     }
 

@@ -30,6 +30,7 @@
         <entry key="app/src/main/res/layout/fragment_all_exercises.xml" value="0.4401041666666667" />
         <entry key="app/src/main/res/layout/fragment_all_music.xml" value="0.4401041666666667" />
         <entry key="app/src/main/res/layout/fragment_customize_music.xml" value="0.4401041666666667" />
+        <entry key="app/src/main/res/layout/fragment_customize_training.xml" value="0.4401041666666667" />
         <entry key="app/src/main/res/layout/fragment_tutorial.xml" value="0.4401041666666667" />
         <entry key="app/src/main/res/layout/start_main_content.xml" value="0.4401041666666667" />
       </map>
