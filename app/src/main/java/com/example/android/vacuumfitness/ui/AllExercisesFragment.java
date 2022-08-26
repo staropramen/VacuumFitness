@@ -20,6 +20,8 @@ import com.example.android.vacuumfitness.model.Training;
 import com.example.android.vacuumfitness.utils.AppExecutors;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.viewmodel.ExerciseListViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 import java.util.List;
 import butterknife.BindView;
@@ -34,7 +36,9 @@ public class AllExercisesFragment extends Fragment implements ChooseExerciseAdap
     private Training mTraining;
     private LinearLayoutManager layoutManager;
     private ChooseExerciseAdapter exerciseAdapter;
+    boolean mSaveIsVisible;
     @BindView(R.id.rv_all_exercises) RecyclerView allExercisesRecyclerView;
+    @BindView(R.id.fab_check) FloatingActionButton mSaveButton;
 
     public AllExercisesFragment() {
         // Required empty public constructor
@@ -52,6 +56,10 @@ public class AllExercisesFragment extends Fragment implements ChooseExerciseAdap
         //Set the title
         Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.all_exercises);
+
+        //Hide Fab
+        mSaveIsVisible = false;
+        mSaveButton.hide();
 
         //Get Data from Bundle
         Bundle data = getArguments();
@@ -76,15 +84,26 @@ public class AllExercisesFragment extends Fragment implements ChooseExerciseAdap
 
         setupViewModel();
 
+        //Setup Fab Click
+        mSaveButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                AllExercisesFragment.this.getActivity().onBackPressed();
+            }
+        });
+
         return rootView;
     }
 
     @Override
     public void onClick(Exercise exercise) {
-        if(chosenExercises.contains(exercise)){
-            chosenExercises.remove(exercise);
+        if (this.chosenExercises.contains(exercise)) {
+            this.chosenExercises.remove(exercise);
         } else {
-            chosenExercises.add(exercise);
+            this.chosenExercises.add(exercise);
+        }
+        if (!this.mSaveIsVisible) {
+            this.mSaveButton.show();
+            this.mSaveIsVisible = true;
         }
     }
 
