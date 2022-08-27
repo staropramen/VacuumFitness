@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.android.vacuumfitness.R;
@@ -24,10 +25,10 @@ import butterknife.ButterKnife;
  */
 public class StartFragment extends Fragment {
 
-    @BindView(R.id.about_us_button) ImageView startTraining;
-    @BindView(R.id.customize_training_button) ImageView customizeTraining;
-    @BindView(R.id.customize_music_button) ImageView customizeMusic;
-    @BindView(R.id.how_to_button) ImageView howToButton;
+    @BindView(R.id.start_training_button) Button startTraining;
+    @BindView(R.id.customize_training_button) Button customizeTraining;
+    @BindView(R.id.customize_music_button) Button customizeMusic;
+    @BindView(R.id.how_to_button) Button howToButton;
 
     public StartFragment() {
         // Required empty public constructor

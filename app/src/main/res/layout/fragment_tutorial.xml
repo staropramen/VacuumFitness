@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_lead"
+            style="@style/prepare_fragment_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin"
+            android:fontFamily="@font/tool_bar_font"
+            android:text="@string/tut_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_intro"
+            style="@style/tutorial_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tut_intro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_lead" />
+
+        <TextView
+            android:id="@+id/tv_pre"
+            style="@style/tutorial_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tut_prequereties"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_intro" />
+
+        <TextView
+            android:id="@+id/tv_step_a"
+            style="@style/tutorial_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tut_step_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pre" />
+
+        <ImageView
+            android:id="@+id/iv_ope_chest"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/tut_image_height"
+            android:layout_marginTop="@dimen/margin"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/cd_belly_image"
+            android:src="@drawable/open_chest"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_step_a" />
+
+        <TextView
+            style="@style/tutorial_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/tut_step_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_ope_chest"
+            app:layout_constraintTop_toBottomOf="@+id/tv_step_a" />
+
+        <TextView
+            android:id="@+id/tv_step_c"
+            style="@style/tutorial_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tut_step_3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_ope_chest" />
+
+        <TextView
+            android:id="@+id/tv_step_d"
+            style="@style/tutorial_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tut_step_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_step_c" />
+
+        <TextView
+            android:id="@+id/tv_step_e"
+            style="@style/tutorial_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tut_step_5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_step_d" />
+
+        <TextView
+            android:id="@+id/tv_step_f"
+            style="@style/tutorial_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tut_step_6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_step_e" />
+
+        <ImageView
+            android:id="@+id/iv_vacuum"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/tut_image_height"
+            android:layout_marginTop="@dimen/margin"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/cd_belly_image"
+            android:src="@drawable/vacuum"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_step_f" />
+
+        <TextView
+            android:id="@+id/tv_step_g"
+            style="@style/tutorial_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tut_step_7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_vacuum" />
+
+        <TextView
+            style="@style/tutorial_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/xxl_margin"
+            android:text="@string/tut_conclusion"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_step_g" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
