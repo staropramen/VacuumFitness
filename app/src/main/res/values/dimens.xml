@@ -11,6 +11,7 @@
     <dimen name="margin">16dp</dimen>
     <dimen name="s_margin">8dp</dimen>
     <dimen name="toast_portrait_bottom_margin">250dp</dimen>
+    <dimen name="xxxl_margin">64dp</dimen>
 
     <!-- Text -->
     <dimen name="small_text">16sp</dimen>

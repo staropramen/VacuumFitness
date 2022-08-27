@@ -39,6 +39,8 @@
         <entry key="app/src/main/res/layout/fragment_impressum.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/fragment_playlist_detail.xml" value="0.4401041666666667" />
         <entry key="app/src/main/res/layout/fragment_preparation.xml" value="0.4401041666666667" />
+        <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/fragment_start.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/fragment_tutorial.xml" value="0.4401041666666667" />
         <entry key="app/src/main/res/layout/start_main_content.xml" value="0.4401041666666667" />
       </map>

@@ -1,101 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingTop="@dimen/xl_margin"
-    android:paddingBottom="@dimen/xl_margin"
-    tools:context=".ui.StartFragment">
+    android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/about_us_button"
-            android:contentDescription="@string/cd_start_training"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/cd_belly_image"
+            android:scaleType="centerCrop"
+            android:src="@drawable/start_image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/start_training_button"
+            style="@style/start_buttons_text"
             android:layout_width="0dp"
             android:layout_height="@dimen/start_image_height"
             android:layout_marginStart="@dimen/xxl_margin"
-            android:layout_marginEnd="@dimen/margin"
-            android:scaleType="centerCrop"
-            android:src="@drawable/start_training"
+            android:layout_marginTop="@dimen/xxxl_margin"
+            android:layout_marginEnd="@dimen/xxl_margin"
+            android:background="@drawable/rounded_button"
+            android:contentDescription="@string/cd_start_training"
+            android:elevation="@dimen/button_elevation"
+            android:text="@string/start_training"
             app:layout_constraintEnd_toStartOf="@+id/customize_training_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/start_training"
-            style="@style/start_buttons_text"
-            android:text="@string/start_training"
-            app:layout_constraintBottom_toBottomOf="@+id/about_us_button"
-            app:layout_constraintEnd_toEndOf="@+id/about_us_button"
-            app:layout_constraintStart_toStartOf="@+id/about_us_button"
-            app:layout_constraintTop_toTopOf="@+id/about_us_button" />
-
-        <ImageView
+        <Button
             android:id="@+id/customize_training_button"
-            android:contentDescription="@string/cd_customize_training"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/start_image_height"
-            android:layout_marginEnd="@dimen/xxl_margin"
-            android:layout_marginStart="@dimen/margin"
-            android:scaleType="centerCrop"
-            android:src="@drawable/cust_training"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/about_us_button"/>
-
-        <TextView
-            android:id="@+id/customize_training"
             style="@style/start_buttons_text"
-            android:text="@string/customize_training"
-            app:layout_constraintBottom_toBottomOf="@+id/customize_training_button"
-            app:layout_constraintEnd_toEndOf="@+id/customize_training_button"
-            app:layout_constraintStart_toStartOf="@+id/customize_training_button"
-            app:layout_constraintTop_toTopOf="@+id/customize_training_button" />
-
-        <ImageView
-            android:id="@+id/customize_music_button"
-            android:contentDescription="@string/cd_customize_music"
             android:layout_width="0dp"
             android:layout_height="@dimen/start_image_height"
-            android:scaleType="centerCrop"
+            android:layout_marginStart="@dimen/xxl_margin"
+            android:layout_marginEnd="@dimen/xxl_margin"
+            android:background="@drawable/rounded_button"
+            android:contentDescription="@string/cd_customize_training"
+            android:elevation="@dimen/button_elevation"
+            android:text="@string/customize_training"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/start_training_button"
+            app:layout_constraintTop_toTopOf="@+id/start_training_button" />
+
+        <Button
+            android:id="@+id/customize_music_button"
+            style="@style/start_buttons_text"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/start_image_height"
             android:layout_marginStart="@dimen/xxl_margin"
             android:layout_marginTop="@dimen/xl_margin"
-            android:layout_marginEnd="@dimen/margin"
-            android:src="@drawable/cust_music"
-            app:layout_constraintEnd_toStartOf="@id/how_to_button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/customize_training_button" />
-
-        <TextView
-            android:id="@+id/customize_music"
-            style="@style/start_buttons_text"
+            android:layout_marginEnd="@dimen/xxl_margin"
+            android:background="@drawable/rounded_button"
+            android:contentDescription="@string/cd_customize_music"
+            android:elevation="@dimen/button_elevation"
             android:text="@string/customize_music"
-            app:layout_constraintBottom_toBottomOf="@+id/customize_music_button"
-            app:layout_constraintEnd_toEndOf="@+id/customize_music_button"
-            app:layout_constraintStart_toStartOf="@+id/customize_music_button"
-            app:layout_constraintTop_toTopOf="@+id/customize_music_button" />
+            app:layout_constraintEnd_toStartOf="@+id/how_to_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/customize_training_button" />
 
-        <ImageView
+        <Button
             android:id="@+id/how_to_button"
-            android:contentDescription="@string/cd_about"
+            style="@style/start_buttons_text"
             android:layout_width="0dp"
             android:layout_height="@dimen/start_image_height"
-            android:scaleType="centerCrop"
-            android:layout_marginStart="@dimen/margin"
+            android:layout_marginStart="@dimen/xxl_margin"
             android:layout_marginTop="@dimen/xl_margin"
             android:layout_marginEnd="@dimen/xxl_margin"
-            android:src="@drawable/how_to"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/customize_music_button"
-            app:layout_constraintTop_toBottomOf="@id/customize_training_button" />
-
-        <TextView
-            android:id="@+id/how_to"
-            style="@style/start_buttons_text"
+            android:background="@drawable/rounded_button"
+            android:contentDescription="@string/cd_about"
+            android:elevation="@dimen/button_elevation"
             android:text="@string/how_to"
-            app:layout_constraintBottom_toBottomOf="@+id/how_to_button"
-            app:layout_constraintEnd_toEndOf="@+id/how_to_button"
-            app:layout_constraintStart_toStartOf="@+id/how_to_button"
-            app:layout_constraintTop_toTopOf="@+id/how_to_button" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/customize_music_button"
+            app:layout_constraintTop_toBottomOf="@+id/customize_training_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

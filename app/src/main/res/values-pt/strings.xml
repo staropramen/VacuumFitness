@@ -57,9 +57,9 @@
 
 
     <!-- Start Fragment -->
-    <string name="start_training">Começar\nTreino</string>
+    <string name="start_training">ComeçarTreino</string>
     <string name="customize_training">Personalizar Treino</string>
-    <string name="customize_music">Personalizar\nMúsica</string>
+    <string name="customize_music">Personalizar Música</string>
     <string name="how_to">Sobre nós</string>
 
     <!-- TODO Tutorial -->

@@ -58,9 +58,9 @@
 
 
     <!-- Start Fragment -->
-    <string name="start_training">Start \n Training</string>
-    <string name="customize_training">Training\n anpassen</string>
-    <string name="customize_music">Musik\n anpassen</string>
+    <string name="start_training">Start Training</string>
+    <string name="customize_training">Training anpassen</string>
+    <string name="customize_music">Musik anpassen</string>
     <string name="how_to">Über uns</string>
 
     <!-- TODO Tutorial -->
