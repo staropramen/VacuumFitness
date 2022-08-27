@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/free/res/layout/activity_training.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/drawable-mdpi/ic_arrow_back.xml" value="0.33" />
         <entry key="app/src/main/res/drawable/circle.xml" value="0.159" />
         <entry key="app/src/main/res/drawable/ic_add.xml" value="0.159" />
         <entry key="app/src/main/res/drawable/ic_check.xml" value="0.33" />
@@ -15,7 +16,11 @@
         <entry key="app/src/main/res/layout-land/fragment_all_exercises.xml" value="0.34427083333333336" />
         <entry key="app/src/main/res/layout-land/fragment_all_music.xml" value="0.34427083333333336" />
         <entry key="app/src/main/res/layout-land/fragment_customize_music.xml" value="0.34427083333333336" />
+        <entry key="app/src/main/res/layout-land/fragment_customize_training.xml" value="0.34427083333333336" />
+        <entry key="app/src/main/res/layout-land/fragment_playlist_detail.xml" value="0.34427083333333336" />
+        <entry key="app/src/main/res/layout-land/fragment_preparation.xml" value="0.34427083333333336" />
         <entry key="app/src/main/res/layout-land/fragment_tutorial.xml" value="0.34427083333333336" />
+        <entry key="app/src/main/res/layout-sw600dp-land/fragment_preparation.xml" value="0.258203125" />
         <entry key="app/src/main/res/layout-sw600dp-port/fragment_about.xml" value="0.330078125" />
         <entry key="app/src/main/res/layout-sw600dp-port/fragment_tutorial.xml" value="0.330078125" />
         <entry key="app/src/main/res/layout/activity_custom_training.xml" value="0.23802083333333332" />
@@ -31,6 +36,9 @@
         <entry key="app/src/main/res/layout/fragment_all_music.xml" value="0.4401041666666667" />
         <entry key="app/src/main/res/layout/fragment_customize_music.xml" value="0.4401041666666667" />
         <entry key="app/src/main/res/layout/fragment_customize_training.xml" value="0.4401041666666667" />
+        <entry key="app/src/main/res/layout/fragment_impressum.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/fragment_playlist_detail.xml" value="0.4401041666666667" />
+        <entry key="app/src/main/res/layout/fragment_preparation.xml" value="0.4401041666666667" />
         <entry key="app/src/main/res/layout/fragment_tutorial.xml" value="0.4401041666666667" />
         <entry key="app/src/main/res/layout/start_main_content.xml" value="0.4401041666666667" />
       </map>

@@ -17,16 +17,17 @@
             android:contentDescription="@string/cd_back_button"
             android:layout_width="@dimen/back_button_size"
             android:layout_height="@dimen/back_button_size"
-            android:tint="@color/colorPrimaryExtraDark"
-            android:src="@drawable/ic_back"
+            android:src="@drawable/ic_arrow_back"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/colorPrimaryExtraDark" />
 
         <TextView
             android:id="@+id/tv_prepare_title"
             style="@style/prepare_fragment_title"
             android:layout_marginStart="@dimen/title_margin_left"
             android:layout_marginTop="@dimen/s_margin"
+            android:fontFamily="@font/tool_bar_font"
             android:text="@string/prepare_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -180,12 +181,12 @@
             android:id="@+id/bt_start_training"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/xxl_margin"
-            android:background="@color/colorPrimary"
+            android:layout_marginTop="@dimen/margin"
+            android:background="@drawable/rounded_button"
+            android:padding="@dimen/spinner_padding"
+            android:text="@string/start_button"
             android:textColor="@color/white"
             android:textSize="@dimen/big_text"
-            android:text="@string/start_button"
-            android:padding="@dimen/spinner_padding"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/music_spinner" />

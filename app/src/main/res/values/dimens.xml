@@ -56,6 +56,7 @@
     <dimen name="max_button_with">500dp</dimen>
     <dimen name="medium_button_text_size">22sp</dimen>
     <dimen name="add_button_width">400dp</dimen>
+    <dimen name="small_button_text_size">18sp</dimen>
 
     <!--
 Refer to App Widget Documentation for margin information

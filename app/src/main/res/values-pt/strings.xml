@@ -63,18 +63,17 @@
     <string name="how_to">Sobre nós</string>
 
     <!-- TODO Tutorial -->
-    <string name="tut_title">Vacuum Fitness - Shape your belly</string>
-    <string name="tut_intro">Vacuum Fitness has an isometric contraction of the abdominal muscles to its goal. This means that the abdominal muscles are tense without moving them. This gives you more control over your abdominal muscles. The abdomen gets defined, the back is spared at the same time and a healthy posture is promoted. In addition, Vacuum Fitness improves your breathing.</string>
-    <string name="tut_prequereties">The Vacuum Fitness app shows them different positions, but breathing is always the same. Always do the exercises as described below.</string>
-    <string name="tut_step_1">1. At the beginning you take the position indicated by the Vacuum Fitness app. Breathe normally until the app gives you the command to inhale.</string>
-    <string name="tut_step_2">2. On the command Inhale, take a deep breath and open your chest.</string>
+    <string name="tut_title">Vacuum Fitness - Modele sua barriga</string>
+    <string name="tut_intro">O Vacuum Fitness tem uma contração isométrica dos músculos abdominais para seu objetivo. Isso significa que os músculos abdominais estão tensos sem movê-los. Isso lhe dá mais controle sobre seus músculos abdominais. O abdômen fica definido, as costas são poupadas ao mesmo tempo e uma postura saudável é promovida. Além disso, o Vacuum Fitness melhora sua respiração.</string>
+    <string name="tut_prequereties">O aplicativo Vacuum Fitness mostra diferentes posições, mas a respiração é sempre a mesma. Sempre faça os exercícios conforme descrito abaixo.</string>
+    <string name="tut_step_1">1. No início você assume a posição indicada pelo aplicativo Vacuum Fitness. Respire normalmente até que o aplicativo lhe dê o comando para inalar.</string>
+    <string name="tut_step_2">2. Ao comando Inale, respire fundo e abra o peito.</string>
     <string name="tut_step_3">3. Exhale on the exhale command, leaving your chest open.</string>
-    <string name="tut_step_4">4. Again comes the command inhale, breathe deeply again and try to open the chest even further.</string>
-    <string name="tut_step_5">5. At the next command exhale, try to exhale all air. Keep your chest open as far as possible.</string>
-    <string name="tut_step_6">6. Now the app gives them the command vacuum, press out all the air that could still be in the stomach, imagine the navel must touch the spine, and hold the position. For beginners this is 15 seconds, for medium 20 seconds and for advanced 25 seconds.</string>
-    <string name="tut_step_7">7. Wait until the app gives you the command Rest. Then you can breathe again, but hold the position, there is a second set. After the vacuum in the second set, the app gives the command Rest and prepare to change position, meaning that you can slowly leave the position and relax your muscles.</string>
-    <string name="tut_conclusion">Try to train like this in any position. In some positions this becomes more difficult than in others, but you will soon make progress. \10 \10 Try to exercise at least 3 times a week. Optimal are 4-5 times with 3-5 exercises per workout. It is best not to exercise on a full stomach, for example before breakfast or before dinner. \10 \10 That\'s it, enjoy the training.</string>
-
+    <string name="tut_step_4">4. Novamente vem o comando inspire, respire profundamente novamente e tente abrir ainda mais o peito.</string>
+    <string name="tut_step_5">5. No próximo comando expire, tente expirar todo o ar. Mantenha o peito aberto o máximo possível.</string>
+    <string name="tut_step_6">6. Agora o aplicativo dá a eles o comando vácuo, tire todo o ar que ainda pode estar no estômago, imagine que o umbigo deve tocar a coluna e mantenha a posição. Para iniciantes, são 15 segundos, para médios 20 segundos e para avançados 25 segundos.</string>
+    <string name="tut_step_7">7. Aguarde até que o aplicativo lhe dê o comando Rest. Então você pode respirar novamente, mas mantenha a posição, há uma segunda série. Após o vácuo na segunda série, o aplicativo dá o comando Descanse e prepare-se para mudar de posição, o que significa que você pode sair lentamente da posição e relaxar os músculos.</string>
+    <string name="tut_conclusion">Tente treinar assim em qualquer posição. Em algumas posições isso se torna mais difícil do que em outras, mas você logo fará progressos. \10 \10 Tente se exercitar pelo menos 3 vezes por semana. Ideal são 4-5 vezes com 3-5 exercícios por treino. É melhor não se exercitar com o estômago cheio, por exemplo, antes do café da manhã ou antes do jantar. \10 \10 É isso aí, aproveite o treinamento.</string>
 
     <!-- Settings -->
     <string name="settings">Configurações</string>
@@ -140,6 +139,7 @@
     <string name="exercises">Exercicios:</string>
     <string name="empty_training_detail">Esse treino ainda não tem exercicios. Comce adicionando um exercicio.</string>
     <string name="all_exercises">Todos Exercicios</string>
+    <string name="add_training">Novo treino</string>
 
     <!-- Dialogs -->
     <string name="positive_answer">OK</string>
@@ -177,6 +177,7 @@
     <string name="permission_denied">Você deve dar permissão para personalizar a música.</string>
     <string name="no_music_on_device">Não encontramos música no seu dispositivo.</string>
     <string name="add_playlist">Novo playlist</string>
+    <string name="add_song">Nova música</string>
 
     <!-- Widget -->
     <string name="add_widget">Adicionar Widget</string>
@@ -184,7 +185,7 @@
 
     <!-- About -->
     <string name="music_credits">Música: Deep Blue, Relaxing e Slow Motion de Bensound.com</string>
-    <string name="imprint">Distribução: \nDS Consult - Vitória-ES, Brasil \nvacuum.fitness@ds-webdevelopment.com</string>
+    <string name="imprint">Distribução: \nDS Consult - Vitória-ES, Brasil \ndaniel.videoeditor@gmail.com</string>
     <string name="how_to_exercise">Como Trainar</string>
     <string name="how_to_use_app">Como usar\no aplicativo</string>
     <string name="about">Sobre nós</string>

@@ -17,6 +17,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -43,7 +44,7 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
     private CustomTrainingAdapter trainingAdapter;
     @BindView(R.id.rv_trainings) RecyclerView trainingsRecyclerView;
     @BindView(R.id.tv_empty_trainings_list) TextView emptyListTextView;
-    @BindView(R.id.fab_add_training) FloatingActionButton fabAddTraining;
+    @BindView(R.id.bt_add_training) Button btAddTraining;
 
     private TextView mLabelTextView;
     private Training mTrainingToEdit;
@@ -112,7 +113,7 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
 
     //Setup Fab button
     private void setupFabButton(){
-        fabAddTraining.setOnClickListener(new View.OnClickListener() {
+        btAddTraining.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showAlertDialogButtonClicked(false);

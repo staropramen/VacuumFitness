@@ -136,6 +136,7 @@
     <string name="exercises">Exercises:</string>
     <string name="empty_training_detail">This training still don\'t have exercises. Start by adding a exercise.</string>
     <string name="all_exercises">All Exercises</string>
+    <string name="add_training">Add Training</string>
 
     <!-- Tutorial  -->
     <string name="tut_conclusion">Try to train like this in any position. In some positions this becomes more difficult than in others, but you will soon make progress. \10 \10 Try to exercise at least 3 times a week. Optimal are 4-5 times with 3-5 exercises per workout. It is best not to exercise on a full stomach, for example before breakfast or before dinner. \10 \10 That\'s it, enjoy the training.</string>
@@ -190,6 +191,7 @@
     <string name="permission_denied">You must give the permission to customize music.</string>
     <string name="no_music_on_device">We did not find any music on your device.</string>
     <string name="add_playlist">Add Playlist</string>
+    <string name="add_song">Add Song</string>
 
     <!-- Widget -->
     <string name="add_widget">Add widget</string>
@@ -197,7 +199,7 @@
 
     <!-- About -->
     <string name="music_credits">Music: Deep Blue, Relaxing and Slow Motion from Bensound.com</string>
-    <string name="imprint">Distributer: \nDS Consult - Vitória-ES, Brazil \nvacuum.fitness@ds-webdevelopment.com</string>
+    <string name="imprint">Distributer: \nDS Consult - Vitória-ES, Brazil \ndaniel.videoeditor@gmail.com</string>
     <string name="how_to_exercise">How to\nExercise</string>
     <string name="how_to_use_app">How to use\nthe App</string>
     <string name="video_tutorial">Video Tutorial</string>

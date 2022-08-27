@@ -16,6 +16,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.android.vacuumfitness.R;
@@ -47,7 +48,7 @@ public class PlaylistDetailFragment extends Fragment implements SongAdapter.Song
     @BindView(R.id.rv_playlist_items) RecyclerView mRecyclerView;
     @BindView(R.id.tv_empty_playlist) TextView mEmptyPlaylistTextView;
     @BindView(R.id.tv_playlist_count) TextView mPlaylistCountTextView;
-    @BindView(R.id.fab_add_song) FloatingActionButton mFab;
+    @BindView(R.id.bt_add_song) Button btAddSong;
     @BindView(R.id.tv_duration_count) TextView mPlaylistDurationTextView;
 
     public PlaylistDetailFragment() {
@@ -98,7 +99,7 @@ public class PlaylistDetailFragment extends Fragment implements SongAdapter.Song
     }
 
     private void setupFabButton(){
-        mFab.setOnClickListener(new View.OnClickListener() {
+        btAddSong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 allSongsFragmentTransaction();
