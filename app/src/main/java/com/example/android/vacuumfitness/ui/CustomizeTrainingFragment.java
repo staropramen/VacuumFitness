@@ -42,6 +42,7 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
 
     private LinearLayoutManager layoutManager;
     private CustomTrainingAdapter trainingAdapter;
+    private String mLabelString;
     @BindView(R.id.rv_trainings) RecyclerView trainingsRecyclerView;
     @BindView(R.id.tv_empty_trainings_list) TextView emptyListTextView;
     @BindView(R.id.bt_add_training) Button btAddTraining;
@@ -172,7 +173,7 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
 
         //Get te EditTextViews
         final EditText nameET = customLayout.findViewById(R.id.et_custom_name);
-        final EditText labelET = customLayout.findViewById(R.id.et_custom_label);
+        mLabelString = "";
 
         //Get the label views
         TextView tvMon = customLayout.findViewById(R.id.tv_label_mon);
@@ -192,8 +193,7 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
             nameET.setText(mTrainingToEdit.getTrainingName());
             //Get label
             String currentLabel = mTrainingToEdit.getLabel();
-            //Set label
-            labelET.setText(currentLabel);
+            mLabelString = currentLabel;
             //Set label color
             if(currentLabel.equals(getString(R.string.mon_label))){
                 setTextViewBackgroundColor(tvMon, true);
@@ -232,9 +232,7 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
                 mLabelTextView = (TextView)v;
                 //Set Color of chosen label
                 setTextViewBackgroundColor(mLabelTextView, true);
-                String label = mLabelTextView.getText().toString();
-                EditText editText = customLayout.findViewById(R.id.et_custom_label);
-                editText.setText(label);
+                mLabelString = mLabelTextView.getText().toString();
             }
         };
 
@@ -254,17 +252,16 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
                 setTextViewBackgroundColor(mLabelTextView, false);
 
                 String name = nameET.getText().toString();
-                String label = labelET.getText().toString();
 
                 //Cancel if User don't entered a Training Name
                 if(name.matches("")){
                     Toast.makeText(getActivity(), getString(R.string.no_name), Toast.LENGTH_LONG).show();
                 }else if(isLongClick){
                     mTrainingToEdit.setTrainingName(name);
-                    mTrainingToEdit.setLabel(label);
+                    mTrainingToEdit.setLabel(mLabelString);
                     updateTrainingInDb(mTrainingToEdit);
                 }else {
-                    Training training = makeNewTraining(name, label);
+                    Training training = makeNewTraining(name, mLabelString);
                     saveNewTrainingInDb(training);
                 }
             }

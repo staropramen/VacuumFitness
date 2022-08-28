@@ -21,6 +21,7 @@
         <entry key="app/src/main/res/layout-land/fragment_preparation.xml" value="0.34427083333333336" />
         <entry key="app/src/main/res/layout-land/fragment_start.xml" value="0.34427083333333336" />
         <entry key="app/src/main/res/layout-land/fragment_training.xml" value="0.34427083333333336" />
+        <entry key="app/src/main/res/layout-land/fragment_training_detail.xml" value="0.34427083333333336" />
         <entry key="app/src/main/res/layout-land/fragment_tutorial.xml" value="0.34427083333333336" />
         <entry key="app/src/main/res/layout-sw600dp-land/fragment_preparation.xml" value="0.258203125" />
         <entry key="app/src/main/res/layout-sw600dp-land/fragment_training.xml" value="0.258203125" />
@@ -33,7 +34,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/command_toast.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/create_playlist_dialog.xml" value="0.23802083333333332" />
-        <entry key="app/src/main/res/layout/create_training_dialog.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/create_training_dialog.xml" value="0.33" />
         <entry key="app/src/main/res/layout/custom_training_list_item.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/exercise_list_item.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/fragment_about.xml" value="0.23802083333333332" />
@@ -49,6 +50,9 @@
         <entry key="app/src/main/res/layout/fragment_training.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/fragment_training_detail.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/fragment_tutorial.xml" value="0.4401041666666667" />
+        <entry key="app/src/main/res/layout/motivation_app_widget.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/playlist_list_item.xml" value="0.23802083333333332" />
+        <entry key="app/src/main/res/layout/song_list_item.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/start_main_content.xml" value="0.4401041666666667" />
       </map>
     </option>

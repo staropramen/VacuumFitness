@@ -62,7 +62,6 @@
     <string name="customize_music">Personalizar Música</string>
     <string name="how_to">Sobre nós</string>
 
-    <!-- TODO Tutorial -->
     <string name="tut_title">Vacuum Fitness - Modele sua barriga</string>
     <string name="tut_intro">O Vacuum Fitness tem uma contração isométrica dos músculos abdominais para seu objetivo. Isso significa que os músculos abdominais estão tensos sem movê-los. Isso lhe dá mais controle sobre seus músculos abdominais. O abdômen fica definido, as costas são poupadas ao mesmo tempo e uma postura saudável é promovida. Além disso, o Vacuum Fitness melhora sua respiração.</string>
     <string name="tut_prequereties">O aplicativo Vacuum Fitness mostra diferentes posições, mas a respiração é sempre a mesma. Sempre faça os exercícios conforme descrito abaixo.</string>
@@ -147,7 +146,8 @@
     <string name="negative_answer">Cancelar</string>
     <string name="cust_menu_title">Criar treino</string>
     <string name="cust_menu_hint">Nome to treino</string>
-    <string name="cust_label_title">Rótulo</string>
+    <string name="cust_label_title">Dia</string>
+    <string name="cust_label_description">Se desejar, você pode atribuir o treinamento a um dia específico</string>
     <string name="customize_label_hint">Rótulo…</string>
     <string name="no_name">O treino deve ter um nome.</string>
     <string name="delete_answer">Apagar</string>

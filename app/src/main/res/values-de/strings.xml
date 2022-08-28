@@ -148,7 +148,8 @@
     <string name="negative_answer">Abbrechen</string>
     <string name="cust_menu_title">Training erstellen</string>
     <string name="cust_menu_hint">Trainingsname</string>
-    <string name="cust_label_title">Label</string>
+    <string name="cust_label_title">Tag</string>
+    <string name="cust_label_description">Wenn Sie möchten, können Sie das Training einem bestimmten Tag zuordnen</string>
     <string name="customize_label">Benutzerdefiniertes Label (max. 3 Buchstaben)</string>
     <string name="customize_label_hint">Label…</string>
     <string name="no_name">Das Training muss einen Namen haben.</string>
