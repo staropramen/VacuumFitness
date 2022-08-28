@@ -72,6 +72,17 @@
 
     </RelativeLayout>
 
+    <CheckBox
+        android:id="@+id/cb_prefer_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginTop="@dimen/margin"
+        android:text="@string/prefer_day"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/training_spinner" />
+
+
     <View
         android:id="@+id/view2"
         android:layout_width="0dp"
@@ -80,7 +91,7 @@
         android:background="@color/light_grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/training_spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/cb_prefer_day" />
 
     <TextView
         android:id="@+id/tv_level_pref_title"

@@ -7,11 +7,62 @@ import android.widget.Spinner;
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.model.Playlist;
 import com.example.android.vacuumfitness.model.Training;
+import com.google.common.io.Resources;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class SpinnerUtils {
+
+    public static int getDaysDaySpinnerPosition(Context context, List<Training> list) {
+        String dayString = getDayString(context);
+        int i = 0;
+        while (true) {
+            if (i >= list.size()) {
+                i = -1;
+                break;
+            } else if (dayString.equals(list.get(i).getLabel())) {
+                break;
+            } else {
+                i++;
+            }
+        }
+        return i;
+    }
+
+    private static String getDayString(Context context) {
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
+        String dayString = "";
+
+        switch (day) {
+            case Calendar.MONDAY:
+                dayString = context.getString(R.string.mon_label);
+                break;
+            case Calendar.TUESDAY:
+                dayString = context.getString(R.string.tue_label);
+                break;
+            case Calendar.WEDNESDAY:
+                dayString = context.getString(R.string.wed_label);
+                break;
+            case Calendar.THURSDAY:
+                dayString = context.getString(R.string.thu_label);
+                break;
+            case Calendar.FRIDAY:
+                dayString = context.getString(R.string.fri_label);
+                break;
+            case Calendar.SATURDAY:
+                dayString = context.getString(R.string.sat_label);
+                break;
+            case Calendar.SUNDAY:
+                dayString = context.getString(R.string.sun_label);
+                break;
+        }
+
+        return dayString;
+    }
 
     //Function Populates the MusicSpinner and fills the List of all Playlists
     public static List<Playlist> populateMusicSpinnerItems(Context context, Spinner musicSpinner, List<Playlist> dbPlaylists){

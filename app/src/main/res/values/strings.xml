@@ -76,6 +76,7 @@
     <string name="reduce_music_for_voice">Duck music volume for voice command</string>
     <string name="voice_command_toggle">Voice commands</string>
     <string name="visual_command_toggle">Visual commands</string>
+    <string name="prefer_day">Prefer the day training</string>
 
     <!-- Visual Commands -->
     <string name="prepare">Take position</string>

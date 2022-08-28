@@ -83,6 +83,7 @@
     <string name="reduce_music_for_voice">Musik leiser machen für Kommandos</string>
     <string name="voice_command_toggle">Stimmen Kommandos</string>
     <string name="visual_command_toggle">Visuelle Kommandos</string>
+    <string name="prefer_day">Tagestraining bevorzugen</string>
 
     <!-- Visual Commands -->
     <string name="prepare">Position einnehmen</string>

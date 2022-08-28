@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +48,7 @@ public class PreparationFragment extends Fragment {
     private List<Integer> mPrimaryKeyList;
     private Training mTraining;
     private Playlist mPlaylist;
+    private String TAG = "PreparationFragment";
 
     @BindView(R.id.iv_increase_button) ImageView increaseButton;
     @BindView(R.id.iv_decreasebutton) ImageView decreaseButton;
@@ -136,13 +139,22 @@ public class PreparationFragment extends Fragment {
         viewModel.getTrainings().observe(getViewLifecycleOwner(), new Observer<List<Training>>() {
             @Override
             public void onChanged(@Nullable List<Training> trainings) {
+                int i;
                 mTrainingList = SpinnerUtils.populateTrainingSpinnerItems(getActivity(), trainingSpinner, trainings);
 
                 //Set Spinner on preferred Position after check if is still existing
-                int trainingSelection = SharedPrefsUtils.getTrainingSpinnerPosition(getActivity());
-
-                if(mTrainingList.size() > trainingSelection){
-                    trainingSpinner.setSelection(trainingSelection);
+                if (SharedPrefsUtils.getPreferDayBoolean(PreparationFragment.this.getActivity())) {
+                    i = SpinnerUtils.getDaysDaySpinnerPosition(PreparationFragment.this.getActivity(), trainings);
+                    Log.d(TAG, "!!!! CHECK HERE !!!" + i);
+                    if (i < 0) {
+                        i = SharedPrefsUtils.getTrainingSpinnerPosition(PreparationFragment.this.getActivity());
+                    }
+                } else {
+                    i = SharedPrefsUtils.getTrainingSpinnerPosition(PreparationFragment.this.getActivity());
+                }
+                if (PreparationFragment.this.mTrainingList.size() > i) {
+                    Log.d(TAG, "!!!! Set Selection !!!" + i);
+                    PreparationFragment.this.trainingSpinner.setSelection(i + 1);
                 }
             }
         });

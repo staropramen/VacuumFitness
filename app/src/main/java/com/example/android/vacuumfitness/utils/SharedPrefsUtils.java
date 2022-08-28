@@ -28,6 +28,8 @@ public class SharedPrefsUtils {
     private static String MOTIVATORS_ROW_COUNT = "motivators-row-count";
     private static String LAST_MOTIVATOR_ID = "last-motivator_id";
     private static String CURRENT_MOTIVATOR = "current-motivator";
+    private static String PREFER_DAY_TRAINING = "prefer-day-training";
+
 
     public static void saveExerciseIdsToSharedPrefs(Context context, List<Integer> exerciseIds){
         String exerciseIdsString = ListConverter.fromList(exerciseIds);
@@ -83,6 +85,16 @@ public class SharedPrefsUtils {
     public static int getPlaylistId(Context context){
         int id = PreferenceManager.getDefaultSharedPreferences(context).getInt(PLAYLIST_ID, -1);
         return id;
+    }
+
+    public static void savePreferDayBoolean(Context context, boolean z) {
+        SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        edit.putBoolean(PREFER_DAY_TRAINING, z);
+        edit.apply();
+    }
+
+    public static boolean getPreferDayBoolean(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(PREFER_DAY_TRAINING, true);
     }
 
     public static void saveMusicSpinnerPosition(Context context, int pos){

@@ -41,6 +41,7 @@ public class SettingsFragment extends Fragment {
     @BindView(R.id.cb_duck_music) CheckBox mDuckMusicCheckBox;
     @BindView(R.id.toggle_voice) Switch mVoiceToggle;
     @BindView(R.id.toggle_visual) Switch mVisualToggle;
+    @BindView(R.id.cb_prefer_day) CheckBox mPreferCheckBox;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -66,6 +67,10 @@ public class SettingsFragment extends Fragment {
 
         //Set Duck Music CheckBox
         mDuckMusicCheckBox.setChecked(SharedPrefsUtils.getDuckMusicBoolean(getActivity()));
+
+        //Set prefered Training Spinner
+        mPreferCheckBox.setChecked(SharedPrefsUtils.getPreferDayBoolean(getActivity()));
+
 
         //Set voice and visual toggle
         mVoiceToggle.setChecked(SharedPrefsUtils.getVoiceToggleBoolean(getActivity()));

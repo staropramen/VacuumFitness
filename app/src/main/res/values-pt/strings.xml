@@ -82,6 +82,7 @@
     <string name="reduce_music_for_voice">Baixar música para comandos.</string>
     <string name="voice_command_toggle">Comandos de voz</string>
     <string name="visual_command_toggle">Comandos visuais</string>
+    <string name="prefer_day">Preferir treino do dia</string>
 
     <!-- Visual Commands -->
     <string name="prepare">Tome posição</string>
