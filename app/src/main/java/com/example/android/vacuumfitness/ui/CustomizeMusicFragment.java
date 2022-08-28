@@ -157,7 +157,7 @@ public class CustomizeMusicFragment extends Fragment implements PlaylistAdapter.
     public void showAlertDialogButtonClicked(final boolean isLongClick) {
 
         // create an alert builder
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.AlertDialogTheme);
         builder.setTitle(getString(R.string.custom_playlist_dialog_title));
 
         // set the custom layout

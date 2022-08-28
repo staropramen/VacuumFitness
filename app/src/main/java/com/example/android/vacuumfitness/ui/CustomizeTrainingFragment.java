@@ -164,7 +164,7 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
     public void showAlertDialogButtonClicked(final boolean isLongClick) {
 
         // create an alert builder
-        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.AlertDialogTheme);
         builder.setTitle(getString(R.string.cust_menu_title));
 
         // set the custom layout
