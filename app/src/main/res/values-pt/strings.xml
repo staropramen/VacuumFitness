@@ -39,7 +39,7 @@
     <string name="cd_add_playlist">Adicionar nova playlist</string>
     <string name="cd_add_song">Adicionar música à playlist</string>
     <string name="cd_add_training">Adicionar novo traino</string>
-    <string name="cd_add_exercise">Adicionar exercicio ao traino</string>
+    <string name="cd_add_exercise">Adicionar exercício ao traino</string>
     <string name="cd_back_button">Volte</string>
     <string name="cd_start_training">Começar traino</string>
     <string name="cd_customize_training">Personalizar seu treino</string>
@@ -49,8 +49,8 @@
     <string name="cd_music_button">Silenciar música</string>
     <string name="cd_video_button">Vídeo sobre a posição atual</string>
     <string name="cd_delete_icon">Apagar</string>
-    <string name="cd_increase">Mais exercicios</string>
-    <string name="cd_decrease">Menos exercicios</string>
+    <string name="cd_increase">Mais exercícios</string>
+    <string name="cd_decrease">Menos exercícios</string>
     <string name="cd_belly_image">Imagem de uma barriga tonificada</string>
     <string name="cd_drag">Drag é Drop</string>
     <string name="cd_more_options">Mais opções</string>
@@ -73,7 +73,7 @@
     <string name="tut_step_5">5. No próximo comando expire, tente expirar todo o ar. Mantenha o peito aberto o máximo possível.</string>
     <string name="tut_step_6">6. Agora o aplicativo dá a eles o comando vácuo, tire todo o ar que ainda pode estar no estômago, imagine que o umbigo deve tocar a coluna e mantenha a posição. Para iniciantes, são 15 segundos, para médios 20 segundos e para avançados 25 segundos.</string>
     <string name="tut_step_7">7. Aguarde até que o aplicativo lhe dê o comando Rest. Então você pode respirar novamente, mas mantenha a posição, há uma segunda série. Após o vácuo na segunda série, o aplicativo dá o comando Descanse e prepare-se para mudar de posição, o que significa que você pode sair lentamente da posição e relaxar os músculos.</string>
-    <string name="tut_conclusion">Tente treinar assim em qualquer posição. Em algumas posições isso se torna mais difícil do que em outras, mas você logo fará progressos. \10 \10 Tente se exercitar pelo menos 3 vezes por semana. Ideal são 4-5 vezes com 3-5 exercícios por treino. É melhor não se exercitar com o estômago cheio, por exemplo, antes do café da manhã ou antes do jantar. \10 \10 É isso aí, aproveite o treinamento.</string>
+    <string name="tut_conclusion">Tente treinar assim em qualquer posição. Em algumas posições isso se torna mais difícil do que em outras, mas você logo fará progressos. \10 \10 Tente se exercitar pelo menos 3 vezes por semana. Ideal são 4 até 5 vezes com 3 até 5 exercícios por treino. É melhor não se exercitar com o estômago cheio, por exemplo, antes do café da manhã ou antes do jantar. \10 \10 É isso aí, aproveite o treinamento.</string>
 
     <!-- Settings -->
     <string name="settings">Configurações</string>
@@ -129,17 +129,18 @@
     <string name="minutes_short">min</string>
     <string name="start_button">Comece</string>
     <string name="music_title">Música:</string>
-    <string name="exercise">Exercicio:</string>
+    <string name="exercise">Exercício:</string>
     <string name="no_internet_connection">Conectar-se com internet e tenta de novo.</string>
-    <string name="no_exercise_video">Esse exercicio não possui vídeo.</string>
+    <string name="no_exercise_video">Esse exercício não possui vídeo.</string>
 
     <!-- Customize Training Activity -->
     <string name="customize_training_title">Personalizar treino</string>
     <string name="empty_customize_trainings">Você ainda não tem treinos personalizados. Comece adicionando um treino.</string>
-    <string name="exercises">Exercicios:</string>
-    <string name="empty_training_detail">Esse treino ainda não tem exercicios. Comce adicionando um exercicio.</string>
-    <string name="all_exercises">Todos Exercicios</string>
-    <string name="add_training">Novo treino</string>
+    <string name="exercises">Exercícios:</string>
+    <string name="empty_training_detail">Esse treino ainda não tem exercícios. Comce adicionando um exercício.</string>
+    <string name="all_exercises">Todos Exercícios</string>
+    <string name="add_training">Adicionar treino</string>
+    <string name="add_exercise">Adicionar exercício</string>
 
     <!-- Dialogs -->
     <string name="positive_answer">OK</string>
@@ -152,7 +153,7 @@
     <string name="delete_answer">Apagar</string>
     <string name="delete_training_title">Apagar treino</string>
     <string name="delete_question">Deseja apagar %1$s?</string>
-    <string name="delete_exercise_title">Apagar exercicio</string>
+    <string name="delete_exercise_title">Apagar exercício</string>
     <string name="custom_playlist_hint">Nome da Playlist</string>
     <string name="custom_playlist_dialog_title">Criar Playlist</string>
     <string name="delete_song_title">Apagar música da playlist</string>

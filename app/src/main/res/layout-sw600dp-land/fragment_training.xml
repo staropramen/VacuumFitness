@@ -12,10 +12,10 @@
         android:contentDescription="@string/cd_back_button"
         android:layout_width="@dimen/back_button_size"
         android:layout_height="@dimen/back_button_size"
-        android:tint="@color/colorPrimaryExtraDark"
-        android:src="@drawable/ic_back"
+        android:src="@drawable/ic_arrow_back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/colorPrimaryExtraDark" />
 
     <ImageView
         android:id="@+id/iv_video_button"

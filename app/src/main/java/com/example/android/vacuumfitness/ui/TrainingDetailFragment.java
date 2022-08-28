@@ -16,6 +16,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.android.vacuumfitness.R;
@@ -46,7 +47,7 @@ public class TrainingDetailFragment extends Fragment implements ExerciseAdapter.
     @BindView(R.id.rv_exercises_by_ids) RecyclerView exerciseRecyclerView;
     @BindView(R.id.tv_empty_exercises) TextView emptyListTextView;
     @BindView(R.id.tv_exercises_count) TextView exercisesCountTextView;
-    @BindView(R.id.fab_add_exercise) FloatingActionButton fabAddExercises;
+    @BindView(R.id.bt_add_exercise) Button btAddExercises;
 
     public TrainingDetailFragment() {
         // Required empty public constructor
@@ -126,7 +127,7 @@ public class TrainingDetailFragment extends Fragment implements ExerciseAdapter.
     }
 
     private void setupFabButton(){
-        fabAddExercises.setOnClickListener(new View.OnClickListener() {
+        btAddExercises.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 allExercisesFragmentTransaction();

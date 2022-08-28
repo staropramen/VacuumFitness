@@ -137,6 +137,7 @@
     <string name="empty_training_detail">This training still don\'t have exercises. Start by adding a exercise.</string>
     <string name="all_exercises">All Exercises</string>
     <string name="add_training">Add Training</string>
+    <string name="add_exercise">Add Exercise</string>
 
     <!-- Tutorial  -->
     <string name="tut_conclusion">Try to train like this in any position. In some positions this becomes more difficult than in others, but you will soon make progress. \10 \10 Try to exercise at least 3 times a week. Optimal are 4-5 times with 3-5 exercises per workout. It is best not to exercise on a full stomach, for example before breakfast or before dinner. \10 \10 That\'s it, enjoy the training.</string>
