@@ -90,7 +90,7 @@ public class PlaylistDetailFragment extends Fragment implements SongAdapter.Song
 
     @Override
     public void onClick(Song song) {
-        //In this case we do nothing
+        showDeleteDialog(mPlaylist, song);
     }
 
     @Override
@@ -154,7 +154,7 @@ public class PlaylistDetailFragment extends Fragment implements SongAdapter.Song
     }
 
     private void showDeleteDialog(final Playlist playlist, final Song song){
-        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity(), R.style.AlertDialogTheme);
         alert.setTitle(getString(R.string.delete_song_title));
         alert.setMessage(getString(R.string.delete_question, song.getSongName()));
         alert.setPositiveButton(getString(R.string.delete_answer), new DialogInterface.OnClickListener() {

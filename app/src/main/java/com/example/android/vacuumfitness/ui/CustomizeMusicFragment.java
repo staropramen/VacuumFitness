@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -77,9 +76,15 @@ public class CustomizeMusicFragment extends Fragment implements PlaylistAdapter.
     }
 
     @Override
-    public void onClick(Playlist playlist) {
-        long id = playlist.getPrimaryKey();
-        playlistDetailFragmentTransaction(id);
+    public void onClick(Playlist playlist, boolean equals) {
+        if (equals) {
+            mPlaylistToEdit = playlist;
+            showAlertDialogButtonClicked(true);
+        } else {
+            long id = playlist.getPrimaryKey();
+            playlistDetailFragmentTransaction(id);
+        }
+
     }
 
     @Override
@@ -219,7 +224,7 @@ public class CustomizeMusicFragment extends Fragment implements PlaylistAdapter.
     }
 
     private void showDeleteDialog(final Playlist playlist){
-        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity(), R.style.AlertDialogTheme);
         alert.setTitle(getString(R.string.delete_playlist_title));
         alert.setMessage(getString(R.string.delete_question, playlist.getPlaylistName()));
         alert.setPositiveButton(getString(R.string.delete_answer), new DialogInterface.OnClickListener() {

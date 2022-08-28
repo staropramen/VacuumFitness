@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.model.Playlist;
@@ -22,7 +23,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
     private final PlaylistAdapterOnLongClickHandler playlistAdapterOnLongClickHandler;
 
     public interface PlaylistAdapterOnClickHandler {
-        void onClick(Playlist playlist);
+        void onClick(Playlist playlist, boolean equals);
     }
 
     public interface PlaylistAdapterOnLongClickHandler {
@@ -39,19 +40,22 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
     public class PlaylistAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
 
         @BindView(R.id.tv_playlist_name) TextView nameTextView;
+        @BindView(R.id.iv_more_options) ImageView moreOptions;
 
         public PlaylistAdapterViewHolder(View view){
             super(view);
             ButterKnife.bind(this, view);
             view.setOnClickListener(this);
             view.setOnLongClickListener(this);
+            moreOptions.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
+            boolean equals = view.equals(this.moreOptions);
             int adapterPosition = getAdapterPosition();
             Playlist playlist = playlists.get(adapterPosition);
-            playlistAdapterOnClickHandler.onClick(playlist);
+            playlistAdapterOnClickHandler.onClick(playlist, equals);
         }
 
         @Override

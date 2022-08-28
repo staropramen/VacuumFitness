@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.model.Song;
@@ -41,11 +42,12 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongAdapterVie
         @BindView(R.id.tv_artist) TextView artistName;
         @BindView(R.id.tv_song_title) TextView songTitle;
         @BindView(R.id.tv_duration) TextView songDuration;
+        @BindView(R.id.iv_more_options) ImageView moreOptions;
 
         private SongAdapterViewHolder(@NonNull View view) {
             super(view);
             ButterKnife.bind(this, view);
-            view.setOnClickListener(this);
+            moreOptions.setOnClickListener(this);
             view.setOnLongClickListener(this);
         }
 
