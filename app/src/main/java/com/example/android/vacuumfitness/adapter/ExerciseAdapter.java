@@ -4,6 +4,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -32,15 +33,18 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
     }
 
     //ViewHolder
-    public class ExerciseAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ExerciseAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnTouchListener {
 
         @BindView(R.id.iv_exercise_thumbnail) ImageView exerciseThumbnail;
         @BindView(R.id.tv_exercise_list_name) TextView nameTextView;
+        @BindView(R.id.iv_drag_drop) ImageView dragAndDrop;
+        @BindView(R.id.iv_more_options) ImageView moreOptions;
 
         public ExerciseAdapterViewHolder(View view){
             super(view);
             ButterKnife.bind(this, view);
-            view.setOnClickListener(this);
+            moreOptions.setOnClickListener(this);
+            dragAndDrop.setOnTouchListener(this);
         }
 
         @Override
@@ -50,6 +54,10 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
             exerciseOnClickHandler.onClick(exercise);
         }
 
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            return false;
+        }
     }
 
     @NonNull

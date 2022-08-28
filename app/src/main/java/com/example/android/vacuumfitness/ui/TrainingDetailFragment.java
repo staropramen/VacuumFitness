@@ -127,7 +127,7 @@ public class TrainingDetailFragment extends Fragment implements ExerciseAdapter.
 
     @Override
     public void onClick(Exercise exercise) {
-        //In this case we do nothing
+        showDeleteDialog(mTraining, exercise);
     }
 
     @Override
@@ -158,8 +158,9 @@ public class TrainingDetailFragment extends Fragment implements ExerciseAdapter.
         transaction.commit();
     }
 
+    //Popup Alert Dialog
     private void showDeleteDialog(final Training training, final Exercise exercise){
-        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity(), R.style.AlertDialogTheme);
         alert.setTitle(getString(R.string.delete_exercise_title));
         alert.setMessage(getString(R.string.delete_question, exercise.getExerciseName()));
         alert.setPositiveButton(getString(R.string.delete_answer), new DialogInterface.OnClickListener() {
