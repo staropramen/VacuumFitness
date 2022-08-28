@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.android.vacuumfitness.R;
 import com.example.android.vacuumfitness.model.Training;
@@ -22,7 +23,7 @@ public class CustomTrainingAdapter extends RecyclerView.Adapter<CustomTrainingAd
     private final CustomTrainingOnLongClickHandler customTrainingOnLongClickHandler;
 
     public interface CustomTrainingOnClickHandler {
-        void onClick(Training training);
+        void onClick(Training training, boolean equals);
     }
 
     public interface CustomTrainingOnLongClickHandler {
@@ -40,19 +41,22 @@ public class CustomTrainingAdapter extends RecyclerView.Adapter<CustomTrainingAd
 
         @BindView(R.id.tv_label) TextView labelTextView;
         @BindView(R.id.tv_custom_training_name) TextView nameTextView;
+        @BindView(R.id.iv_more_options) ImageView moreOptions;
 
         public CustomTrainingAdapterViewHolder(View view){
             super(view);
             ButterKnife.bind(this, view);
             view.setOnClickListener(this);
+            moreOptions.setOnClickListener(this);
             view.setOnLongClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
+            boolean equals = view.equals(this.moreOptions);
             int adapterPosition = getAdapterPosition();
             Training training = trainings.get(adapterPosition);
-            customTrainingOnClickHandler.onClick(training);
+            customTrainingOnClickHandler.onClick(training, equals);
         }
 
         @Override

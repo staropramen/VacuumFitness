@@ -8,7 +8,6 @@ import android.content.DialogInterface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -81,9 +80,15 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
     }
 
     @Override
-    public void onClick(Training training) {
-        long id = training.getPrimaryKey();
-        trainingDetailFragmentTransaction(id);
+    public void onClick(Training training, boolean equals) {
+        if (equals) {
+            mTrainingToEdit = training;
+            showAlertDialogButtonClicked(true);
+        } else {
+            long id = training.getPrimaryKey();
+            trainingDetailFragmentTransaction(id);
+        }
+
     }
 
     @Override
@@ -315,7 +320,7 @@ public class CustomizeTrainingFragment extends Fragment implements CustomTrainin
     }
 
     private void showDeleteDialog(final Training training){
-        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity(), R.style.AlertDialogTheme);
         alert.setTitle(getString(R.string.delete_training_title));
         alert.setMessage(getString(R.string.delete_question, training.getTrainingName()));
         alert.setPositiveButton(getString(R.string.delete_answer), new DialogInterface.OnClickListener() {
