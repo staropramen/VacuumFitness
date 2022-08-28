@@ -2,6 +2,8 @@ package com.example.android.vacuumfitness.ui;
 
 
 import android.app.AlertDialog;
+
+import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import android.content.DialogInterface;
@@ -10,6 +12,7 @@ import androidx.annotation.Nullable;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
@@ -28,6 +31,7 @@ import com.example.android.vacuumfitness.utils.AppExecutors;
 import com.example.android.vacuumfitness.utils.KeyUtils;
 import com.example.android.vacuumfitness.viewmodel.SingleTrainingViewModel;
 
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -36,7 +40,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TrainingDetailFragment extends Fragment implements ExerciseAdapter.ExerciseAdapterClickHandler, ExerciseAdapter.ExerciseAdapterLongClickHandler {
+public class TrainingDetailFragment extends Fragment implements ExerciseAdapter.ExerciseAdapterClickHandler {
 
     private Toolbar toolbar;
     private long id;
@@ -44,6 +48,8 @@ public class TrainingDetailFragment extends Fragment implements ExerciseAdapter.
     private List<Exercise> exercises;
     private LinearLayoutManager layoutManager;
     private ExerciseAdapter exerciseAdapter;
+    private boolean mTrainingHasChanged;
+    private ItemTouchHelper mItemTouchHelper;
     @BindView(R.id.rv_exercises_by_ids) RecyclerView exerciseRecyclerView;
     @BindView(R.id.tv_empty_exercises) TextView emptyListTextView;
     @BindView(R.id.tv_exercises_count) TextView exercisesCountTextView;
@@ -65,8 +71,11 @@ public class TrainingDetailFragment extends Fragment implements ExerciseAdapter.
         //Prepare RecyclerView
         layoutManager = new LinearLayoutManager(getContext());
         exerciseRecyclerView.setLayoutManager(layoutManager);
-        exerciseAdapter = new ExerciseAdapter(this, this);
+        exerciseAdapter = new ExerciseAdapter(this);
         exerciseRecyclerView.setAdapter(exerciseAdapter);
+        mTrainingHasChanged = false;
+        mItemTouchHelper = new ItemTouchHelper(simpleCallback);
+        mItemTouchHelper.attachToRecyclerView(exerciseRecyclerView);
 
         //Get Data from Bundle
         Bundle data = getArguments();
@@ -122,8 +131,11 @@ public class TrainingDetailFragment extends Fragment implements ExerciseAdapter.
     }
 
     @Override
-    public void onLongClick(Exercise exercise) {
-        showDeleteDialog(mTraining, exercise);
+    public void onPause() {
+        super.onPause();
+        if(mTrainingHasChanged){
+            updateTraining(mTraining);
+        }
     }
 
     private void setupFabButton(){
@@ -172,4 +184,37 @@ public class TrainingDetailFragment extends Fragment implements ExerciseAdapter.
         });
         alert.show();
     }
+
+    private void updateTraining(final Training training) {
+        training.setExerciseList(this.exercises);
+        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+            /* class com.example.android.vacuumfitness.ui.TrainingDetailFragment.AnonymousClass5 */
+
+            public void run() {
+                AppDatabase.getInstance(TrainingDetailFragment.this.getActivity()).trainingDao().updateTraining(training);
+            }
+        });
+    }
+
+    ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN | ItemTouchHelper.START | ItemTouchHelper.END, 0) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+
+            int fromPosition = viewHolder.getAdapterPosition();
+            int toPosition = target.getAdapterPosition();
+
+            Collections.swap(exercises, fromPosition, toPosition);
+
+            exerciseRecyclerView.getAdapter().notifyItemMoved(fromPosition, toPosition);
+            mTrainingHasChanged = true;
+
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
+        }
+    };
+
 }

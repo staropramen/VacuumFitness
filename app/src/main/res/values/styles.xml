@@ -13,6 +13,13 @@
         <item name="android:statusBarColor">@color/colorPrimary</item>
     </style>
 
+    <style name="exercise_list_item_text">
+        <item name="android:textSize">@dimen/regular_text</item>
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
     <style name="UbuntuButtonStyle" parent="@android:style/Widget.Holo.Button">
         <item name="android:fontFamily">@font/ubuntu</item>
     </style>

@@ -12,5 +12,6 @@
     <color name="black">#000000</color>
     <color name="green">#3dcf04</color>
     <color name="lightOpacity">#808580ea</color>
+    <color name="middle_grey">#cbc8c8</color>
 
 </resources>

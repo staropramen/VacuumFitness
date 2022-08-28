@@ -22,24 +22,17 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
 
     private final ExerciseAdapterClickHandler exerciseOnClickHandler;
 
-    private final ExerciseAdapterLongClickHandler exerciseAdapterLongClickHandler;
-
     public interface ExerciseAdapterClickHandler {
         void onClick(Exercise exercise);
     }
 
-    public interface ExerciseAdapterLongClickHandler {
-        void onLongClick(Exercise exercise);
-    }
-
     //Constructor for both clickHandler
-    public ExerciseAdapter(ExerciseAdapterClickHandler clickHandler, ExerciseAdapterLongClickHandler longClickHandler){
+    public ExerciseAdapter(ExerciseAdapterClickHandler clickHandler){
         exerciseOnClickHandler = clickHandler;
-        exerciseAdapterLongClickHandler = longClickHandler;
     }
 
     //ViewHolder
-    public class ExerciseAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
+    public class ExerciseAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.iv_exercise_thumbnail) ImageView exerciseThumbnail;
         @BindView(R.id.tv_exercise_list_name) TextView nameTextView;
@@ -48,7 +41,6 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
             super(view);
             ButterKnife.bind(this, view);
             view.setOnClickListener(this);
-            view.setOnLongClickListener(this);
         }
 
         @Override
@@ -58,13 +50,6 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
             exerciseOnClickHandler.onClick(exercise);
         }
 
-        @Override
-        public boolean onLongClick(View v) {
-            int adapterPosition = getAdapterPosition();
-            Exercise exercise = exercises.get(adapterPosition);
-            exerciseAdapterLongClickHandler.onLongClick(exercise);
-            return true;
-        }
     }
 
     @NonNull
